@@ -1,0 +1,2 @@
+export TERMINAL="sakura"
+export VISUAL="nano"
