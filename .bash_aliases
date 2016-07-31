@@ -1,6 +1,6 @@
 # list
 
-alias ll='ls -AlsHF --color=always'
+alias la='~/dotfiles/scripts/git_ll.sh'
 alias lg='ls -AlsHF --color=always | grep'
 alias lll='ls -AlsHF --color=always | less -R'
 
@@ -47,6 +47,4 @@ alias lock='~/.scripts/i3lock-fancy/lock'
 alias music='ncmpcpp'
 alias bla='cat /dev/urandom | hexdump -C | grep --color=auto "ca fe"'
 alias disco='while true; do printf "\e[38;5;$(($(od -d -N 2 -A n /dev/urandom)%$(tput colors)))m.\e[0m"; done'
-alias pipes='~/.scripts/pipes.sh'
-alias movies='/home/lukas/.scripts/movies.py'
 alias pokemon='xrandr --output eDP1 --mode 800x600 && sudo vbam -f 0 --no-opengl -F ~/.vbam/pokemon_fire_red.gba'
