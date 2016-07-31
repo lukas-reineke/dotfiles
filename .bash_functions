@@ -3,8 +3,8 @@ function mkcd {
     if [ ! -n "$1" ]; then
         echo "Enter a directory name"
     elif [ -d $1 ]; then
-        cd $1
-        echo "\`$1' already exists"
+        echo -e "\e[31m$* already exists\e[39m"
+        cs $1
     else
         mkdir -p $1 && cd $1
     fi
@@ -57,8 +57,26 @@ function mac {
 
 # run ssh-agent and add key
 function addssh {
-    if [ -z "$SSH_AUTH_SOCK" ] ; then
+    if [ -z "$SSH_AUTH_SOCK" ]; then
         eval `ssh-agent -s`
         ssh-add
     fi
+}
+
+# move to -old
+function old {
+    str="$1"
+    if [ "${str: -1}" == "/" ]; then
+        str=${str::-1}
+    fi
+    mv $str{,-old}
+}
+
+# copy to -bu
+function bu {
+    str="$1"
+    if [ "${str: -1}" == "/" ]; then
+        str=${str::-1}
+    fi
+    cp $str{,-bu}
 }

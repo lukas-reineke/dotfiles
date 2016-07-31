@@ -1,6 +1,7 @@
 # list
 
 alias la='~/dotfiles/scripts/git_ll.sh'
+alias ls='ls -lsHF --color=always'
 alias lg='ls -AlsHF --color=always | grep'
 alias lll='ls -AlsHF --color=always | less -R'
 
