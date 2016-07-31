@@ -91,3 +91,8 @@ fi
 if [ -f ~/dotfiles/.bash_functions ]; then
     . ~/dotfiles/.bash_functions
 fi
+
+### keyboard shortcuts ###
+if [ -f ~/dotfiles/.bash_input ]; then
+    . ~/dotfiles/.bash_input
+fi
