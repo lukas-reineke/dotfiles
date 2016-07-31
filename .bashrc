@@ -36,23 +36,6 @@ else
 fi
 
 
-### alias ###
-if [ -f ~/dotfiles/.bash_aliases ]; then
-    . ~/dotfiles/.bash_aliases
-fi
-
-
-### functions ###
-if [ -f ~/dotfiles/.bash_functions ]; then
-    . ~/dotfiles/.bash_functions
-fi
-
-### enviorment variables ###
-if [ -f ~/dotfiles/.bash_env_vars ]; then
-    . ~/dotfiles/.bash_env_vars
-fi
-
-
 # enable programmable completion features
 if ! shopt -oq posix; then
     if [ -f /usr/share/bash-completion/bash_completion ]; then
@@ -61,8 +44,6 @@ if ! shopt -oq posix; then
         . /etc/bash_completion
     fi
 fi
-
-
 
 
 ## external
@@ -94,3 +75,19 @@ source ~/dotfiles/lib/scm_breeze/scm_breeze.sh
 ## os specific
 # arch
 source ~/dotfiles/.arch_linux
+
+
+### alias ###
+if [ -f ~/dotfiles/.bash_aliases ]; then
+    . ~/dotfiles/.bash_aliases
+fi
+
+### enviorment variables ###
+if [ -f ~/dotfiles/.bash_env_vars ]; then
+    . ~/dotfiles/.bash_env_vars
+fi
+
+### functions ###
+if [ -f ~/dotfiles/.bash_functions ]; then
+    . ~/dotfiles/.bash_functions
+fi

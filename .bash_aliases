@@ -7,6 +7,7 @@ alias lll='ls -AlsHF --color=always | less -R'
 # move
 alias ce='cd ..'
 alias cl='clear'
+alias mkdir='mkdir -p'
 
 # folders
 alias dev='cd ~/dev'
@@ -17,8 +18,11 @@ alias vpn='cd /etc/openvpn/de && sudo openvpn --config de.ovpn'
 alias vpnus='cd /etc/openvpn/us && sudo openvpn --config us.ovpn'
 alias vpno='cd /etc/openvpn/ocean && sudo openvpn --config ocean.ovpn'
 
-# shutdown
+# system
 alias qq='sudo shutdown -h 0'
+alias disk='df -Tha --total | grep /dev/sd'
+alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
+alias rm="rm -rf"
 
 # network
 alias arp='sudo arp-scan --interface=wlp2s0b1 --localnet'
