@@ -54,6 +54,7 @@ alias avd='/opt/android-sdk/tools/android avd'
 alias xtn='xrandr --output eDP1 --mode 1440x900'
 
 # stuff
+alias p='~/dotfiles/scripts/play.sh'
 alias clock='tty-clock -b -c -C 6'
 alias lock='~/.scripts/i3lock-fancy/lock'
 alias music='ncmpcpp'
