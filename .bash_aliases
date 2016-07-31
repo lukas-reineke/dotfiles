@@ -8,6 +8,10 @@ alias lll='ls -AlsHF --color=always | less -R'
 alias ce='cd ..'
 alias cl='clear'
 
+# folders
+alias dev='cd ~/dev'
+alias dot='cd ~/dotfiles'
+
 # vpn
 alias vpn='cd /etc/openvpn/de && sudo openvpn --config de.ovpn'
 alias vpnus='cd /etc/openvpn/us && sudo openvpn --config us.ovpn'
@@ -22,6 +26,9 @@ alias arpe='sudo arp-scan --interface=enp0s26f7u1u3 --localnet'
 alias arpt='sudo arp-scan --interface=tun0 --localnet'
 alias nl='nload wlp2s0b1'
 alias ethup='sudo ip link set enp0s26f7u1u3 up'
+
+# git
+alias log="git log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short"
 
 # pacman
 alias pac='sudo pacman -S'
