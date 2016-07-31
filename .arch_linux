@@ -1,4 +1,2 @@
 screenfetch -t
 # export PS1="\[$(tput setaf 6)\]╔═╡\e[46m \[$(tput setaf 16)\]サイコパス \e[0m\[$(tput setaf 6)\]│ \[$(tput setaf 0)\]\W\n\[$(tput setaf 6)\]╚═════╾ \[$(tput sgr0)\]"
-
-## external
