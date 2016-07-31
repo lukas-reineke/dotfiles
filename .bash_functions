@@ -1,5 +1,5 @@
 # mkdir and enter
-function mkcd {
+function mkcd() {
     if [ ! -n "$1" ]; then
         echo "Enter a directory name"
     elif [ -d $1 ]; then
@@ -7,6 +7,24 @@ function mkcd {
         echo "\`$1' already exists"
     else
         mkdir $1 && cd $1
+    fi
+}
+
+# cd git status
+function cs() {
+    if [[ $# -eq 0 ]]; then
+        cd
+    elif [[ -d "$*" ]]; then
+        cd "$*"
+        if [ -d ./.git ]; then
+            git_status_shortcuts
+        fi
+    elif [[ -f "$*" ]]; then
+        echo -e "\e[31m$* is not a directory\e[39m" 1>&2
+        local dir=$(dirname "$*")
+        cd "$dir"
+    else
+        cd "$*"
     fi
 }
 
