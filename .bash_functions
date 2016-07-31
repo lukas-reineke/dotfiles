@@ -78,5 +78,5 @@ function bu {
     if [ "${str: -1}" == "/" ]; then
         str=${str::-1}
     fi
-    cp $str{,-bu}
+    cp -r $str{,-bu}
 }
