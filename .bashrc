@@ -66,6 +66,11 @@ fi
 
 
 ## external
+# git prompt
+source ~/dotfiles/lib/.bash-git-prompt/gitprompt.sh
+GIT_PROMPT_ONLY_IN_REPO=0
+GIT_PROMPT_THEME=Solarized
+
 # git completion
 source ~/dotfiles/lib/git-completion.bash
 source ~/dotfiles/lib/git-flow-completion.bash
