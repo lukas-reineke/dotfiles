@@ -63,20 +63,12 @@ if ! shopt -oq posix; then
 fi
 
 
-# arch stuff
-screenfetch -t
-# export PS1="\[$(tput setaf 6)\]╔═╡\e[46m \[$(tput setaf 16)\]サイコパス \e[0m\[$(tput setaf 6)\]│ \[$(tput setaf 0)\]\W\n\[$(tput setaf 6)\]╚═════╾ \[$(tput sgr0)\]"
 
 
 ## external
-# git prompt
-source ~/.scripts/.bash-git-prompt/gitprompt.sh
-GIT_PROMPT_ONLY_IN_REPO=0
-GIT_PROMPT_THEME=Solarized
-
 # git completion
-source ~/.scripts/git-completion.bash
-source ~/.scripts/git-flow-completion.bash
+source ~/dotfiles/lib/git-completion.bash
+source ~/dotfiles/lib/git-flow-completion.bash
 
 # pip bash completion
 _pip_completion()
@@ -90,4 +82,10 @@ _pip_completion()
 complete -o default -F _pip_completion pip
 
 # scm breeze
-[ -s "/home/lukas/.scm_breeze/scm_breeze.sh" ] && source "/home/lukas/.scm_breeze/scm_breeze.sh"
+source ~/dotfiles/lib/scm_breeze/scm_breeze.sh
+
+
+
+## os specific
+# arch
+source ~/dotfiles/.arch_linux
