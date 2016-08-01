@@ -1,0 +1,29 @@
+clear
+
+# git prompt
+source ~/dotfiles/lib/bash-git-prompt/share/gitprompt.sh
+GIT_PROMPT_ONLY_IN_REPO=0
+# GIT_PROMPT_THEME=Solarized
+
+# env vars
+alias disagenv='. /Users/lukasadmin/scripts/disagg/disag-env-vars.sh'
+alias authenv='. /Users/lukasadmin/scripts/auth/auth-env-vars.sh'
+alias mgntenv='. /Users/lukasadmin/scripts/usermgnt/mgnt-env-vars.sh'
+alias pvenv='. /Users/lukasadmin/scripts/pv/pv-env-vars.sh'
+
+### Path exports ###
+
+export PATH=${PATH}:/usr/local/mysql/bin
+export PATH=${PATH}:/Users/lukasadmin/Library/Android/sdk/platform-tools
+export PATH=${PATH}:$HOME/.node/bin
+export PATH=${PATH}:/usr/local/bin
+export PATH=${PATH}:/usr/local/bin/liquibase-3.5.1-bin
+export PATH=${PATH}:/usr/local/bin/redis-3.2.0/src
+export PATH=${PATH}:/Users/lukasadmin/Library/Android/sdk/build-tools/24.0.1
+export CLASSPATH=/usr/local/bin/mysql-connector-java-5.1.39/mysql-connector-java-5.1.39-bin.jar:$CLASSPATH
+
+
+### iTerm ###
+if [ -f ~/dotfiles/lib/iterm2_shell_integration.bash ]; then
+    . ~/dotfiles/lib/iterm2_shell_integration.bash
+fi

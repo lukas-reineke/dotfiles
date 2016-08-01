@@ -22,7 +22,7 @@ shopt -s checkwinsize
 
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
-shopt -s globstar
+#shopt -s globstar
 
 # make less more friendly for non-text input files
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
@@ -47,11 +47,6 @@ fi
 
 
 ## external
-# git prompt
-source ~/dotfiles/lib/.bash-git-prompt/gitprompt.sh
-GIT_PROMPT_ONLY_IN_REPO=0
-GIT_PROMPT_THEME=Solarized
-
 # git completion
 source ~/dotfiles/lib/git-completion.bash
 source ~/dotfiles/lib/git-flow-completion.bash
@@ -74,7 +69,10 @@ source ~/dotfiles/lib/scm_breeze/scm_breeze.sh
 
 ## os specific
 # arch
-source ~/dotfiles/.arch_linux
+#source ~/dotfiles/.arch_linux
+
+#osx
+source ~/dotfiles/.osx
 
 
 ### alias ###
@@ -96,3 +94,6 @@ fi
 if [ -f ~/dotfiles/.bash_input ]; then
     . ~/dotfiles/.bash_input
 fi
+
+# Save and reload the history after each command finishes
+export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"

@@ -1,3 +1,7 @@
+### colors ###
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+
 # mkdir and enter
 function mkcd {
     if [ ! -n "$1" ]; then
@@ -28,6 +32,58 @@ function cs {
     fi
 }
 alias cd='exec_scmb_expand_args cs'
+
+# temp folder
+function temp {
+  if [ ! -n "$1" ]; then
+    pushd /Users/lukasadmin/dev/temp
+  else
+    pushd /Users/lukasadmin/dev/temp
+    if [ -d $1 ]; then
+      printf "${RED}\`$1' already exists${NC}\n"  && cd $1
+    else
+      mkdir $1 && cd $1
+    fi
+  fi
+}
+
+#setup terminal tab title
+function tt {
+    if [ "$1" ]
+    then
+        unset PROMPT_COMMAND
+        echo -ne "\033]0;${*}\007"
+    else
+        function title {
+            echo -ne "\033]0;${PWD##*/}\007"
+        }
+        export PROMPT_COMMAND="title;$PROMPT_COMMAND"
+    fi
+}
+tt
+
+# cd ..
+function ce {
+    DEEP=$1; [ -z "${DEEP}" ] && { DEEP=1; }; for i in $(seq 1 ${DEEP}); do cd ../; done;
+}
+
+# bower
+function bower {
+    if [[ $@ == "i" ]]; then
+        command bower install
+    else
+        command bower "$@"
+    fi
+}
+
+#brew
+function brew {
+    if [[ $@ == "i" ]]; then
+        command brew install
+    else
+        command brew "$@"
+    fi
+}
 
 # Create a ZIP archive of a file or folder.
 function makezip {

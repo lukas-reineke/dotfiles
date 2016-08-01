@@ -1,18 +1,19 @@
 # list
 
-alias la='~/dotfiles/scripts/git_ll.sh'
-alias ls='ls -lsHF --color=always'
-alias lg='ls -AlsHF --color=always | grep'
-alias lll='ls -AlsHF --color=always | less -R'
+alias la='~/dotfiles/scripts/git_ll_osx.sh'
+alias cll='clear && ~/dotfiles/scripts/git_ll_osx.sh'
+alias ls='ls -lsHFG'
+alias lg='ls -AlsHFG | grep'
+alias lll='ls -AlsHFG | less -R'
 
 # move
-alias ce='cd ..'
 alias cl='clear'
 alias mkdir='mkdir -p'
 
 # folders
 alias dev='cd ~/dev'
 alias dot='cd ~/dotfiles'
+alias see='cd ~/dev/see'
 
 # vpn
 alias vpn='cd /etc/openvpn/de && sudo openvpn --config de.ovpn'
@@ -24,6 +25,7 @@ alias qq='sudo shutdown -h 0'
 alias disk='df -Tha --total | grep /dev/sd'
 alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
 alias rm="rm -rf"
+alias p='popd'
 
 # network
 alias arp='sudo arp-scan --interface=wlp2s0b1 --localnet'
@@ -43,6 +45,23 @@ alias psyn='sudo pacman -Syy'
 
 # ssh
 alias sshaptx='ssh lukas@192.168.178.57'
+
+# sublime
+alias subl='sublime .'
+
+# webpkack
+alias wp='webpack --config webpack.config.js --progress --watch'
+alias wps='webpack-dev-server --content-base dist/'
+
+# redis
+alias redis='redis-server'
+
+# python
+alias http='simplehttpserver'
+
+# ionic
+alias r='ionic run'
+alias b='ionic build'
 
 # irc
 alias wee='weechat'
