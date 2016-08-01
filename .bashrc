@@ -95,5 +95,10 @@ if [ -f ~/dotfiles/.bash_input ]; then
     . ~/dotfiles/.bash_input
 fi
 
+### keyboard shortcuts ###
+if [ -f ~/dotfiles/.secrets ]; then
+    . ~/dotfiles/.secrets
+fi
+
 # Save and reload the history after each command finishes
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
