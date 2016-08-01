@@ -123,7 +123,8 @@ function addssh {
 function old {
     str="$1"
     if [ "${str: -1}" == "/" ]; then
-        str=${str::-1}
+        # str=${str::-1}
+        str=${str%?}
     fi
     mv $str{,-old}
 }
@@ -132,7 +133,8 @@ function old {
 function bu {
     str="$1"
     if [ "${str: -1}" == "/" ]; then
-        str=${str::-1}
+        # str=${str::-1}
+        str=${str%?}
     fi
     cp -r $str{,-bu}
 }

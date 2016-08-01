@@ -1,6 +1,6 @@
 #!/bin/bash
 
-FINAL=$(ls -1AlhF | while read line ; do
+FINAL=$(ls -1AlhF | while read line; do
     i=$(echo $line | awk '{print $9}')
     if [ -d "$i"/.git ]; then
 
@@ -59,7 +59,6 @@ FINAL=$(ls -1AlhF | while read line ; do
 
         OUTPUT="\x1B[35m$BRANCH\x1B[39m|"
 
-
         if [ "$BEHIND" ]; then
             OUTPUT="$OUTPUT${BEHIND%?}"
         fi
@@ -113,4 +112,4 @@ FINAL=$(ls -1AlhF | while read line ; do
 done)
 
 # printf "%s \n" "$FINAL"
-printf "%s \n" "$FINAL" | column -t -s "§"
+printf "%s \n" "$FINAL" | column -t -s "§" | sed -n '1!p'
