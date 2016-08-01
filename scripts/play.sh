@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ $(uname) == 'Darwin' ]; then
-    spotify play
+    spotify pause
 else
     SPOTIFY=`ps aux | grep 'spotify\|Spotify' | grep -v grep`
 

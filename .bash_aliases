@@ -73,7 +73,6 @@ alias xtn='xrandr --output eDP1 --mode 1440x900'
 
 # stuff
 alias ply='~/dotfiles/scripts/play.sh'
-alias pse='~/dotfiles/scripts/pause.sh'
 alias clock='tty-clock -b -c -C 6'
 alias lock='~/.scripts/i3lock-fancy/lock'
 alias music='ncmpcpp'
