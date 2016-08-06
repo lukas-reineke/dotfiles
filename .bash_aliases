@@ -34,7 +34,10 @@ alias nl='nload wlp2s0b1'
 alias ethup='sudo ip link set enp0s26f7u1u3 up'
 
 # git
-alias log="git log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short"
+#alias log="git log --pretty=format:'%h %ad | %s%d [%an]' 
+--graph --date=short"
+alias log='git log --graph --all --oneline --decorate'
+alias logs='git log --graph --all --decorate --relative-date'
 
 # pacman
 alias pac='sudo pacman -S'
