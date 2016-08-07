@@ -8,6 +8,7 @@ alias lll='ls -AlsHFG | less -R'
 # move
 alias cl='clear'
 alias mkdir='mkdir -p'
+alias cls='clear && gs'
 
 # folders
 alias dev='cd ~/dev'
