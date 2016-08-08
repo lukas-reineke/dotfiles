@@ -4,11 +4,14 @@ FINAL=$(ls -1AlhF | while read line; do
     i=$(echo $line | awk '{print $9}')
     if [ -d "$i"/.git ]; then
 
-        # if [ $@ ]; then
-        #     if [ $@ == "-f" ] || [ $@ == "--fetch" ]; then
-        #         git --git-dir="$i"/.git --work-tree="$i" fetch
-        #     fi
-        # fi
+        if [ $@ ]; then
+            if [ $@ == "-f" ] || [ $@ == "--fetch" ]; then
+                git --git-dir="$i"/.git --work-tree="$i" fetch
+            fi
+            if [ $@ == "-p" ] || [ $@ == "--pull" ]; then
+                git --git-dir="$i"/.git --work-tree="$i" pull
+            fi
+        fi
         LIST=$(git --git-dir="$i"/.git --work-tree="$i" status --porcelain -b)
 
         COUNTER=0
