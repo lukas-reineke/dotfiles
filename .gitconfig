@@ -1,0 +1,30 @@
+[user]
+	name =
+	email =
+[core]
+	excludesfile = /Users/lukasadmin/.gitignore_global
+	autocrlf = false
+
+[diff]
+	tool = sublimerge
+
+[merge]
+	tool = sublimerge
+
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 	
+
+[difftool "sublimerge"]
+	cmd = sublime -n --wait \"$REMOTE\" \"$LOCAL\" --command \"sublimerge_diff_views {\\\"left_read_only\\\": true, \\\"right_read_only\\\": true}\"
+
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+
+[mergetool "sublimerge"]
+	cmd = sublime -n --wait \"$REMOTE\" \"$BASE\" \"$LOCAL\" \"$MERGED\" --command \"sublimerge_diff_views\"
+	trustExitCode = false
+
+[commit]
+	template = /Users/lukasadmin/.stCommitMsg
