@@ -4,6 +4,7 @@
 [core]
 	excludesfile = /Users/lukasadmin/.gitignore_global
 	autocrlf = false
+    editor = vim
 
 [diff]
 	tool = sublimerge
