@@ -69,10 +69,10 @@ source ~/dotfiles/lib/scm_breeze/scm_breeze.sh
 
 ## os specific
 # arch
-#source ~/dotfiles/.arch_linux
+source ~/dotfiles/.arch_linux
 
 #osx
-source ~/dotfiles/.osx
+#source ~/dotfiles/.osx
 
 
 ### alias ###
@@ -99,6 +99,9 @@ fi
 if [ -f ~/dotfiles/.secrets ]; then
     . ~/dotfiles/.secrets
 fi
+
+export VISUAL=vim
+export EDITOR="$VISUAL"
 
 # Save and reload the history after each command finishes
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
