@@ -100,6 +100,11 @@ if [ -f ~/dotfiles/.secrets ]; then
     . ~/dotfiles/.secrets
 fi
 
+### pm2 completion ###
+if [ -f ~/dotfiles/lib/pm2-completion.bash ]; then
+    . ~/dotfiles/lib/pm2-completion.bash
+fi
+
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
