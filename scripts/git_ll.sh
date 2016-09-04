@@ -55,6 +55,10 @@ FINAL=$(ls -1AlhF | while read line; do
                 let "UNTRACKED++ || 1"
             fi
 
+            if [ $l == 'UU' ]; then
+                let "CONFLICT++ || 1"
+            fi
+
         done
 
         OUTPUT="\e[36m$BRANCH\e[39m"
@@ -84,7 +88,11 @@ FINAL=$(ls -1AlhF | while read line; do
         fi
 
         if [ "$UNTRACKED" ]; then
-            OUTPUT="$OUTPUT \e[36m… $UNTRACKED\e[39m"
+            OUTPUT="$OUTPUT \e[31m… $UNTRACKED\e[39m"
+        fi
+
+        if [ "$CONFLICT" ]; then
+            OUTPUT="$OUTPUT \e[36m❌ $CONFLICT\e[39m"
         fi
 
         echo -e "\e[1m\e[32m$(echo $line | awk '{print $1,$3,$9}')\e[39m\e[0m§❲$OUTPUT❳"
@@ -100,6 +108,7 @@ FINAL=$(ls -1AlhF | while read line; do
         ADDED=''
         RENAMED=''
         UNTRACKED=''
+        CONFLICT=''
         OUTPUT=''
 
     else

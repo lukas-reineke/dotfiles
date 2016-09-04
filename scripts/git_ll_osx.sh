@@ -58,6 +58,10 @@ FINAL=$(ls -1AlhF | while read line; do
                 let "UNTRACKED++ || 1"
             fi
 
+            if [ $l == 'UU' ]; then
+                let "CONFLICT++ || 1"
+            fi
+
         done
 
         OUTPUT="\x1B[35m$BRANCH\x1B[39m|"
@@ -68,6 +72,10 @@ FINAL=$(ls -1AlhF | while read line; do
 
         if [ "$AHEAD" ]; then
             OUTPUT="$OUTPUT${AHEAD%?}"
+        fi
+
+        if [ "$CONFLICT" ]; then
+            OUTPUT="$OUTPUT\x1B[31m❌ $CONFLICT\x1B[39m"
         fi
 
         if [ "$DELETED" ]; then
@@ -90,7 +98,7 @@ FINAL=$(ls -1AlhF | while read line; do
             OUTPUT="$OUTPUT\x1B[36m…$UNTRACKED\x1B[39m"
         fi
 
-        if [ ! "$BEHIND" ] && [ ! "$AHEAD" ] && [ ! "$DELETED" ] && [ ! "$MODIFIED" ] && [ ! "$ADDED" ] && [ ! "$RENAMED" ] && [ ! "$UNTRACKED" ]; then
+        if [ ! "$BEHIND" ] && [ ! "$AHEAD" ] && [ ! "$DELETED" ] && [ ! "$MODIFIED" ] && [ ! "$ADDED" ] && [ ! "$RENAMED" ] && [ ! "$UNTRACKED" ] && [ ! "$CONFLICT" ]; then
             OUTPUT="$OUTPUT\x1B[92m✔\x1B[39m"
         fi
 
@@ -107,6 +115,7 @@ FINAL=$(ls -1AlhF | while read line; do
         ADDED=''
         RENAMED=''
         UNTRACKED=''
+        CONFLICT=''
         OUTPUT=''
 
     else
