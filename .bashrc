@@ -69,10 +69,10 @@ source ~/dotfiles/lib/scm_breeze/scm_breeze.sh
 
 ## os specific
 # arch
-#source ~/dotfiles/.arch_linux
+source ~/dotfiles/.arch_linux
 
 #osx
-source ~/dotfiles/.osx
+#source ~/dotfiles/.osx
 
 
 ### alias ###
@@ -105,7 +105,6 @@ if [ -f ~/dotfiles/lib/pm2-completion.bash ]; then
     . ~/dotfiles/lib/pm2-completion.bash
 fi
 
-# learn vim!!
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
