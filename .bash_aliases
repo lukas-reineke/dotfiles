@@ -26,6 +26,7 @@ alias disk='df -Tha --total | grep /dev/sd'
 alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
 alias rm="rm -rf"
 alias p='popd'
+alias grep='grep --color=always'
 
 # network
 alias arp='sudo arp-scan --interface=wlp2s0b1 --localnet'
@@ -38,6 +39,7 @@ alias ethup='sudo ip link set enp0s26f7u1u3 up'
 #alias log="git log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short"
 alias log='git log --graph --all --oneline --decorate'
 alias logs='git log --graph --all --decorate --relative-date'
+alias gsmu='git submodule update --remote --merge'
 
 # pacman
 alias pac='sudo pacman -S'

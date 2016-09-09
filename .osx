@@ -12,6 +12,9 @@ alias mgntenv='. /Users/lukasadmin/scripts/usermgnt/mgnt-env-vars.sh'
 alias pvenv='. /Users/lukasadmin/scripts/pv/pv-env-vars.sh'
 alias notienv='. /Users/lukasadmin/scripts/noti/noti-env-vars.sh'
 
+# osx alias
+alias ds='sudo ~/dotfiles/lib/deepsleep'
+
 ### Path exports ###
 
 export PATH=${PATH}:/usr/local/mysql/bin
