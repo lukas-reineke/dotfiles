@@ -14,6 +14,7 @@ alias cls='clear && gs'
 alias dev='cd ~/dev'
 alias dot='cd ~/dotfiles'
 alias see='cd ~/dev/see'
+alias pv='cd ~/dev/pvvisualisation'
 
 # vpn
 alias vpn='cd /etc/openvpn/de && sudo openvpn --config de.ovpn'

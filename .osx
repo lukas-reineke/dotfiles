@@ -11,6 +11,7 @@ alias authenv='. /Users/lukasadmin/scripts/auth/auth-env-vars.sh'
 alias mgntenv='. /Users/lukasadmin/scripts/usermgnt/mgnt-env-vars.sh'
 alias pvenv='. /Users/lukasadmin/scripts/pv/pv-env-vars.sh'
 alias notienv='. /Users/lukasadmin/scripts/noti/noti-env-vars.sh'
+alias pvmiddleenv='. /Users/lukasadmin/scripts/pv-middleware/pvmiddle-env-vars.sh'
 
 # osx alias
 alias ds='sudo ~/dotfiles/lib/deepsleep'
