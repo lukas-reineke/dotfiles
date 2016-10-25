@@ -6,12 +6,7 @@ GIT_PROMPT_ONLY_IN_REPO=0
 # GIT_PROMPT_THEME=Solarized
 
 # env vars
-alias disagenv='. /Users/lukasadmin/scripts/disagg/disag-env-vars.sh'
-alias authenv='. /Users/lukasadmin/scripts/auth/auth-env-vars.sh'
-alias mgntenv='. /Users/lukasadmin/scripts/usermgnt/mgnt-env-vars.sh'
-alias pvenv='. /Users/lukasadmin/scripts/pv/pv-env-vars.sh'
-alias notienv='. /Users/lukasadmin/scripts/noti/noti-env-vars.sh'
-alias pvmiddleenv='. /Users/lukasadmin/scripts/pv-middleware/pvmiddle-env-vars.sh'
+alias env='~/dotfiles/scripts/env.sh'
 
 # osx alias
 alias ds='sudo ~/dotfiles/lib/deepsleep'
