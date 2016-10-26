@@ -1,13 +1,9 @@
-### colors ###
-RED='\033[0;31m'
-NC='\033[0m' # No Color
-
 # mkdir and enter
 function mkcd {
     if [ ! -n "$1" ]; then
         echo "Enter a directory name"
     elif [ -d $1 ]; then
-        echo -e "\e[31m$* already exists\e[39m"
+        echo -e ${RED}"$* already exists"${NC}
         cs $1
     else
         mkdir -p $1 && cd $1
@@ -24,7 +20,7 @@ function cs {
             git_status_shortcuts
         fi
     elif [[ -f "$*" ]]; then
-        echo -e "\e[31m$* is not a directory\e[39m" 1>&2
+        echo -e ${RED}"$* is not a directory"${NC} 1>&2
         local dir=$(dirname "$*")
         builtin cd "$dir"
     else
@@ -149,14 +145,14 @@ function hr {
 
 # environment variables
 function env {
-    echo '[1] eon-pv-visualisation-disaggregation'
-    echo '[2] eon-pv-visualisation-frontend'
-    echo '[3] eon-pv-visualisation-middleware'
-    echo '[4] eon-see-authentication'
-    echo '[5] eon-see-disaggregation'
-    echo '[6] eon-see-notifications'
-    echo '[7] eon-see-user-management'
-    echo '[8] eon-see-wrappper'
+    printf ${GRN}'['${NC}'1'${GRN}']'${NC}' eon-pv-visualisation-disaggregation\n'
+    printf ${GRN}'['${NC}'2'${GRN}']'${NC}' eon-pv-visualisation-frontend\n'
+    printf ${GRN}'['${NC}'3'${GRN}']'${NC}' eon-pv-visualisation-middleware\n'
+    printf ${GRN}'['${NC}'4'${GRN}']'${NC}' eon-see-authentication\n'
+    printf ${GRN}'['${NC}'5'${GRN}']'${NC}' eon-see-disaggregation\n'
+    printf ${GRN}'['${NC}'6'${GRN}']'${NC}' eon-see-notifications\n'
+    printf ${GRN}'['${NC}'7'${GRN}']'${NC}' eon-see-user-management\n'
+    printf ${GRN}'['${NC}'8'${GRN}']'${NC}' eon-see-wrappper\n'
 
     echo ''
     read numbers

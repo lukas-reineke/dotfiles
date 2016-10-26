@@ -66,43 +66,42 @@ complete -o default -F _pip_completion pip
 source ~/dotfiles/lib/scm_breeze/scm_breeze.sh
 
 
-
 ## os specific
-# arch
-source ~/dotfiles/.arch_linux
-
-#osx
-#source ~/dotfiles/.osx
+if [ $(uname) == 'Darwin' ]; then
+    source ~/dotfiles/.osx
+else
+    source ~/dotfiles/.arch_linux
+fi
 
 
 ### alias ###
 if [ -f ~/dotfiles/.bash_aliases ]; then
-    . ~/dotfiles/.bash_aliases
+    source ~/dotfiles/.bash_aliases
 fi
 
 ### enviorment variables ###
 if [ -f ~/dotfiles/.bash_env_vars ]; then
-    . ~/dotfiles/.bash_env_vars
+    source ~/dotfiles/.bash_env_vars
 fi
 
 ### functions ###
 if [ -f ~/dotfiles/.bash_functions ]; then
-    . ~/dotfiles/.bash_functions
+    source ~/dotfiles/.bash_functions
 fi
 
 ### keyboard shortcuts ###
 if [ -f ~/dotfiles/.bash_input ]; then
-    . ~/dotfiles/.bash_input
+    source ~/dotfiles/.bash_input
 fi
 
 ### keyboard shortcuts ###
 if [ -f ~/dotfiles/.secrets ]; then
-    . ~/dotfiles/.secrets
+    source ~/dotfiles/.secrets
 fi
 
 ### pm2 completion ###
 if [ -f ~/dotfiles/lib/pm2-completion.bash ]; then
-    . ~/dotfiles/lib/pm2-completion.bash
+    source ~/dotfiles/lib/pm2-completion.bash
 fi
 
 export VISUAL=vim

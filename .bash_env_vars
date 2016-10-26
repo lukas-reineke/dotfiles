@@ -1,2 +1,4 @@
+#!/bin/bash
+
 export TERMINAL="sakura"
 export VISUAL="nano"

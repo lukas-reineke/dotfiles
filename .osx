@@ -1,4 +1,14 @@
-clear
+#!/bin/bash
+
+### colors ###
+RED='\033[0;31m'
+GRN='\033[0;32m'
+YEL='\033[33m'
+CYN='\033[36m'
+LGR='\033[37m'
+DGR='\033[90m'
+WHT='\033[97m'
+NC='\033[0m' # No Color
 
 # git prompt
 source ~/dotfiles/lib/bash-git-prompt/share/gitprompt.sh
@@ -24,3 +34,5 @@ export CLASSPATH=/usr/local/bin/mysql-connector-java-5.1.39/mysql-connector-java
 if [ -f ~/dotfiles/lib/iterm2_shell_integration.bash ]; then
     . ~/dotfiles/lib/iterm2_shell_integration.bash
 fi
+
+clear

@@ -1,3 +1,15 @@
+#!/bin/bash
+
+### colors ###
+RED='\e[0;31m'
+GRN='\e[0;32m'
+YEL='\e[33m'
+CYN='\e[36m'
+LGR='\e[37m'
+DGR='\e[90m'
+WHT='\e[97m'
+NC='\e[0m' # No Color
+
 screenfetch -t
 # export PS1="\[$(tput setaf 6)\]╔═╡\e[46m \[$(tput setaf 16)\]サイコパス \e[0m\[$(tput setaf 6)\]│ \[$(tput setaf 0)\]\W\n\[$(tput setaf 6)\]╚═════╾ \[$(tput sgr0)\]"
 
