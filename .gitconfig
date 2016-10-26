@@ -1,31 +1,43 @@
 [user]
-	name =
-	email =
+    name =
+    email =
+
+[advice]
+    pushNonFastForward = false
+    statusHints = false
+    commitBeforeMerge = false
+    resolveConflict = false
+    implicitIdentity = false
+    detachedHead = false
+
 [core]
-	excludesfile = /Users/lukasadmin/.gitignore_global
-	autocrlf = false
+    excludesfile = /Users/lukasadmin/.gitignore_global
+    autocrlf = false
     editor = vim
 
+[clean]
+    requireForce = false
+
 [diff]
-	tool = sublimerge
+    tool = sublimerge
 
 [merge]
-	tool = sublimerge
+    tool = sublimerge
 
 [difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 	
+    cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+    path =
 
 [difftool "sublimerge"]
-	cmd = sublime -n --wait \"$REMOTE\" \"$LOCAL\" --command \"sublimerge_diff_views {\\\"left_read_only\\\": true, \\\"right_read_only\\\": true}\"
+    cmd = sublime -n --wait \"$REMOTE\" \"$LOCAL\" --command \"sublimerge_diff_views {\\\"left_read_only\\\": true, \\\"right_read_only\\\": true}\"
 
 [mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+    cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+    trustExitCode = true
 
 [mergetool "sublimerge"]
-	cmd = sublime -n --wait \"$REMOTE\" \"$BASE\" \"$LOCAL\" \"$MERGED\" --command \"sublimerge_diff_views\"
-	trustExitCode = false
+    cmd = sublime -n --wait \"$REMOTE\" \"$BASE\" \"$LOCAL\" \"$MERGED\" --command \"sublimerge_diff_views\"
+    trustExitCode = false
 
 [commit]
-	template = /Users/lukasadmin/.stCommitMsg
+    verbose = true
