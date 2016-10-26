@@ -1,0 +1,79 @@
+#!/usr/bin/env bash
+
+confirm() {
+  while [ 1 ]; do
+    read -p "$1" -n 1 -r
+    echo
+    if [[ "$REPLY" =~ ^[Yy] ]]; then
+      return 0
+    elif [[ "$REPLY" =~ ^[Nn] ]]; then
+      return 1
+    fi
+  done
+}
+
+remove() {
+  echo "Remove $1"
+  rm -f "$1"
+}
+
+remove_line() {
+  src=$(readlink "$1")
+  if [ $? -eq 0 ]; then
+    echo "Remove from $1 ($src):"
+  else
+    src=$1
+    echo "Remove from $1:"
+  fi
+
+  shift
+  line_no=1
+  match=0
+  while [ -n "$1" ]; do
+    line=$(sed -n "$line_no,\$p" "$src" | \grep -m1 -nF "$1")
+    if [ $? -ne 0 ]; then
+      shift
+      line_no=1
+      continue
+    fi
+    line_no=$(( $(sed 's/:.*//' <<< "$line") + line_no - 1 ))
+    content=$(sed 's/^[0-9]*://' <<< "$line")
+    match=1
+    echo    "  - Line #$line_no: $content"
+    [ "$content" = "$1" ] || confirm "    - Remove (y/n) ? "
+    if [ $? -eq 0 ]; then
+      awk -v n=$line_no 'NR == n {next} {print}' "$src" > "$src.bak" &&
+        mv "$src.bak" "$src" || break
+      echo  "      - Removed"
+    else
+      echo  "      - Skipped"
+      line_no=$(( line_no + 1 ))
+    fi
+  done
+  [ $match -eq 0 ] && echo "  - Nothing found"
+  echo
+}
+
+for shell in bash zsh; do
+  remove ~/.fzf.${shell}
+  remove_line ~/.${shell}rc \
+    "[ -f ~/.fzf.${shell} ] && source ~/.fzf.${shell}" \
+    "source ~/.fzf.${shell}"
+done
+
+bind_file=~/.config/fish/functions/fish_user_key_bindings.fish
+if [ -f "$bind_file" ]; then
+  remove_line "$bind_file" "fzf_key_bindings"
+fi
+
+if [ -d ~/.config/fish/functions ]; then
+  remove ~/.config/fish/functions/fzf.fish
+  remove ~/.config/fish/functions/fzf_key_bindings.fish
+
+  if [ "$(ls -A ~/.config/fish/functions)" ]; then
+    echo "Can't delete non-empty directory: \"~/.config/fish/functions\""
+  else
+    rmdir ~/.config/fish/functions
+  fi
+fi
+

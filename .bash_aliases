@@ -28,6 +28,7 @@ alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
 alias rm="rm -rf"
 alias p='popd'
 alias grep='grep --color=always'
+alias reload='source ~/dotfiles/.bashrc'
 
 # network
 alias arp='sudo arp-scan --interface=wlp2s0b1 --localnet'
