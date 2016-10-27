@@ -1,3 +1,6 @@
 [submodule "lib/fasd"]
 	path = lib/fasd
 	url = https://github.com/clvv/fasd.git
+[submodule "lib/fzf"]
+	path = lib/fzf
+	url = https://github.com/junegunn/fzf.git

@@ -52,18 +52,18 @@ source ~/dotfiles/lib/git-completion.bash
 source ~/dotfiles/lib/git-flow-completion.bash
 
 # Setup fzf
-if [[ ! "$PATH" == *$HOME/dotfiles/lib/.fzf/bin* ]]; then
-    export PATH="$PATH:$HOME/dotfiles/lib/.fzf/bin"
+if [[ ! "$PATH" == *$HOME/dotfiles/lib/fzf/bin* ]]; then
+    export PATH="$PATH:$HOME/dotfiles/lib/fzf/bin"
 fi
 # fzf Man path
-if [[ ! "$MANPATH" == *$HOME/dotfiles/lib/.fzf/man* && -d "$HOME/dotfiles/lib/.fzf/man" ]]; then
-    export MANPATH="$MANPATH:$HOME/dotfiles/lib/.fzf/man"
+if [[ ! "$MANPATH" == *$HOME/dotfiles/lib/fzf/man* && -d "$HOME/dotfiles/lib/fzf/man" ]]; then
+    export MANPATH="$MANPATH:$HOME/dotfiles/lib/fzf/man"
 fi
 # fzf Auto-completion
-[[ $- == *i* ]] && source "$HOME/dotfiles/lib/.fzf/shell/completion.bash" 2> /dev/null
+[[ $- == *i* ]] && source "$HOME/dotfiles/lib/fzf/shell/completion.bash" 2> /dev/null
 # fzf Key bindings
-if [ -f ~/dotfiles/lib/.fzf/shell/key-bindings.bash ]; then
-    source ~/dotfiles/lib/.fzf/shell/key-bindings.bash
+if [ -f ~/dotfiles/lib/fzf/shell/key-bindings.bash ]; then
+    source ~/dotfiles/lib/fzf/shell/key-bindings.bash
 fi
 
 # pip bash completion
