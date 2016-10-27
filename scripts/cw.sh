@@ -1,4 +1,4 @@
-function cw {
+function cww {
 
     MYCD=~/dotfiles/mycd.txt
     touch ${MYCD}

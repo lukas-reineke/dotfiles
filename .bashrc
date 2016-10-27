@@ -119,6 +119,9 @@ if [ -f ~/dotfiles/lib/pm2-completion.bash ]; then
     source ~/dotfiles/lib/pm2-completion.bash
 fi
 
+export PATH=${PATH}:$HOME/dotfiles/lib/fasd
+eval "$(fasd --init auto)"
+
 export VISUAL=vim
 export EDITOR="$VISUAL"
 

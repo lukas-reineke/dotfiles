@@ -16,6 +16,11 @@ alias dot='cd ~/dotfiles'
 alias see='cd ~/dev/see'
 alias pv='cd ~/dev/pvvisualisation'
 
+# fasd
+alias c='fasd_cd -d -i'
+alias f='fasd -f'
+alias v='f -e vim'
+
 # vpn
 alias vpn='cd /etc/openvpn/de && sudo openvpn --config de.ovpn'
 alias vpnus='cd /etc/openvpn/us && sudo openvpn --config us.ovpn'
