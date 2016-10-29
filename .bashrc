@@ -78,7 +78,7 @@ _pip_completion()
 complete -o default -F _pip_completion pip
 
 # scm breeze
-if [ -f source ~/dotfiles/lib/scm_breeze/scm_breeze.sh ]; then
+if [ -f ~/dotfiles/lib/scm_breeze/scm_breeze.sh ]; then
     source ~/dotfiles/lib/scm_breeze/scm_breeze.sh
 fi
 
@@ -86,7 +86,7 @@ fi
 if [ -f ~/dotfiles/lib/bash-git-prompt/gitprompt.sh ]; then
     source ~/dotfiles/lib/bash-git-prompt/gitprompt.sh
     GIT_PROMPT_ONLY_IN_REPO=0
-i
+fi
 
 ## os specific
 if [ $(uname) == 'Darwin' ]; then

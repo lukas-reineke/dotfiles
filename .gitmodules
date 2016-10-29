@@ -7,3 +7,6 @@
 [submodule "lib/bash-git-prompt"]
 	path = lib/bash-git-prompt
 	url = https://github.com/magicmonty/bash-git-prompt.git
+[submodule "lib/scm_breeze"]
+	path = lib/scm_breeze
+	url = https://github.com/scmbreeze/scm_breeze.git

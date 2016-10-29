@@ -4,3 +4,4 @@ export TERMINAL="sakura"
 export VISUAL="nano"
 export FZF_COMPLETION_TRIGGER='++'
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+export GIT_REPO_DIR="$HOME/dev"
