@@ -16,7 +16,7 @@ alias ds='sudo ~/dotfiles/lib/deepsleep'
 ### Path exports ###
 
 export PATH=${PATH}:/usr/local/mysql/bin
-export PATH=${PATH}:/Users/lukasadmin/Library/Android/sdk/platform-tools
+export PATH=${PATH}:$HOME/Library/Android/sdk/platform-tools
 export PATH=${PATH}:$HOME/.node/bin
 export PATH=${PATH}:/usr/bin
 export PATH=${PATH}:/usr/sbin
@@ -24,7 +24,7 @@ export PATH=${PATH}:/sbin
 export PATH=${PATH}:/usr/local/bin
 export PATH=${PATH}:/usr/local/bin/liquibase-3.5.1-bin
 export PATH=${PATH}:/usr/local/bin/redis-3.2.0/src
-export PATH=${PATH}:/Users/lukasadmin/Library/Android/sdk/build-tools/24.0.1
+export PATH=${PATH}:$HOME/Library/Android/sdk/build-tools/24.0.1
 export PATH=${PATH}:/Library/Frameworks/Python.framework/Versions/3.5/bin
 export CLASSPATH=/usr/local/bin/mysql-connector-java-5.1.39/mysql-connector-java-5.1.39-bin.jar:$CLASSPATH
 
