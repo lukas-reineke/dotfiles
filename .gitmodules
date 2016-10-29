@@ -4,3 +4,6 @@
 [submodule "lib/fzf"]
 	path = lib/fzf
 	url = https://github.com/junegunn/fzf.git
+[submodule "lib/bash-git-prompt"]
+	path = lib/bash-git-prompt
+	url = https://github.com/magicmonty/bash-git-prompt.git
