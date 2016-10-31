@@ -48,8 +48,12 @@ fi
 
 ## external
 # git completion
-source ~/dotfiles/lib/git-completion.bash
-source ~/dotfiles/lib/git-flow-completion.bash
+if [ -f ~/dotfiles/lib/git-completion.bash ]; then
+    source ~/dotfiles/lib/git-completion.bash
+fi
+if [ -f ~/dotfiles/lib/git-flow-completion.bash ]; then
+    source ~/dotfiles/lib/git-flow-completion.bash
+fi
 
 # Setup fzf
 if [[ ! "$PATH" == *$HOME/dotfiles/lib/fzf/bin* ]]; then
@@ -78,8 +82,15 @@ _pip_completion()
 complete -o default -F _pip_completion pip
 
 # scm breeze
-source ~/dotfiles/lib/scm_breeze/scm_breeze.sh
+if [ -f ~/dotfiles/lib/scm_breeze/scm_breeze.sh ]; then
+    source ~/dotfiles/lib/scm_breeze/scm_breeze.sh
+fi
 
+# git prompt
+if [ -f ~/dotfiles/lib/bash-git-prompt/gitprompt.sh ]; then
+    source ~/dotfiles/lib/bash-git-prompt/gitprompt.sh
+    GIT_PROMPT_ONLY_IN_REPO=0
+fi
 
 ## os specific
 if [ $(uname) == 'Darwin' ]; then
@@ -119,11 +130,4 @@ if [ -f ~/dotfiles/lib/pm2-completion.bash ]; then
     source ~/dotfiles/lib/pm2-completion.bash
 fi
 
-export PATH=${PATH}:$HOME/dotfiles/lib/fasd
 eval "$(fasd --init auto)"
-
-export VISUAL=vim
-export EDITOR="$VISUAL"
-
-# Save and reload the history after each command finishes
-export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"

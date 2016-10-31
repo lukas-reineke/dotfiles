@@ -41,3 +41,6 @@
 
 [commit]
     verbose = true
+
+[credential]
+    helper = cache
