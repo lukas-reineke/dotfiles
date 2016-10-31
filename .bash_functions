@@ -154,7 +154,7 @@ function env {
     printf ${GRN}'['${NC}'7'${GRN}']'${NC}' eon-see-user-management\n'
     printf ${GRN}'['${NC}'8'${GRN}']'${NC}' eon-see-wrappper\n'
 
-    echo ''
+    printf "\n\nSelect "
     read numbers
     echo ''
 
