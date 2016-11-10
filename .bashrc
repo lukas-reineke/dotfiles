@@ -120,7 +120,7 @@ if [ -f ~/dotfiles/.bash_input ]; then
     source ~/dotfiles/.bash_input
 fi
 
-### keyboard shortcuts ###
+### secrets ###
 if [ -f ~/dotfiles/.secrets ]; then
     source ~/dotfiles/.secrets
 fi

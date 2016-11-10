@@ -31,16 +31,16 @@ alias cd='exec_scmb_expand_args cs'
 
 # temp folder
 function temp {
-  if [ ! -n "$1" ]; then
-    pushd /Users/lukasadmin/dev/temp
-  else
-    pushd /Users/lukasadmin/dev/temp
-    if [ -d $1 ]; then
-      printf "${RED}\`$1' already exists${NC}\n"  && cd $1
+    if [ ! -n "$1" ]; then
+        pushd /Users/lukasadmin/dev/temp
     else
-      mkdir $1 && cd $1
+        pushd /Users/lukasadmin/dev/temp
+        if [ -d $1 ]; then
+            printf "${RED}\`$1' already exists${NC}\n"  && cs $1
+        else
+            mkdir $1 && cs $1
+        fi
     fi
-  fi
 }
 
 #setup terminal tab title
