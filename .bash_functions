@@ -32,9 +32,9 @@ alias cd='exec_scmb_expand_args cs'
 # temp folder
 function temp {
     if [ ! -n "$1" ]; then
-        pushd /Users/lukasadmin/dev/temp
+        pushd $HOME/dev/temp
     else
-        pushd /Users/lukasadmin/dev/temp
+        pushd $HOME/dev/temp
         if [ -d $1 ]; then
             printf "${RED}\`$1' already exists${NC}\n"  && cs $1
         else
