@@ -180,3 +180,22 @@ function env {
         fi
     done
 }
+
+function gi {
+    echo '➤ local branches'
+    git branch
+    echo ''
+    echo '➤ remote branches'
+    git branch -r
+    echo ''
+    echo '➤ remotes'
+    git remote -v
+    echo ''
+}
+
+function gll {
+    ref=$(git symbolic-ref HEAD)
+    branch=${ref#refs/heads/}
+
+    git log origin/${branch}..${branch} $* -p
+}

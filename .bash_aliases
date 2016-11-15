@@ -47,6 +47,7 @@ alias ethup='sudo ip link set enp0s26f7u1u3 up'
 alias log='git log --graph --all --oneline --decorate'
 alias logs='git log --graph --all --decorate --relative-date'
 alias gsmu='git submodule update --remote --merge'
+alias gu='git reset HEAD~ --soft'
 
 # pacman
 alias pac='sudo pacman -S'
