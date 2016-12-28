@@ -54,10 +54,10 @@ alias gsmu='git submodule update --remote --merge'
 alias gu='git reset HEAD~ --soft'
 
 # pacman
-alias pac='sudo pacman -S'
-alias pacs='sudo pacman -Ss'
+alias pac='sudo pacman -Ss'
+alias apac='sudo apacman'
 alias pacy='sudo pacman -Syu'
-alias psyn='sudo pacman -Syy'
+alias apacy='sudo apacman -Syu'
 
 # ssh
 alias sshaptx='ssh lukas@192.168.178.57'
