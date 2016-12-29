@@ -61,6 +61,7 @@ alias apacy='sudo apacman -Syu'
 
 # ssh
 alias sshaptx='ssh lukas@192.168.178.57'
+alias dsa='SSH_AUTH_SOCK=0'
 
 # sublime
 alias subl='sublime .'
