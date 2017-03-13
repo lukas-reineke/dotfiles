@@ -10,7 +10,16 @@ DGR='\e[90m'
 WHT='\e[97m'
 NC='\e[0m' # No Color
 
-screenfetch -t
+# ssh
+if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+    ssh-agent > ~/.ssh-agent-thing
+fi
+if [[ "$SSH_AGENT_PID" == "" ]]; then
+    eval "$(<~/.ssh-agent-thing)"
+fi
+
+
+#screenfetch -t
 # export PS1="\[$(tput setaf 6)\]╔═╡\e[46m \[$(tput setaf 16)\]サイコパス \e[0m\[$(tput setaf 6)\]│ \[$(tput setaf 0)\]\W\n\[$(tput setaf 6)\]╚═════╾ \[$(tput sgr0)\]"
 
-GIT_PROMPT_THEME=Solarized
+GIT_PROMPT_THEME=Solarized_Extravagant

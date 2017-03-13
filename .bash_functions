@@ -36,9 +36,9 @@ alias cd='exec_scmb_expand_args cs'
 # temp folder
 function temp {
     if [ ! -n "$1" ]; then
-        pushd $HOME/dev/temp
+        pushd $HOME/temp
     else
-        pushd $HOME/dev/temp
+        pushd $HOME/temp
         if [ -d $1 ]; then
             printf "${RED}\`$1' already exists${NC}\n"  && cs $1
         else
@@ -211,4 +211,15 @@ function gll {
     branch=${ref#refs/heads/}
 
     git log origin/${branch}..${branch} $* -p
+}
+
+# Colored man pages
+function man {
+    LESS_TERMCAP_md=$'\e[01;31m' \
+    LESS_TERMCAP_me=$'\e[0m' \
+    LESS_TERMCAP_se=$'\e[0m' \
+    LESS_TERMCAP_so=$'\e[01;44;33m' \
+    LESS_TERMCAP_ue=$'\e[0m' \
+    LESS_TERMCAP_us=$'\e[01;32m' \
+    command man "$@"
 }
