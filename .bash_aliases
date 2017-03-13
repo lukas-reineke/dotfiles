@@ -22,7 +22,8 @@ alias set='cd ~/dev/setuk'
 alias pv='cd ~/dev/pvvisualisation'
 
 # fasd
-alias c='fasd_cd -d -i'
+alias c='fasd_cd -d'
+alias ci='fasd_cd -d -i'
 alias f='fasd -f'
 alias v='f -e vim'
 
