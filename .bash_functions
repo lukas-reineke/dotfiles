@@ -19,6 +19,10 @@ function cs {
         if [ -d ./.git ]; then
             git_status_shortcuts
         fi
+        if [ -f ./.env.sh ]; then
+            source .env.sh
+            echo -e '\n'${GRN}'#'${NC}' added '${PWD##*/}' environment variables\n'
+        fi
     elif [[ -f "$*" ]]; then
         echo -e ${RED}"$* is not a directory"${NC} 1>&2
         local dir=$(dirname "$*")
@@ -65,17 +69,26 @@ function ce {
 
 # bower
 function bower {
-    if [[ $@ == "i" ]]; then
-        command bower install
+    if [[ $1 == "i" ]]; then
+        command bower install "${@:2}"
     else
         command bower "$@"
     fi
 }
 
+# yarn
+function yarn {
+    if [[ $1 == "i" ]]; then
+        command yarn add "${@:2}"
+    else
+        command yarn "$@"
+    fi
+}
+
 #brew
 function brew {
-    if [[ $@ == "i" ]]; then
-        command brew install
+    if [[ $1 == "i" ]]; then
+        command brew install "${@:2}"
     else
         command brew "$@"
     fi

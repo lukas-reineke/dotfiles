@@ -2,6 +2,8 @@
 #Smart Select
 E.ON Jira
 ESPP_EON_SEE-[0-9]*
+SETUK-[0-9]*
+DDS_SUPPORT-[0-9]*
 Open URL...
 https://jira.dev.eon.com/secure/QuickSearch.jspa?searchString=\0
 

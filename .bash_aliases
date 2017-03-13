@@ -14,6 +14,7 @@ alias cls='clear && gs'
 alias dev='cd ~/dev'
 alias dot='cd ~/dotfiles'
 alias see='cd ~/dev/see'
+alias set='cd ~/dev/setuk'
 alias pv='cd ~/dev/pvvisualisation'
 
 # fasd
@@ -34,6 +35,7 @@ alias rm="rm -rf"
 alias p='popd'
 alias grep='grep --color=always'
 alias reload='source ~/dotfiles/.bashrc'
+alias sudo='sudo env PATH=$PATH'
 
 # network
 alias arp='sudo arp-scan --interface=wlp2s0b1 --localnet'
@@ -85,6 +87,7 @@ alias avd='/opt/android-sdk/tools/android avd'
 alias xtn='xrandr --output eDP1 --mode 1440x900'
 
 # stuff
+alias links='vim ~/Dropbox/links.txt'
 alias ply='~/dotfiles/scripts/play.sh'
 alias clock='tty-clock -b -c -C 6'
 alias lock='~/.scripts/i3lock-fancy/lock'
