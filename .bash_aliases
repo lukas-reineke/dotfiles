@@ -1,9 +1,9 @@
 # list
 alias la='~/dotfiles/scripts/git_ll_osx.sh'
 alias cll='clear && ~/dotfiles/scripts/git_ll_osx.sh'
-alias ls='ls -lsHFG --color'
+alias ls='ls -lsHFG'
 alias lg='ls -AlsHFG | grep'
-alias ll='ls -AlsHFG --color'
+alias ll='ls -AlsHFG'
 alias lll='ls -AlsHFG | less -R'
 
 # move
@@ -78,6 +78,7 @@ alias redis='redis-server'
 
 # python
 alias http='simplehttpserver'
+alias da='deactivate'
 
 # ionic
 alias r='ionic run'

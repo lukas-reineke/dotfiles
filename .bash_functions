@@ -223,3 +223,19 @@ function man {
     LESS_TERMCAP_us=$'\e[01;32m' \
     command man "$@"
 }
+
+# venv
+function venv {
+    if ! [[ -d ./venv-${PWD##*/} ]]; then
+        virtualenv -p python3 ./venv-${PWD##*/}
+    fi
+    source ./venv-${PWD##*/}/bin/activate
+}
+
+# venv python 2
+function venv2 {
+    if ! [[ -d ./venv-${PWD##*/} ]]; then
+        virtualenv -p python2 ./venv-${PWD##*/}
+    fi
+    source ./venv-${PWD##*/}/bin/activate
+}
