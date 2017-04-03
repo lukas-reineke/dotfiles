@@ -25,7 +25,13 @@ alias pv='cd ~/dev/pvvisualisation'
 alias c='fasd_cd -d'
 alias ci='fasd_cd -d -i'
 alias f='fasd -f'
-alias v='f -e vim'
+alias v='nvim'
+
+# vim
+alias vim='nvim'
+
+# tmux
+alias t='tmux new -s'
 
 # vpn
 alias vpn='cd /etc/openvpn/de && sudo openvpn --config de.ovpn'

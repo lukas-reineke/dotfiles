@@ -156,44 +156,7 @@ function hr {
     printf '%s%s%s\n' "$start" "${line:0:cols}" "$end"
 }
 
-# # environment variables
-# function env {
-#     printf ${GRN}'['${NC}'1'${GRN}']'${NC}' eon-pv-visualisation-disaggregation\n'
-#     printf ${GRN}'['${NC}'2'${GRN}']'${NC}' eon-pv-visualisation-frontend\n'
-#     printf ${GRN}'['${NC}'3'${GRN}']'${NC}' eon-pv-visualisation-middleware\n'
-#     printf ${GRN}'['${NC}'4'${GRN}']'${NC}' eon-see-authentication\n'
-#     printf ${GRN}'['${NC}'5'${GRN}']'${NC}' eon-see-disaggregation\n'
-#     printf ${GRN}'['${NC}'6'${GRN}']'${NC}' eon-see-notifications\n'
-#     printf ${GRN}'['${NC}'7'${GRN}']'${NC}' eon-see-user-management\n'
-#     printf ${GRN}'['${NC}'8'${GRN}']'${NC}' eon-see-wrappper\n'
-
-#     printf "\n\nSelect "
-#     read numbers
-#     echo ''
-
-#     numberArray=' ' read -r -a array <<< "$numbers"
-
-#     for i in ${!array[@]}; do
-#         if [[ ${array[$i]} -eq 1 ]]; then
-#             source '/Users/lukasadmin/scripts/eon/eon-pv-visualisation-disaggregation-env-vars.sh'
-#         elif [[ ${array[$i]} -eq 2 ]]; then
-#             source '/Users/lukasadmin/scripts/eon/eon-pv-visualisation-frontend-env-vars.sh'
-#         elif [[ ${array[$i]} -eq 3 ]]; then
-#             source '/Users/lukasadmin/scripts/eon/eon-pv-visualisation-middleware-env-vars.sh'
-#         elif [[ ${array[$i]} -eq 4 ]]; then
-#             source '/Users/lukasadmin/scripts/eon/eon-see-authentication-env-vars.sh'
-#         elif [[ ${array[$i]} -eq 5 ]]; then
-#             source '/Users/lukasadmin/scripts/eon/eon-see-disaggregation-env-vars.sh'
-#         elif [[ ${array[$i]} -eq 6 ]]; then
-#             source '/Users/lukasadmin/scripts/eon/eon-see-notifications-env-vars.sh'
-#         elif [[ ${array[$i]} -eq 7 ]]; then
-#             source '/Users/lukasadmin/scripts/eon/eon-see-user-management-env-vars.sh'
-#         elif [[ ${array[$i]} -eq 8 ]]; then
-#             source '/Users/lukasadmin/scripts/eon/eon-see-wrappper-env-vars.sh'
-#         fi
-#     done
-# }
-
+# Git info
 function gi {
     echo '➤ local branches'
     git branch
@@ -224,7 +187,7 @@ function man {
     command man "$@"
 }
 
-# venv
+# venv python 3
 function venv {
     if ! [[ -d ./venv-${PWD##*/} ]]; then
         virtualenv -p python3 ./venv-${PWD##*/}
