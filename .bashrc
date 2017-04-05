@@ -130,4 +130,9 @@ if [ -f ~/dotfiles/lib/pm2-completion.bash ]; then
     source ~/dotfiles/lib/pm2-completion.bash
 fi
 
+### minikube completion ###
+if [ -f ~/dotfiles/lib/minikube-completion.bash ]; then
+    source ~/dotfiles/lib/minikube-completion.bash
+fi
+
 eval "$(fasd --init auto)"

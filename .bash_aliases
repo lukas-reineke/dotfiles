@@ -18,7 +18,7 @@ alias pictures='cd ~/Pictures'
 alias dev='cd ~/dev'
 alias dot='cd ~/dotfiles'
 alias see='cd ~/dev/see'
-alias set='cd ~/dev/setuk'
+# alias set='cd ~/dev/setuk'
 alias pv='cd ~/dev/pvvisualisation'
 
 # fasd
