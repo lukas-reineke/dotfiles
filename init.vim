@@ -11,7 +11,7 @@ call vundle#begin()
 " No line wrap
 set nowrap
 
-set listchars=eol:⇁,tab:>-,trail:.,extends:>,precedes:<,nbsp:_,space:٠
+set listchars=eol:⬎,tab:>-,trail:.,extends:>,precedes:<,nbsp:_,space:٠
 set list
 " UTF 8
 set encoding=utf-8
@@ -20,6 +20,9 @@ set ttimeoutlen=200
 set timeoutlen=200
 set mouse=
 set clipboard+=unnamedplus
+
+set splitbelow
+set splitright
 
 vnoremap <S-tab> <gv
 vnoremap <tab> >gv
@@ -32,7 +35,7 @@ function! Smart_TabComplete()
                                                   " line to one character right
                                                   " of the cursor
   let substr = matchstr(substr, "[^ \t]*$")       " word till cursor
-  if (strlen(substr)==0)                          " nothing to match on empty string
+  if (strlen(substr)==0 || col(".") == 1)                          " nothing to match on empty string
     return "\<tab>"
   endif
   let has_period = match(substr, '\.') != -1      " position of period, if any
@@ -91,6 +94,20 @@ Plugin 'jiangmiao/auto-pairs'
 Plugin 'michaeljsmith/vim-indent-object'
 " Inner Line Text Object
 Plugin 'vim-utils/vim-line'
+" Bookmarks
+Plugin 'MattesGroeger/vim-bookmarks'
+" Track the engine.
+Plugin 'SirVer/ultisnips'
+" Snippets are separated from the engine. Add this if you want them:
+Plugin 'honza/vim-snippets'
+" Loupe
+Plugin 'wincent/loupe'
+" Terminus
+Plugin 'wincent/terminus'
+" Ferret
+Plugin 'wincent/ferret'
+" Git
+Plugin 'tpope/vim-fugitive'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -118,6 +135,10 @@ color dracula
 "let g:sierra_Pitch = 1
 "hi Normal ctermbg=none
 "highlight NonText ctermbg=none
+
+" Status bar
+hi StatusLine   ctermfg=15  guifg=#ffffff ctermbg=239 guibg=#4e4e4e cterm=bold gui=bold
+hi StatusLineNC ctermfg=249 guifg=#b2b2b2 ctermbg=237 guibg=#3a3a3a cterm=none gui=none
 
 " Ignore case when searching
 set ignorecase
@@ -158,7 +179,15 @@ endif
 set laststatus=2
 
 " Format the status line
-set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
+" set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
+" set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ %r%{fugitive#statusline()}%h\ \ \ Line:\ %l
+set statusline+=%#todo#
+set statusline+=%f
+set statusline+=\ %{fugitive#statusline()}
+set statusline+=%=
+set statusline+=%m
+set statusline+=\ %y
+set statusline+=\ %04l
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -186,6 +215,8 @@ map HH 0
 map L $
 map K 5k
 map J 5j
+
+nnoremap <silent> <esc> :noh<cr><esc>
 " ================ Persistent Undo ==================
 
 " Keep undo history across sessions, by storing in file.
@@ -258,7 +289,7 @@ let g:ctrlp_working_path_mode = 'rw'
 
 " CTRL P
 " let g:CtrlPBuffer = '<c-o>'
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/platforms/*
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/platforms/*,*venv*
 nmap <C-p> :CtrlPMixed
 
 " Disable tmux navigator when zooming the Vim pane
@@ -283,3 +314,8 @@ let g:syntastic_javascript_checkers = ['eslint']
 " Smoth Scroll
 noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 1, 5)<CR>
 noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 1, 5)<CR>
+
+" Snippet shortcuts
+let g:UltiSnipsExpandTrigger="<c-l>"
+let g:UltiSnipsJumpForwardTrigger="<c-n>"
+let g:UltiSnipsJumpBackwardTrigger="<c-m>"
