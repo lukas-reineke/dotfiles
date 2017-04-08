@@ -1,0 +1,25 @@
+snippet con "console.log" b
+console.log($1);
+endsnippet
+
+snippet ss "spacer" b
+console.log('-----$1-----');
+console.log($1);
+console.log('-----${1/./-/g}-----');
+endsnippet
+
+snippet	fun "function" b
+var $1 = function($2) {
+    $3
+};
+endsnippet
+
+snippet for "for each" b
+for (let i = 0; i < $1.length; i++) {
+    $2
+}
+endsnippet
+
+snippet objl "object lenght"
+Object.keys($1).length
+endsnippet

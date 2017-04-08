@@ -16,40 +16,42 @@ set list
 " UTF 8
 set encoding=utf-8
 set t_ut=
-set ttimeoutlen=200
+set ttimeoutlen=0
 set timeoutlen=200
 set mouse=
 set clipboard+=unnamedplus
 
 set splitbelow
 set splitright
+set autoread
+au CursorHold * checktime
 
 vnoremap <S-tab> <gv
 vnoremap <tab> >gv
 
 " imap <C-tab> <C-n>
-function! Smart_TabComplete()
-  let line = getline('.')                         " current line
+" function! Smart_TabComplete()
+"   let line = getline('.')                         " current line
 
-  let substr = strpart(line, -1, col('.')+1)      " from the start of the current
-                                                  " line to one character right
-                                                  " of the cursor
-  let substr = matchstr(substr, "[^ \t]*$")       " word till cursor
-  if (strlen(substr)==0 || col(".") == 1)                          " nothing to match on empty string
-    return "\<tab>"
-  endif
-  let has_period = match(substr, '\.') != -1      " position of period, if any
-  let has_slash = match(substr, '\/') != -1       " position of slash, if any
-  if (!has_period && !has_slash)
-    return "\<C-X>\<C-P>"                         " existing text matching
-  elseif ( has_slash )
-    return "\<C-X>\<C-F>"                         " file matching
-  else
-    return "\<C-X>\<C-O>"                         " plugin matching
-  endif
-endfunction
+"   let substr = strpart(line, -1, col('.')+1)      " from the start of the current
+"                                                   " line to one character right
+"                                                   " of the cursor
+"   let substr = matchstr(substr, "[^ \t]*$")       " word till cursor
+"   if (strlen(substr)==0 || col(".") == 1)                          " nothing to match on empty string
+"     return "\<tab>"
+"   endif
+"   let has_period = match(substr, '\.') != -1      " position of period, if any
+"   let has_slash = match(substr, '\/') != -1       " position of slash, if any
+"   if (!has_period && !has_slash)
+"     return "\<C-X>\<C-P>"                         " existing text matching
+"   elseif ( has_slash )
+"     return "\<C-X>\<C-F>"                         " file matching
+"   else
+"     return "\<C-X>\<C-O>"                         " plugin matching
+"   endif
+" endfunction
 
-inoremap <tab> <c-r>=Smart_TabComplete()<CR>
+" inoremap <tab> <c-r>=Smart_TabComplete()<CR>
 
 " set cb=unnamedplus
 
@@ -62,16 +64,12 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 " Surround
 Plugin 'tpope/vim-surround'
-" Nerd Commenter
-" Plugin 'scrooloose/nerdcommenter'
 " Commentary
 Plugin 'tpope/vim-commentary'
 " Dracula Theme
 Plugin 'dracula/vim'
 " Typescript Syntax
 Plugin 'leafgarland/typescript-vim'
-" Indent helper
-" Plugin 'nathanaelkane/vim-indent-guides'
 " Control P
 Plugin 'kien/ctrlp.vim'
 " Tmux Navigator
@@ -108,6 +106,16 @@ Plugin 'wincent/terminus'
 Plugin 'wincent/ferret'
 " Git
 Plugin 'tpope/vim-fugitive'
+" Auto read stuff
+Plugin 'djoshea/vim-autoread'
+" Dim inactive window
+Plugin 'blueyed/vim-diminactive'
+" Indent Lines
+Plugin 'Yggdroot/indentLine'
+" inline colors
+Plugin 'gko/vim-coloresque'
+" You Complete Me
+Plugin 'wincent/YouCompleteMe'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -181,7 +189,7 @@ set laststatus=2
 " Format the status line
 " set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
 " set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ %r%{fugitive#statusline()}%h\ \ \ Line:\ %l
-set statusline+=%#todo#
+" set statusline+=%#todo#
 set statusline+=%f
 set statusline+=\ %{fugitive#statusline()}
 set statusline+=%=
@@ -217,6 +225,8 @@ map K 5k
 map J 5j
 
 nnoremap <silent> <esc> :noh<cr><esc>
+
+imap <silent> ü <esc>
 " ================ Persistent Undo ==================
 
 " Keep undo history across sessions, by storing in file.
@@ -282,6 +292,7 @@ vnoremap K :m '<-2<CR>gv=gv
 
 " ================ Plugins ========================
 let NERDTreeShowHidden=1
+let g:NERDTreeBookmarksFile = '/Users/lukasadmin/dotfiles/nerdtree-bookmarks'
 
 let g:ctrlp_show_hidden = 1
 let g:NERDTreeChDirMode = 2
@@ -305,10 +316,13 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_error_symbol = "!!"
+let g:syntastic_warning_symbol = ">>"
 let g:syntastic_javascript_checkers = ['eslint']
 
 " Smoth Scroll
@@ -316,6 +330,12 @@ noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 1, 5)<CR>
 noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 1, 5)<CR>
 
 " Snippet shortcuts
-let g:UltiSnipsExpandTrigger="<c-l>"
-let g:UltiSnipsJumpForwardTrigger="<c-n>"
-let g:UltiSnipsJumpBackwardTrigger="<c-m>"
+" let g:UltiSnipsExpandTrigger="<c-l>"
+" let g:UltiSnipsJumpForwardTrigger="<c-n>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-m>"
+let g:UltiSnipsExpandTrigger = '<Tab>'
+let g:UltiSnipsJumpForwardTrigger = '<Tab>'
+let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'
+
+let g:indentLine_char = '┆'
+
