@@ -66,4 +66,9 @@ Plugin 'wincent/YouCompleteMe'
 Plugin 'terryma/vim-multiple-cursors'
 " expand region
 Plugin 'terryma/vim-expand-region'
-
+" Tmux Highlight
+Plugin 'tmux-plugins/vim-tmux'
+" Max windows
+Plugin 'szw/vim-maximizer'
+" Airline
+Plugin 'vim-airline/vim-airline'

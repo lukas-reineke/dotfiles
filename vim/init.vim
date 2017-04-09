@@ -38,6 +38,7 @@ so $HOME/dotfiles/vim/functions.vim
 syntax on
 set nocompatible
 filetype plugin indent on
+set lazyredraw
 set termguicolors
 color dracula
 
@@ -98,27 +99,6 @@ set sidescrolloff=15
 set sidescroll=5
 
 
-
-""""""""""""""""""""""""""""""
-" => Status line
-""""""""""""""""""""""""""""""
-hi StatusLine   ctermfg=15  guifg=#ffffff ctermbg=239 guibg=#4e4e4e cterm=bold gui=bold
-hi StatusLineNC ctermfg=249 guifg=#b2b2b2 ctermbg=237 guibg=#3a3a3a cterm=none gui=none
-" Always show the status line
-set laststatus=2
-
-set statusline+=%f
-set statusline+=\ %{fugitive#statusline()}
-set statusline+=%=
-set statusline+=%m
-set statusline+=\ %y
-set statusline+=\ %04l
-
-" Linter
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Completion
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -167,9 +147,10 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_auto_loc_list = 0
-let g:syntastic_error_symbol = "!!"
-let g:syntastic_warning_symbol = ">>"
+let g:syntastic_error_symbol = '誤'
+let g:syntastic_warning_symbol = '危'
 let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute " ,"trimming empty <", "unescaped &" , "lacks \"action", "is not recognized!", "discarding unexpected"]
 
 " ================ UltiSnips ========================
 let g:UltiSnipsExpandTrigger = '<Tab>'
