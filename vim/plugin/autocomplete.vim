@@ -18,7 +18,7 @@ endif
 
 let g:ycm_key_list_select_completion = ['<C-j>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-k>', '<Up>']
-let g:ycm_key_list_accept_completion = ['<C-o>']
+let g:ycm_key_list_accept_completion = ['<C-u>']
 
 " Additional UltiSnips config.
 let g:UltiSnipsSnippetsDir = '~/.vim/ultisnips'

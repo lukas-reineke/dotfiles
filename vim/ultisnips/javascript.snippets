@@ -1,25 +1,55 @@
 snippet con "console.log" b
-console.log($1);
+console.log($1${VISUAL});
 endsnippet
 
 snippet ss "spacer" b
-console.log('-----$1-----');
-console.log($1);
-console.log('-----${1/./-/g}-----');
+console.log('-----${1/'/\\\'/g}${VISUAL/'/\\\'/g}-----');
+console.log($1${VISUAL});
+console.log('-----${1/./-/g}-${VISUAL/./-/g}-----');
 endsnippet
 
 snippet	fun "function" b
 var $1 = function($2) {
-    $3
+	$3
 };
 endsnippet
 
-snippet for "for each" b
+snippet for "for each index" b
 for (let i = 0; i < $1.length; i++) {
-    $2
+	$2${VISUAL}
 }
 endsnippet
 
-snippet objl "object lenght"
-Object.keys($1).length
+snippet foreach "foreach"
+for (let $1 in $2) {
+	$0
+}
+endsnippet
+
+snippet objl "object lenght" b
+Object.keys($1${VISUAL}).length
+endsnippet
+
+snippet todo "todo" b
+// @TODO [`git config user.name`] `date +%d-%m-%Y`: $0
+endsnippet
+
+
+snippet ife "if else" b
+if ($1) {
+	$2
+} else {
+	$3
+}
+endsnippet
+
+
+snippet switch "switch" b
+switch ($1) {
+	case '$2':
+		$3
+		break;
+	default:
+		$0
+}
 endsnippet
