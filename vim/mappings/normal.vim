@@ -35,3 +35,5 @@ nnoremap <silent> <esc> :noh<cr><esc>
 noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 1, 5)<CR>
 noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 1, 5)<CR>
 
+" insert ; at end of line
+nnoremap ; maA;<esc>`a

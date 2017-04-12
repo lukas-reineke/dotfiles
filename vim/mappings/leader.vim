@@ -23,3 +23,11 @@ nnoremap <Leader>n :edit <C-R>=expand('%:p:h') . '/'<CR>
 
 " Zoom one pane
 nnoremap <silent> <Leader>z :! tmux resize-pane -Z<CR><CR> :MaximizerToggle<CR>
+
+" Jump To Definition
+nnoremap <Leader>d <C-]>
+nnoremap <Leader>b <C-T>
+autocmd FileType javascript nnoremap <silent> <Leader>d :TernDef<CR>
+" autocmd FileType javascript nnoremap <silent> <Leader>b :TsuGoBack<CR>
+autocmd FileType typescript nnoremap <silent> <Leader>d :TsuDefinition<CR>
+autocmd FileType typescript nnoremap <silent> <Leader>b :TsuGoBack<CR>

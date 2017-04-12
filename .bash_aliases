@@ -29,6 +29,7 @@ alias v='nvim'
 
 # vim
 alias vim='nvim'
+alias memo='nvim ~/dev/memo.md'
 
 # tmux
 alias t='tmux new -s'

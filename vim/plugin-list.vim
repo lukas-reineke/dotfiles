@@ -72,3 +72,8 @@ Plugin 'tmux-plugins/vim-tmux'
 Plugin 'szw/vim-maximizer'
 " Airline
 Plugin 'vim-airline/vim-airline'
+" Tern for javascrip
+Plugin 'ternjs/tern_for_vim'
+" Salpel
+Plugin 'wincent/scalpel'
+
