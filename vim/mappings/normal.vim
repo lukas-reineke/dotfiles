@@ -37,3 +37,8 @@ noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 1, 5)<CR>
 
 " insert ; at end of line
 nnoremap ; maA;<esc>`a
+
+" Git diff
+nnoremap do2 :diffget //2<CR> :diffupdate<CR>
+nnoremap do3 :diffget //3<CR> :diffupdate<CR>
+

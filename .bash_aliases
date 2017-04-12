@@ -25,11 +25,12 @@ alias pv='cd ~/dev/pvvisualisation'
 alias c='fasd_cd -d'
 alias ci='fasd_cd -d -i'
 alias f='fasd -f'
-alias v='nvim'
 
 # vim
-alias vim='nvim'
+alias v='ge nvim'
+alias vim='ge nvim'
 alias memo='nvim ~/dev/memo.md'
+alias gv='ge nvim -c "Gdiff"'
 
 # tmux
 alias t='tmux new -s'
@@ -43,7 +44,7 @@ alias vpno='cd /etc/openvpn/ocean && sudo openvpn --config ocean.ovpn'
 alias qq='sudo shutdown -h 0'
 alias disk='df -Tha --total | grep /dev/sd'
 alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
-alias rm="rm -rf"
+alias rm="ge command rm -rf"
 alias p='popd'
 alias grep='grep --color=always'
 alias reload='source ~/dotfiles/.bashrc'

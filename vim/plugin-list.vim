@@ -76,4 +76,8 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'ternjs/tern_for_vim'
 " Salpel
 Plugin 'wincent/scalpel'
+" Splice git diff tool
+Plugin 'sjl/splice.vim'
+" Easy motion
+Plugin 'easymotion/vim-easymotion'
 

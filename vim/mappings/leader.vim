@@ -31,3 +31,13 @@ autocmd FileType javascript nnoremap <silent> <Leader>d :TernDef<CR>
 " autocmd FileType javascript nnoremap <silent> <Leader>b :TsuGoBack<CR>
 autocmd FileType typescript nnoremap <silent> <Leader>d :TsuDefinition<CR>
 autocmd FileType typescript nnoremap <silent> <Leader>b :TsuGoBack<CR>
+
+" new line without insert
+nnoremap <Leader>o o<esc>k
+nnoremap <Leader>O O<esc>j
+
+" Easy motion
+map <Leader>ö <Plug>(easymotion-prefix)
+map <Leader>e <Plug>(easymotion-bd-w)
+nmap <Leader>e <Plug>(easymotion-overwin-w)
+
