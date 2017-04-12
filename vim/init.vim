@@ -39,6 +39,9 @@ syntax on
 set nocompatible
 filetype plugin indent on
 set lazyredraw
+" set shell=/bin/bash\ --rcfile\ ~/.bash_profile\ -i
+set shortmess+=A
+set conceallevel=0
 set termguicolors
 color dracula
 
@@ -86,7 +89,6 @@ set smarttab
 set shiftwidth=4
 set tabstop=4
 set softtabstop=4
-set expandtab
 set smartindent
 set nofoldenable
 " ================ Line Numbers ========================
