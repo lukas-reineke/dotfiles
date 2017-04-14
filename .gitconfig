@@ -11,36 +11,26 @@
     detachedHead = false
 
 [core]
-    excludesfile = /Users/lukasadmin/.gitignore_global
+    excludesfile = ~/.gitignore_global
     autocrlf = false
-    editor = vim
+    editor = nvim
 
 [clean]
     requireForce = false
 
 [diff]
-    tool = sublimerge
+    tool = nvim
 
 [merge]
-    tool = sublimerge
+    tool = nvim
 
-[difftool "sourcetree"]
-    cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-    path =
+[mergetool]
+    keepBackup = false
 
-[difftool "sublimerge"]
-    cmd = sublime -n --wait \"$REMOTE\" \"$LOCAL\" --command \"sublimerge_diff_views {\\\"left_read_only\\\": true, \\\"right_read_only\\\": true}\"
-
-[mergetool "sourcetree"]
-    cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+[mergetool "nvim"]
+    cmd = ~/dotfiles/scripts/git-merge.sh $MERGED
     trustExitCode = true
-
-[mergetool "sublimerge"]
-    cmd = sublime -n --wait \"$REMOTE\" \"$BASE\" \"$LOCAL\" \"$MERGED\" --command \"sublimerge_diff_views\"
-    trustExitCode = false
 
 [commit]
     verbose = true
 
-[credential]
-    helper = cache
