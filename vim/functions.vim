@@ -2,15 +2,20 @@
 " => Functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" ================ close buffer or window ========================
-function! CloseOnLast()
+" ================ Open Buffer Number ========================
+function! OpenBufferNumber()
     let cnt = 0
     for i in range(0, bufnr("$"))
         if buflisted(i)
             let cnt += 1
         endif
     endfor
-    if cnt <= 1
+    return cnt
+endfunction
+
+" ================ close buffer or window ========================
+function! CloseOnLast()
+    if OpenBufferNumber() <= 1
         q
     else
         bd
@@ -43,3 +48,18 @@ au CursorHold * checktime
 silent !mkdir ~/.config/nvim/backups > /dev/null 2>&1
 set undodir=~/.config/nvim/backups
 set undofile
+
+" ================ Nerd Tree ========================
+" Check if NERDTree is open or active
+function! IsNERDTreeOpen()
+    return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+endfunction
+
+function! ToggleNERDTreeFind()
+    if IsNERDTreeOpen()
+        NERDTreeClose
+    else
+        NERDTreeFind
+    endif
+endfunction
+

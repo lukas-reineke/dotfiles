@@ -162,3 +162,8 @@ let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'
 " ================ Indent Guides ========================
 let g:indentLine_char = '┆'
 
+" ================ Easy Motion ========================
+let g:EasyMotion_smartcase = 1
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+let g:EasyMotion_keys = 'asdfghjklqwertzuiop'
+

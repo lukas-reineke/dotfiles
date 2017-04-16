@@ -37,7 +37,10 @@ nnoremap <Leader>o o<esc>k
 nnoremap <Leader>O O<esc>j
 
 " Easy motion
-map <Leader>ö <Plug>(easymotion-prefix)
+" map <Leader>ö <Plug>(easymotion-prefix)
 map <Leader>e <Plug>(easymotion-bd-w)
 nmap <Leader>e <Plug>(easymotion-overwin-w)
+nmap <Leader>f <Plug>(easymotion-overwin-f)
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
 

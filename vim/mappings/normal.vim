@@ -14,7 +14,7 @@ nmap Y y$
 nmap <C-p> :CtrlPMixed
 
 " open nerdtree
-map <silent> <C-b> :NERDTreeToggle <CR>
+map <silent> <C-b> :call ToggleNERDTreeFind() <CR>
 
 " Move between panes
 nnoremap <C-J> <C-W><C-J>
