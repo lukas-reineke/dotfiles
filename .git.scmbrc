@@ -26,7 +26,7 @@ export GIT_REPO_DIR="$HOME/dev"
 export GIT_REPOS=""
 export git_status_command="git_status_shortcuts"
 # Alias
-git_index_alias="cw"    # Switch to a repo in the (c)ode directory
+git_index_alias="cww"    # Switch to a repo in the (c)ode directory
 
 
 # Git Aliases

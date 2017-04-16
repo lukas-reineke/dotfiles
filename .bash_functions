@@ -21,7 +21,7 @@ function cs {
         fi
         if [ -f ./.env.sh ]; then
             source .env.sh
-            echo -e '\n'${GRN}'#'${NC}' added '${PWD##*/}' environment variables\n'
+            echo -e ${RED}'➤ '${NC}'Added '${PWD##*/}' environment variables\n'
         fi
     elif [[ -f "$*" ]]; then
         echo -e ${RED}"$* is not a directory"${NC} 1>&2
@@ -32,6 +32,14 @@ function cs {
     fi
 }
 alias cd='exec_scmb_expand_args cs'
+
+function cw {
+    cww $*
+    if [ -f ./.env.sh ]; then
+        source .env.sh
+        echo -e ${RED}'➤ '${NC}'Added '${PWD##*/}' environment variables\n'
+    fi
+}
 
 # temp folder
 function temp {
