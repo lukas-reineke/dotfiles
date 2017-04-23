@@ -34,3 +34,12 @@
 [commit]
     verbose = true
 
+[branch "master"]
+    rebase = true
+[branch "qa"]
+    rebase = true
+[branch "develop"]
+    rebase = true
+[branch]
+    autosetuprebase = always
+
