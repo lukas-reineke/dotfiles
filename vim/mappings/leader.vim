@@ -47,3 +47,4 @@ map <Leader>k <Plug>(easymotion-k)
 
 " Spell correct
 nnoremap <Leader>z 1z=
+

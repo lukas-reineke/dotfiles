@@ -107,6 +107,7 @@ set sidescroll=5
 " => Completion
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" ================ Ignore ========================
 set wildmode=list:full
 set wildignore=*.o,*.obj,*~
 set wildignore+=*vim/backups*
@@ -126,6 +127,8 @@ set wildignore+=*.zip
 set wildignore+=*/platforms/*
 set wildignore+=*venv*
 
+" ================ format ========================
+set formatprg=par\ -w80rq
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugin Settings
