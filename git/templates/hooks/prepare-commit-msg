@@ -1,0 +1,10 @@
+#!/bin/bash
+BRANCH=$(git branch | grep '^\*' | cut -b3- | cut -f1,2 -d'-')
+BRANCHTYPE=${BRANCH%/*}
+
+if [[ $BRANCHTYPE == 'feature' ]] || [[ $BRANCHTYPE == 'bugfix' ]] || [[ $BRANCHTYPE == 'hotfix' ]]; then
+    BRANCH=${BRANCH##*/}
+    FILE=$(cat "$1")
+    echo "$BRANCH $FILE" > "$1"
+fi
+

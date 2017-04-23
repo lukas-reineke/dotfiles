@@ -11,7 +11,7 @@
     detachedHead = false
 
 [core]
-    excludesfile = ~/.gitignore_global
+    excludesfile = ~/dotfiles/git/gitignore_global
     autocrlf = false
     editor = nvim
 
@@ -42,4 +42,6 @@
     rebase = true
 [branch]
     autosetuprebase = always
+[init]
+    templatedir = ~/dotfiles/git/templates
 

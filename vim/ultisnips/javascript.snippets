@@ -2,14 +2,22 @@ snippet con "console.log" b
 console.log($1${VISUAL});
 endsnippet
 
-snippet ss "spacer" b
+snippet ssp "spacer" Ab
+/* DEBUG */
 console.log('-----${1/'/\\\'/g}${VISUAL/'/\\\'/g}-----');
 console.log($1${VISUAL});
-console.log('-----${1/./-/g}-${VISUAL/./-/g}-----');
+console.log('-----${1/./-/g}-${VISUAL/./-/g}----');
+/* DEBUG */
 endsnippet
 
-snippet	fun "function" b
+snippet	vfu "var function" Ab
 var $1 = function($2) {
+	$3
+};
+endsnippet
+
+snippet	cfu "const function" Ab
+const $1 = function($2) {
 	$3
 };
 endsnippet
