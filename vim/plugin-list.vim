@@ -80,4 +80,6 @@ Plugin 'wincent/scalpel'
 Plugin 'sjl/splice.vim'
 " Easy motion
 Plugin 'easymotion/vim-easymotion'
+" Start Screen
+Plugin 'mhinz/vim-startify'
 

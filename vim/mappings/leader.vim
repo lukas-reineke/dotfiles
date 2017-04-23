@@ -30,6 +30,7 @@ nnoremap <Leader>b <C-T>
 autocmd FileType javascript nnoremap <silent> <Leader>d :TernDef<CR>
 " autocmd FileType javascript nnoremap <silent> <Leader>b :TsuGoBack<CR>
 autocmd FileType typescript nnoremap <silent> <Leader>d :TsuDefinition<CR>
+autocmd FileType typescript nnoremap <silent> <Leader>u :TsuReferences<CR>
 autocmd FileType typescript nnoremap <silent> <Leader>b :TsuGoBack<CR>
 
 " new line without insert
@@ -44,3 +45,5 @@ nmap <Leader>f <Plug>(easymotion-overwin-f)
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 
+" Spell correct
+nnoremap <Leader>z 1z=

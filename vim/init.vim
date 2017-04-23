@@ -10,6 +10,8 @@ so $HOME/dotfiles/vim/mappings/normal.vim
 so $HOME/dotfiles/vim/mappings/visual.vim
 " Command Mappings
 so $HOME/dotfiles/vim/mappings/command.vim
+" Instert Mappings
+so $HOME/dotfiles/vim/mappings/insert.vim
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -112,6 +114,7 @@ set wildignore+=*sass-cache*
 set wildignore+=*cache*
 set wildignore+=*logs*
 set wildignore+=*node_modules/**
+set wildignore+=*coverage/**
 set wildignore+=*DS_Store*
 set wildignore+=*.gem
 set wildignore+=log/**
