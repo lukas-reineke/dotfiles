@@ -35,6 +35,9 @@ alias cd='exec_scmb_expand_args cs'
 
 function cw {
     cww $*
+    if [ -d ./.git ]; then
+        git_status_shortcuts
+    fi
     if [ -f ./.env.sh ]; then
         source .env.sh
         echo -e ${RED}'➤ '${NC}'Added '${PWD##*/}' environment variables\n'
