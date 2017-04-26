@@ -17,7 +17,7 @@ Plugin 'dracula/vim'
 " Typescript Syntax
 Plugin 'leafgarland/typescript-vim'
 " Control P
-Plugin 'kien/ctrlp.vim'
+Plugin 'lukastl21/ctrlp.vim'
 " Tmux Navigator
 Plugin 'christoomey/vim-tmux-navigator'
 " Git Gutter
@@ -82,4 +82,18 @@ Plugin 'sjl/splice.vim'
 Plugin 'easymotion/vim-easymotion'
 " Start Screen
 Plugin 'mhinz/vim-startify'
+" Tmux Line
+Plugin 'edkolev/tmuxline.vim'
+" Undo Tree
+Plugin 'mbbill/undotree'
+" Abolish
+Plugin 'tpope/vim-abolish'
+" Better Json
+Plugin 'elzr/vim-json'
+" HTML5
+Plugin 'othree/html5.vim'
+" Autoformat
+Plugin 'Chiel92/vim-autoformat'
+" Camel Case Motions
+Plugin 'bkad/camelcasemotion'
 

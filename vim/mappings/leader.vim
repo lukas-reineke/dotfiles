@@ -10,6 +10,7 @@ nnoremap <Leader><Leader> <C-^>
 " open CtrlPBuffer
 nnoremap <Leader><C-P> :CtrlPBuffer<CR>
 nnoremap <Leader><C-H> :hide<CR>
+nnoremap <Leader><C-J> :only<CR>
 nnoremap <Leader><C-K> :sv#<CR>
 nnoremap <Leader><C-L> :vs#<CR>
 
@@ -47,4 +48,13 @@ map <Leader>k <Plug>(easymotion-k)
 
 " Spell correct
 nnoremap <Leader>z 1z=
+
+" Project switcher
+nnoremap <Leader>p :CtrlPBookmarkDir<CR>
+
+" Undo Tree
+nnoremap <Leader>u :UndotreeToggle<CR>
+
+" Eslint
+nnoremap <Leader>h :Autoformat<CR>
 

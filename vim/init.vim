@@ -142,6 +142,7 @@ let g:NERDTreeBookmarksFile = '/Users/lukasadmin/dotfiles/vim/nerdtree-bookmarks
 let g:ctrlp_show_hidden = 1
 let g:NERDTreeChDirMode = 2
 let g:ctrlp_working_path_mode = 'rw'
+let g:ctrlp_bookmark_cwd = 1
 
 " ================ Tmux Integration ========================
 let g:tmux_navigator_disable_when_zoomed = 1
@@ -158,6 +159,8 @@ let g:syntastic_auto_loc_list = 0
 let g:syntastic_error_symbol = '誤'
 let g:syntastic_warning_symbol = '危'
 let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_typescript_checkers = ['tslint']
+let g:syntastic_python_checkers = ['pylint']
 let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute " ,"trimming empty <", "unescaped &" , "lacks \"action", "is not recognized!", "discarding unexpected"]
 
 " ================ YouCompleteMe ========================
@@ -182,4 +185,7 @@ augroup HiglightTODO
     autocmd WinEnter,VimEnter * :silent! call matchadd('Todo', 'TODO', -1)
     autocmd WinEnter,VimEnter * :silent! call matchadd('Todo', 'DEBUG', -1)
 augroup END<Paste>
+
+" ================ textwidth for gitcommit ========================
+au FileType gitcommit set tw=72
 
