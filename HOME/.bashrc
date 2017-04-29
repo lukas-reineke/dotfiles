@@ -1,1 +1,1 @@
-[[ -f ~/dotfiles/.bashrc ]] && . ~/dotfiles/.bashrc
+[[ -f ~/dotfiles/bash/bashrc ]] && . ~/dotfiles/bash/bashrc
