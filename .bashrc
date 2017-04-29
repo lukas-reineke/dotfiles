@@ -92,6 +92,11 @@ if [ -f ~/dotfiles/lib/bash-git-prompt/gitprompt.sh ]; then
     GIT_PROMPT_ONLY_IN_REPO=0
 fi
 
+# fzf mark
+if [ -f ~/dotfiles/lib/fzf-marks/fzf-marks.plugin.bash ]; then
+    source ~/dotfiles/lib/fzf-marks/fzf-marks.plugin.bash
+fi
+
 ## os specific
 if [ $(uname) == 'Darwin' ]; then
     source ~/dotfiles/.osx
