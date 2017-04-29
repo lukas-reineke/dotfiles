@@ -33,16 +33,16 @@ function cs {
 }
 alias cd='exec_scmb_expand_args cs'
 
-function cw {
-    cww $*
-    if [ -d ./.git ]; then
-        git_status_shortcuts
-    fi
-    if [ -f ./.env.sh ]; then
-        source .env.sh
-        echo -e ${RED}'➤ '${NC}'Added '${PWD##*/}' environment variables\n'
-    fi
-}
+# function cw {
+#     cww $*
+#     # if [ -d ./.git ]; then
+#     #     git_status_shortcuts
+#     # fi
+#     if [ -f ./.env.sh ]; then
+#         source .env.sh
+#         echo -e ${RED}'➤ '${NC}'Added '${PWD##*/}' environment variables\n'
+#     fi
+# }
 
 # temp folder
 function temp {
@@ -187,6 +187,21 @@ function gll {
     git log origin/${branch}..${branch} $* -p
 }
 
+function b {
+    BRANCH=$(git branch -a --no-color | fzf-tmux -d 15 | sed 's/\remotes\/origin\///g')
+    if [[ ! -z $BRANCH ]]; then
+        git checkout $BRANCH
+    fi
+}
+
+function fb {
+    git checkout -b feature/$1
+}
+
+function bb {
+    git checkout -b bugfix/$1
+}
+
 # Colored man pages
 function man {
     LESS_TERMCAP_md=$'\e[01;31m' \
@@ -212,5 +227,9 @@ function venv2 {
         virtualenv -p python2 ./venv-${PWD##*/}
     fi
     source ./venv-${PWD##*/}/bin/activate
+}
+
+function markd {
+    mark ${PWD##*/}
 }
 

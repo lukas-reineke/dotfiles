@@ -1,5 +1,3 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
-
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -55,20 +53,6 @@ if [ -f ~/dotfiles/lib/git-flow-completion.bash ]; then
     source ~/dotfiles/lib/git-flow-completion.bash
 fi
 
-# Setup fzf
-if [[ ! "$PATH" == *$HOME/dotfiles/lib/fzf/bin* ]]; then
-    export PATH="$PATH:$HOME/dotfiles/lib/fzf/bin"
-fi
-# fzf Man path
-if [[ ! "$MANPATH" == *$HOME/dotfiles/lib/fzf/man* && -d "$HOME/dotfiles/lib/fzf/man" ]]; then
-    export MANPATH="$MANPATH:$HOME/dotfiles/lib/fzf/man"
-fi
-# fzf Auto-completion
-[[ $- == *i* ]] && source "$HOME/dotfiles/lib/fzf/shell/completion.bash" 2> /dev/null
-# fzf Key bindings
-if [ -f ~/dotfiles/lib/fzf/shell/key-bindings.bash ]; then
-    source ~/dotfiles/lib/fzf/shell/key-bindings.bash
-fi
 
 # pip bash completion
 _pip_completion()
@@ -92,37 +76,32 @@ if [ -f ~/dotfiles/lib/bash-git-prompt/gitprompt.sh ]; then
     GIT_PROMPT_ONLY_IN_REPO=0
 fi
 
-# fzf mark
-if [ -f ~/dotfiles/lib/fzf-marks/fzf-marks.plugin.bash ]; then
-    source ~/dotfiles/lib/fzf-marks/fzf-marks.plugin.bash
-fi
-
 ## os specific
 if [ $(uname) == 'Darwin' ]; then
-    source ~/dotfiles/.osx
+    source ~/dotfiles/bash/mac
 else
-    source ~/dotfiles/.arch_linux
+    source ~/dotfiles/bash/linux
 fi
 
 
 ### alias ###
-if [ -f ~/dotfiles/.bash_aliases ]; then
-    source ~/dotfiles/.bash_aliases
+if [ -f ~/dotfiles/bash/aliases.sh ]; then
+    source ~/dotfiles/bash/aliases.sh
 fi
 
 ### enviorment variables ###
-if [ -f ~/dotfiles/.bash_env_vars ]; then
-    source ~/dotfiles/.bash_env_vars
+if [ -f ~/dotfiles/bash/env-vars.sh ]; then
+    source ~/dotfiles/bash/env-vars.sh
 fi
 
 ### functions ###
-if [ -f ~/dotfiles/.bash_functions ]; then
-    source ~/dotfiles/.bash_functions
+if [ -f ~/dotfiles/bash/functions.sh ]; then
+    source ~/dotfiles/bash/functions.sh
 fi
 
 ### keyboard shortcuts ###
-if [ -f ~/dotfiles/.bash_input ]; then
-    source ~/dotfiles/.bash_input
+if [ -f ~/dotfiles/bash/input.sh ]; then
+    source ~/dotfiles/bash/input.sh
 fi
 
 ### secrets ###
@@ -140,4 +119,26 @@ if [ -f ~/dotfiles/lib/minikube-completion.bash ]; then
     source ~/dotfiles/lib/minikube-completion.bash
 fi
 
-eval "$(fasd --init auto)"
+# Setup fzf
+if [[ ! "$PATH" == *$HOME/dotfiles/lib/fzf/bin* ]]; then
+    export PATH="$PATH:$HOME/dotfiles/lib/fzf/bin"
+fi
+
+# fzf Man path
+if [[ ! "$MANPATH" == *$HOME/dotfiles/lib/fzf/man* && -d "$HOME/dotfiles/lib/fzf/man" ]]; then
+    export MANPATH="$MANPATH:$HOME/dotfiles/lib/fzf/man"
+fi
+
+# fzf Auto-completion
+[[ $- == *i* ]] && source "$HOME/dotfiles/lib/fzf/shell/completion.bash" 2> /dev/null
+
+# fzf Key bindings
+if [ -f ~/dotfiles/lib/fzf/shell/key-bindings.bash ]; then
+    source ~/dotfiles/lib/fzf/shell/key-bindings.bash
+fi
+
+# fzf mark
+if [ -f ~/dotfiles/lib/fzf-marks/fzf-marks.plugin.bash ]; then
+    source ~/dotfiles/lib/fzf-marks/fzf-marks.plugin.bash
+fi
+

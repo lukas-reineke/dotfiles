@@ -63,7 +63,7 @@ set listchars+=precedes:<
 set listchars+=nbsp:_
 set listchars+=space:٠
 
-set encoding=utf-8
+set encoding=utf8
 set t_ut=
 set ttimeoutlen=0
 set timeoutlen=500
@@ -125,6 +125,9 @@ set wildignore+=*.so
 set wildignore+=*.swp
 set wildignore+=*.zip
 set wildignore+=*/platforms/*
+set wildignore+=*/dist/*
+set wildignore+=*/doc/*
+set wildignore+=*/dll/*
 set wildignore+=*venv*
 
 " ================ format ========================
@@ -137,12 +140,14 @@ set formatprg=par\ -w80rq
 " ================ Nerd Tree ========================
 let NERDTreeShowHidden=1
 let g:NERDTreeBookmarksFile = '/Users/lukasadmin/dotfiles/vim/nerdtree-bookmarks'
+let g:NERDTreeWinSize=50
 
 " ================ CTRLP ========================
 let g:ctrlp_show_hidden = 1
 let g:NERDTreeChDirMode = 2
 let g:ctrlp_working_path_mode = 'rw'
 let g:ctrlp_bookmark_cwd = 1
+let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:30,results:30'
 
 " ================ Tmux Integration ========================
 let g:tmux_navigator_disable_when_zoomed = 1
@@ -159,7 +164,7 @@ let g:syntastic_auto_loc_list = 0
 let g:syntastic_error_symbol = '誤'
 let g:syntastic_warning_symbol = '危'
 let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_typescript_checkers = ['tslint']
+let g:syntastic_typescript_checkers = ['tsuquyomi', 'tslint']
 let g:syntastic_python_checkers = ['pylint']
 let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute " ,"trimming empty <", "unescaped &" , "lacks \"action", "is not recognized!", "discarding unexpected"]
 
@@ -188,4 +193,27 @@ augroup END<Paste>
 
 " ================ textwidth for gitcommit ========================
 au FileType gitcommit set tw=72
+
+" ================ Comfortable Motion ========================
+let g:comfortable_motion_scroll_down_key = "j"
+let g:comfortable_motion_scroll_up_key = "k"
+
+" ================ Y U NO COMMIT ========================
+let g:YUNOcommit_after = 20
+
+" ================ Auto Root ========================
+function! <SID>AutoProjectRootCD()
+  try
+    if &ft != 'help'
+      ProjectRootCD
+    endif
+  catch
+    " Silently ignore invalid buffers
+  endtry
+endfunction
+
+autocmd BufEnter * call <SID>AutoProjectRootCD()
+
+" Airline color num
+let g:airline_colornum_reversed = 1
 

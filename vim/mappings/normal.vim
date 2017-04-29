@@ -54,3 +54,5 @@ sunmap b
 sunmap e
 sunmap ge
 
+" Change inside surround
+nnoremap cic :ChangeInsideSurrounding<CR>

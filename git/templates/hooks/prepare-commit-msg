@@ -1,12 +1,18 @@
 #!/bin/bash
 BRANCH=$(git branch | grep '^\*' | cut -b3- | cut -f1,2 -d'-')
 BRANCHTYPE=${BRANCH%/*}
+FILE=$(cat "$1")
+CLEAN=$(cat "$1" | grep DEBUG)
+
+if [[ ! -z $CLEAN ]]; then
+    echo 'clean up first'
+    exit 1
+fi
 
 if [[ $BRANCHTYPE == 'feature' ]] || [[ $BRANCHTYPE == 'bugfix' ]] || [[ $BRANCHTYPE == 'hotfix' ]]; then
     FIRSTLINE=$(sed -n '1p' $1)
     if [[ -z $FIRSTLINE ]]; then
         BRANCH=${BRANCH##*/}
-        FILE=$(cat "$1")
         echo "$BRANCH $FILE" > "$1"
     fi
 fi

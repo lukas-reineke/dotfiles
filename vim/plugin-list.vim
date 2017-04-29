@@ -96,4 +96,26 @@ Plugin 'othree/html5.vim'
 Plugin 'Chiel92/vim-autoformat'
 " Camel Case Motions
 Plugin 'bkad/camelcasemotion'
+" Register list
+Plugin 'junegunn/vim-peekaboo'
+" Replace
+Plugin 'ReplaceWithRegister'
+" Sorting
+Plugin 'christoomey/vim-sort-motion'
+" Gitignore to wildignore
+Plugin 'gitignore'
+" Git Merge
+Plugin 'idanarye/vim-merginal'
+" Change inside surround
+Plugin 'briandoll/change-inside-surroundings.vim'
+" Y U NO COMMIT
+Plugin 'esneider/yunocommit.vim'
+" Root
+Plugin 'dbakker/vim-projectroot'
+" Command Mode CtrlP
+Plugin 'suy/vim-ctrlp-commandline'
+" Cursor Line Color
+Plugin 'augustold/vim-airline-colornum'
+" VIM Tmux clipboard
+Plugin 'roxma/vim-tmux-clipboard'
 

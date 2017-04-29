@@ -10,10 +10,6 @@ DGR='\033[90m'
 WHT='\033[97m'
 NC='\033[0m' # No Color
 
-# osx alias
-alias ds='sudo ~/dotfiles/lib/deepsleep'
-alias weather='curl http://wttr.in/Hamburg'
-
 # ssh
 if ! pgrep -u "$USER" ssh-agent > /dev/null; then
     ssh-agent > ~/.ssh-agent-thing
@@ -22,11 +18,7 @@ if [[ "$SSH_AGENT_PID" == "" ]]; then
     eval "$(<~/.ssh-agent-thing)"
 fi
 
-infocmp $TERM | sed 's/kbs=^[hH]/kbs=\\177/' > $TERM.ti
-tic $TERM.ti
-
 ### Path exports ###
-
 export PATH=${PATH}:/usr/local/mysql/bin
 export PATH=${PATH}:$HOME/Library/Android/sdk/platform-tools
 export PATH=${PATH}:$HOME/.node/bin
@@ -47,9 +39,5 @@ if [ -f ~/dotfiles/lib/iterm2_shell_integration.bash ]; then
     source ~/dotfiles/lib/iterm2_shell_integration.bash
 fi
 
-### Azure ###
-if [ -f ~/lib/azure-cli/az.completion ]; then
-    source ~/lib/azure-cli/az.completion
-fi
-
 clear
+

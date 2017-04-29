@@ -1,6 +1,6 @@
 # list
-alias la='~/dotfiles/scripts/git_ll_osx.sh'
-alias cll='clear && ~/dotfiles/scripts/git_ll_osx.sh'
+alias la='~/dotfiles/scripts/git-ll-mac.sh'
+alias cll='clear && ~/dotfiles/scripts/git-ll-mac.sh'
 alias ls='ls -lsHFG'
 alias lg='ls -AlsHFG | grep'
 alias ll='ls -AlsHFG'
@@ -8,23 +8,9 @@ alias lll='ls -AlsHFG | less -R'
 
 # move
 alias cl='clear'
+alias lc='clear'
 alias mkdir='mkdir -p'
 alias cls='clear && gs'
-
-# folders
-alias downloads='cd ~/Downloads'
-alias desktop='cd ~/Desktop'
-alias pictures='cd ~/Pictures'
-alias dev='cd ~/dev'
-alias dot='cd ~/dotfiles'
-alias see='cd ~/dev/see'
-# alias set='cd ~/dev/setuk'
-alias pv='cd ~/dev/pvvisualisation'
-
-# fasd
-alias c='fasd_cd -d'
-alias ci='fasd_cd -d -i'
-alias f='fasd -f'
 
 # vim
 alias v='ge nvim'
@@ -47,7 +33,7 @@ alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
 alias rm="ge command rm -rf"
 alias p='popd'
 alias grep='grep --color=always'
-alias reload='source ~/dotfiles/.bashrc'
+alias reload='source ~/dotfiles/bash/bashrc'
 alias sudo='sudo env PATH=$PATH'
 
 # network
@@ -58,7 +44,6 @@ alias nl='nload wlp2s0b1'
 alias ethup='sudo ip link set enp0s26f7u1u3 up'
 
 # git
-#alias log="git log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short"
 alias log='git log --graph --all --oneline --decorate'
 alias logs='git log --graph --all --decorate --relative-date'
 alias gsmu='git submodule update --remote --merge'
@@ -72,7 +57,6 @@ alias pacy='sudo pacman -Syu'
 alias apacy='sudo apacman -Syu'
 
 # ssh
-alias sshaptx='ssh lukas@192.168.178.57'
 alias dsa='SSH_AUTH_SOCK=0'
 
 # sublime
@@ -90,17 +74,14 @@ alias http='simplehttpserver'
 alias da='deactivate'
 
 # ionic
-alias r='ionic run'
-alias b='ionic build'
+alias ri='ionic run'
+alias bi='ionic build'
 
 # irc
 alias wee='weechat'
 
 # android
 alias avd='/opt/android-sdk/tools/android avd'
-
-# display
-alias xtn='xrandr --output eDP1 --mode 1440x900'
 
 # stuff
 alias links='vim ~/Dropbox/links.txt'
