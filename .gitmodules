@@ -10,3 +10,6 @@
 [submodule "lib/scm_breeze"]
 	path = lib/scm_breeze
 	url = https://github.com/scmbreeze/scm_breeze.git
+[submodule "lib/fzf-marks"]
+	path = lib/fzf-marks
+	url = https://github.com/urbainvaes/fzf-marks.git
