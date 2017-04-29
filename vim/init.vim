@@ -19,11 +19,11 @@ so $HOME/dotfiles/vim/mappings/insert.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 set rtp+=~/.vimpkg/bundle/Vundle.vim
-call vundle#begin('~/.vimpkg/bundle')
+call plug#begin('~/.vimpkg/bundle')
 
 so $HOME/dotfiles/vim/plugin-list.vim
 
-call vundle#end()
+call plug#end()
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -46,6 +46,7 @@ set shortmess+=A
 set conceallevel=0
 set termguicolors
 color dracula
+set grepprg=rg\ --vimgrep
 
 " Wrapping
 set nowrap
@@ -216,4 +217,7 @@ autocmd BufEnter * call <SID>AutoProjectRootCD()
 
 " Airline color num
 let g:airline_colornum_reversed = 1
+
+" ================ FZF ========================
+let g:fzf_buffers_jump = 1
 

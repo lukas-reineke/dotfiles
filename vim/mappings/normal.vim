@@ -11,7 +11,8 @@ nmap X x
 nmap Y y$
 
 " open ctrlp
-nmap <C-p> :CtrlPMixed
+" nmap <C-p> :CtrlPMixed
+nmap <C-p> :GFiles<CR>
 
 " open nerdtree
 map <silent> <C-b> :call ToggleNERDTreeFind() <CR>

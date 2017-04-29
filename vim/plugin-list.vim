@@ -1,121 +1,124 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Plugins
+" => Plugs
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+Plug 'VundleVim/Vundle.vim'
 " Nerd Tree
-Plugin 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
 " Nerd Tree Git
-Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 " Surround
-Plugin 'tpope/vim-surround'
+Plug 'tpope/vim-surround'
 " Commentary
-Plugin 'tpope/vim-commentary'
+Plug 'tpope/vim-commentary'
 " Dracula Theme
-Plugin 'dracula/vim'
+Plug 'dracula/vim'
 " Typescript Syntax
-Plugin 'leafgarland/typescript-vim'
+Plug 'leafgarland/typescript-vim'
 " Control P
-Plugin 'lukastl21/ctrlp.vim'
+" Plug 'lukastl21/ctrlp.vim'
 " Tmux Navigator
-Plugin 'christoomey/vim-tmux-navigator'
+Plug 'christoomey/vim-tmux-navigator'
 " Git Gutter
-Plugin 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter'
 " Linter
-Plugin 'vim-syntastic/syntastic'
+Plug 'vim-syntastic/syntastic'
 " Tsuquyami
-Plugin 'Quramy/tsuquyomi'
+Plug 'Quramy/tsuquyomi'
 " Vimproc
-Plugin 'Shougo/vimproc.vim'
+Plug 'Shougo/vimproc.vim'
 " Smoth Scroll
-Plugin 'terryma/vim-smooth-scroll'
+Plug 'terryma/vim-smooth-scroll'
 " Vim Javascript
-Plugin 'pangloss/vim-javascript'
+Plug 'pangloss/vim-javascript'
 " Auto pairs
-Plugin 'jiangmiao/auto-pairs'
+Plug 'jiangmiao/auto-pairs'
 " Indent Text Object
-Plugin 'michaeljsmith/vim-indent-object'
+Plug 'michaeljsmith/vim-indent-object'
 " Inner Line Text Object
-Plugin 'vim-utils/vim-line'
+Plug 'vim-utils/vim-line'
 " Bookmarks
-Plugin 'MattesGroeger/vim-bookmarks'
+Plug 'MattesGroeger/vim-bookmarks'
 " Track the engine.
-Plugin 'SirVer/ultisnips'
+Plug 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
-Plugin 'honza/vim-snippets'
+Plug 'honza/vim-snippets'
 " Loupe
-Plugin 'wincent/loupe'
+Plug 'wincent/loupe'
 " Terminus
-Plugin 'wincent/terminus'
+Plug 'wincent/terminus'
 " Ferret
-Plugin 'wincent/ferret'
+Plug 'wincent/ferret'
 " Git
-Plugin 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 " Auto read stuff
-Plugin 'djoshea/vim-autoread'
+Plug 'djoshea/vim-autoread'
 " Dim inactive window
-Plugin 'blueyed/vim-diminactive'
+Plug 'blueyed/vim-diminactive'
 " Indent Lines
-Plugin 'Yggdroot/indentLine'
+Plug 'Yggdroot/indentLine'
 " inline colors
-Plugin 'gko/vim-coloresque'
+Plug 'gko/vim-coloresque'
 " You Complete Me
-Plugin 'wincent/YouCompleteMe'
+Plug 'wincent/YouCompleteMe'
 " Multiple Cursors
-Plugin 'terryma/vim-multiple-cursors'
+Plug 'terryma/vim-multiple-cursors'
 " expand region
-Plugin 'terryma/vim-expand-region'
+Plug 'terryma/vim-expand-region'
 " Tmux Highlight
-Plugin 'tmux-plugins/vim-tmux'
+Plug 'tmux-plugins/vim-tmux'
 " Max windows
-Plugin 'szw/vim-maximizer'
+Plug 'szw/vim-maximizer'
 " Airline
-Plugin 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline'
 " Tern for javascrip
-Plugin 'ternjs/tern_for_vim'
+Plug 'ternjs/tern_for_vim'
 " Salpel
-Plugin 'wincent/scalpel'
+Plug 'wincent/scalpel'
 " Splice git diff tool
-Plugin 'sjl/splice.vim'
+Plug 'sjl/splice.vim'
 " Easy motion
-Plugin 'easymotion/vim-easymotion'
+Plug 'easymotion/vim-easymotion'
 " Start Screen
-Plugin 'mhinz/vim-startify'
+Plug 'mhinz/vim-startify'
 " Tmux Line
-Plugin 'edkolev/tmuxline.vim'
+Plug 'edkolev/tmuxline.vim'
 " Undo Tree
-Plugin 'mbbill/undotree'
+Plug 'mbbill/undotree'
 " Abolish
-Plugin 'tpope/vim-abolish'
+Plug 'tpope/vim-abolish'
 " Better Json
-Plugin 'elzr/vim-json'
+Plug 'elzr/vim-json'
 " HTML5
-Plugin 'othree/html5.vim'
+Plug 'othree/html5.vim'
 " Autoformat
-Plugin 'Chiel92/vim-autoformat'
+Plug 'Chiel92/vim-autoformat'
 " Camel Case Motions
-Plugin 'bkad/camelcasemotion'
+Plug 'bkad/camelcasemotion'
 " Register list
-Plugin 'junegunn/vim-peekaboo'
+Plug 'junegunn/vim-peekaboo'
 " Replace
-Plugin 'ReplaceWithRegister'
+Plug 'ReplaceWithRegister'
 " Sorting
-Plugin 'christoomey/vim-sort-motion'
+Plug 'christoomey/vim-sort-motion'
 " Gitignore to wildignore
-Plugin 'gitignore'
+Plug 'gitignore'
 " Git Merge
-Plugin 'idanarye/vim-merginal'
+Plug 'idanarye/vim-merginal'
 " Change inside surround
-Plugin 'briandoll/change-inside-surroundings.vim'
+Plug 'briandoll/change-inside-surroundings.vim'
 " Y U NO COMMIT
-Plugin 'esneider/yunocommit.vim'
+Plug 'esneider/yunocommit.vim'
 " Root
-Plugin 'dbakker/vim-projectroot'
+Plug 'dbakker/vim-projectroot'
 " Command Mode CtrlP
-Plugin 'suy/vim-ctrlp-commandline'
+Plug 'suy/vim-ctrlp-commandline'
 " Cursor Line Color
-Plugin 'augustold/vim-airline-colornum'
+Plug 'augustold/vim-airline-colornum'
 " VIM Tmux clipboard
-Plugin 'roxma/vim-tmux-clipboard'
+Plug 'roxma/vim-tmux-clipboard'
+" FZF
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 

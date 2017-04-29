@@ -9,8 +9,11 @@ let mapleader = "\<Space>"
 nnoremap <Leader><Leader> <C-^>
 
 " CtrlP
-nnoremap <Leader>p :CtrlPBuffer<CR>
-nnoremap <Leader><C-P> :CtrlPBookmarkDir<CR>
+" nnoremap <Leader>p :CtrlPBuffer<CR>
+nnoremap <Leader>p :Buffers<CR>
+" nnoremap <Leader><C-P> :CtrlPBookmarkDir<CR>
+nnoremap <Leader><C-P> :call fzf#run({'source': '~/dotfiles/scripts/bookmarks.sh', 'sink': ':Files'})<CR>
+
 
 nnoremap <Leader><C-H> :hide<CR>
 nnoremap <Leader><C-J> :only<CR>
@@ -23,7 +26,10 @@ nnoremap <Leader>q :call CloseOnLast()<CR>
 nnoremap <Leader>x :x<CR>
 
 " open from dir
-nnoremap <Leader>n :edit <C-R>=expand('%:p:h') . '/'<CR>
+nnoremap <Leader>n :Files %:h<CR>
+
+" Search all
+nnoremap <Leader>a :RG<Space>
 
 " Zoom one pane
 nnoremap <silent> <Leader>z :! tmux resize-pane -Z<CR><CR> :MaximizerToggle<CR>
@@ -32,7 +38,6 @@ nnoremap <silent> <Leader>z :! tmux resize-pane -Z<CR><CR> :MaximizerToggle<CR>
 nnoremap <Leader>d <C-]>
 nnoremap <Leader>b <C-T>
 autocmd FileType javascript nnoremap <silent> <Leader>d :TernDef<CR>
-" autocmd FileType javascript nnoremap <silent> <Leader>b :TsuGoBack<CR>
 autocmd FileType typescript nnoremap <silent> <Leader>d :TsuDefinition<CR>
 autocmd FileType typescript nnoremap <silent> <Leader><C-d> :TsuReferences<CR>
 autocmd FileType typescript nnoremap <silent> <Leader>b :TsuGoBack<CR>

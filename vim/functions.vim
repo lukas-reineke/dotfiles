@@ -63,3 +63,6 @@ function! ToggleNERDTreeFind()
     endif
 endfunction
 
+" ================ Find Lines ========================
+command! -bang -nargs=* RG call fzf#vim#grep('rg --ignore-case --line-number --hidden '.shellescape(<q-args>), 1, <bang>0)
+

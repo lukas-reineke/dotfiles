@@ -11,8 +11,8 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=10000
+HISTFILESIZE=20000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -140,5 +140,13 @@ fi
 # fzf mark
 if [ -f ~/dotfiles/lib/fzf-marks/fzf-marks.plugin.bash ]; then
     source ~/dotfiles/lib/fzf-marks/fzf-marks.plugin.bash
+fi
+
+if [ -f ~/dotfiles/lib/z/z.sh ]; then
+    source ~/dotfiles/lib/z/z.sh
+fi
+
+if [ -f ~/dotfiles/lib/fz/fz.sh ]; then
+    source ~/dotfiles/lib/fz/fz.sh
 fi
 

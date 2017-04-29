@@ -33,17 +33,6 @@ function cs {
 }
 alias cd='exec_scmb_expand_args cs'
 
-# function cw {
-#     cww $*
-#     # if [ -d ./.git ]; then
-#     #     git_status_shortcuts
-#     # fi
-#     if [ -f ./.env.sh ]; then
-#         source .env.sh
-#         echo -e ${RED}'➤ '${NC}'Added '${PWD##*/}' environment variables\n'
-#     fi
-# }
-
 # temp folder
 function temp {
     if [ ! -n "$1" ]; then
@@ -187,11 +176,55 @@ function gll {
     git log origin/${branch}..${branch} $* -p
 }
 
-function b {
-    BRANCH=$(git branch -a --no-color | fzf-tmux -d 15 | sed 's/\remotes\/origin\///g')
-    if [[ ! -z $BRANCH ]]; then
-        git checkout $BRANCH
+# fbr - checkout git branch (including remote branches), sorted by most recent commit
+function b() {
+    local branches branch
+    branches=$(git for-each-ref --sort=-committerdate refs/heads/ --format="%(refname:short)") &&
+        branch=$(echo "$branches" |
+    fzf --height 20% --reverse +m) &&
+        git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+}
+bind '"\C-b":"b\n"'
+
+function f {
+    DIR=$(find * -type d | fzf --height 20% --reverse +m)
+    if [[ ! -z $DIR ]]; then
+        cs $DIR
     fi
+}
+
+function db() {
+    local branches branch
+    branches=$(git for-each-ref --sort=-committerdate refs/heads/ --format="%(refname:short)") &&
+        branch=$(echo "$branches" |
+    fzf --height 20% --reverse +m) &&
+        git branch -D $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##") &&
+        git remote prune origin
+}
+
+# fcoc - checkout git commit
+fcoc() {
+  local commits commit
+  commits=$(git log --pretty=oneline --abbrev-commit --reverse) &&
+  commit=$(echo "$commits" | fzf --tac +s +m -e) &&
+  git checkout $(echo "$commit" | sed "s/ .*//")
+}
+
+# fh - repeat history
+function fzf_history() {
+  eval $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf --height 20% --reverse +s --tac | sed 's/ *[0-9]* *//')
+}
+bind '"\C-f":"fzf_history\n"'
+
+# fkill - kill process
+fkill() {
+  local pid
+  pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
+
+  if [ "x$pid" != "x" ]
+  then
+    echo $pid | xargs kill -${1:-9}
+  fi
 }
 
 function fb {
