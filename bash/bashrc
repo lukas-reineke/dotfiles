@@ -133,20 +133,12 @@ fi
 [[ $- == *i* ]] && source "$HOME/dotfiles/lib/fzf/shell/completion.bash" 2> /dev/null
 
 # fzf Key bindings
-if [ -f ~/dotfiles/lib/fzf/shell/key-bindings.bash ]; then
-    source ~/dotfiles/lib/fzf/shell/key-bindings.bash
-fi
+# if [ -f ~/dotfiles/lib/fzf/shell/key-bindings.bash ]; then
+#     source ~/dotfiles/lib/fzf/shell/key-bindings.bash
+# fi
 
 # fzf mark
 if [ -f ~/dotfiles/lib/fzf-marks/fzf-marks.plugin.bash ]; then
     source ~/dotfiles/lib/fzf-marks/fzf-marks.plugin.bash
-fi
-
-if [ -f ~/dotfiles/lib/z/z.sh ]; then
-    source ~/dotfiles/lib/z/z.sh
-fi
-
-if [ -f ~/dotfiles/lib/fz/fz.sh ]; then
-    source ~/dotfiles/lib/fz/fz.sh
 fi
 

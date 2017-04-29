@@ -30,6 +30,7 @@ nnoremap <Leader>n :Files %:h<CR>
 
 " Search all
 nnoremap <Leader>a :RG<Space>
+nnoremap <Leader>r :%s/\v
 
 " Zoom one pane
 nnoremap <silent> <Leader>z :! tmux resize-pane -Z<CR><CR> :MaximizerToggle<CR>

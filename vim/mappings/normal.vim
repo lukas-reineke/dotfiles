@@ -11,8 +11,7 @@ nmap X x
 nmap Y y$
 
 " open ctrlp
-" nmap <C-p> :CtrlPMixed
-nmap <C-p> :GFiles<CR>
+nmap <C-p> :Files<CR>
 
 " open nerdtree
 map <silent> <C-b> :call ToggleNERDTreeFind() <CR>
@@ -57,3 +56,4 @@ sunmap ge
 
 " Change inside surround
 nnoremap cic :ChangeInsideSurrounding<CR>
+

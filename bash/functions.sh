@@ -184,7 +184,7 @@ function b() {
     fzf --height 20% --reverse +m) &&
         git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
 }
-bind '"\C-b":"b\n"'
+bind '"\C-b":" b\n"'
 
 function f {
     DIR=$(find * -type d | fzf --height 20% --reverse +m)
@@ -192,6 +192,7 @@ function f {
         cs $DIR
     fi
 }
+bind '"\C-f":" f\n"'
 
 function db() {
     local branches branch
@@ -214,7 +215,7 @@ fcoc() {
 function fzf_history() {
   eval $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf --height 20% --reverse +s --tac | sed 's/ *[0-9]* *//')
 }
-bind '"\C-f":"fzf_history\n"'
+bind '"\C-r":" fzf_history\n"'
 
 # fkill - kill process
 fkill() {
