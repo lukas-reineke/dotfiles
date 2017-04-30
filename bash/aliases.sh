@@ -35,6 +35,7 @@ alias p='popd'
 alias grep='grep --color=always'
 alias reload='source ~/dotfiles/bash/bashrc'
 alias sudo='sudo env PATH=$PATH'
+alias cat='ccat'
 
 # network
 alias arp='sudo arp-scan --interface=wlp2s0b1 --localnet'

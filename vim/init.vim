@@ -45,7 +45,11 @@ set lazyredraw
 set shortmess+=A
 set conceallevel=0
 set termguicolors
-color dracula
+set noshowmode
+" color dracula
+let g:airline_theme = 'bubblegum'
+" set background=dark
+color base16-onedark
 set grepprg=rg\ --vimgrep
 
 " Wrapping
@@ -140,7 +144,6 @@ set formatprg=par\ -w80rq
 
 " ================ Nerd Tree ========================
 let NERDTreeShowHidden=1
-let g:NERDTreeBookmarksFile = '/Users/lukasadmin/dotfiles/vim/nerdtree-bookmarks'
 let g:NERDTreeWinSize=50
 
 " ================ CTRLP ========================
@@ -158,10 +161,11 @@ let g:NERDSpaceDelims = 1
 let g:NERDCompactSexyComs = 1
 
 " ================ Syntastic ========================
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 1
 let g:syntastic_auto_loc_list = 0
+let g:syntastic_enable_signs = 1
+let g:syntastic_aggregate_errors = 1
 let g:syntastic_error_symbol = '誤'
 let g:syntastic_warning_symbol = '危'
 let g:syntastic_javascript_checkers = ['eslint']

@@ -181,7 +181,7 @@ function b() {
     local branches branch
     branches=$(git for-each-ref --sort=-committerdate refs/heads/ --format="%(refname:short)") &&
         branch=$(echo "$branches" |
-    fzf --height 20% --reverse +m) &&
+        fzf --height 20% --reverse +m) &&
         git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
 }
 bind '"\C-b":" b\n"'
@@ -205,27 +205,27 @@ function db() {
 
 # fcoc - checkout git commit
 fcoc() {
-  local commits commit
-  commits=$(git log --pretty=oneline --abbrev-commit --reverse) &&
-  commit=$(echo "$commits" | fzf --tac +s +m -e) &&
-  git checkout $(echo "$commit" | sed "s/ .*//")
+    local commits commit
+    commits=$(git log --pretty=oneline --abbrev-commit --reverse) &&
+        commit=$(echo "$commits" | fzf --tac +s +m -e) &&
+        git checkout $(echo "$commit" | sed "s/ .*//")
 }
 
 # fh - repeat history
 function fzf_history() {
-  eval $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf --height 20% --reverse +s --tac | sed 's/ *[0-9]* *//')
+    eval $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf --height 20% --reverse +s --tac | sed 's/ *[0-9]* *//')
 }
 bind '"\C-r":" fzf_history\n"'
 
 # fkill - kill process
 fkill() {
-  local pid
-  pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
+    local pid
+    pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
 
-  if [ "x$pid" != "x" ]
-  then
-    echo $pid | xargs kill -${1:-9}
-  fi
+    if [ "x$pid" != "x" ]
+    then
+        echo $pid | xargs kill -${1:-9}
+    fi
 }
 
 function fb {

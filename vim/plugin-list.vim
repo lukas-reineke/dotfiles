@@ -12,8 +12,6 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tpope/vim-surround'
 " Commentary
 Plug 'tpope/vim-commentary'
-" Dracula Theme
-Plug 'dracula/vim'
 " Typescript Syntax
 Plug 'leafgarland/typescript-vim'
 " Control P
@@ -72,6 +70,7 @@ Plug 'tmux-plugins/vim-tmux'
 Plug 'szw/vim-maximizer'
 " Airline
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 " Tern for javascrip
 Plug 'ternjs/tern_for_vim'
 " Salpel
@@ -121,4 +120,15 @@ Plug 'roxma/vim-tmux-clipboard'
 " FZF
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+" Eunuch
+Plug 'tpope/vim-eunuch'
+" Paste
+Plug 'UnconditionalPaste'
+" Markdown
+Plug 'shime/vim-livedown'
+
+" Themes
+Plug 'dracula/vim'
+Plug 'kristijanhusak/vim-hybrid-material'
+Plug 'chriskempson/base16-vim'
 

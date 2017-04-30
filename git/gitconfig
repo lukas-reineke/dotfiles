@@ -14,6 +14,7 @@
     excludesfile = ~/dotfiles/git/gitignore_global
     autocrlf = false
     editor = nvim
+    pager = diff-so-fancy | less --tabs=4 -RFX
 
 [clean]
     requireForce = false

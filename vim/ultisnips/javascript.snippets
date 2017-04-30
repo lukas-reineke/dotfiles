@@ -2,12 +2,14 @@ snippet con "console.log" b
 console.log($1${VISUAL});
 endsnippet
 
-snippet ssp "spacer" Ab
-/* DEBUG */
-console.log('-----${1/'/\\\'/g}${VISUAL/'/\\\'/g}-----');
+snippet cns "console.log" Ab
 console.log($1${VISUAL});
-console.log('-----${1/./-/g}-${VISUAL/./-/g}----');
-/* DEBUG */
+endsnippet
+
+snippet ssp "spacer" Ab
+console.log('-----${1/'/\\\'/g}${VISUAL/'/\\\'/g}----');
+console.log($1${VISUAL}); /* DEBUG */
+console.log('-----${1/./-/g}${VISUAL/./-/g}----');
 endsnippet
 
 snippet	vfu "var function" Ab

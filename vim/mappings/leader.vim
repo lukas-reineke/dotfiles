@@ -9,9 +9,7 @@ let mapleader = "\<Space>"
 nnoremap <Leader><Leader> <C-^>
 
 " CtrlP
-" nnoremap <Leader>p :CtrlPBuffer<CR>
 nnoremap <Leader>p :Buffers<CR>
-" nnoremap <Leader><C-P> :CtrlPBookmarkDir<CR>
 nnoremap <Leader><C-P> :call fzf#run({'source': '~/dotfiles/scripts/bookmarks.sh', 'sink': ':Files'})<CR>
 
 
@@ -69,4 +67,11 @@ autocmd FileType typescript nmap <buffer> <Leader>t : <C-u>echo tsuquyomi#hint()
 
 " Merginal
 nnoremap <Leader>g :Merginal<CR>
+
+" Syntastic Check
+nnoremap <Leader>c :SyntasticCheck<CR>
+nnoremap <Leader>cr :SyntasticReset<CR>
+
+" Mark Down Preview
+nnoremap <Leader>l :LivedownToggle<CR>
 
