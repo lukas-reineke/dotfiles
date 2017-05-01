@@ -204,7 +204,7 @@ let g:EasyMotion_do_mapping = 0 " Disable default mappings
 let g:EasyMotion_keys = 'asdfghjklqwertzuiop'
 
 " ================ Highlight ========================
-augroup HiglightTODO
+augroup HiglightDebug
     autocmd!
     autocmd WinEnter,VimEnter * :silent! call matchadd('Todo', 'TODO', -1)
     autocmd WinEnter,VimEnter * :silent! call matchadd('Todo', 'DEBUG', -1)

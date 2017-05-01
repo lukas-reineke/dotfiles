@@ -3,6 +3,7 @@
 .env.sh
 venv-*
 tags
+Session.vim
 
 
 # Automatically created by GitHub for Mac
