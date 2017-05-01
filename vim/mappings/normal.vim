@@ -28,6 +28,9 @@ map L $
 map K 5k
 map J 5j
 
+noremap <silent> j gj
+noremap <silent> k gk
+
 " esc to clear search highlight
 nnoremap <silent> <esc> :noh<cr><esc>
 

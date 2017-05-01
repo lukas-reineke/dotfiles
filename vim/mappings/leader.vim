@@ -36,11 +36,14 @@ nnoremap <silent> <Leader>z :! tmux resize-pane -Z<CR><CR> :MaximizerToggle<CR>
 " Jump To Definition
 nnoremap <Leader>d <C-]>
 nnoremap <Leader>b <C-T>
+
 autocmd FileType javascript nnoremap <silent> <Leader>d :TernDef<CR>
+autocmd FileType javascript nnoremap <silent> <Leader><C-d> :TernRefs<CR>
+
 autocmd FileType typescript nnoremap <silent> <Leader>d :TsuDefinition<CR>
 autocmd FileType typescript nnoremap <silent> <Leader><C-d> :TsuReferences<CR>
-autocmd FileType javascript nnoremap <silent> <Leader><C-d> :TernRefs<CR>
 autocmd FileType typescript nnoremap <silent> <Leader>b :TsuGoBack<CR>
+autocmd FileType typescript nmap <buffer> <Leader>t : <C-u>echo tsuquyomi#hint()<CR>
 
 " new line without insert
 nnoremap <Leader>o o<esc>k
@@ -63,7 +66,6 @@ nnoremap <Leader>u :UndotreeToggle<CR>
 nnoremap <Leader>h :Autoformat<CR>
 
 " Tool Tipp Typescript
-autocmd FileType typescript nmap <buffer> <Leader>t : <C-u>echo tsuquyomi#hint()<CR>
 
 " Merginal
 nnoremap <Leader>g :Merginal<CR>

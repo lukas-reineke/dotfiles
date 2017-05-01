@@ -109,6 +109,11 @@ set scrolloff=8
 set sidescrolloff=15
 set sidescroll=5
 
+" ================ textwidth for ========================
+set formatprg=par\ -w80rq
+au FileType gitcommit set tw=72
+au FileType text set tw=120
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Completion
@@ -148,6 +153,7 @@ set wildignore+=*sass-cache*
 set wildignore+=*cache*
 set wildignore+=*logs*
 set wildignore+=*node_modules/**
+set wildignore+=*bower_components/**
 set wildignore+=*coverage/**
 set wildignore+=*DS_Store*
 set wildignore+=*.gem
@@ -163,8 +169,6 @@ set wildignore+=*/doc/*
 set wildignore+=*/dll/*
 set wildignore+=*venv*
 
-" ================ format ========================
-set formatprg=par\ -w80rq
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugin Settings
@@ -206,24 +210,8 @@ augroup HiglightTODO
     autocmd WinEnter,VimEnter * :silent! call matchadd('Todo', 'DEBUG', -1)
 augroup END<Paste>
 
-" ================ textwidth for gitcommit ========================
-au FileType gitcommit set tw=72
-
 " ================ Y U NO COMMIT ========================
 let g:YUNOcommit_after = 20
-
-" ================ Auto Root ========================
-function! <SID>AutoProjectRootCD()
-    try
-        if &ft != 'help'
-            ProjectRootCD
-        endif
-    catch
-        " Silently ignore invalid buffers
-    endtry
-endfunction
-
-autocmd BufEnter * call <SID>AutoProjectRootCD()
 
 " ================ Airline color num ========================
 let g:airline_colornum_reversed = 1

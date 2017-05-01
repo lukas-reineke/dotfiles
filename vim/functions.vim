@@ -38,7 +38,7 @@ autocmd vimrc BufWritePre * :call s:StripTrailingWhitespaces()
 
 " ================ jump to the last position when reopening a file ========================
 if has("autocmd")
-    au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+    au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") && &filetype != "gitcommit" | exe "normal! g'\"" | endif
 endif
 
 au CursorHold * checktime
@@ -63,7 +63,18 @@ function! ToggleNERDTreeFind()
 endfunction
 
 " ================ Find Lines ========================
-" command! -bang -nargs=* RG call fzf#vim#grep('rg -S --line-number --hidden '.shellescape(<q-args>), 1, <bang>0)
-
 command! -bang -nargs=* RG call fzf#vim#grep('rg -S --line-number --hidden '.shellescape(<q-args>), 0, <bang>0 ? fzf#vim#with_preview('up:60%'): fzf#vim#with_preview('right:50%:hidden', '?'), <bang>0)
+
+" ================ Auto Root ========================
+function! <SID>AutoProjectRootCD()
+    try
+        if &ft != 'help'
+            ProjectRootCD
+        endif
+    catch
+        " Silently ignore invalid buffers
+    endtry
+endfunction
+
+autocmd BufEnter * call <SID>AutoProjectRootCD()
 
