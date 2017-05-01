@@ -8,9 +8,9 @@ let mapleader = "\<Space>"
 " switch to last buffer
 nnoremap <Leader><Leader> <C-^>
 
-" CtrlP
+" FZF
 nnoremap <Leader>p :Buffers<CR>
-nnoremap <Leader><C-P> :call fzf#run({'source': '~/dotfiles/scripts/bookmarks.sh', 'sink': ':Files'})<CR>
+nnoremap <Leader><C-P> :call fzf#run({'source': '~/dotfiles/scripts/bookmarks.sh', 'sink': ':Files', 'down': '18'})<CR>
 
 
 nnoremap <Leader><C-H> :hide<CR>
@@ -39,6 +39,7 @@ nnoremap <Leader>b <C-T>
 autocmd FileType javascript nnoremap <silent> <Leader>d :TernDef<CR>
 autocmd FileType typescript nnoremap <silent> <Leader>d :TsuDefinition<CR>
 autocmd FileType typescript nnoremap <silent> <Leader><C-d> :TsuReferences<CR>
+autocmd FileType javascript nnoremap <silent> <Leader><C-d> :TernRefs<CR>
 autocmd FileType typescript nnoremap <silent> <Leader>b :TsuGoBack<CR>
 
 " new line without insert
@@ -46,7 +47,6 @@ nnoremap <Leader>o o<esc>k
 nnoremap <Leader>O O<esc>j
 
 " Easy motion
-" map <Leader>ö <Plug>(easymotion-prefix)
 map <Leader>e <Plug>(easymotion-bd-w)
 nmap <Leader>e <Plug>(easymotion-overwin-w)
 nmap <Leader>f <Plug>(easymotion-overwin-f)
@@ -68,10 +68,9 @@ autocmd FileType typescript nmap <buffer> <Leader>t : <C-u>echo tsuquyomi#hint()
 " Merginal
 nnoremap <Leader>g :Merginal<CR>
 
-" Syntastic Check
-nnoremap <Leader>c :SyntasticCheck<CR>
-nnoremap <Leader>cr :SyntasticReset<CR>
-
 " Mark Down Preview
 nnoremap <Leader>l :LivedownToggle<CR>
+
+" Incsearch
+map <Leader>s <Plug>(incsearch-easymotion-/)
 

@@ -18,7 +18,6 @@ so $HOME/dotfiles/vim/mappings/insert.vim
 " => Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-set rtp+=~/.vimpkg/bundle/Vundle.vim
 call plug#begin('~/.vimpkg/bundle')
 
 so $HOME/dotfiles/vim/plugin-list.vim
@@ -41,14 +40,13 @@ syntax on
 set nocompatible
 filetype plugin indent on
 set lazyredraw
-" set shell=/bin/bash\ --rcfile\ ~/.bash_profile\ -i
 set shortmess+=A
 set conceallevel=0
 set termguicolors
 set noshowmode
 " color dracula
 let g:airline_theme = 'bubblegum'
-" set background=dark
+set background=dark
 color base16-onedark
 set grepprg=rg\ --vimgrep
 
@@ -67,6 +65,7 @@ set listchars+=extends:>
 set listchars+=precedes:<
 set listchars+=nbsp:_
 set listchars+=space:٠
+let g:indentLine_char = '┆'
 
 set encoding=utf8
 set t_ut=
@@ -90,6 +89,8 @@ set smartcase
 set hlsearch
 " Makes search act like search in modern browsers
 set incsearch
+let g:incsearch#auto_nohlsearch = 1
+
 " ================ Tabs ========================
 set expandtab
 set smarttab
@@ -98,6 +99,7 @@ set tabstop=4
 set softtabstop=4
 set smartindent
 set nofoldenable
+
 " ================ Line Numbers ========================
 set number
 set relativenumber
@@ -111,6 +113,32 @@ set sidescroll=5
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Completion
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+autocmd FileType typescript setlocal completeopt+=menu,preview
+autocmd FileType javascript setlocal completeopt+=menu
+autocmd FileType javascript setlocal completeopt-=preview
+let g:tsuquyomi_disable_default_mappings = 1
+let g:tern_show_signature_in_pum = '0'
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#disable_auto_complete = 1
+let g:ycm_auto_trigger = 0
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+
+let g:jsdoc_allow_input_prompt = 1
+let g:jsdoc_input_description = 1
+let g:jsdoc_additional_descriptions = 1
+let g:jsdoc_enable_es6 = 1
+
+" omnifuncs
+" augroup omnifuncs
+"     autocmd!
+"     autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+"     autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+"     autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+"     autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+"     autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+"     autocmd FileType javascript setlocal omnifunc=tern#Complete
+" augroup end
+
 
 " ================ Ignore ========================
 set wildmode=list:full
@@ -146,13 +174,6 @@ set formatprg=par\ -w80rq
 let NERDTreeShowHidden=1
 let g:NERDTreeWinSize=50
 
-" ================ CTRLP ========================
-let g:ctrlp_show_hidden = 1
-let g:NERDTreeChDirMode = 2
-let g:ctrlp_working_path_mode = 'rw'
-let g:ctrlp_bookmark_cwd = 1
-let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:30,results:30'
-
 " ================ Tmux Integration ========================
 let g:tmux_navigator_disable_when_zoomed = 1
 
@@ -160,29 +181,18 @@ let g:tmux_navigator_disable_when_zoomed = 1
 let g:NERDSpaceDelims = 1
 let g:NERDCompactSexyComs = 1
 
-" ================ Syntastic ========================
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 1
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_enable_signs = 1
-let g:syntastic_aggregate_errors = 1
-let g:syntastic_error_symbol = '誤'
-let g:syntastic_warning_symbol = '危'
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_typescript_checkers = ['tsuquyomi', 'tslint']
-let g:syntastic_python_checkers = ['pylint']
-let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute " ,"trimming empty <", "unescaped &" , "lacks \"action", "is not recognized!", "discarding unexpected"]
-
-" ================ YouCompleteMe ========================
-let g:ycm_auto_trigger = 0
+" ================ ALE Lint ========================
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\   'typescript': ['tslint', 'tsuquyomi'],
+\}
+let g:ale_sign_error = '誤'
+let g:ale_sign_warning = '危'
 
 " ================ UltiSnips ========================
 let g:UltiSnipsExpandTrigger = '<Tab>'
 let g:UltiSnipsJumpForwardTrigger = '<Tab>'
 let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'
-
-" ================ Indent Guides ========================
-let g:indentLine_char = '┆'
 
 " ================ Easy Motion ========================
 let g:EasyMotion_smartcase = 1
@@ -199,27 +209,23 @@ augroup END<Paste>
 " ================ textwidth for gitcommit ========================
 au FileType gitcommit set tw=72
 
-" ================ Comfortable Motion ========================
-let g:comfortable_motion_scroll_down_key = "j"
-let g:comfortable_motion_scroll_up_key = "k"
-
 " ================ Y U NO COMMIT ========================
 let g:YUNOcommit_after = 20
 
 " ================ Auto Root ========================
 function! <SID>AutoProjectRootCD()
-  try
-    if &ft != 'help'
-      ProjectRootCD
-    endif
-  catch
-    " Silently ignore invalid buffers
-  endtry
+    try
+        if &ft != 'help'
+            ProjectRootCD
+        endif
+    catch
+        " Silently ignore invalid buffers
+    endtry
 endfunction
 
 autocmd BufEnter * call <SID>AutoProjectRootCD()
 
-" Airline color num
+" ================ Airline color num ========================
 let g:airline_colornum_reversed = 1
 
 " ================ FZF ========================

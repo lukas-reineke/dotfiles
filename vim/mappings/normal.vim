@@ -10,7 +10,7 @@ nmap X x
 " Yank to end of line
 nmap Y y$
 
-" open ctrlp
+" open FZF Files
 nmap <C-p> :Files<CR>
 
 " open nerdtree
@@ -56,4 +56,18 @@ sunmap ge
 
 " Change inside surround
 nnoremap cic :ChangeInsideSurrounding<CR>
+
+" Incsearch
+map / <Plug>(incsearch-forward)
+map ? <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
+map z/ <Plug>(incsearch-fuzzy-/)
+map z? <Plug>(incsearch-fuzzy-?)
+map zg/ <Plug>(incsearch-fuzzy-stay)
+map n <Plug>(incsearch-nohl-n)
+map N <Plug>(incsearch-nohl-N)
+map * <Plug>(incsearch-nohl-*)
+map # <Plug>(incsearch-nohl-#)
+map g* <Plug>(incsearch-nohl-g*)
+map g# <Plug>(incsearch-nohl-g#)
 
