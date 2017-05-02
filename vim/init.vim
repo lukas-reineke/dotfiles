@@ -219,3 +219,6 @@ let g:airline_colornum_reversed = 1
 " ================ FZF ========================
 let g:fzf_buffers_jump = 1
 
+" ================ Startify ========================
+let g:startify_session_autoload = 1
+

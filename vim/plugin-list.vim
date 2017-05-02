@@ -132,3 +132,6 @@ Plug 'dracula/vim'
 Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'chriskempson/base16-vim'
 
+" Codi
+Plug 'metakirby5/codi.vim'
+
