@@ -60,7 +60,7 @@ map <Leader>k <Plug>(easymotion-k)
 nnoremap <Leader>z 1z=
 
 " Undo Tree
-nnoremap <Leader>u :UndotreeToggle<CR>
+nnoremap <Leader>u :GundoToggle<CR>
 
 " Eslint
 nnoremap <Leader>h :Autoformat<CR>
@@ -75,4 +75,9 @@ nnoremap <Leader>l :LivedownToggle<CR>
 
 " Incsearch
 map <Leader>s <Plug>(incsearch-easymotion-/)
+
+nmap <leader>gj <plug>(signify-next-hunk)
+nmap <leader>gk <plug>(signify-prev-hunk)
+nmap <leader>gJ 9999<leader>gj
+nmap <leader>gK 9999<leader>gk
 

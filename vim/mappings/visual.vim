@@ -7,8 +7,8 @@ vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
 " Indent selected lines
-vnoremap H <gv
-vnoremap L >gv
+vnoremap < <gv
+vnoremap > >gv
 
 " expand region
 vmap v <Plug>(expand_region_expand)

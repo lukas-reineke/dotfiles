@@ -100,7 +100,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'mhinz/vim-startify'
 
 " Undo Tree
-Plug 'mbbill/undotree'
+Plug 'sjl/gundo.vim'
 " Register list
 Plug 'junegunn/vim-peekaboo'
 " Autoformat

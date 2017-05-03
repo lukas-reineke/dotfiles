@@ -229,11 +229,11 @@ fkill() {
 }
 
 function fb {
-    git checkout -b feature/$1
+    ~/dotfiles/scripts/jira-branch.sh feature
 }
 
 function bb {
-    git checkout -b bugfix/$1
+    ~/dotfiles/scripts/jira-branch.sh bugfix
 }
 
 # Colored man pages
