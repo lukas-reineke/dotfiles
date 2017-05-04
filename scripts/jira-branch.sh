@@ -47,6 +47,7 @@ if [[ ! -z $TICKET ]]; then
         echo ""
         echo -n "Description: "
         read DESC
+        DESC="-$DESC"
     fi
 
     if [[ ! -z $DESC ]] && [[ ! -z $TICKET_NUMBER ]] && [[ ! -z $BRANCH_TYPE ]]; then
