@@ -50,6 +50,7 @@ alias logs='git log --graph --all --decorate --relative-date'
 alias gsmu='git submodule update --remote --merge'
 alias gu='git reset HEAD~ --soft'
 alias gmt='git mergetool'
+alias jb='~/dotfiles/scripts/jira-branch.sh feature'
 
 # pacman
 alias pac='sudo pacman -Ss'

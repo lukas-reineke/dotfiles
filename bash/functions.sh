@@ -228,14 +228,6 @@ fkill() {
     fi
 }
 
-function fb {
-    ~/dotfiles/scripts/jira-branch.sh feature
-}
-
-function bb {
-    ~/dotfiles/scripts/jira-branch.sh bugfix
-}
-
 # Colored man pages
 function man {
     LESS_TERMCAP_md=$'\e[01;31m' \
