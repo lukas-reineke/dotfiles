@@ -5,13 +5,6 @@
 " Paste
 inoremap <C-P> <C-O>p
 
-inoremap ö []<ESC>i
-inoremap ä ]
-
-inoremap Ö {}<ESC>i
-inoremap Ä }
-
-
 function! Smart_TabComplete()
     let line = getline('.')                         " current line
 

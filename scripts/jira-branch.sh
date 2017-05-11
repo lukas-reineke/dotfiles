@@ -28,7 +28,7 @@ if [[ ! -z $TICKET ]]; then
 
     TICKET_TYPE=$(echo $TICKET | awk '{print$1}')
     TICKET_NUMBER=$(echo $TICKET | awk '{print$2}')
-    DESC=$(echo $TICKET |  awk '{$1=""; $2=""; sub("  ", " "); print tolower()}' | tr ' ' '-')
+    DESC=$(echo $TICKET | awk '{$1=""; $2=""; sub("  ", " "); print tolower()}' | tr ' ' '-')
 
     if [[ $TICKET_TYPE == "Bug" ]]; then
         BRANCH_TYPE="bugfix"

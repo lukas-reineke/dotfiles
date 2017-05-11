@@ -1,4 +1,4 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " => Normal Mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -7,14 +7,17 @@ nmap Q q
 nmap W w
 nmap X x
 
+nnoremap ; :
+nnoremap : ;
+
 " Yank to end of line
 nmap Y y$
 
 " open FZF Files
-nmap <C-p> :Files<CR>
+nnoremap <C-p> :Files<CR>
 
 " open nerdtree
-map <silent> <C-b> :call ToggleNERDTreeFind() <CR>
+nnoremap <silent> <C-b> :call ToggleNERDTreeFind() <CR>
 
 " Move between panes
 nnoremap <C-J> <C-W><C-J>
@@ -39,7 +42,7 @@ noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 1, 5)<CR>
 noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 1, 5)<CR>
 
 " insert ; at end of line
-nnoremap ; maA;<esc>`a
+" nnoremap ; maA;<esc>`a
 
 " Git diff
 nnoremap do2 :diffget //2<CR> :diffupdate<CR>

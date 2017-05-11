@@ -204,6 +204,9 @@ let g:EasyMotion_do_mapping = 0 " Disable default mappings
 let g:EasyMotion_keys = 'asdfghjklqwertzuiop'
 
 " ================ Highlight ========================
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+match OverLength /\%81v./
+
 augroup HiglightDebug
     autocmd!
     autocmd WinEnter,VimEnter * :silent! call matchadd('Todo', 'TODO', -1)
