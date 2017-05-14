@@ -10,6 +10,8 @@ DGR='\e[90m'
 WHT='\e[97m'
 NC='\e[0m' # No Color
 
+export PATH=${PATH}:$HOME/.gem/ruby/2.4.0/bin
+
 # ssh
 if ! pgrep -u "$USER" ssh-agent > /dev/null; then
     ssh-agent > ~/.ssh-agent-thing

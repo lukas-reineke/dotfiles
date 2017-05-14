@@ -19,7 +19,7 @@ Plug 'Shougo/vimproc.vim'
 
 " Git
 Plug 'airblade/vim-gitgutter'
-Plug 'gitignore'
+Plug 'vim-scripts/gitignore'
 Plug 'idanarye/vim-merginal'
 
 " Typescript
@@ -108,7 +108,7 @@ Plug 'Chiel92/vim-autoformat'
 " Camel Case Motions
 Plug 'bkad/camelcasemotion'
 " Replace
-Plug 'ReplaceWithRegister'
+Plug 'vim-scripts/ReplaceWithRegister'
 " Sorting
 Plug 'christoomey/vim-sort-motion'
 " Change inside surround
@@ -121,7 +121,7 @@ Plug 'dbakker/vim-projectroot'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 " Paste
-Plug 'UnconditionalPaste'
+Plug 'vim-scripts/UnconditionalPaste'
 " Incsearch
 Plug 'haya14busa/incsearch.vim'
 Plug 'haya14busa/incsearch-fuzzy.vim'
