@@ -4,6 +4,7 @@ endif
 
 let b:did_ftplugin = 1 " Don't load twice in one buffer
 
-setlocal spell
-setlocal tw=72
+" setlocal spell
+setlocal tw=120
+match OverLength /\%121v./
 

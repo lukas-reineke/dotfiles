@@ -111,9 +111,6 @@ set sidescroll=5
 
 " ================ textwidth for ========================
 set formatprg=par\ -w80rq
-au FileType gitcommit set tw=72
-au FileType text set tw=120
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Completion
