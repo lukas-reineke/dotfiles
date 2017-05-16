@@ -7,3 +7,6 @@
 [submodule "lib/fzf-marks"]
 	path = lib/fzf-marks
 	url = https://github.com/urbainvaes/fzf-marks.git
+[submodule "lib/bfs"]
+	path = lib/bfs
+	url = https://github.com/tavianator/bfs.git

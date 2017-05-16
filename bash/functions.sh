@@ -187,7 +187,7 @@ function b() {
 bind '"\C-b":" b\n"'
 
 function f {
-    DIR=$(find * -type d | fzf --height 20% --reverse +m)
+    DIR=$(~/dotfiles/lib/bfs/bfs -type d| fzf --height 20% --reverse +m)
     if [[ ! -z $DIR ]]; then
         cs $DIR
     fi
