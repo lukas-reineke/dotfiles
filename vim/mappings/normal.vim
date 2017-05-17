@@ -7,9 +7,6 @@ nmap Q q
 nmap W w
 nmap X x
 
-nnoremap ; :
-nnoremap : ;
-
 " Yank to end of line
 nmap Y y$
 
