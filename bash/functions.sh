@@ -268,3 +268,7 @@ function markd {
     mark ${PWD##*/}
 }
 
+function clp {
+    cat $@ | pbcopy
+}
+
