@@ -135,3 +135,10 @@ Plug 'chriskempson/base16-vim'
 " Codi
 Plug 'metakirby5/codi.vim'
 
+" Vim Man
+Plug 'z1mm32m4n/vim-superman'
+
+" Open on github
+Plug 'tyru/open-browser.vim'
+Plug 'tyru/open-browser-github.vim'
+
