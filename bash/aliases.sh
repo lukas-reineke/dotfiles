@@ -11,6 +11,7 @@ alias cl='clear'
 alias lc='clear'
 alias mkdir='mkdir -p'
 alias cls='clear && gs'
+alias gg='cd $(git rev-parse --show-toplevel)'
 
 # vim
 alias v='ge nvim'
@@ -35,7 +36,7 @@ alias p='popd'
 alias grep='grep --color=always'
 alias reload='source ~/dotfiles/bash/bashrc'
 alias sudo='sudo env PATH=$PATH'
-alias cat='ccat'
+alias cat='ge ccat'
 
 # network
 alias arp='sudo arp-scan --interface=wlp2s0b1 --localnet'
