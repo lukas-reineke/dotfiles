@@ -3,12 +3,11 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Move selected lines up and down
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
-
+vnoremap <DOWN> :m '>+1<CR>gv=gv
+vnoremap <UP> :m '<-2<CR>gv=gv
 " Indent selected lines
-vnoremap < <gv
-vnoremap > >gv
+vnoremap <LEFT> <gv
+vnoremap <RIGHT> >gv
 
 " expand region
 vmap v <Plug>(expand_region_expand)

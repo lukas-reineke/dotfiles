@@ -37,12 +37,19 @@
 
 [branch "master"]
     rebase = true
+
 [branch "qa"]
     rebase = true
+
 [branch "develop"]
     rebase = true
+
 [branch]
     autosetuprebase = always
+
 [init]
     templatedir = ~/dotfiles/git/templates
+
+[rerere]
+    enabled = true
 

@@ -7,7 +7,6 @@ Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " tpope
-Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-abolish'
@@ -141,4 +140,12 @@ Plug 'z1mm32m4n/vim-superman'
 " Open on github
 Plug 'tyru/open-browser.vim'
 Plug 'tyru/open-browser-github.vim'
+
+Plug 'rhysd/clever-f.vim'
+
+Plug 'machakann/vim-sandwich'
+
+Plug 'simeji/winresizer'
+
+Plug 'AndrewRadev/splitjoin.vim'
 

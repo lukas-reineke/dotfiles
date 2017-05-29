@@ -14,13 +14,13 @@ endsnippet
 
 snippet	vfu "var function" Ab
 var $1 = function($2) {
-	$3
+	$3${VISUAL}
 };
 endsnippet
 
 snippet	cfu "const function" Ab
 const $1 = function($2) {
-	$3
+	$3${VISUAL}
 };
 endsnippet
 
@@ -30,9 +30,9 @@ for (let i = 0; i < $1.length; i++) {
 }
 endsnippet
 
-snippet foreach "foreach"
-for (let $1 in $2) {
-	$0
+snippet fo "for of"
+for (let ${1:prop} of ${2:obj}) {
+	$0${VISUAL}
 }
 endsnippet
 
@@ -41,21 +41,27 @@ Object.keys($1${VISUAL}).length
 endsnippet
 
 snippet todo "todo" b
-// @TODO [`git config user.name`] `date +%d-%m-%Y`: $0
+// @TODO [`git config user.name`] `date +%d-%m-%Y`: $0${VISUAL}
 endsnippet
 
 snippet ife "if else" b
-if ($1) {
-	$2
+if (${1:true}) {
+	$2${VISUAL}
 } else {
 	$3
+}
+endsnippet
+
+snippet el "else" b
+} else {
+	$3${VISUAL}
 }
 endsnippet
 
 snippet switch "switch" b
 switch ($1) {
 	case '$2':
-		$3
+		$3${VISUAL}
 		break;
 	default:
 		$0
@@ -63,24 +69,24 @@ switch ($1) {
 endsnippet
 
 snippet var "var" b
-var $1 = $2;
+var $1 = ${VISUAL}$2;
 endsnippet
 
 snippet let "let" b
-let $1 = $2;
+let $1 = ${VISUAL}$2;
 endsnippet
 
 snippet const "const" b
-const $1 = $2;
+const $1 = ${VISUAL}$2;
 endsnippet
 
 snippet stt "const" Ab
 setTimeout(function() {
-	$0
-}, $1);
+	${VISUAL}$0
+}${2:.bind(this)}, ${1:1000});
 endsnippet
 
 snippet gcc "comment" Ab
-// $0
+// $0${VISUAL}
 endsnippet
 

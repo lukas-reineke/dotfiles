@@ -63,7 +63,7 @@ function! ToggleNERDTreeFind()
 endfunction
 
 " ================ Find Lines ========================
-command! -bang -nargs=* RG call fzf#vim#grep('rg -S --line-number --hidden '.shellescape(<q-args>), 0, <bang>0 ? fzf#vim#with_preview('up:60%'): fzf#vim#with_preview('right:50%:hidden', '?'), <bang>0)
+command! -bang -nargs=* RG call fzf#vim#grep('rg -S --line-number --hidden -g "!.git" '.shellescape(<q-args>), 0, <bang>0 ? fzf#vim#with_preview('up:60%'): fzf#vim#with_preview('right:50%:hidden', '?'), <bang>0)
 
 " ================ Auto Root ========================
 function! <SID>AutoProjectRootCD()

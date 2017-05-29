@@ -222,3 +222,59 @@ let g:fzf_buffers_jump = 1
 " ================ Startify ========================
 let g:startify_session_autoload = 1
 
+" ================ Sandwich ========================
+let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
+let g:sandwich#recipes += [
+            \   {
+            \     'buns'        : ['(', ')'],
+            \     'motionwise'  : ['line'],
+            \     'kind'        : ['add'],
+            \     'linewise'    : 1,
+            \     'command'     : ["'[+1,']-1normal! >>"],
+            \   },
+            \   {
+            \     'buns'        : ['(', ')'],
+            \     'motionwise'  : ['line'],
+            \     'kind'        : ['delete'],
+            \     'linewise'    : 1,
+            \     'command'     : ["'[,']normal! <<"],
+            \   },
+            \   {
+            \     'buns'        : ['{', '}'],
+            \     'motionwise'  : ['line'],
+            \     'kind'        : ['add'],
+            \     'linewise'    : 1,
+            \     'command'     : ["'[+1,']-1normal! >>"],
+            \   },
+            \   {
+            \     'buns'        : ['{', '}'],
+            \     'motionwise'  : ['line'],
+            \     'kind'        : ['delete'],
+            \     'linewise'    : 1,
+            \     'command'     : ["'[,']normal! <<"],
+            \   },
+            \   {
+            \     'buns'        : ['[', ']'],
+            \     'motionwise'  : ['line'],
+            \     'kind'        : ['add'],
+            \     'linewise'    : 1,
+            \     'command'     : ["'[+1,']-1normal! >>"],
+            \   },
+            \   {
+            \     'buns'        : ['[', ']'],
+            \     'motionwise'  : ['line'],
+            \     'kind'        : ['delete'],
+            \     'linewise'    : 1,
+            \     'command'     : ["'[,']normal! <<"],
+            \   },
+            \   {
+            \     'external': ['it', 'at'],
+            \     'noremap' : 1,
+            \     'filetype': ['html'],
+            \     'input'   : ['t'],
+            \   },
+            \ ]
+
+" ================ resize ========================
+let g:winresizer_start_key = '<C-T>'
+
