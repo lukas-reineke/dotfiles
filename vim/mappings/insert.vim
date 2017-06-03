@@ -5,23 +5,20 @@
 " Paste
 inoremap <C-P> <C-O>p
 
-function! Smart_TabComplete()
-    let line = getline('.')                         " current line
-
-    let substr = strpart(line, -1, col('.')+1)      " from the start of the current
-    " line to one character right
-    " of the cursor
-    let substr = matchstr(substr, "[^ \t]*$")       " word till cursor
-    let has_period = match(substr, '\.') != -1      " position of period, if any
-    let has_slash = match(substr, '\/') != -1       " position of slash, if any
-    if (!has_period && !has_slash)
-        return "\<C-X>\<C-P>"                         " existing text matching
-    elseif ( has_slash )
-        return "\<C-X>\<C-F>"                         " file matching
+" Complete
+function! Smart_Complete()
+    let line = getline('.')
+    let substr = strpart(line, -1, col('.')+1)
+    let substr = matchstr(substr, "[^ \t]*$")
+    let has_slash = match(substr, '\/') != -1
+    if (has_slash)
+        return "\<C-X>\<C-F>"
+    elseif (&omnifunc ==# '')
+        return "\<C-X>\<C-P>"
     else
-        return "\<C-X>\<C-O>"                         " plugin matching
+        return "\<C-X>\<C-O>"
     endif
 endfunction
 
-inoremap <C-n> <c-r>=Smart_TabComplete()<CR>
+inoremap <C-N> <C-R>=Smart_Complete()<CR>
 

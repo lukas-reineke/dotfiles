@@ -47,7 +47,6 @@ Plug 'w0rp/ale'
 Plug 'ternjs/tern_for_vim'
 Plug 'Shougo/deoplete.nvim'
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
-Plug 'wincent/YouCompleteMe'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 

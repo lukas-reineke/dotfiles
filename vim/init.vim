@@ -115,14 +115,10 @@ set formatprg=par\ -w80rq
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Completion
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-autocmd FileType typescript setlocal completeopt+=menu,preview
-autocmd FileType javascript setlocal completeopt+=menu
-autocmd FileType javascript setlocal completeopt-=preview
 let g:tsuquyomi_disable_default_mappings = 1
 let g:tern_show_signature_in_pum = '0'
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#disable_auto_complete = 1
-let g:ycm_auto_trigger = 0
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
 let g:jsdoc_allow_input_prompt = 1
@@ -130,16 +126,21 @@ let g:jsdoc_input_description = 1
 let g:jsdoc_additional_descriptions = 1
 let g:jsdoc_enable_es6 = 1
 
-" omnifuncs
-" augroup omnifuncs
-"     autocmd!
-"     autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-"     autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-"     autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-"     autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-"     autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-"     autocmd FileType javascript setlocal omnifunc=tern#Complete
-" augroup end
+augroup completeopt
+    autocmd FileType scss setlocal completeopt+=menu,preview
+    autocmd FileType typescript setlocal completeopt+=menu,preview
+    autocmd FileType javascript setlocal completeopt+=menu
+    autocmd FileType javascript setlocal completeopt-=preview
+augroup end
+
+augroup omnifuncs
+    autocmd!
+    autocmd FileType css,scss setlocal omnifunc=csscomplete#CompleteCSS
+    autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+    autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+    autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+    autocmd FileType javascript setlocal omnifunc=tern#Complete
+augroup end
 
 
 " ================ Ignore ========================

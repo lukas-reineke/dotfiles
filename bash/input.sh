@@ -16,3 +16,6 @@ else
     bind '"\e[1;2D": backward-word'
     bind '"\e[1;2C": forward-word'
 fi
+
+bind "set completion-map-case on"
+

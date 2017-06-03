@@ -35,6 +35,9 @@
 [commit]
     verbose = true
 
+[pull]
+    rebase = true
+
 [branch "master"]
     rebase = true
 
@@ -52,4 +55,7 @@
 
 [rerere]
     enabled = true
+
+[color]
+    ui = true
 

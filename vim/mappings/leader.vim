@@ -82,3 +82,6 @@ nmap <leader>gk <plug>(signify-prev-hunk)
 nmap <leader>gJ 9999<leader>gj
 nmap <leader>gK 9999<leader>gk
 
+" Set working direcory
+nnoremap <Leader>j :cd %:p:h<CR>
+
