@@ -195,6 +195,8 @@ let g:ale_sign_warning = '危'
 let g:UltiSnipsExpandTrigger = '<Tab>'
 let g:UltiSnipsJumpForwardTrigger = '<Tab>'
 let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'
+let g:UltiSnipsSnippetsDir = '~/dotfiles/vim/ultisnips'
+let g:UltiSnipsSnippetDirectories = ['ultisnips']
 
 " ================ Easy Motion ========================
 let g:EasyMotion_smartcase = 1

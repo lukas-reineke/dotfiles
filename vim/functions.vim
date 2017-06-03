@@ -78,3 +78,24 @@ endfunction
 
 autocmd BufEnter * call <SID>AutoProjectRootCD()
 
+" ================ Japanese in insert ========================
+let g:input_toggle = 0
+function! FcitxToEn()
+    let s:input_status = system("fcitx-remote")
+    if s:input_status == 2
+        let g:input_toggle = 1
+        let l:a = system("fcitx-remote -c")
+    endif
+endfunction
+
+function! FcitxToJp()
+    let s:input_status = system("fcitx-remote")
+    if s:input_status != 2 && g:input_toggle == 1
+        let l:a = system("fcitx-remote -o")
+        let g:input_toggle = 0
+    endif
+endfunction
+
+autocmd InsertLeave * call FcitxToEn()
+autocmd InsertEnter * call FcitxToJp()
+

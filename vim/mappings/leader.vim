@@ -85,3 +85,13 @@ nmap <leader>gK 9999<leader>gk
 " Set working direcory
 nnoremap <Leader>j :cd %:p:h<CR>
 
+nnoremap <Leader>i :call ToggleInput()<CR>
+
+function! ToggleInput()
+    if g:input_toggle
+        let g:input_toggle=0
+    else
+        let g:input_toggle=1
+    endif
+endfunction
+
