@@ -21,6 +21,7 @@ nnoremap <Leader><C-L> :vs#<CR>
 " save/close
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :call CloseOnLast()<CR>
+nnoremap <Leader>Q :q<CR>
 nnoremap <Leader>x :x<CR>
 
 " open from dir

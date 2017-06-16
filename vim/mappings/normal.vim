@@ -45,9 +45,6 @@ noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 1, 5)<CR>
 nnoremap do2 :diffget //2<CR> :diffupdate<CR>
 nnoremap do3 :diffget //3<CR> :diffupdate<CR>
 
-nnoremap ö [
-nnoremap ä ]
-
 map <silent> w <Plug>CamelCaseMotion_w
 map <silent> b <Plug>CamelCaseMotion_b
 map <silent> e <Plug>CamelCaseMotion_e
@@ -73,4 +70,6 @@ map * <Plug>(incsearch-nohl-*)
 map # <Plug>(incsearch-nohl-#)
 map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
+
+nnoremap Q @q
 

@@ -13,3 +13,4 @@ vnoremap <RIGHT> >gv
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 
+xnoremap Q :'<,'>:normal @q<CR>

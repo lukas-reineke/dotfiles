@@ -37,11 +37,16 @@ so $HOME/dotfiles/vim/functions.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 syntax on
+set synmaxcol=200
 set nocompatible
+set spell
+set history=1000
+set undolevels=1000
 filetype plugin indent on
 set lazyredraw
 set shortmess+=A
 set conceallevel=0
+set noswapfile
 set termguicolors
 set noshowmode
 " color dracula
@@ -60,12 +65,12 @@ set whichwrap+=l
 set list
 set listchars=eol:⬎
 set listchars+=tab:>-
-set listchars+=trail:.
+set listchars+=trail:•
 set listchars+=extends:>
 set listchars+=precedes:<
 set listchars+=nbsp:_
-set listchars+=space:٠
-let g:indentLine_char = '┆'
+set listchars+=space:⋅
+let g:indentLine_char = '⎸'
 
 set encoding=utf8
 set t_ut=
@@ -85,10 +90,12 @@ set virtualedit=block
 set ignorecase
 " When searching try to be smart about cases
 set smartcase
+set infercase
 " Highlight search results
 set hlsearch
 " Makes search act like search in modern browsers
 set incsearch
+set icm=split
 let g:incsearch#auto_nohlsearch = 1
 
 " ================ Tabs ========================
@@ -212,6 +219,9 @@ augroup HiglightDebug
     autocmd WinEnter,VimEnter * :silent! call matchadd('Todo', 'TODO', -1)
     autocmd WinEnter,VimEnter * :silent! call matchadd('Todo', 'DEBUG', -1)
 augroup END<Paste>
+
+au! cursormoved * call PoppyInit()
+let g:poppy_point_enable = 1
 
 " ================ Y U NO COMMIT ========================
 let g:YUNOcommit_after = 20

@@ -61,6 +61,9 @@ Plug 'michaeljsmith/vim-indent-object'
 Plug 'wellle/targets.vim'
 Plug 'vim-utils/vim-line'
 Plug 'vim-scripts/argtextobj.vim'
+Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-function'
+Plug 'thinca/vim-textobj-function-javascript'
 
 " Bookmarks
 Plug 'MattesGroeger/vim-bookmarks'
@@ -110,7 +113,7 @@ Plug 'vim-scripts/ReplaceWithRegister'
 " Sorting
 Plug 'christoomey/vim-sort-motion'
 " Change inside surround
-Plug 'briandoll/change-inside-surroundings.vim'
+" Plug 'briandoll/change-inside-surroundings.vim'
 " Y U NO COMMIT
 Plug 'esneider/yunocommit.vim'
 " Root
@@ -140,11 +143,18 @@ Plug 'z1mm32m4n/vim-superman'
 Plug 'tyru/open-browser.vim'
 Plug 'tyru/open-browser-github.vim'
 
+" better f
 Plug 'rhysd/clever-f.vim'
 
+" surrounds
 Plug 'machakann/vim-sandwich'
 
+" i3 like resize mode
 Plug 'simeji/winresizer'
 
+" split and join lines
 Plug 'AndrewRadev/splitjoin.vim'
+
+" bracket highlighter
+Plug 'bounceme/poppy.vim'
 
