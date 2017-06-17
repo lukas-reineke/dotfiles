@@ -114,8 +114,7 @@ Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'christoomey/vim-sort-motion'
 " Change inside surround
 " Plug 'briandoll/change-inside-surroundings.vim'
-" Y U NO COMMIT
-Plug 'esneider/yunocommit.vim'
+"
 " Root
 Plug 'dbakker/vim-projectroot'
 " FZF
@@ -157,4 +156,7 @@ Plug 'AndrewRadev/splitjoin.vim'
 
 " bracket highlighter
 Plug 'bounceme/poppy.vim'
+
+" i3 config
+Plug 'PotatoesMaster/i3-vim-syntax'
 

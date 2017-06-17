@@ -1,0 +1,170 @@
+#""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+# => Variables
+#""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set $mod Mod4
+set $alt Mod1
+set $terminal termite
+
+#""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+# => Mappings
+#""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+floating_modifier $mod
+
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+Shift+q kill
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+
+#""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+# => Movement
+#""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+bindsym $alt+h split h
+bindsym $alt+v split v
+bindsym $alt+f fullscreen
+
+bindsym $mod+e layout toggle split
+
+#""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+# => Workspaces
+#""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+bindsym $mod+1 exec "i3-msg workspace 1 && $keymaps/reset-keysettings.sh"
+bindsym $mod+2 exec "i3-msg workspace 2 && $keymaps/reset-keysettings.sh"
+bindsym $mod+3 exec "i3-msg workspace 3 && $keymaps/reset-keysettings.sh"
+bindsym $mod+4 exec "i3-msg workspace 4 && $keymaps/reset-keysettings.sh"
+bindsym $mod+5 exec "i3-msg workspace 5 && $keymaps/reset-keysettings.sh"
+bindsym $mod+6 exec "i3-msg workspace 6 && $keymaps/reset-keysettings.sh"
+bindsym $mod+7 exec "i3-msg workspace 7 && $keymaps/reset-keysettings.sh"
+bindsym $mod+8 exec "i3-msg workspace 8 && $keymaps/reset-keysettings.sh"
+bindsym $mod+9 exec "i3-msg workspace 9 && $keymaps/reset-keysettings.sh"
+bindsym $mod+0 exec "i3-msg workspace 10 && $keymaps/reset-keysettings.sh"
+
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+
+#""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+# => Resize
+#""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+mode "resize" {
+    bindsym Left  resize shrink width 10 px or 10 ppt
+    bindsym Down  resize grow height 10 px or 10 ppt
+    bindsym Up    resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
+
+    bindsym h resize shrink width 10 px or 10 ppt
+    bindsym j resize grow height 10 px or 10 ppt
+    bindsym k resize shrink height 10 px or 10 ppt
+    bindsym l resize grow width 10 px or 10 ppt
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $alt+r mode "resize"
+
+#""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+# => Style
+#""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+font pango:Input 12
+new_window 1pixel
+hide_edge_borders both
+client.focused          #000000 #1f1f1f #555555 #1f1f1f
+client.unfocused        #000000 #1f1f1f #777777 #1f1f1f
+client.focused_inactive #000000 #1f1f1f #555555 #1f1f1f
+client.urgent           #000000 #1f1f1f #555555 #1f1f1f
+
+#""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+# => Rofi
+#""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set $rofipath ~/scripts/rofi
+bindsym $mod+d       exec --no-startup-id $rofipath/rofi.sh run
+bindsym $mod+shift+d exec --no-startup-id $rofipath/rofi.sh window
+bindsym $mod+shift+v exec --no-startup-id $rofipath/rofi.sh clipboard
+# bindsym Control+k    exec --no-startup-id $rofipath/rofi-keepass.sh
+bindsym $mod+o       exec --no-startup-id $rofipath/rofi-keepass.sh
+bindsym $mod+Shift+e exec --no-startup-id $rofipath/rofi-i3.sh
+exec --no-startup-id $rofipath/rofi-clipboard-manager/mclip.py daemon
+
+#""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+# => Mac like keybindings
+#""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set $keymaps ~/scripts/keymaps
+bindsym $mod+c       exec --no-startup-id $keymaps/copy.sh
+bindsym $mod+v       exec --no-startup-id $keymaps/paste.sh
+bindsym $mod+n       exec --no-startup-id $keymaps/new.sh
+bindsym $mod+s       exec --no-startup-id $keymaps/save.sh
+bindsym $mod+z       exec --no-startup-id $keymaps/undo.sh
+bindsym $mod+shift+z exec --no-startup-id $keymaps/redo.sh
+bindsym $mod+x       exec --no-startup-id $keymaps/remove.sh
+bindsym $mod+w       exec --no-startup-id $keymaps/close.sh
+bindsym $mod+t       exec --no-startup-id $keymaps/new-tab.sh
+bindsym $mod+shift+t exec --no-startup-id $keymaps/reopen-tab.sh
+bindsym $mod+f       exec --no-startup-id $keymaps/search.sh
+bindsym $mod+a       exec --no-startup-id $keymaps/select-all.sh
+bindsym $mod+r       exec --no-startup-id $keymaps/reload.sh
+bindsym $mod+p       exec --no-startup-id $keymaps/p.sh
+bindsym $mod+shift+f exec --no-startup-id $keymaps/search-all.sh
+
+#""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+# => Programs
+#""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+bindsym $mod+Return exec $terminal
+# Pulse Audio controls ##
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 1 +5%; exec pactl set-sink-volume 0 +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume 1 -5%; exec pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioMute exec pactl set-sink-mute 1 toggle; exec pactl set-sink-mute 0 toggle #mute sound
+
+# Sreen brightness controls ##
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10
+
+# Lock ##
+bindsym $alt+l exec ~/scripts/i3lock-fancy/lock
+
+# Media player controls ##
+bindsym XF86AudioPlay exec ~/scripts/play.sh
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+# Reset keymaps ##
+bindsym $mod+m exec ~/scripts/keymaps/reset-keysettings.sh
+
+assign [class="Opera"] 2
+# i3 Gaps ##
+gaps inner 15
+gaps outer 1
+smart_gaps on
+
+# Lemonbar ##
+exec --no-startup-id ~/scripts/lemonbar_script.sh | lemonbar -f "Input Mono:size=10"
+
