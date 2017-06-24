@@ -12,6 +12,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-obsession'
+" Plug 'tpope/vim-unimpaired'
 
 " Shougo
 Plug 'Shougo/vimproc.vim'

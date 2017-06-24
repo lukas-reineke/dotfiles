@@ -52,6 +52,10 @@ fi
 if [ -f ~/dotfiles/lib/git-flow-completion.bash ]; then
     source ~/dotfiles/lib/git-flow-completion.bash
 fi
+# npm completion
+if [ -f ~/dotfiles/lib/npm-completion.bash ]; then
+    source ~/dotfiles/lib/npm-completion.bash
+fi
 
 
 # pip bash completion
