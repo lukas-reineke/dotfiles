@@ -197,6 +197,8 @@ let g:ale_linters = {
 \}
 let g:ale_sign_error = '誤'
 let g:ale_sign_warning = '危'
+let g:airline#extensions#ale#error_symbol = '誤:'
+let g:airline#extensions#ale#warning_symbol = '危:'
 
 " ================ UltiSnips ========================
 let g:UltiSnipsExpandTrigger = '<Tab>'

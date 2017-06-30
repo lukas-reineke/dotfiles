@@ -23,10 +23,10 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 " move with Uppercase hjkl
-map H ^
-map L $
-map K 5k
-map J 5j
+nnoremap H ^
+nnoremap L $
+nnoremap K 5k
+nnoremap J 5j
 
 noremap <silent> j gj
 noremap <silent> k gk
