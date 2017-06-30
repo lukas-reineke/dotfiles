@@ -54,6 +54,7 @@ alias gu='git reset HEAD~ --soft'
 alias gmt='git mergetool'
 alias jb='~/dotfiles/scripts/jira-branch.sh feature'
 alias grpo='git remote prune origin'
+alias gds='git diff --staged'
 
 
 # pacman
