@@ -55,6 +55,7 @@ alias gmt='git mergetool'
 alias jb='~/dotfiles/scripts/jira-branch.sh feature'
 alias grpo='git remote prune origin'
 alias gds='git diff --staged'
+alias ss='~/dotfiles/scripts/fzf-git-stash.sh'
 
 
 # pacman

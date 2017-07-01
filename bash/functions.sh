@@ -197,10 +197,9 @@ bind '"\C-f":" f\n"'
 function db() {
     local branches branch
     branches=$(git for-each-ref --sort=-committerdate refs/heads/ --format="%(refname:short)") &&
-        branch=$(echo "$branches" |
-    fzf --height 20% --reverse +m) &&
-        git branch -D $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##") &&
-        git remote prune origin
+    branch=$(echo "$branches" | fzf --height 20% --reverse +m) &&
+    git branch -D $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##") &&
+    git remote prune origin
 }
 
 # fcoc - checkout git commit

@@ -11,6 +11,7 @@ nnoremap <Leader><Leader> <C-^>
 " FZF
 nnoremap <Leader>p :Buffers<CR>
 nnoremap <Leader><C-P> :call fzf#run({'source': '~/dotfiles/scripts/bookmarks.sh', 'sink': ':Files', 'down': '18'})<CR>
+nnoremap <Leader><C-W> :Windows<CR>
 
 
 nnoremap <Leader><C-H> :hide<CR>
@@ -33,7 +34,7 @@ nnoremap <Leader>r :%s/\v
 vnoremap <Leader>r :s/\v
 
 " Zoom one pane
-nnoremap <silent> <Leader>z :! tmux resize-pane -Z<CR><CR> :MaximizerToggle<CR>
+" nnoremap <silent> <Leader>z :! tmux resize-pane -Z<CR><CR> :MaximizerToggle<CR>
 
 " Jump To Definition
 nnoremap <Leader>d <C-]>
@@ -67,11 +68,6 @@ nnoremap <Leader>u :GundoToggle<CR>
 " Eslint
 nnoremap <Leader>h :Autoformat<CR>
 
-" Tool Tipp Typescript
-
-" Merginal
-nnoremap <Leader>g :Merginal<CR>
-
 " Mark Down Preview
 nnoremap <Leader>l :LivedownToggle<CR>
 
@@ -95,4 +91,14 @@ function! ToggleInput()
         let g:input_toggle=1
     endif
 endfunction
+
+" Git
+nnoremap <Leader>gg :Merginal<CR>
+nnoremap <Leader>gd :Gvdiff<CR>
+nnoremap <Leader>gr :Gread<CR>
+nnoremap <Leader>gb :Gblame<CR>
+nnoremap <Leader>gs :Gstatus<CR>
+nnoremap <Leader>gm :Gsdiff :1 \| Gvdiff<CR>
+nnoremap <Leader>gl :BCommits<CR>
+nnoremap <Leader>gf :GFiles?<CR>
 

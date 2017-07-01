@@ -49,6 +49,7 @@ set conceallevel=0
 set noswapfile
 set termguicolors
 set noshowmode
+set showtabline=0
 " color dracula
 let g:airline_theme = 'bubblegum'
 set background=dark
@@ -70,7 +71,8 @@ set listchars+=extends:>
 set listchars+=precedes:<
 set listchars+=nbsp:_
 set listchars+=space:⋅
-let g:indentLine_char = '⎸'
+" let g:indentLine_char = '⎸'
+let g:indentLine_char = '│'
 
 set encoding=utf8
 set t_ut=
@@ -233,6 +235,11 @@ let g:airline_colornum_reversed = 1
 
 " ================ FZF ========================
 let g:fzf_buffers_jump = 1
+let g:fzf_action = {
+            \ 'ctrl-z': 'tab split',
+            \ 'ctrl-x': 'split',
+            \ 'ctrl-v': 'vsplit'
+            \}
 
 " ================ Startify ========================
 let g:startify_session_autoload = 1
