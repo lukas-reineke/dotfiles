@@ -6,7 +6,7 @@
 	url = https://github.com/scmbreeze/scm_breeze.git
 [submodule "lib/fzf-marks"]
 	path = lib/fzf-marks
-	url = https://github.com/urbainvaes/fzf-marks.git
+	url = git@github.com:lukas-reineke/fzf-marks.git
 [submodule "lib/bfs"]
 	path = lib/bfs
 	url = https://github.com/tavianator/bfs.git

@@ -18,6 +18,7 @@ nnoremap <Leader><C-H> :hide<CR>
 nnoremap <Leader><C-J> :only<CR>
 nnoremap <Leader><C-K> :sv#<CR>
 nnoremap <Leader><C-L> :vs#<CR>
+nnoremap <Leader><C-O> :Bufonly<CR>
 
 " save/close
 nnoremap <Leader>w :w<CR>
@@ -32,9 +33,6 @@ nnoremap <Leader>n :Files %:h<CR>
 nnoremap <Leader>a :RG<Space>
 nnoremap <Leader>r :%s/\v
 vnoremap <Leader>r :s/\v
-
-" Zoom one pane
-" nnoremap <silent> <Leader>z :! tmux resize-pane -Z<CR><CR> :MaximizerToggle<CR>
 
 " Jump To Definition
 nnoremap <Leader>d <C-]>
@@ -80,9 +78,9 @@ nmap <leader>gJ 9999<leader>gj
 nmap <leader>gK 9999<leader>gk
 
 " Set working direcory
-nnoremap <Leader>j :cd %:p:h<CR>
+nnoremap <Leader>ij :cd %:p:h<CR>
 
-nnoremap <Leader>i :call ToggleInput()<CR>
+nnoremap <Leader>ii :call ToggleInput()<CR>
 
 function! ToggleInput()
     if g:input_toggle
@@ -101,4 +99,5 @@ nnoremap <Leader>gs :Gstatus<CR>
 nnoremap <Leader>gm :Gsdiff :1 \| Gvdiff<CR>
 nnoremap <Leader>gl :BCommits<CR>
 nnoremap <Leader>gf :GFiles?<CR>
+nnoremap <Leader>gt :SignifyToggleHighlight<CR>
 

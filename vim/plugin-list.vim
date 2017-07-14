@@ -18,7 +18,7 @@ Plug 'tpope/vim-obsession'
 Plug 'Shougo/vimproc.vim'
 
 " Git
-Plug 'airblade/vim-gitgutter'
+Plug 'mhinz/vim-signify'
 Plug 'vim-scripts/gitignore'
 Plug 'idanarye/vim-merginal'
 

@@ -2,11 +2,6 @@
 " => Normal Mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" map Uppercase to Lowercase
-nmap Q q
-nmap W w
-nmap X x
-
 " Yank to end of line
 nmap Y y$
 
@@ -38,9 +33,6 @@ nnoremap <silent> <esc> :noh<cr><esc>
 noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 1, 5)<CR>
 noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 1, 5)<CR>
 
-" insert ; at end of line
-" nnoremap ; maA;<esc>`a
-
 " Git diff
 nnoremap do2 :diffget //2<CR> :diffupdate<CR>
 nnoremap do3 :diffget //3<CR> :diffupdate<CR>
@@ -53,9 +45,6 @@ sunmap w
 sunmap b
 sunmap e
 sunmap ge
-
-" Change inside surround
-nnoremap cic :ChangeInsideSurrounding<CR>
 
 " Incsearch
 map / <Plug>(incsearch-forward)

@@ -102,3 +102,4 @@ alias bla='cat /dev/urandom | hexdump -C | grep --color=auto "ca fe"'
 alias disco='while true; do printf "\e[38;5;$(($(od -d -N 2 -A n /dev/urandom)%$(tput colors)))m.\e[0m"; done'
 alias pokemon='xrandr --output eDP1 --mode 800x600 && sudo vbam -f 0 --no-opengl -F ~/.vbam/pokemon_fire_red.gba'
 alias wireshark='GTK_THEME=Flat-Plat wireshark-gtk & disown'
+
