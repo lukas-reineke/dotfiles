@@ -11,10 +11,3 @@ export EDITOR="$VISUAL"
 export PATH=${PATH}:$HOME/.npm-global
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
-bind "set completion-map-case on"
-set -o vi
-set editing-mode vi
-set show-mode-in-prompt on
-set vi-ins-mode-string "+"
-set vi-cmd-mode-string ":"
-
