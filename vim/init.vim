@@ -225,6 +225,7 @@ augroup HiglightDebug
 augroup END<Paste>
 
 au! cursormoved * call PoppyInit()
+au! FocusGained * :SignifyRefresh
 let g:poppy_point_enable = 1
 
 " ================ Y U NO COMMIT ========================
@@ -299,4 +300,9 @@ let g:sandwich#recipes += [
 
 " ================ resize ========================
 let g:winresizer_start_key = '<C-T>'
+
+" ================ emmet ========================
+let g:user_emmet_install_global = 0
+autocmd FileType html,css EmmetInstall
+let g:user_emmet_leader_key='<C-J>'
 

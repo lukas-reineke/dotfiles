@@ -32,6 +32,7 @@ Plug 'heavenshell/vim-jsdoc'
 Plug 'elzr/vim-json'
 " HTML5
 Plug 'othree/html5.vim'
+Plug 'mattn/emmet-vim'
 " Markdown
 Plug 'shime/vim-livedown'
 

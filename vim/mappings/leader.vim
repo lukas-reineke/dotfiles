@@ -56,6 +56,8 @@ nmap <Leader>e <Plug>(easymotion-overwin-w)
 nmap <Leader>f <Plug>(easymotion-overwin-f)
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
+map <Leader>l <Plug>(easymotion-lineforward)
+map <Leader>h <Plug>(easymotion-linebackward)
 
 " Spell correct
 nnoremap <Leader>z 1z=
@@ -64,10 +66,13 @@ nnoremap <Leader>z 1z=
 nnoremap <Leader>u :GundoToggle<CR>
 
 " Eslint
-nnoremap <Leader>h :Autoformat<CR>
+nnoremap <Leader>th :Autoformat<CR>
+
+nnoremap <Leader>c :cclose<CR>
 
 " Mark Down Preview
-nnoremap <Leader>l :LivedownToggle<CR>
+nnoremap <Leader>tt :LivedownToggle<CR>
+nnoremap <Leader>tl :lnext<CR>
 
 " Incsearch
 map <Leader>s <Plug>(incsearch-easymotion-/)
