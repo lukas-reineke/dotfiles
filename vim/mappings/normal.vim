@@ -19,7 +19,9 @@ nnoremap <C-H> <C-W><C-H>
 
 " move with Uppercase hjkl
 nnoremap H ^
+nnoremap cH c^
 nnoremap L $
+nnoremap cL c$
 nnoremap K 5k
 nnoremap J 5j
 
@@ -28,10 +30,6 @@ noremap <silent> k gk
 
 " esc to clear search highlight
 nnoremap <silent> <esc> :noh<cr><esc>
-
-" Smoth Scroll
-noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 1, 5)<CR>
-noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 1, 5)<CR>
 
 " Git diff
 nnoremap do2 :diffget //2<CR> :diffupdate<CR>
@@ -55,7 +53,7 @@ map z? <Plug>(incsearch-fuzzy-?)
 map zg/ <Plug>(incsearch-fuzzy-stay)
 map n <Plug>(incsearch-nohl-n)
 map N <Plug>(incsearch-nohl-N)
-map * <Plug>(incsearch-nohl-*)
+map * <Plug>(incsearch-nohl-*)N
 map # <Plug>(incsearch-nohl-#)
 map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)

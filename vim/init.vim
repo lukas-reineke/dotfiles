@@ -228,9 +228,6 @@ au! cursormoved * call PoppyInit()
 au! FocusGained * :SignifyRefresh
 let g:poppy_point_enable = 1
 
-" ================ Y U NO COMMIT ========================
-let g:YUNOcommit_after = 20
-
 " ================ Airline color num ========================
 let g:airline_colornum_reversed = 1
 

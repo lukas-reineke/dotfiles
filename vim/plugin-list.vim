@@ -52,9 +52,6 @@ Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
-" Smoth Scroll
-Plug 'terryma/vim-smooth-scroll'
-
 " Auto pairs
 Plug 'jiangmiao/auto-pairs'
 
@@ -84,9 +81,6 @@ Plug 'Yggdroot/indentLine'
 
 " inline colors
 Plug 'lilydjwg/colorizer'
-
-" Multiple Cursors
-" Plug 'terryma/vim-multiple-cursors'
 "
 " expand region
 Plug 'terryma/vim-expand-region'
@@ -114,8 +108,6 @@ Plug 'bkad/camelcasemotion'
 Plug 'vim-scripts/ReplaceWithRegister'
 " Sorting
 Plug 'christoomey/vim-sort-motion'
-" Change inside surround
-" Plug 'briandoll/change-inside-surroundings.vim'
 "
 " Root
 Plug 'dbakker/vim-projectroot'
@@ -146,6 +138,7 @@ Plug 'tyru/open-browser-github.vim'
 
 " better f
 Plug 'rhysd/clever-f.vim'
+Plug 'kepbod/quick-scope'
 
 " surrounds
 Plug 'machakann/vim-sandwich'
@@ -161,4 +154,7 @@ Plug 'bounceme/poppy.vim'
 
 " i3 config
 Plug 'PotatoesMaster/i3-vim-syntax'
+
+" C-A / C-X toggle for other stuff
+Plug 'mjbrownie/swapit'
 
