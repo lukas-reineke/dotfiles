@@ -38,7 +38,6 @@ so $HOME/dotfiles/vim/functions.vim
 
 syntax on
 set synmaxcol=200
-set nocompatible
 set spell
 set history=1000
 set undolevels=1000
@@ -50,7 +49,6 @@ set noswapfile
 set termguicolors
 set noshowmode
 set showtabline=0
-" color dracula
 let g:airline_theme = 'bubblegum'
 set background=dark
 color base16-onedark
@@ -71,7 +69,6 @@ set listchars+=extends:>
 set listchars+=precedes:<
 set listchars+=nbsp:_
 set listchars+=space:⋅
-" let g:indentLine_char = '⎸'
 let g:indentLine_char = '│'
 
 set encoding=utf8
@@ -83,19 +80,13 @@ set clipboard+=unnamedplus
 set splitbelow
 set splitright
 set autoread
-" Highlight cursorline
 set cursorline
-" Allow hidden buffers
 set hidden
 set virtualedit=block
-" Ignore case when searching
 set ignorecase
-" When searching try to be smart about cases
 set smartcase
 set infercase
-" Highlight search results
 set hlsearch
-" Makes search act like search in modern browsers
 set incsearch
 set icm=split
 let g:incsearch#auto_nohlsearch = 1
@@ -185,9 +176,6 @@ set wildignore+=*venv*
 let NERDTreeShowHidden=1
 let g:NERDTreeWinSize=50
 
-" ================ Tmux Integration ========================
-let g:tmux_navigator_disable_when_zoomed = 1
-
 " ================ Comments ========================
 let g:NERDSpaceDelims = 1
 let g:NERDCompactSexyComs = 1
@@ -211,8 +199,8 @@ let g:UltiSnipsSnippetDirectories = ['ultisnips']
 
 " ================ Easy Motion ========================
 let g:EasyMotion_smartcase = 1
-let g:EasyMotion_do_mapping = 0 " Disable default mappings
-let g:EasyMotion_keys = 'asdfghjklqwertzuiop'
+let g:EasyMotion_do_mapping = 0
+let g:EasyMotion_keys = 'asdfghjklqwertyuiopzxcvbnm'
 
 " ================ Highlight ========================
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929

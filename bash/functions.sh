@@ -132,7 +132,6 @@ function addssh {
 function old {
     str="$1"
     if [ "${str: -1}" == "/" ]; then
-        # str=${str::-1}
         str=${str%?}
     fi
     mv $str{,-old}
@@ -142,7 +141,6 @@ function old {
 function bu {
     str="$1"
     if [ "${str: -1}" == "/" ]; then
-        # str=${str::-1}
         str=${str%?}
     fi
     cp -r $str{,-bu}
@@ -200,6 +198,11 @@ function db() {
     branch=$(echo "$branches" | fzf --height 20% --reverse +m) &&
     git branch -D $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##") &&
     git remote prune origin
+}
+
+function gpsu() {
+    local branch=$(git branch | grep \* | cut -d ' ' -f4)
+    git push --set-upstream origin $branch
 }
 
 # fcoc - checkout git commit

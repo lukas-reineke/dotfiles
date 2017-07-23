@@ -25,6 +25,11 @@ nnoremap cL c$
 nnoremap K 5k
 nnoremap J 5j
 
+nnoremap zj L
+nnoremap zk H
+nnoremap zl 20zl
+nnoremap zh 20zh
+
 noremap <silent> j gj
 noremap <silent> k gk
 
