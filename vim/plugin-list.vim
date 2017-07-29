@@ -119,6 +119,8 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 " Paste
 Plug 'vim-scripts/UnconditionalPaste'
+Plug 'sickill/vim-pasta'
+
 " Incsearch
 Plug 'haya14busa/incsearch.vim'
 Plug 'haya14busa/incsearch-fuzzy.vim'

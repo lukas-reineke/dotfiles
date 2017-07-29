@@ -65,3 +65,19 @@ map g# <Plug>(incsearch-nohl-g#)
 
 nnoremap Q @q
 
+" paste
+nmap <CLEAR-1> <Plug>UnconditionalPasteLineAfter
+nmap <CLEAR-2> <Plug>UnconditionalPasteLineBefore
+nmap <CLEAR-3> <Plug>UnconditionalPasteCommaAfter
+nmap <CLEAR-4> <Plug>UnconditionalPasteCommaBefore
+nmap <CLEAR-5> <Plug>UnconditionalPasteCommaSingleQuoteAfter
+nmap <CLEAR-6> <Plug>UnconditionalPasteCommaSingleQuoteBefore
+nmap glp <Plug>UnconditionalPasteIndentedAfter<ESC>ddP
+nmap glP <Plug>UnconditionalPasteIndentedBefore
+nmap g#p <ESC>o<C-W><ESC>gcpddk<Plug>UnconditionalPasteCommentedAfter
+nmap g#P <ESC>o<C-W><ESC>gcpddk<Plug>UnconditionalPasteCommentedBefore
+nmap gjp <Plug>UnconditionalPasteCommaAfter
+nmap gjP <Plug>UnconditionalPasteCommaBefore
+nmap gj'p <Plug>UnconditionalPasteCommaSingleQuoteAfter
+nmap gj'P <Plug>UnconditionalPasteCommaSingleQuoteBefore
+

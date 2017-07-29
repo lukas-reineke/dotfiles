@@ -201,7 +201,7 @@ function db() {
 }
 
 function gpsu() {
-    local branch=$(git branch | grep \* | cut -d ' ' -f4)
+    local branch=$(git branch --no-color | grep \* | cut -d ' ' -f2)
     git push --set-upstream origin $branch
 }
 
