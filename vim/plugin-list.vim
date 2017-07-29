@@ -33,7 +33,8 @@ Plug 'heavenshell/vim-jsdoc'
 Plug 'elzr/vim-json'
 " HTML5
 Plug 'othree/html5.vim'
-Plug 'mattn/emmet-vim'
+Plug 'rstacruz/sparkup'
+Plug 'gregsexton/matchtag'
 " Markdown
 Plug 'shime/vim-livedown'
 
@@ -42,6 +43,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'edkolev/tmuxline.vim'
 Plug 'roxma/vim-tmux-clipboard'
+Plug 'benmills/vimux'
 
 " Linter
 Plug 'w0rp/ale'
@@ -82,7 +84,7 @@ Plug 'Yggdroot/indentLine'
 
 " inline colors
 Plug 'lilydjwg/colorizer'
-"
+
 " expand region
 Plug 'terryma/vim-expand-region'
 
