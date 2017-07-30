@@ -88,8 +88,11 @@ set smartcase
 set infercase
 set hlsearch
 set incsearch
+hi Search guibg='#4c5564' guifg='#000'
 set icm=split
+let g:vim_search_pulse_disable_auto_mappings = 1
 let g:incsearch#auto_nohlsearch = 1
+let g:vim_search_pulse_mode = 'pattern'
 
 " ================ Tabs ========================
 set expandtab
@@ -116,8 +119,12 @@ set formatprg=par\ -w80rq
 " => Completion
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:tsuquyomi_disable_default_mappings = 1
+let g:tsuquyomi_shortest_import_path = 1
+let g:tsuquyomi_completion_case_sensitive = 1
+let g:tsuquyomi_single_quote_import = 1
 let g:tern_show_signature_in_pum = '0'
 let g:deoplete#enable_at_startup = 1
+let g:tsuquyomi_javascript_support = 1
 let g:deoplete#disable_auto_complete = 1
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
@@ -210,7 +217,6 @@ augroup HiglightDebug
     autocmd!
     autocmd WinEnter,VimEnter * :silent! call matchadd('Todo', 'TODO', -1)
     autocmd WinEnter,VimEnter * :silent! call matchadd('Todo', 'DEBUG', -1)
-    autocmd WinEnter,VimEnter * :silent! call VimuxZoomRunner()
 augroup END<Paste>
 
 au! cursormoved * call PoppyInit()
@@ -227,6 +233,10 @@ let g:fzf_action = {
             \ 'ctrl-x': 'split',
             \ 'ctrl-v': 'vsplit'
             \}
+
+" ================ Sparkup ========================
+let g:sparkupMaps = 0
+let g:sparkupExecuteMapping = '<C-E>'
 
 " ================ Startify ========================
 let g:startify_session_autoload = 1

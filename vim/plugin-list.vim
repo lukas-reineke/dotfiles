@@ -43,7 +43,6 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'edkolev/tmuxline.vim'
 Plug 'roxma/vim-tmux-clipboard'
-Plug 'benmills/vimux'
 
 " Linter
 Plug 'w0rp/ale'
@@ -125,6 +124,7 @@ Plug 'sickill/vim-pasta'
 Plug 'haya14busa/incsearch.vim'
 Plug 'haya14busa/incsearch-fuzzy.vim'
 Plug 'haya14busa/incsearch-easymotion.vim'
+Plug 'inside/vim-search-pulse'
 
 " Themes
 Plug 'dracula/vim'

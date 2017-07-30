@@ -44,6 +44,7 @@ autocmd FileType javascript nnoremap <silent> <Leader><C-d> :TernRefs<CR>
 autocmd FileType typescript nnoremap <silent> <Leader>d :TsuDefinition<CR>
 autocmd FileType typescript nnoremap <silent> <Leader><C-d> :TsuReferences<CR>
 autocmd FileType typescript nnoremap <silent> <Leader>b :TsuGoBack<CR>
+autocmd FileType typescript nnoremap <silent> <Leader>ti :TsuImport<CR>
 autocmd FileType typescript nmap <buffer> <Leader>t : <C-u>echo tsuquyomi#hint()<CR>
 
 " new line without insert
@@ -72,7 +73,7 @@ nnoremap <Leader>c :cclose<CR>
 
 " Mark Down Preview
 nnoremap <Leader>tt :LivedownToggle<CR>
-nnoremap <Leader>tl :lnext<CR>
+nnoremap <Leader>tl :lNext<CR>
 
 " Incsearch
 map <Leader>s <Plug>(incsearch-easymotion-/)

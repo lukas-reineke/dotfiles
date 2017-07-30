@@ -50,18 +50,18 @@ sunmap e
 sunmap ge
 
 " Incsearch
-map / <Plug>(incsearch-forward)
-map ? <Plug>(incsearch-backward)
-map g/ <Plug>(incsearch-stay)
-map z/ <Plug>(incsearch-fuzzy-/)
-map z? <Plug>(incsearch-fuzzy-?)
-map zg/ <Plug>(incsearch-fuzzy-stay)
-map n <Plug>(incsearch-nohl-n)
-map N <Plug>(incsearch-nohl-N)
-map * <Plug>(incsearch-nohl-*)N
-map # <Plug>(incsearch-nohl-#)
-map g* <Plug>(incsearch-nohl-g*)
-map g# <Plug>(incsearch-nohl-g#)
+map / <Plug>(incsearch-forward)\v
+map ? <Plug>(incsearch-backward)\v
+map g/ <Plug>(incsearch-stay)\v
+map z/ <Plug>(incsearch-fuzzy-/)\v
+map z? <Plug>(incsearch-fuzzy-?)\v
+map zg/ <Plug>(incsearch-fuzzy-stay)\v
+map n <Plug>(incsearch-nohl-n)<Plug>Pulse
+map N <Plug>(incsearch-nohl-N)<Plug>Pulse
+map * <Plug>(incsearch-nohl-*)N<Plug>Pulse
+map # <Plug>(incsearch-nohl-#)<Plug>Pulse
+map g* <Plug>(incsearch-nohl-g*)<Plug>Pulse
+map g# <Plug>(incsearch-nohl-g#)<Plug>Pulse
 
 nnoremap Q @q
 

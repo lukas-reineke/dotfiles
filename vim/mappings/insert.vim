@@ -14,11 +14,13 @@ function! Smart_Complete()
     if (has_slash)
         return "\<C-X>\<C-F>"
     elseif (&omnifunc ==# '')
-        return "\<C-X>\<C-P>"
+        return "<ESC>a\<C-X>\<C-P>"
     else
         return "\<C-X>\<C-O>"
     endif
 endfunction
 
 inoremap <C-N> <C-R>=Smart_Complete()<CR>
+
+inoremap <C-B> <ESC>a
 
