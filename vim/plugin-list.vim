@@ -163,3 +163,6 @@ Plug 'PotatoesMaster/i3-vim-syntax'
 " C-A / C-X toggle for other stuff
 Plug 'mjbrownie/swapit'
 
+" Yank highlight
+Plug 'machakann/vim-highlightedyank'
+

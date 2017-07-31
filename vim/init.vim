@@ -88,7 +88,7 @@ set smartcase
 set infercase
 set hlsearch
 set incsearch
-hi Search guibg='#4c5564' guifg='#000'
+hi Search guibg='#565c64' guifg='#000'
 set icm=split
 let g:vim_search_pulse_disable_auto_mappings = 1
 let g:incsearch#auto_nohlsearch = 1
@@ -296,4 +296,9 @@ let g:sandwich#recipes += [
 
 " ================ resize ========================
 let g:winresizer_start_key = '<C-T>'
+
+" ================ yank highlight  ========================
+let g:highlightedyank_highlight_duration = 150
+
+hi HighlightedyankRegion guibg='#565c64'
 
