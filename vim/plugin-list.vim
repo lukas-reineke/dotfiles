@@ -100,8 +100,6 @@ Plug 'mhinz/vim-startify'
 
 " Undo Tree
 Plug 'sjl/gundo.vim'
-" Register list
-Plug 'junegunn/vim-peekaboo'
 " Autoformat
 Plug 'Chiel92/vim-autoformat'
 " Camel Case Motions

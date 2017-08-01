@@ -1,5 +1,5 @@
 if exists("b:did_ftplugin")
-  finish
+    finish
 endif
 
 let b:did_ftplugin = 1 " Don't load twice in one buffer

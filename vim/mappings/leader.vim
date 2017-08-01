@@ -28,6 +28,7 @@ nnoremap <Leader>x :x<CR>
 
 " open from dir
 nnoremap <Leader>n :Files %:h<CR>
+nnoremap <Leader>N :E %:h/
 
 " Search all
 nnoremap <Leader>a :RG<Space>
@@ -54,11 +55,12 @@ nnoremap <Leader>O O<esc>j
 " Easy motion
 map <Leader>e <Plug>(easymotion-bd-w)
 nmap <Leader>e <Plug>(easymotion-overwin-w)
-nmap <Leader>f <Plug>(easymotion-overwin-f)
+nmap <Leader>f <Plug>(easymotion-overwin-f2)
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 map <Leader>l <Plug>(easymotion-lineforward)
 map <Leader>h <Plug>(easymotion-linebackward)
+map <Leader>s <Plug>(incsearch-easymotion-/)\v
 
 " Spell correct
 nnoremap <Leader>z 1z=
@@ -74,9 +76,6 @@ nnoremap <Leader>c :cclose<CR>
 " Mark Down Preview
 nnoremap <Leader>tt :LivedownToggle<CR>
 nnoremap <Leader>tl :lNext<CR>
-
-" Incsearch
-map <Leader>s <Plug>(incsearch-easymotion-/)
 
 nmap <leader>gj <plug>(signify-next-hunk)
 nmap <leader>gk <plug>(signify-prev-hunk)

@@ -12,6 +12,12 @@ console.log($1${VISUAL}); /* DEBUG */
 console.log('-----${1/./-/g}${VISUAL/./-/g}----');
 endsnippet
 
+snippet sst "console table" Ab
+console.log('-----${1/'/\\\'/g}${VISUAL/'/\\\'/g}----');
+console.table($1${VISUAL}); /* DEBUG */
+console.log('-----${1/./-/g}${VISUAL/./-/g}----');
+endsnippet
+
 snippet	vfu "var function" Ab
 var $1 = function($2) {
 	$3${VISUAL}

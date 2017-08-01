@@ -154,3 +154,33 @@ nnoremap <silent> [l  :call WrapCommand('down', 'c')<CR>
 nnoremap <silent> ]c :call WrapCommand('up', 'l')<CR>
 nnoremap <silent> [c  :call WrapCommand('down', 'l')<CR>
 
+" ================ clear registers ========================
+" https://stackoverflow.com/a/26043227
+function! ClearRegisters()
+    redir => l:register_out
+    silent register
+    redir end
+    let l:register_list = split(l:register_out, '\n')
+    call remove(l:register_list, 0) " remove header (-- Registers --)
+    call map(l:register_list, "substitute(v:val, '^.\\(.\\).*', '\\1', '')")
+    call filter(l:register_list, 'v:val !~ "[%#=.:]"') " skip readonly registers
+    for elem in l:register_list
+        execute 'let @'.elem.'= ""'
+    endfor
+endfunction
+
+" ================ create file and dir ========================
+" https://github.com/junegunn/fzf.vim/issues/89#issuecomment-187764499
+function s:MKDir(...)
+    if         !a:0
+           \|| stridx('`+', a:1[0])!=-1
+           \|| a:1=~#'\v\\@<![ *?[%#]'
+           \|| isdirectory(a:1)
+           \|| filereadable(a:1)
+           \|| isdirectory(fnamemodify(a:1, ':p:h'))
+        return
+    endif
+    return mkdir(fnamemodify(a:1, ':p:h'), 'p')
+endfunction
+command -bang -bar -nargs=? -complete=file E :call s:MKDir(<f-args>) | e<bang> <args>
+
