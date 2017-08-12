@@ -66,7 +66,7 @@ map <Leader>s <Plug>(incsearch-easymotion-/)\v
 nnoremap <Leader>z 1z=
 
 " Undo Tree
-nnoremap <Leader>u :GundoToggle<CR>
+nnoremap <Leader>u :MundoToggle<CR>
 
 " Eslint
 nnoremap <Leader>th :Autoformat<CR>

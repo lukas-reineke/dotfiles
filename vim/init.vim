@@ -299,7 +299,7 @@ let g:sandwich#recipes += [
 let g:winresizer_start_key = '<C-T>'
 
 " ================ yank highlight  ========================
-let g:highlightedyank_highlight_duration = 150
+let g:highlightedyank_highlight_duration = 100
 
 hi HighlightedyankRegion guibg='#565c64'
 

@@ -99,7 +99,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'mhinz/vim-startify'
 
 " Undo Tree
-Plug 'sjl/gundo.vim'
+Plug 'simnalamburt/vim-mundo'
 " Autoformat
 Plug 'Chiel92/vim-autoformat'
 " Camel Case Motions
