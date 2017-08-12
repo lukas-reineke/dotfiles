@@ -2,9 +2,6 @@
 " => Inster Mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Paste
-inoremap <C-P> <C-O>p
-
 " Complete
 function! Smart_Complete()
     let line = getline('.')
@@ -21,6 +18,6 @@ function! Smart_Complete()
 endfunction
 
 inoremap <C-N> <C-R>=Smart_Complete()<CR>
-
+inoremap <C-P> <C-N>
 inoremap <C-B> <ESC>a
 

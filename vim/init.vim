@@ -134,7 +134,8 @@ let g:jsdoc_additional_descriptions = 1
 let g:jsdoc_enable_es6 = 1
 
 augroup completeopt
-    autocmd FileType scss setlocal completeopt+=menu,preview
+    autocmd FileType css,scss setlocal iskeyword=@,48-57,_,-,?,!,192-255
+    autocmd FileType css,scss setlocal completeopt+=menu,preview
     autocmd FileType typescript setlocal completeopt+=menu,preview
     autocmd FileType javascript setlocal completeopt+=menu
     autocmd FileType javascript setlocal completeopt-=preview
