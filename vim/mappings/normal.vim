@@ -81,3 +81,10 @@ nmap gjP <Plug>UnconditionalPasteCommaBefore
 nmap gj'p <Plug>UnconditionalPasteCommaSingleQuoteAfter
 nmap gj'P <Plug>UnconditionalPasteCommaSingleQuoteBefore
 
+" replace
+nmap grr <Plug>ReplaceWithSameIndentRegisterLine
+nmap grR <Plug>ReplaceWithRegisterLine
+nmap grL <Plug>ReplaceWithRegisterOperator$
+nmap grH <Plug>ReplaceWithRegisterOperator^
+nmap gr <Plug>ReplaceWithRegisterOperator
+

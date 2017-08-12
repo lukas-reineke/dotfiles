@@ -106,6 +106,7 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'bkad/camelcasemotion'
 " Replace
 Plug 'vim-scripts/ReplaceWithRegister'
+Plug 'vim-scripts/ReplaceWithSameIndentRegister'
 " Sorting
 Plug 'christoomey/vim-sort-motion'
 "
