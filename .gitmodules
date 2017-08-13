@@ -10,3 +10,6 @@
 [submodule "lib/bfs"]
 	path = lib/bfs
 	url = https://github.com/tavianator/bfs.git
+[submodule "lib/vimv"]
+	path = lib/vimv
+	url = git@github.com:lukas-reineke/vimv.git

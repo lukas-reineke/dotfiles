@@ -9,5 +9,6 @@ export GIT_REPO_DIR="$HOME/dev"
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 export PATH=${PATH}:$HOME/.npm-global
+export PATH=${PATH}:$HOME/dotfiles/lib/vimv
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
