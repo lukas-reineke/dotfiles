@@ -88,7 +88,7 @@ set smartcase
 set infercase
 set hlsearch
 set incsearch
-hi Search guibg='#565c64'
+hi Search guibg='#565c64' guifg='#000'
 set icm=split
 let g:vim_search_pulse_disable_auto_mappings = 1
 let g:incsearch#auto_nohlsearch = 1
@@ -218,10 +218,19 @@ augroup HiglightDebug
     autocmd!
     autocmd WinEnter,VimEnter * :silent! call matchadd('Todo', 'TODO', -1)
     autocmd WinEnter,VimEnter * :silent! call matchadd('Todo', 'DEBUG', -1)
-augroup END<Paste>
+augroup END
 
-au! cursormoved * call PoppyInit()
-au! FocusGained * :SignifyRefresh
+augroup FiletypeDetect
+    autocmd!
+    autocmd BufRead,BufNewFile .stylelintrc setfiletype json
+augroup END
+
+augroup signify
+    autocmd!
+    autocmd cursormoved * call PoppyInit()
+    autocmd FocusGained * :SignifyRefresh
+augroup END
+
 let g:poppy_point_enable = 1
 
 " ================ Airline color num ========================
