@@ -10,7 +10,8 @@ nnoremap <Leader><Leader> <C-^>
 
 " FZF
 nnoremap <Leader>p :Buffers<CR>
-nnoremap <Leader><C-P> :call fzf#run({'source': '~/dotfiles/scripts/bookmarks.sh', 'sink': ':Files', 'down': '18'})<CR>
+" nnoremap <Leader><C-P> :call fzf#run({'source': '~/dotfiles/scripts/bookmarks.sh', 'sink': ':Files', 'down': '18'})<CR>
+nnoremap <Leader><C-P> :Commands<CR>
 nnoremap <Leader><C-W> :Windows<CR>
 
 
