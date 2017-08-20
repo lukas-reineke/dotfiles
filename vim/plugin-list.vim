@@ -33,7 +33,7 @@ Plug 'heavenshell/vim-jsdoc'
 Plug 'elzr/vim-json'
 " HTML5
 Plug 'othree/html5.vim'
-Plug 'rstacruz/sparkup'
+Plug 'lukas-reineke/sparkup'
 Plug 'gregsexton/matchtag'
 " Markdown
 Plug 'shime/vim-livedown'
@@ -53,6 +53,7 @@ Plug 'Shougo/deoplete.nvim'
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'tenfyzhong/CompleteParameter.vim'
 
 " Auto pairs
 Plug 'jiangmiao/auto-pairs'
@@ -60,11 +61,12 @@ Plug 'jiangmiao/auto-pairs'
 " Text Object
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'wellle/targets.vim'
-Plug 'vim-utils/vim-line'
-Plug 'vim-scripts/argtextobj.vim'
+" Plug 'vim-utils/vim-line'
+" Plug 'vim-scripts/argtextobj.vim'
 Plug 'kana/vim-textobj-user'
-Plug 'kana/vim-textobj-function'
-Plug 'thinca/vim-textobj-function-javascript'
+" Plug 'kana/vim-textobj-function'
+" Plug 'thinca/vim-textobj-function-javascript'
+Plug 'glts/vim-textobj-comment'
 
 " Bookmarks
 Plug 'MattesGroeger/vim-bookmarks'
@@ -152,6 +154,8 @@ Plug 'AndrewRadev/splitjoin.vim'
 
 " bracket highlighter
 Plug 'bounceme/poppy.vim'
+
+Plug 'hotoo/highlight-cursor-word.vim'
 
 " i3 config
 Plug 'PotatoesMaster/i3-vim-syntax'

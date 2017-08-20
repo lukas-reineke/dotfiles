@@ -125,7 +125,9 @@ let g:tsuquyomi_single_quote_import = 1
 let g:tern_show_signature_in_pum = '0'
 let g:deoplete#enable_at_startup = 1
 let g:tsuquyomi_javascript_support = 1
+let g:tsuquyomi_completion_detail = 1
 let g:deoplete#disable_auto_complete = 1
+let g:deoplete#enable_camel_case = 1
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
 let g:jsdoc_allow_input_prompt = 1
@@ -223,6 +225,7 @@ augroup END
 augroup FiletypeDetect
     autocmd!
     autocmd BufRead,BufNewFile .stylelintrc setfiletype json
+    autocmd BufRead,BufNewFile search-result setfiletype javascript
 augroup END
 
 augroup signify
@@ -245,8 +248,9 @@ let g:fzf_action = {
             \}
 
 " ================ Sparkup ========================
-let g:sparkupMaps = 0
 let g:sparkupExecuteMapping = '<C-E>'
+let g:sparkupNextMapping = '<C-R>'
+let g:sparkupArgs = '--no-last-newline --open-empty-tags'
 
 " ================ Startify ========================
 let g:startify_session_autoload = 1
@@ -311,4 +315,10 @@ let g:winresizer_start_key = '<C-T>'
 let g:highlightedyank_highlight_duration = 100
 
 hi HighlightedyankRegion guibg='#565c64'
+
+autocmd CursorMoved,CursorHold * silent! call HighlightCursorWord()
+
+let g:AutoPairs = {'[':']', '{':'}',"'":"'",'"':'"', '`':'`'}
+inoremap <buffer><silent> ) <C-R>=AutoPairsInsert(')')<CR>
+inoremap <silent><expr> ( complete_parameter#pre_complete("()")
 

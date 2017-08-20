@@ -11,7 +11,7 @@ function! Smart_Complete()
     if (has_slash)
         return "\<C-X>\<C-F>"
     elseif (&omnifunc ==# '')
-        return "<ESC>a\<C-X>\<C-P>"
+        return "\<ESC>a\<C-X>\<C-P>"
     else
         return "\<C-X>\<C-O>"
     endif
