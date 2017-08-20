@@ -30,8 +30,18 @@ function cs {
     else
         builtin cd "$*"
     fi
+    cd-history-save
 }
 alias cd='exec_scmb_expand_args cs'
+
+function mvv {
+    if git ls-files --error-unmatch $1 > /dev/null 2>&1; then
+        git mv $*
+    else
+        /bin/mv $*
+    fi
+}
+alias mv='mvv'
 
 # temp folder
 function temp {
@@ -192,6 +202,13 @@ function f {
 }
 bind '"\C-f":" f\n"'
 
+function vf {
+    FILE=$(~/dotfiles/lib/bfs/bfs -type f| fzf --height 20% --reverse +m)
+    if [[ ! -z $FILE ]]; then
+        nvim $FILE
+    fi
+}
+
 function db() {
     local branches branch
     branches=$(git for-each-ref --sort=-committerdate refs/heads/ --format="%(refname:short)") &&
@@ -280,5 +297,9 @@ function vman {
     if [ "$?" != "0" ]; then
         echo "No manual entry for $*"
     fi
+}
+
+function rep {
+    rg $1 --no-heading --color=never --files-with-matches | xargs perl -pi -E 's/'$1'/'$2'/g'
 }
 
