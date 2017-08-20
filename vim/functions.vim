@@ -184,3 +184,10 @@ function s:MKDir(...)
 endfunction
 command -bang -bar -nargs=? -complete=file E :call s:MKDir(<f-args>) | e<bang> <args>
 
+" ================ rg search in new buffer ========================
+function! SearchAll(term)
+    exe 'edit search-result'
+    exe 'silent read!rg --heading -S -n ' . a:term
+endfunction
+command! -nargs=1 SA :call SearchAll(<q-args>)
+
