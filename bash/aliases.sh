@@ -14,6 +14,7 @@ alias cls='clear && gs'
 alias gg='cd $(git rev-parse --show-toplevel)'
 
 # vim
+alias sv='sudoedit'
 alias v='ge nvim'
 alias vim='ge nvim'
 alias memo='nvim ~/dev/memo.md'
