@@ -88,6 +88,7 @@ set smartcase
 set infercase
 set hlsearch
 set incsearch
+set inccommand=nosplit
 hi Search guibg='#565c64' guifg='#000'
 set icm=split
 let g:vim_search_pulse_disable_auto_mappings = 1
