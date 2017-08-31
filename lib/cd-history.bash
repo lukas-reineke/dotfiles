@@ -9,7 +9,6 @@ fi
 function cd-history-save() {
     local PWD="$(pwd)"
     perl -p -i -e "s#${PWD}\n##g" $CD_HISTORY_FILE
-    clear
     echo "$(pwd)" >> $CD_HISTORY_FILE
 }
 
@@ -22,7 +21,6 @@ function cdh() {
     if [[ -n ${jumpline} ]]; then
         local jumpdir=$(echo "${jumpline}" | sed "s#~#$HOME#")
         perl -p -i -e "s#${jumpline}\n##g" $CD_HISTORY_FILE
-        clear
         cd "${jumpdir}" && echo "${jumpline}" >> $CD_HISTORY_FILE
     fi
 }

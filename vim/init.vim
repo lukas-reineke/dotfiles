@@ -44,7 +44,6 @@ set undolevels=1000
 filetype plugin indent on
 set lazyredraw
 set shortmess+=A
-set conceallevel=0
 set noswapfile
 set termguicolors
 set noshowmode
@@ -70,6 +69,9 @@ set listchars+=precedes:<
 set listchars+=nbsp:_
 set listchars+=space:⋅
 let g:indentLine_char = '│'
+let g:indentLine_first_char = '│'
+let g:indentLine_fileTypeExclude = ['json']
+let g:indentLine_showFirstIndentLevel = 1
 
 set encoding=utf8
 set t_ut=

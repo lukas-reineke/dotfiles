@@ -203,7 +203,7 @@ function f {
 bind '"\C-f":" f\n"'
 
 function vf {
-    FILE=$(~/dotfiles/lib/bfs/bfs -type f| fzf --height 20% --reverse +m)
+    FILE=$(~/dotfiles/lib/bfs/bfs -type f | fzf --height 20% --reverse +m)
     if [[ ! -z $FILE ]]; then
         nvim $FILE
     fi

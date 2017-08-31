@@ -65,6 +65,7 @@ Plug 'wellle/targets.vim'
 " Plug 'vim-scripts/argtextobj.vim'
 Plug 'kana/vim-textobj-user'
 " Plug 'kana/vim-textobj-function'
+" Plug 'haya14busa/vim-textobj-function-syntax'
 " Plug 'thinca/vim-textobj-function-javascript'
 Plug 'glts/vim-textobj-comment'
 
