@@ -167,3 +167,6 @@ Plug 'mjbrownie/swapit'
 " Yank highlight
 Plug 'machakann/vim-highlightedyank'
 
+" title comment
+Plug 'guywald1/vim-prismo'
+

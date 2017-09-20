@@ -83,6 +83,7 @@ set splitbelow
 set splitright
 set autoread
 set cursorline
+hi CursorLine guibg='#22262d' guifg='#000'
 set hidden
 set virtualedit=block
 set ignorecase
@@ -92,7 +93,6 @@ set hlsearch
 set incsearch
 set inccommand=nosplit
 hi Search guibg='#565c64' guifg='#000'
-set icm=split
 let g:vim_search_pulse_disable_auto_mappings = 1
 let g:incsearch#auto_nohlsearch = 1
 let g:vim_search_pulse_mode = 'pattern'
