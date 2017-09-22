@@ -233,8 +233,12 @@ augroup END
 
 augroup signify
     autocmd!
-    autocmd cursormoved * call PoppyInit()
     autocmd FocusGained * :SignifyRefresh
+augroup END
+
+augroup poppy
+    autocmd!
+    autocmd cursormoved * call PoppyInit()
 augroup END
 
 let g:poppy_point_enable = 1
