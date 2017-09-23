@@ -122,11 +122,13 @@ Plug 'junegunn/fzf.vim'
 Plug 'vim-scripts/UnconditionalPaste'
 Plug 'sickill/vim-pasta'
 
-" Incsearch
+" Search
 Plug 'haya14busa/incsearch.vim'
 Plug 'haya14busa/incsearch-fuzzy.vim'
 Plug 'haya14busa/incsearch-easymotion.vim'
 Plug 'inside/vim-search-pulse'
+Plug 'brooth/far.vim'
+Plug 'osyo-manga/vim-over'
 
 " Themes
 Plug 'dracula/vim'
@@ -169,6 +171,4 @@ Plug 'machakann/vim-highlightedyank'
 
 " title comment
 Plug 'guywald1/vim-prismo'
-
-Plug 'osyo-manga/vim-over'
 

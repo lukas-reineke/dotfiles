@@ -32,7 +32,8 @@ nnoremap <Leader>n :Files %:h<CR>
 nnoremap <Leader>N :E %:h/
 
 " Search all
-nnoremap <Leader>a :RG<Space>
+" nnoremap <Leader>a :RG<Space>
+nnoremap <Leader>a :F<Space>
 " nnoremap <Leader>r :%smagic/
 " vnoremap <Leader>r :smagic/
 nnoremap <Leader>r :OverCommandLine<CR>%s/

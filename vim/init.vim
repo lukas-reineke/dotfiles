@@ -96,6 +96,10 @@ hi Search guibg='#565c64' guifg='#000'
 let g:vim_search_pulse_disable_auto_mappings = 1
 let g:incsearch#auto_nohlsearch = 1
 let g:vim_search_pulse_mode = 'pattern'
+" let g:far#source = 'acknvim'
+let g:far#window_layout = 'current'
+let g:far#preview_window_height = 20
+let g:far#file_mask_favorites = ['%', '**/*.*', '**/*.html', '**/*.js', '**/*.css', '**/*.ts', '**/*.vim']
 
 " ================ Tabs ========================
 set expandtab
