@@ -170,3 +170,5 @@ Plug 'machakann/vim-highlightedyank'
 " title comment
 Plug 'guywald1/vim-prismo'
 
+Plug 'osyo-manga/vim-over'
+

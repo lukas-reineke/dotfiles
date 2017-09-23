@@ -33,8 +33,10 @@ nnoremap <Leader>N :E %:h/
 
 " Search all
 nnoremap <Leader>a :RG<Space>
-nnoremap <Leader>r :%smagic/
-vnoremap <Leader>r :smagic/
+" nnoremap <Leader>r :%smagic/
+" vnoremap <Leader>r :smagic/
+nnoremap <Leader>r :OverCommandLine<CR>%s/
+vnoremap <Leader>r :OverCommandLine<CR>s/
 
 " Jump To Definition
 nnoremap <Leader>d <C-]>
