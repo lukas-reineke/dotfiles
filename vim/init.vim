@@ -96,10 +96,11 @@ hi Search guibg='#565c64' guifg='#000'
 let g:vim_search_pulse_disable_auto_mappings = 1
 let g:incsearch#auto_nohlsearch = 1
 let g:vim_search_pulse_mode = 'pattern'
-" let g:far#source = 'acknvim'
+let g:far#source = 'rg'
 let g:far#window_layout = 'current'
 let g:far#preview_window_height = 20
-let g:far#file_mask_favorites = ['%', '**/*.*', '**/*.html', '**/*.js', '**/*.css', '**/*.ts', '**/*.vim']
+let g:far#file_mask_favorites = ['%', '**/*.*', '**/*.ts', '**/*.html', '**/*.scss', '**/*.vim', '**/*.js']
+let g:far#highlight_match = 1
 
 " ================ Tabs ========================
 set expandtab
@@ -193,6 +194,9 @@ set wildignore+=*venv*
 let NERDTreeShowHidden=1
 let g:NERDTreeWinSize=50
 
+" ================ Bookmarks ========================
+let g:bookmark_auto_close = 1
+
 " ================ Comments ========================
 let g:NERDSpaceDelims = 1
 let g:NERDCompactSexyComs = 1
@@ -233,6 +237,7 @@ augroup FiletypeDetect
     autocmd!
     autocmd BufRead,BufNewFile .stylelintrc setfiletype json
     autocmd BufRead,BufNewFile search-result setfiletype javascript
+    autocmd BufRead,BufNewFile FAR* nnoremap <buffer> q :bd<CR>
 augroup END
 
 augroup signify
