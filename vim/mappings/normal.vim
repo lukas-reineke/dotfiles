@@ -56,8 +56,8 @@ map g/ <Plug>(incsearch-stay)\v
 map z/ <Plug>(incsearch-fuzzy-/)\v
 map z? <Plug>(incsearch-fuzzy-?)\v
 map zg/ <Plug>(incsearch-fuzzy-stay)\v
-map n <Plug>(incsearch-nohl-n)zz<Plug>Pulse
-map N <Plug>(incsearch-nohl-N)zz<Plug>Pulse
+map n <Plug>(incsearch-nohl-n)<Plug>Pulse
+map N <Plug>(incsearch-nohl-N)<Plug>Pulse
 map * <Plug>(incsearch-nohl-*)N<Plug>Pulse
 map # <Plug>(incsearch-nohl-#)<Plug>Pulse
 map g* <Plug>(incsearch-nohl-g*)<Plug>Pulse
