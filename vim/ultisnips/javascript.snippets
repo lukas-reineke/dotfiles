@@ -25,7 +25,7 @@ var $1 = function($2) {
 endsnippet
 
 snippet	cfu "const function" Ab
-const $1 = function($2) {
+const $1 = ($2) => {
 	$3${VISUAL}
 };
 endsnippet
@@ -50,27 +50,36 @@ snippet todo "todo" b
 // @TODO [`git config user.name`] `date +%d-%m-%Y`: $0${VISUAL}
 endsnippet
 
-snippet ife "if else" b
-if (${1:true}) {
-	$2${VISUAL}
-} else {
-	$3
+snippet if "if" Ab
+if (${1}) {
 }
 endsnippet
 
-snippet el "else" b
+snippet vif "visual if" Abs
+if (${1}) {
+	$2${VISUAL}
+}
+endsnippet
+
+snippet }e "else" A
 } else {
-	$3${VISUAL}
+	$1${VISUAL}
+}
+endsnippet
+
+snippet => "arrow function" A
+=> {
+	$1${VISUAL}
 }
 endsnippet
 
 snippet switch "switch" b
 switch ($1) {
-	case '$2':
-		$3${VISUAL}
-		break;
-	default:
-		$0
+case '$2':
+	$3${VISUAL}
+	break;
+default:
+	$0
 }
 endsnippet
 
@@ -87,9 +96,9 @@ const $1 = ${VISUAL}$2;
 endsnippet
 
 snippet stt "setTimeout" Ab
-setTimeout(function() {
+setTimeout(() => {
 	${VISUAL}$0
-}${2:.bind(this)}, ${1:1000});
+}, ${1:0});
 endsnippet
 
 snippet gcc "comment" Ab
@@ -100,7 +109,108 @@ snippet jss "JSON.stringify()" Ai
 JSON.stringify($0${VISUAL})
 endsnippet
 
+snippet jsp "JSON.parse()" Ai
+JSON.parse($0${VISUAL})
+endsnippet
+
 snippet dbg "Debugger" Ai
 debugger;
+endsnippet
+
+snippet ng-comp "Angular 2 component" b
+import { Component, OnInit } from '@angular/core';
+
+
+@Component({
+	selector: '`!p snip.rv = vim.eval("expand('%:h')").split('/')[-1]`',
+	styleUrls: ['`!p snip.rv = vim.eval("expand('%:h')").split('/')[-1].replace('-component', '')`.component.scss'],
+	templateUrl: '`!p snip.rv = vim.eval("expand('%:h')").split('/')[-1].replace('-component', '')`.component.html'
+})
+export class `!p snip.rv = vim.eval("expand('%:h')").split('/')[-1].title().replace('-', '').replace('Component', '')`Component implements OnInit {
+
+	constructor() {
+		$1
+	}
+
+	public ngOnInit() {
+	}
+
+}
+
+endsnippet
+
+snippet ng-spec-comp "Angular 2 component spec" b
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { async, TestBed, ComponentFixture } from '@angular/core/testing';
+
+import { `!p snip.rv = vim.eval("expand('%:h')").split('/')[-1].title().replace('-', '').replace('Component', '')`Component } from './`!p snip.rv = vim.eval("expand('%:h')").split('/')[-1].replace('-component', '')`.component';
+
+
+describe(\`Components: `!p snip.rv = vim.eval("expand('%:h')").split('/')[-1].title().replace('-', '').replace('Component', '')`\`, () => {
+	let fixture: ComponentFixture<`!p snip.rv = vim.eval("expand('%:h')").split('/')[-1].title().replace('-', '').replace('Component', '')`Component>;
+	let `!p snip.rv = (lambda s: s[:1].lower() + s[1:] if s else '')(vim.eval("expand('%:h')").split('/')[-1].title().replace('-', '').replace('Component', ''))`Component: `!p snip.rv = vim.eval("expand('%:h')").split('/')[-1].title().replace('-', '').replace('Component', '')`Component;
+
+	beforeEach(async(() => {
+		TestBed.configureTestingModule({
+			declarations: [ `!p snip.rv = vim.eval("expand('%:h')").split('/')[-1].title().replace('-', '').replace('Component', '')`Component ],
+			schemas: [ NO_ERRORS_SCHEMA ]
+		})
+			.compileComponents()
+			.then(() => {
+				fixture = TestBed.createComponent(`!p snip.rv = vim.eval("expand('%:h')").split('/')[-1].title().replace('-', '').replace('Component', '')`Component);
+				`!p snip.rv = (lambda s: s[:1].lower() + s[1:] if s else '')(vim.eval("expand('%:h')").split('/')[-1].title().replace('-', '').replace('Component', ''))`Component = fixture.componentInstance;
+			});
+	}));
+
+	it(\`should be initialized\`, () => {
+		expect(`!p snip.rv = vim.eval("expand('%:h')").split('/')[-1].title().replace('-', '').replace('Component', '')`Component).toBeDefined();
+	});
+
+	describe(\`$1\`, () => {
+
+		it(\`should $2\`, () => {
+		});
+
+	});
+
+});
+
+endsnippet
+
+snippet ng-spec-serv "Angular 2 service spec" b
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { async, TestBed, ComponentFixture } from '@angular/core/testing';
+
+import { `!p snip.rv = vim.eval("expand('%:h')").split('/')[-1].title().replace('-', '').replace('Service', '')`Service } from './`!p snip.rv = vim.eval("expand('%:h')").split('/')[-1].replace('-service', '')`.service';
+
+
+describe(\`Service: `!p snip.rv = vim.eval("expand('%:h')").split('/')[-1].title().replace('-', '').replace('Service', '')`\`, () => {
+
+	beforeEach(async(() => {
+		TestBed.configureTestingModule({
+			providers: [
+				`!p snip.rv = vim.eval("expand('%:h')").split('/')[-1].title().replace('-', '').replace('Service', '')`Service
+			],
+			schemas: [ NO_ERRORS_SCHEMA ]
+		});
+	}));
+
+	it(\`should be initialized\`, () => {
+		expect(`!p snip.rv = vim.eval("expand('%:h')").split('/')[-1].title().replace('-', '').replace('Service', '')`Service).toBeDefined();
+	});
+
+	describe(\`$1\`, () => {
+
+		it(\`should $2\`, inject([`!p snip.rv = vim.eval("expand('%:h')").split('/')[-1].title().replace('-', '').replace('Service', '')`Service], (`!p snip.rv = (lambda s: s[:1].lower() + s[1:] if s else '')(vim.eval("expand('%:h')").split('/')[-1].title().replace('-', '').replace('Service', ''))`Service) => {
+		}));
+
+	});
+
+});
+
+endsnippet
+
+snippet pri "Angular 2 argument" bw
+private `!p snip.rv = (lambda s: s[:1].lower() + s[1:] if s else '')(t[1])`: $1
 endsnippet
 
