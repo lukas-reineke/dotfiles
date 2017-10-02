@@ -139,6 +139,21 @@ export class `!p snip.rv = vim.eval("expand('%:h')").split('/')[-1].title().repl
 
 endsnippet
 
+snippet ng-serv "Angular 2 service" b
+import { Injectable } from '@angular/core';
+
+
+@Injectable()
+export class `!p snip.rv = vim.eval("expand('%:h')").split('/')[-1].title().replace('-', '').replace('Service', '')`Service {
+
+	constructor() {
+		$1
+	}
+
+}
+
+endsnippet
+
 snippet ng-spec-comp "Angular 2 component spec" b
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, TestBed, ComponentFixture } from '@angular/core/testing';
@@ -207,6 +222,42 @@ describe(\`Service: `!p snip.rv = vim.eval("expand('%:h')").split('/')[-1].title
 	});
 
 });
+
+endsnippet
+
+snippet ng-mod "Angular 2 module" b
+import { NgModule } from '@angular/core';
+import { routes } from './`!p snip.rv = vim.eval("expand('%:h')").split('/')[-1]`.routes';
+import { CommonModule } from '@angular/common';
+
+import { `!p snip.rv = vim.eval("expand('%:h')").split('/')[-1].title().replace('-', '')`Component } from './`!p snip.rv = vim.eval("expand('%:h')").split('/')[-1].replace('-component', '')`.component';
+
+
+@NgModule({
+	imports: [
+		routes,
+		CommonModule
+	],
+	declarations: [
+		`!p snip.rv = vim.eval("expand('%:h')").split('/')[-1].title().replace('-', '')`Component
+	]
+})
+
+export class `!p snip.rv = vim.eval("expand('%:h')").split('/')[-1].title().replace('-', '')`Module {}
+
+endsnippet
+
+snippet ng-route "Agnular 2 route" b
+import { ModuleWithProviders } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+
+import { `!p snip.rv = vim.eval("expand('%:h')").split('/')[-1].title().replace('-', '')`Component } from './`!p snip.rv = vim.eval("expand('%:h')").split('/')[-1].replace('-component', '')`.component';
+
+const `!p snip.rv = vim.eval("expand('%:h')").split('/')[-1].title().replace('-', '')`Routes: Routes = [
+	{ path: '', component: `!p snip.rv = vim.eval("expand('%:h')").split('/')[-1].title().replace('-', '')`Component, pathMatch: 'full' }
+];
+
+export const routes: ModuleWithProviders = RouterModule.forChild(`!p snip.rv = vim.eval("expand('%:h')").split('/')[-1].title().replace('-', '')`Routes);
 
 endsnippet
 
