@@ -9,7 +9,8 @@ function! Smart_Complete()
     let substr = matchstr(substr, "[^ \t]*$")
     let has_slash = match(substr, '\/') != -1
     if (has_slash)
-        return "\<C-X>\<C-F>"
+        " return "\<C-X>\<C-F>"
+        return "\<ESC>:cd %:p:h\<CR>a\<C-X>\<C-F>"
     elseif (&omnifunc ==# '')
         return "\<ESC>a\<C-X>\<C-P>"
     else
@@ -20,4 +21,5 @@ endfunction
 inoremap <C-N> <C-R>=Smart_Complete()<CR>
 inoremap <C-P> <C-N>
 inoremap <C-B> <ESC>a
+inoremap <C-X><C-F> <C-O>:cd %:p:h<CR><C-X><C-F>
 
