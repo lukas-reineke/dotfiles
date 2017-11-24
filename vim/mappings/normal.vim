@@ -49,6 +49,10 @@ sunmap b
 sunmap e
 sunmap ge
 
+" language specific
+autocmd FileType javascript nnoremap <silent> [D :normal! m`<CR>:TernDef<CR>
+autocmd FileType typescript nnoremap <silent> [D :normal! m`<CR>:TsuDefinition<CR>
+
 " Incsearch
 map / <Plug>(incsearch-forward)\v
 map ? <Plug>(incsearch-backward)\v
@@ -62,6 +66,11 @@ map * <Plug>(incsearch-nohl-*)N<Plug>Pulse
 map # <Plug>(incsearch-nohl-#)<Plug>Pulse
 map g* <Plug>(incsearch-nohl-g*)<Plug>Pulse
 map g# <Plug>(incsearch-nohl-g#)<Plug>Pulse
+
+nnoremap [[ ?[<CR>:nohl<CR>
+nnoremap ]] /]<CR>:nohl<CR>
+nnoremap [t ?<<CR>:nohl<CR>
+nnoremap ]t /<<CR>:nohl<CR>
 
 nnoremap Q @q
 

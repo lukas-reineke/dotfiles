@@ -33,7 +33,7 @@ nnoremap <Leader>N :E %:h/
 
 " Search all
 " nnoremap <Leader>a :RG<Space>
-nnoremap <Leader>a :F<Space>
+nnoremap <Leader>a :F<Space><Space>**/*.*<Left><Left><Left><Left><Left><Left><Left>
 " nnoremap <Leader>r :%smagic/
 " vnoremap <Leader>r :smagic/
 nnoremap <Leader>r :OverCommandLine<CR>%s/
@@ -43,12 +43,6 @@ vnoremap <Leader>r :OverCommandLine<CR>s/
 nnoremap <Leader>d <C-]>
 nnoremap <Leader>b <C-T>
 
-autocmd FileType javascript nnoremap <silent> <Leader>d :TernDef<CR>
-autocmd FileType javascript nnoremap <silent> <Leader><C-d> :TernRefs<CR>
-
-autocmd FileType typescript nnoremap <silent> <Leader>d :TsuDefinition<CR>
-autocmd FileType typescript nnoremap <silent> <Leader><C-d> :TsuReferences<CR>
-autocmd FileType typescript nnoremap <silent> <Leader>b :TsuGoBack<CR>
 autocmd FileType typescript nnoremap <silent> <Leader>ti :TsuImport<CR>
 autocmd FileType typescript nmap <buffer> <Leader>t : <C-u>echo tsuquyomi#hint()<CR>
 
@@ -57,14 +51,14 @@ nnoremap <Leader>o o<esc>k
 nnoremap <Leader>O O<esc>j
 
 " Easy motion
-map <Leader>e <Plug>(easymotion-bd-w)
-nmap <Leader>e <Plug>(easymotion-overwin-w)
-nmap <Leader>f <Plug>(easymotion-overwin-f2)
+map <Leader>ee <Plug>(easymotion-bd-w)
+nmap <Leader>ee <Plug>(easymotion-overwin-w)
+nmap <Leader>ef <Plug>(easymotion-overwin-f2)
+map <Leader>es <Plug>(incsearch-easymotion-/)\v
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 map <Leader>l <Plug>(easymotion-lineforward)
 map <Leader>h <Plug>(easymotion-linebackward)
-map <Leader>s <Plug>(incsearch-easymotion-/)\v
 
 " Spell correct
 nnoremap <Leader>z 1z=
@@ -106,4 +100,6 @@ nnoremap <Leader>gm :Gsdiff :1 \| Gvdiff<CR>
 nnoremap <Leader>gl :BCommits<CR>
 nnoremap <Leader>gf :GFiles?<CR>
 nnoremap <Leader>gt :SignifyToggleHighlight<CR>
+
+nnoremap <Leader>; :CommaOrSemiColon<CR>
 

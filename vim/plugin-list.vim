@@ -25,6 +25,7 @@ Plug 'idanarye/vim-merginal'
 
 " Typescript
 Plug 'leafgarland/typescript-vim'
+Plug 'HerringtonDarkholme/yats.vim'
 Plug 'Quramy/tsuquyomi'
 " Javascript
 Plug 'pangloss/vim-javascript'
@@ -33,10 +34,13 @@ Plug 'heavenshell/vim-jsdoc'
 Plug 'elzr/vim-json'
 " HTML5
 Plug 'othree/html5.vim'
+Plug 'othree/html5-syntax.vim'
 Plug 'lukas-reineke/sparkup'
 Plug 'gregsexton/matchtag'
 " Markdown
 Plug 'shime/vim-livedown'
+" i3 config
+Plug 'PotatoesMaster/i3-vim-syntax'
 
 " Tmux
 Plug 'christoomey/vim-tmux-navigator'
@@ -69,6 +73,8 @@ Plug 'kana/vim-textobj-user'
 " Plug 'thinca/vim-textobj-function-javascript'
 Plug 'glts/vim-textobj-comment'
 
+Plug 'justinmk/vim-ipmotion'
+
 " Bookmarks
 Plug 'MattesGroeger/vim-bookmarks'
 
@@ -87,10 +93,7 @@ Plug 'Yggdroot/indentLine'
 " inline colors
 Plug 'lilydjwg/colorizer'
 
-" expand region
-Plug 'terryma/vim-expand-region'
-
-" Airline
+" " Airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'augustold/vim-airline-colornum'
@@ -99,7 +102,7 @@ Plug 'augustold/vim-airline-colornum'
 Plug 'easymotion/vim-easymotion'
 
 " Start Screen
-Plug 'mhinz/vim-startify'
+" Plug 'mhinz/vim-startify'
 
 " Undo Tree
 Plug 'simnalamburt/vim-mundo'
@@ -110,14 +113,14 @@ Plug 'bkad/camelcasemotion'
 " Replace
 Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'vim-scripts/ReplaceWithSameIndentRegister'
-" Sorting
-Plug 'christoomey/vim-sort-motion'
-"
+
 " Root
 Plug 'dbakker/vim-projectroot'
+
 " FZF
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+
 " Paste
 Plug 'vim-scripts/UnconditionalPaste'
 Plug 'sickill/vim-pasta'
@@ -131,7 +134,6 @@ Plug 'brooth/far.vim'
 Plug 'osyo-manga/vim-over'
 
 " Themes
-Plug 'dracula/vim'
 Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'chriskempson/base16-vim'
 
@@ -158,17 +160,17 @@ Plug 'AndrewRadev/splitjoin.vim'
 " bracket highlighter
 Plug 'bounceme/poppy.vim'
 
-Plug 'hotoo/highlight-cursor-word.vim'
-
-" i3 config
-Plug 'PotatoesMaster/i3-vim-syntax'
-
-" C-A / C-X toggle for other stuff
-Plug 'mjbrownie/swapit'
+" Plug 'hotoo/highlight-cursor-word.vim'
 
 " Yank highlight
 Plug 'machakann/vim-highlightedyank'
 
 " title comment
 Plug 'guywald1/vim-prismo'
+
+Plug 'lfilho/cosco.vim'
+
+Plug 'romainl/vim-qf'
+
+Plug 'kana/vim-niceblock'
 

@@ -30,11 +30,11 @@ function! s:StripTrailingWhitespaces()
     call cursor(l:l, l:c)
 endfunction
 
-augroup vimrc
+augroup stripWhitespaces
     autocmd!
 augroup END
 
-autocmd vimrc BufWritePre * :call s:StripTrailingWhitespaces()
+autocmd stripWhitespaces BufWritePre * :call s:StripTrailingWhitespaces()
 
 " ================ jump to the last position when reopening a file ========================
 if has("autocmd")
@@ -184,10 +184,46 @@ function s:MKDir(...)
 endfunction
 command -bang -bar -nargs=? -complete=file E :call s:MKDir(<f-args>) | e<bang> <args>
 
-" ================ rg search in new buffer ========================
-function! SearchAll(term)
-    exe 'edit search-result'
-    exe 'silent read!rg --heading -S -n ' . a:term
+" " ================ rg search in new buffer ========================
+" function! SearchAll(term)
+"     exe 'edit search-result'
+"     exe 'silent read!rg --heading -S -n ' . a:term
+" endfunction
+" command! -nargs=1 SA :call SearchAll(<q-args>)
+
+fu! RestoreSess()
+if filereadable(getcwd() . '/Session.vim') && &filetype != "gitcommit"
+    execute 'so ' . getcwd() . '/Session.vim'
+    if bufexists(1)
+        for l in range(1, bufnr('$'))
+            if bufwinnr(l) == -1
+                exec 'sbuffer ' . l
+            endif
+        endfor
+    endif
+endif
 endfunction
-command! -nargs=1 SA :call SearchAll(<q-args>)
+
+autocmd VimEnter * nested call RestoreSess()
+
+let g:quick_fix_on = 1
+fu! QuickScope()
+    let list = ['quickfix', 'help', 'nofile']
+    if (index(list, &buftype) >= 0) && g:quick_fix_on == 1
+        let g:quick_fix_on = 0
+        QuickScopeToggle
+    elseif (index(list, &buftype) < 0) && g:quick_fix_on == 0
+        let g:quick_fix_on = 1
+        QuickScopeToggle
+    endif
+endfunction
+
+augroup QuickScopeCMD
+    autocmd! BufEnter * call QuickScope()
+augroup END
+
+" if v:version >= 700
+"     au BufLeave * let b:winview = winsaveview()
+"     au BufEnter * if(exists('b:winview')) | call winrestview(b:winview) | endif
+" endif
 

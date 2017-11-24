@@ -36,11 +36,11 @@ so $HOME/dotfiles/vim/functions.vim
 " => Global Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-syntax on
-set synmaxcol=200
+syntax enable
+set synmaxcol=400
 set spell
-set history=1000
-set undolevels=1000
+set history=10000
+set undolevels=10000
 filetype plugin indent on
 set lazyredraw
 set shortmess+=A
@@ -72,6 +72,7 @@ let g:indentLine_char = '│'
 let g:indentLine_first_char = '│'
 let g:indentLine_fileTypeExclude = ['json']
 let g:indentLine_showFirstIndentLevel = 1
+let g:clever_f_use_migemo = 1
 
 set encoding=utf8
 set t_ut=
@@ -96,6 +97,7 @@ hi Search guibg='#565c64' guifg='#000'
 let g:vim_search_pulse_disable_auto_mappings = 1
 let g:incsearch#auto_nohlsearch = 1
 let g:vim_search_pulse_mode = 'pattern'
+let g:over_command_line_prompt = ''
 let g:far#source = 'rg'
 let g:far#window_layout = 'current'
 let g:far#preview_window_height = 20
@@ -136,7 +138,7 @@ let g:tsuquyomi_javascript_support = 1
 let g:tsuquyomi_completion_detail = 1
 let g:deoplete#disable_auto_complete = 1
 let g:deoplete#enable_camel_case = 1
-autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+" autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
 let g:jsdoc_allow_input_prompt = 1
 let g:jsdoc_input_description = 1
@@ -195,7 +197,7 @@ let NERDTreeShowHidden=1
 let g:NERDTreeWinSize=50
 
 " ================ Bookmarks ========================
-let g:bookmark_auto_close = 1
+" let g:bookmark_auto_close = 1
 
 " ================ Comments ========================
 let g:NERDSpaceDelims = 1
@@ -205,6 +207,7 @@ let g:NERDCompactSexyComs = 1
 let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'typescript': ['tslint', 'tsuquyomi'],
+\   'html': ['htmlhint', 'proselint', 'write-good']
 \}
 let g:ale_sign_error = '誤'
 let g:ale_sign_warning = '危'
@@ -268,8 +271,8 @@ let g:sparkupExecuteMapping = '<C-E>'
 let g:sparkupNextMapping = '<C-R>'
 let g:sparkupArgs = '--no-last-newline --open-empty-tags'
 
-" ================ Startify ========================
-let g:startify_session_autoload = 1
+" " ================ Startify ========================
+" let g:startify_session_autoload = 1
 
 " ================ Sandwich ========================
 let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
@@ -332,9 +335,19 @@ let g:highlightedyank_highlight_duration = 100
 
 hi HighlightedyankRegion guibg='#565c64'
 
-autocmd CursorMoved,CursorHold * silent! call HighlightCursorWord()
+" autocmd CursorMoved,CursorHold * silent! call HighlightCursorWord()
 
 let g:AutoPairs = {'[':']', '{':'}',"'":"'",'"':'"', '`':'`'}
 inoremap <buffer><silent> ) <C-R>=AutoPairsInsert(')')<CR>
 inoremap <silent><expr> ( complete_parameter#pre_complete("()")
+
+
+set foldclose=all " Close folds if you leave them in any way
+" set foldcolumn=1 " Show the foldcolumn
+" set foldenable " Turn on folding
+set foldlevel=0 " Autofold everything by default
+set foldmethod=syntax " Fold on the syntax
+set foldnestmax=2 " I only like to fold outer functions
+set foldopen=all " Open folds if you touch them in any way
+let g:ip_skipfold = 1
 
