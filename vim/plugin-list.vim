@@ -182,3 +182,5 @@ Plug 'AndrewRadev/undoquit.vim'
 
 Plug 'AndrewRadev/andrews_nerdtree.vim'
 
+Plug 'krisajenkins/vim-projectlocal'
+

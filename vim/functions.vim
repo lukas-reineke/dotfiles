@@ -197,7 +197,7 @@ augroup END
 
 augroup Undouble_Completions
     autocmd!
-    autocmd CompleteDone *  call Undouble_Completions()
+    autocmd CompleteDone * call Undouble_Completions()
 augroup END
 
 function! Undouble_Completions ()
@@ -210,7 +210,7 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Fold Text{{{
+" Fold Text {{{
 
 function! FoldText()
     let line = getline(v:foldstart)
@@ -235,6 +235,25 @@ function! FoldText()
     return '➔ ' . line . repeat(" ",fillcharcount) . foldedlinecount . ' '
 endfunction
 set foldtext=FoldText()
+
+" }}}
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Diff Fold {{{
+
+function! FoldCloseAll()
+    if winnr('$') > 1
+        let l:currentWindow=winnr()
+        windo execute "normal! zm"
+        execute l:currentWindow . "wincmd w"
+    endif
+endfunction
+
+augroup CloseDiffFoldInAllWindows
+    autocmd!
+    autocmd cursormoved * call FoldCloseAll()
+augroup END
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

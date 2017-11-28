@@ -93,7 +93,7 @@ function! s:SkipFold(direction) abort
             let l:posOrig[1] = l:posOrig[1] + 5
             call cursor(l:posOrig[1:])
             break
-        elseif l:pos[1] == 1
+        elseif l:pos[1] == 0
             let l:posOrig[1] = l:posOrig[1] - 5
             call cursor(l:posOrig[1:])
             break

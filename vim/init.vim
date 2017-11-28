@@ -123,7 +123,7 @@ augroup END
 "
 set foldclose=all
 set nofoldenable
-set foldlevel=1
+set foldlevel=2
 set foldmethod=indent
 set foldnestmax=2
 set foldopen=all
