@@ -76,7 +76,7 @@ Plug 'glts/vim-textobj-comment'
 Plug 'justinmk/vim-ipmotion'
 
 " Bookmarks
-Plug 'MattesGroeger/vim-bookmarks'
+" Plug 'MattesGroeger/vim-bookmarks'
 
 " Terminus
 Plug 'wincent/terminus'
@@ -85,7 +85,7 @@ Plug 'wincent/terminus'
 Plug 'djoshea/vim-autoread'
 
 " Dim inactive window
-Plug 'blueyed/vim-diminactive'
+" Plug 'blueyed/vim-diminactive'
 
 " Indent Lines
 Plug 'Yggdroot/indentLine'
@@ -173,4 +173,12 @@ Plug 'lfilho/cosco.vim'
 Plug 'romainl/vim-qf'
 
 Plug 'kana/vim-niceblock'
+
+Plug 'gcmt/wildfire.vim'
+
+Plug 'kshenoy/vim-signature'
+
+Plug 'AndrewRadev/undoquit.vim'
+
+Plug 'AndrewRadev/andrews_nerdtree.vim'
 

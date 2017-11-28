@@ -1,0 +1,3 @@
+
+setlocal omnifunc=pythoncomplete#Complete
+

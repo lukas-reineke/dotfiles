@@ -1,8 +1,17 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Inster Mappings
+" Global {{{
+
+inoremap <C-X><C-F> <C-O>:cd %:p:h<CR><C-X><C-F>
+
+inoremap <buffer><silent> ) <C-R>=AutoPairsInsert(')')<CR>
+inoremap <silent><expr> ( complete_parameter#pre_complete("()")
+
+" }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Complete
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Smart Complete {{{
+
 function! Smart_Complete()
     let line = getline('.')
     let substr = strpart(line, -1, col('.')+1)
@@ -21,5 +30,9 @@ endfunction
 inoremap <C-N> <C-R>=Smart_Complete()<CR>
 inoremap <C-P> <C-N>
 inoremap <C-B> <ESC>a
-inoremap <C-X><C-F> <C-O>:cd %:p:h<CR><C-X><C-F>
+
+" }}}
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" vim:foldmethod=marker:foldlevel=0
 

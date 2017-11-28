@@ -1,8 +1,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Functions
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Close Buffer {{{
 
-" ================ Open Buffer Number ========================
 function! OpenBufferNumber()
     let cnt = 0
     for i in range(0, bufnr("$"))
@@ -13,16 +11,21 @@ function! OpenBufferNumber()
     return cnt
 endfunction
 
-" ================ close buffer or window ========================
 function! CloseOnLast()
     if OpenBufferNumber() <= 1
         q
     else
+        call undoquit#SaveWindowQuitHistory()
         bd
     endif
 endfunction
 
-" ================ Strip trailing whitespace ========================
+" }}}
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Strip trailing whitespace {{{
+
 function! s:StripTrailingWhitespaces()
     let l:l = line(".")
     let l:c = col(".")
@@ -32,40 +35,22 @@ endfunction
 
 augroup stripWhitespaces
     autocmd!
+    autocmd stripWhitespaces BufWritePre * :call s:StripTrailingWhitespaces()
 augroup END
 
-autocmd stripWhitespaces BufWritePre * :call s:StripTrailingWhitespaces()
-
-" ================ jump to the last position when reopening a file ========================
-if has("autocmd")
-    au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") && &filetype != "gitcommit" | exe "normal! g'\"" | endif
-endif
+augroup stripWhitespaces
+    autocmd!
+    autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") && &filetype != "gitcommit" | exe "normal! g'\"" | endif
+augroup END
 
 au CursorHold * checktime
 
-" ================ Keep undo history across sessions, by storing in file ========================
-silent !mkdir ~/.config/nvim/backups > /dev/null 2>&1
-set undodir=~/.config/nvim/backups
-set undofile
+" }}}
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" ================ Nerd Tree ========================
-" Check if NERDTree is open or active
-function! IsNERDTreeOpen()
-    return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
-endfunction
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Auto Root {{{
 
-function! ToggleNERDTreeFind()
-    if IsNERDTreeOpen()
-        NERDTreeClose
-    else
-        NERDTreeFind
-    endif
-endfunction
-
-" ================ Find Lines ========================
-command! -bang -nargs=* RG call fzf#vim#grep('rg -S --line-number --hidden -g "!.git" '.shellescape(<q-args>), 0, <bang>0 ? fzf#vim#with_preview('up:60%'): fzf#vim#with_preview('right:50%:hidden', '?'), <bang>0)
-
-" ================ Auto Root ========================
 function! <SID>AutoProjectRootCD()
     try
         if &ft != 'help'
@@ -78,7 +63,12 @@ endfunction
 
 autocmd BufEnter * call <SID>AutoProjectRootCD()
 
-" ================ Japanese in insert ========================
+" }}}
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Japanese {{{
+
 let g:input_toggle = 0
 function! FcitxToEn()
     let s:input_status = system("fcitx-remote")
@@ -99,62 +89,22 @@ endfunction
 autocmd InsertLeave * call FcitxToEn()
 autocmd InsertEnter * call FcitxToJp()
 
-" ================ line text object ========================
-call textobj#user#plugin('line', {
-\   '-': {
-\     'select-a-function': 'CurrentLineA',
-\     'select-a': 'al',
-\     'select-i-function': 'CurrentLineI',
-\     'select-i': 'il',
-\   },
-\ })
-
-function! CurrentLineA()
-  normal! 0
-  let head_pos = getpos('.')
-  normal! $
-  let tail_pos = getpos('.')
-  return ['v', head_pos, tail_pos]
-endfunction
-
-function! CurrentLineI()
-  normal! ^
-  let head_pos = getpos('.')
-  normal! g_
-  let tail_pos = getpos('.')
-  let non_blank_char_exists_p = getline('.')[head_pos[2] - 1] !~# '\s'
-  return
-  \ non_blank_char_exists_p
-  \ ? ['v', head_pos, tail_pos]
-  \ : 0
-endfunction
-
-" ================ wrap :cnext/:cprevious and :lnext/:lprevious ========================
-function! WrapCommand(direction, prefix)
-    if a:direction == "up"
-        try
-            execute a:prefix . "previous"
-        catch /^Vim\%((\a\+)\)\=:E553/
-            execute a:prefix . "last"
-        catch /^Vim\%((\a\+)\)\=:E\%(776\|42\):/
-        endtry
-    elseif a:direction == "down"
-        try
-            execute a:prefix . "next"
-        catch /^Vim\%((\a\+)\)\=:E553/
-            execute a:prefix . "first"
-        catch /^Vim\%((\a\+)\)\=:E\%(776\|42\):/
-        endtry
+function! ToggleInput()
+    if g:input_toggle
+        let g:input_toggle=0
+    else
+        let g:input_toggle=1
     endif
 endfunction
 
-nnoremap <silent> ]l :call WrapCommand('up', 'c')<CR>
-nnoremap <silent> [l  :call WrapCommand('down', 'c')<CR>
+command Japanese :call ToggleInput()
 
-nnoremap <silent> ]c :call WrapCommand('up', 'l')<CR>
-nnoremap <silent> [c  :call WrapCommand('down', 'l')<CR>
+" }}}
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" ================ clear registers ========================
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Clear Registers {{{
+
 " https://stackoverflow.com/a/26043227
 function! ClearRegisters()
     redir => l:register_out
@@ -169,7 +119,12 @@ function! ClearRegisters()
     endfor
 endfunction
 
-" ================ create file and dir ========================
+" }}}
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Make Dir {{{
+
 " https://github.com/junegunn/fzf.vim/issues/89#issuecomment-187764499
 function s:MKDir(...)
     if         !a:0
@@ -184,14 +139,13 @@ function s:MKDir(...)
 endfunction
 command -bang -bar -nargs=? -complete=file E :call s:MKDir(<f-args>) | e<bang> <args>
 
-" " ================ rg search in new buffer ========================
-" function! SearchAll(term)
-"     exe 'edit search-result'
-"     exe 'silent read!rg --heading -S -n ' . a:term
-" endfunction
-" command! -nargs=1 SA :call SearchAll(<q-args>)
+" }}}
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-fu! RestoreSess()
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Restore Session {{{
+
+fu! RestoreSession()
 if filereadable(getcwd() . '/Session.vim') && &filetype != "gitcommit"
     execute 'so ' . getcwd() . '/Session.vim'
     if bufexists(1)
@@ -204,26 +158,86 @@ if filereadable(getcwd() . '/Session.vim') && &filetype != "gitcommit"
 endif
 endfunction
 
-autocmd VimEnter * nested call RestoreSess()
+autocmd VimEnter * nested call RestoreSession()
 
-let g:quick_fix_on = 1
-fu! QuickScope()
+" }}}
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Quick Fix{{{
+
+function! QuickFix()
     let list = ['quickfix', 'help', 'nofile']
-    if (index(list, &buftype) >= 0) && g:quick_fix_on == 1
-        let g:quick_fix_on = 0
-        QuickScopeToggle
-    elseif (index(list, &buftype) < 0) && g:quick_fix_on == 0
-        let g:quick_fix_on = 1
-        QuickScopeToggle
+    if (index(list, &buftype) >= 0)
+        let g:qs_enable = 0
+        " match Error /.*/
+        " syntax match Error /|.*|/
+        " syntax match Error /\d*\scol\s\d*/
+        if &buftype == 'quickfix'
+            match Error /|/
+            syntax match qfFileName /^[^|]*/ transparent conceal
+            syntax match qfError /error\(|\s\|\s\d*|\s\)/ transparent conceal
+            syntax match qfCol /\d*\scol\s\d*/ transparent conceal
+        endif
+    else
+        let g:qs_enable = 1
     endif
 endfunction
 
-augroup QuickScopeCMD
-    autocmd! BufEnter * call QuickScope()
+augroup QuickFix
+    autocmd!
+    autocmd BufWinEnter,BufEnter,cursormoved * call QuickFix()
 augroup END
 
-" if v:version >= 700
-"     au BufLeave * let b:winview = winsaveview()
-"     au BufEnter * if(exists('b:winview')) | call winrestview(b:winview) | endif
-" endif
+" }}}
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Undoubled Completion{{{
+
+augroup Undouble_Completions
+    autocmd!
+    autocmd CompleteDone *  call Undouble_Completions()
+augroup END
+
+function! Undouble_Completions ()
+    let col  = getpos('.')[2]
+    let line = getline('.')
+    call setline('.', substitute(line, '\(\.\?\k\+\)\%'.col.'c\zs\1', '', ''))
+endfunction
+
+" }}}
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Fold Text{{{
+
+function! FoldText()
+    let line = getline(v:foldstart)
+
+    let nucolwidth = &fdc + &number * &numberwidth
+    let windowwidth = winwidth(0) - nucolwidth - 3
+    let foldedlinecount = v:foldend - v:foldstart
+
+    " expand tabs into spaces
+    let onetab = strpart('          ', 0, &tabstop)
+    let line = substitute(line, '\t', onetab, 'g')
+
+    let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
+
+    let [added, modified, removed] = sy#repo#get_stats()
+    if added > 0 || modified > 0 || removed > 0 || len(getqflist()) > 0 || len(signature#mark#GetList('used', 'buf_all')) > 0
+        let fillcharcount = windowwidth - len(line) - len(foldedlinecount) - 2
+    else
+        let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
+    endif
+
+    return '➔ ' . line . repeat(" ",fillcharcount) . foldedlinecount . ' '
+endfunction
+set foldtext=FoldText()
+
+" }}}
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" vim:foldmethod=marker:foldlevel=0
 
