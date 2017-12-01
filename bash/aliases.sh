@@ -19,6 +19,7 @@ alias v='ge nvim'
 alias vim='ge nvim'
 alias memo='nvim ~/dev/memo.md'
 alias gv='ge nvim -c "Gdiff"'
+alias r='roamer --skip-approval'
 
 # tmux
 alias t='tmux new -s'

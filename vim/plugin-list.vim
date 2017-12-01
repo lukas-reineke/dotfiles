@@ -184,3 +184,5 @@ Plug 'AndrewRadev/andrews_nerdtree.vim'
 
 Plug 'krisajenkins/vim-projectlocal'
 
+Plug 'abaldwin88/roamer.vim'
+
