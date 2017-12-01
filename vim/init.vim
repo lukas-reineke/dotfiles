@@ -225,7 +225,7 @@ let g:UltiSnipsSnippetDirectories = ['ultisnips']
 " Linter {{{
 
 let g:ale_linters = {
-\   'javascript': ['eslint'],
+\   'javascript': ['eslint', 'flow'],
 \   'typescript': ['tslint', 'tsserver', 'typecheck'],
 \   'html': ['htmlhint']
 \}
