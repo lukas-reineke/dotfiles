@@ -34,5 +34,18 @@ inoremap <C-B> <ESC>a
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Smart Backspace {{{
+
+inoremap <silent><expr><BS>
+            \ (&indentexpr isnot '' ? &indentkeys : &cinkeys) =~? '!\^F' &&
+            \ &backspace =~? '.*eol\&.*start\&.*indent\&' &&
+            \ !search('\S','nbW',line('.')) ? "\<C-U>\<bs>" .
+            \ (getline(line('.')-1) =~ '\S' ? "" : "\<C-F>") : "\<C-R>=AutoPairsDelete()\<CR>"
+inoremap <S-BS> <BS>
+
+" }}}
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " vim:foldmethod=marker:foldlevel=0
 

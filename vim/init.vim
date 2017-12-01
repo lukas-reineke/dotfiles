@@ -354,6 +354,7 @@ let g:winresizer_start_key = '<C-T>'
 
 " AutoPairs
 let g:AutoPairs = {'[':']', '{':'}',"'":"'",'"':'"', '`':'`'}
+let g:AutoPairsMapBS = 0
 
 " Clever F
 let g:clever_f_use_migemo = 1
