@@ -129,7 +129,7 @@ Plug 'sickill/vim-pasta'
 Plug 'haya14busa/incsearch.vim'
 Plug 'haya14busa/incsearch-fuzzy.vim'
 Plug 'haya14busa/incsearch-easymotion.vim'
-Plug 'inside/vim-search-pulse'
+" Plug 'inside/vim-search-pulse'
 Plug 'brooth/far.vim'
 Plug 'osyo-manga/vim-over'
 
@@ -185,4 +185,6 @@ Plug 'AndrewRadev/andrews_nerdtree.vim'
 Plug 'krisajenkins/vim-projectlocal'
 
 Plug 'abaldwin88/roamer.vim'
+
+Plug 'fcpg/vim-spotlightify'
 

@@ -178,9 +178,9 @@ set wildignore+=*/doc/*
 set wildignore+=*/dll/*
 set wildignore+=*venv*
 
-let g:vim_search_pulse_disable_auto_mappings = 1
+" let g:vim_search_pulse_disable_auto_mappings = 1
+" let g:vim_search_pulse_mode = 'pattern'
 let g:incsearch#auto_nohlsearch = 1
-let g:vim_search_pulse_mode = 'pattern'
 let g:over_command_line_prompt = ''
 let g:far#source = 'rg'
 let g:far#window_layout = 'current'
@@ -262,7 +262,7 @@ let g:NERDTreeWinSize=50
 let g:NERDSpaceDelims = 1
 let g:NERDCompactSexyComs = 1
 
-let g:andrews_nerdtree_buffer_fs_menu = 1
+" let g:andrews_nerdtree_buffer_fs_menu = 1
 
 "EasyMotion
 let g:EasyMotion_smartcase = 1
@@ -272,7 +272,7 @@ let g:EasyMotion_keys = 'asdfghjklqwertyuiopzxcvbnm'
 " signify
 augroup signify
     autocmd!
-    autocmd FocusGained * :SignifyRefresh
+    autocmd FocusGained,cursormoved * :SignifyRefresh
 augroup END
 let g:signify_realtime = 1
 
@@ -358,6 +358,51 @@ let g:AutoPairsMapBS = 0
 
 " Clever F
 let g:clever_f_use_migemo = 1
+
+" Airline
+let g:airline_detect_spell = 0
+let g:airline_detect_spelllang = 0
+let g:airline_section_x = 0
+let g:airline_section_y = 0
+let g:airline_section_z = 0
+let g:airline_mode_map = {
+            \ '__': '-',
+            \ 'n': '正則',
+            \ 'i': '入る',
+            \ 'R': '代る',
+            \ 'c': 'C',
+            \ 'v': '選択',
+            \ 'V': '選択',
+            \ '': '選択',
+            \ 's': 'S',
+            \ 'S': 'S',
+            \ '': 'S',
+            \ }
+let g:airline#extensions#default#layout = [
+            \ [ 'a', 'c' ],
+            \ [ 'b', 'error', 'warning' ]
+            \ ]
+" let g:airline_section_c = '%t'
+let g:airline#extensions#branch#format = 'CustomBranchName'
+function! CustomBranchName(name)
+     return ''
+endfunction
+
+let g:airline#extensions#whitespace#enabled = 0
+
+let g:tmuxline_preset = {
+            \ 'a': '#{window_panes}',
+            \ 'x': '#(cd #{pane_current_path} && git rev-parse --abbrev-ref HEAD)',
+            \ 'win': '#I #{pane_title}',
+            \ 'cwin': '#I #{pane_title}',
+            \ 'options': {'status-justify': 'left'}
+            \ }
+let g:tmuxline_separators = {
+            \ 'left': '',
+            \ 'left_alt': '',
+            \ 'right': '',
+            \ 'right_alt': '',
+            \ 'space': ' '}
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
