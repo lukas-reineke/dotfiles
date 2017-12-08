@@ -145,17 +145,18 @@ command -bang -bar -nargs=? -complete=file E :call s:MKDir(<f-args>) | e<bang> <
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Restore Session {{{
 
-fu! RestoreSession()
-if filereadable(getcwd() . '/Session.vim') && &filetype != "gitcommit"
-    execute 'so ' . getcwd() . '/Session.vim'
-    if bufexists(1)
-        for l in range(1, bufnr('$'))
-            if bufwinnr(l) == -1
-                exec 'sbuffer ' . l
-            endif
-        endfor
+function! RestoreSession()
+    let ignore = ['.env.sh']
+    if filereadable(getcwd() . '/Session.vim') && &filetype != "gitcommit" && index(ignore, expand('%:t')) < 0
+        execute 'so ' . getcwd() . '/Session.vim'
+        if bufexists(1)
+            for l in range(1, bufnr('$'))
+                if bufwinnr(l) == -1
+                    exec 'sbuffer ' . l
+                endif
+            endfor
+        endif
     endif
-endif
 endfunction
 
 autocmd VimEnter * nested call RestoreSession()
@@ -243,7 +244,7 @@ set foldtext=FoldText()
 " Diff Fold {{{
 
 function! FoldCloseAll()
-    if winnr('$') > 1
+    if winnr('$') > 1 && &foldmethod == 'diff'
         let l:currentWindow=winnr()
         windo execute "normal! zm"
         execute l:currentWindow . "wincmd w"
