@@ -102,6 +102,7 @@ highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 highlight CursorLine guibg='#22262d' guifg='#000'
 highlight QuickFixLine guibg='#22262d' guifg='#000'
 highlight Search guibg='#565c64' guifg='#000'
+highlight ESearchMatch guibg='#565c64' guifg='#000'
 highlight HighlightedyankRegion guibg='#565c64'
 highlight Folded  ctermfg=cyan ctermbg=black
 let g:airline_theme = 'bubblegum'
@@ -182,11 +183,21 @@ set wildignore+=*venv*
 " let g:vim_search_pulse_mode = 'pattern'
 let g:incsearch#auto_nohlsearch = 1
 let g:over_command_line_prompt = ''
-let g:far#source = 'rg'
-let g:far#window_layout = 'current'
-let g:far#preview_window_height = 20
-let g:far#file_mask_favorites = ['%', '**/*.*', '**/*.ts', '**/*.html', '**/*.scss', '**/*.vim', '**/*.js']
-let g:far#highlight_match = 1
+" let g:far#source = 'rg'
+" let g:far#window_layout = 'current'
+" let g:far#preview_window_height = 20
+" let g:far#file_mask_favorites = ['%', '**/*.*', '**/*.ts', '**/*.html', '**/*.scss', '**/*.vim', '**/*.js']
+" let g:far#highlight_match = 1
+
+call esearch#map('<leader>a', 'esearch')
+let g:esearch#out#win#open = 'enew'
+let g:esearch#out#win#context_syntax_highlight = 1
+let g:esearch#out#win#syntax_regeps = {
+            \ 'typescript': '\%(\.ts\)$',
+            \ 'javascript': '\%(\.js\)$',
+            \ 'json': '\%(\.json\)$',
+            \ 'yaml': '\%(yaml\|\.yml\)$',
+            \}
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

@@ -75,9 +75,6 @@ Plug 'glts/vim-textobj-comment'
 
 Plug 'justinmk/vim-ipmotion'
 
-" Bookmarks
-" Plug 'MattesGroeger/vim-bookmarks'
-
 " Terminus
 Plug 'wincent/terminus'
 
@@ -130,7 +127,8 @@ Plug 'haya14busa/incsearch.vim'
 Plug 'haya14busa/incsearch-fuzzy.vim'
 Plug 'haya14busa/incsearch-easymotion.vim'
 " Plug 'inside/vim-search-pulse'
-Plug 'brooth/far.vim'
+" Plug 'brooth/far.vim'
+Plug 'eugen0329/vim-esearch'
 Plug 'osyo-manga/vim-over'
 
 " Themes
