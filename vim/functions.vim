@@ -103,6 +103,14 @@ command Japanese :call ToggleInput()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Json Format {{{
+
+command JsonFormat :%!python -m json.tool
+
+" }}}
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Clear Registers {{{
 
 " https://stackoverflow.com/a/26043227
@@ -146,7 +154,7 @@ command -bang -bar -nargs=? -complete=file E :call s:MKDir(<f-args>) | e<bang> <
 " Restore Session {{{
 
 function! RestoreSession()
-    let ignore = ['.env.sh']
+    let ignore = ['.env.sh', '.secrets']
     if filereadable(getcwd() . '/Session.vim') && &filetype != "gitcommit" && index(ignore, expand('%:t')) < 0
         execute 'so ' . getcwd() . '/Session.vim'
         if bufexists(1)

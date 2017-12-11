@@ -190,6 +190,7 @@ let g:over_command_line_prompt = ''
 " let g:far#highlight_match = 1
 
 call esearch#map('<leader>a', 'esearch')
+let g:esearch#cmdline#help_prompt = 0
 let g:esearch#out#win#open = 'enew'
 let g:esearch#out#win#context_syntax_highlight = 1
 let g:esearch#out#win#syntax_regeps = {
@@ -197,6 +198,8 @@ let g:esearch#out#win#syntax_regeps = {
             \ 'javascript': '\%(\.js\)$',
             \ 'json': '\%(\.json\)$',
             \ 'yaml': '\%(yaml\|\.yml\)$',
+            \ 'sh': '\%(\.bash\|\.sh\)$',
+            \ 'vim': '\%(\.vim\)$',
             \}
 
 " }}}
