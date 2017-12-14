@@ -89,7 +89,11 @@ function bower {
 # yarn
 function yarn {
     if [[ $1 == "i" ]]; then
-        command yarn add "${@:2}"
+        if [[ ${@:2} ]]; then
+            command yarn add "${@:2}"
+        else
+            command yarn install
+        fi
     else
         command yarn "$@"
     fi
