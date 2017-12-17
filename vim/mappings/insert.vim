@@ -21,14 +21,14 @@ function! Smart_Complete()
         " return "\<C-X>\<C-F>"
         return "\<ESC>:cd %:p:h\<CR>a\<C-X>\<C-F>"
     elseif (&omnifunc ==# '')
-        return "\<ESC>a\<C-X>\<C-P>"
+        return "\<C-N>"
     else
         return "\<C-X>\<C-O>"
     endif
 endfunction
 
 inoremap <C-N> <C-R>=Smart_Complete()<CR>
-inoremap <C-P> <C-N>
+inoremap <C-X><C-F> <ESC>:cd %:p:h<CR>a<C-X><C-F>
 inoremap <C-B> <ESC>a
 
 " }}}

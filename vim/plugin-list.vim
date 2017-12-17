@@ -47,6 +47,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'edkolev/tmuxline.vim'
 Plug 'roxma/vim-tmux-clipboard'
+Plug 'wellle/tmux-complete.vim'
 
 " Linter
 Plug 'w0rp/ale'
