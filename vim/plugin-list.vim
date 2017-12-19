@@ -3,8 +3,8 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Nerd Tree
-Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
+" Plug 'scrooloose/nerdtree'
+" Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " tpope
 Plug 'tpope/vim-commentary'
@@ -66,12 +66,7 @@ Plug 'jiangmiao/auto-pairs'
 " Text Object
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'wellle/targets.vim'
-" Plug 'vim-utils/vim-line'
-" Plug 'vim-scripts/argtextobj.vim'
 Plug 'kana/vim-textobj-user'
-" Plug 'kana/vim-textobj-function'
-" Plug 'haya14busa/vim-textobj-function-syntax'
-" Plug 'thinca/vim-textobj-function-javascript'
 Plug 'glts/vim-textobj-comment'
 
 Plug 'justinmk/vim-ipmotion'
@@ -81,9 +76,6 @@ Plug 'wincent/terminus'
 
 " Auto read
 Plug 'djoshea/vim-autoread'
-
-" Dim inactive window
-" Plug 'blueyed/vim-diminactive'
 
 " Indent Lines
 Plug 'Yggdroot/indentLine'
@@ -99,15 +91,15 @@ Plug 'augustold/vim-airline-colornum'
 " Easy motion
 Plug 'easymotion/vim-easymotion'
 
-" Start Screen
-" Plug 'mhinz/vim-startify'
-
 " Undo Tree
 Plug 'simnalamburt/vim-mundo'
+
 " Autoformat
 Plug 'Chiel92/vim-autoformat'
+
 " Camel Case Motions
 Plug 'bkad/camelcasemotion'
+
 " Replace
 Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'vim-scripts/ReplaceWithSameIndentRegister'
@@ -127,10 +119,9 @@ Plug 'sickill/vim-pasta'
 Plug 'haya14busa/incsearch.vim'
 Plug 'haya14busa/incsearch-fuzzy.vim'
 Plug 'haya14busa/incsearch-easymotion.vim'
-" Plug 'inside/vim-search-pulse'
-" Plug 'brooth/far.vim'
 Plug 'eugen0329/vim-esearch'
 Plug 'osyo-manga/vim-over'
+Plug 'fcpg/vim-spotlightify'
 
 " Themes
 Plug 'kristijanhusak/vim-hybrid-material'
@@ -167,23 +158,17 @@ Plug 'machakann/vim-highlightedyank'
 " title comment
 Plug 'guywald1/vim-prismo'
 
-Plug 'lfilho/cosco.vim'
+" Plug 'lfilho/cosco.vim'
 
 Plug 'romainl/vim-qf'
 
 Plug 'kana/vim-niceblock'
 
-Plug 'gcmt/wildfire.vim'
-
 Plug 'kshenoy/vim-signature'
 
 Plug 'AndrewRadev/undoquit.vim'
 
-Plug 'AndrewRadev/andrews_nerdtree.vim'
-
 Plug 'krisajenkins/vim-projectlocal'
 
 Plug 'abaldwin88/roamer.vim'
-
-Plug 'fcpg/vim-spotlightify'
 

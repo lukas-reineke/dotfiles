@@ -1,6 +1,6 @@
 
 setlocal completeopt+=menu,preview
 
-nnoremap <silent> [D :normal! m`<CR>:TsuDefinition<CR>
-nnoremap <silent> <Leader>ti :TsuImport<CR>
+nnoremap <silent> <buffer> [D :normal! m`<CR>:TsuDefinition<CR>
+nnoremap <silent> <buffer> <Leader>ti :TsuImport<CR>
 

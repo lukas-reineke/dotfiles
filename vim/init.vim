@@ -179,15 +179,8 @@ set wildignore+=*/doc/*
 set wildignore+=*/dll/*
 set wildignore+=*venv*
 
-" let g:vim_search_pulse_disable_auto_mappings = 1
-" let g:vim_search_pulse_mode = 'pattern'
 let g:incsearch#auto_nohlsearch = 1
 let g:over_command_line_prompt = ''
-" let g:far#source = 'rg'
-" let g:far#window_layout = 'current'
-" let g:far#preview_window_height = 20
-" let g:far#file_mask_favorites = ['%', '**/*.*', '**/*.ts', '**/*.html', '**/*.scss', '**/*.vim', '**/*.js']
-" let g:far#highlight_match = 1
 
 call esearch#map('<leader>a', 'esearch')
 let g:esearch#cmdline#help_prompt = 0
@@ -270,13 +263,18 @@ augroup END
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin settings {{{
 
-" NERDTree
-let g:NERDTreeShowHidden=1
-let g:NERDTreeWinSize=50
-let g:NERDSpaceDelims = 1
-let g:NERDCompactSexyComs = 1
+" Netrw
+let g:netrw_winsize = -34
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_sort_sequence = '[\/]$,*'
+let g:netrw_browse_split = 4
 
-" let g:andrews_nerdtree_buffer_fs_menu = 1
+" " NERDTree
+" let g:NERDTreeShowHidden=1
+" let g:NERDTreeWinSize=50
+" let g:NERDSpaceDelims = 1
+" let g:NERDCompactSexyComs = 1
 
 "EasyMotion
 let g:EasyMotion_smartcase = 1
@@ -367,8 +365,9 @@ let g:sandwich#recipes += [
 let g:winresizer_start_key = '<C-T>'
 
 " AutoPairs
-let g:AutoPairs = {'[':']', '{':'}',"'":"'",'"':'"', '`':'`'}
+let g:AutoPairs = {'[':']', '{':'}',"'":"'",'"':'"', '`':'`', '<': '>'}
 let g:AutoPairsMapBS = 0
+let g:AutoPairsCenterLine = 0
 
 " Clever F
 let g:clever_f_use_migemo = 1

@@ -176,8 +176,9 @@ autocmd VimEnter * nested call RestoreSession()
 " Quick Fix{{{
 
 function! QuickFix()
-    let list = ['quickfix', 'help', 'nofile']
-    if (index(list, &buftype) >= 0)
+    let buftype_list = ['quickfix', 'help', 'nofile']
+    let filetype_list = ['netrw']
+    if (index(buftype_list, &buftype) >= 0 || index(filetype_list, &filetype) >= 0)
         let g:qs_enable = 0
         " match Error /.*/
         " syntax match Error /|.*|/

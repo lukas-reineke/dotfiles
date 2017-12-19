@@ -46,14 +46,33 @@ noremap <Down> :move+1<CR>==
 
 nnoremap <C-p> :Files<CR>
 
-function! ToggleNERDTreeFind()
-    if exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
-        NERDTreeClose
+" function! ToggleNERDTreeFind()
+"     if exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+"         NERDTreeClose
+"     else
+"         NERDTreeFind
+"     endif
+" endfunction
+" nnoremap <silent> <C-b> :call ToggleNERDTreeFind() <CR>
+
+let g:NetrwIsOpen=0
+function! ToggleNetrw()
+    if g:NetrwIsOpen
+        let i = bufnr('$')
+        while (i >= 1)
+            if (getbufvar(i, '&filetype') == 'netrw')
+                silent exe 'bwipeout! ' . i
+            endif
+            let i-=1
+        endwhile
+        let g:NetrwIsOpen=0
     else
-        NERDTreeFind
+        let g:NetrwIsOpen=1
+        silent Sexplore
     endif
 endfunction
-nnoremap <silent> <C-b> :call ToggleNERDTreeFind() <CR>
+
+nnoremap <silent> <C-b> :call ToggleNetrw()<CR>
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
