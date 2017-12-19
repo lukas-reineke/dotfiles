@@ -17,12 +17,8 @@ alias gg='cd $(git rev-parse --show-toplevel)'
 alias sv='sudoedit'
 alias v='ge nvim'
 alias vim='ge nvim'
-alias memo='nvim ~/dev/memo.md'
 alias gv='ge nvim -c "Gdiff"'
 alias r='roamer --skip-approval'
-
-# tmux
-alias t='tmux new -s'
 
 # vpn
 alias vpn='cd /etc/openvpn/de && sudo openvpn --config de.ovpn'
@@ -39,6 +35,7 @@ alias grep='grep --color=always'
 alias reload='source ~/dotfiles/bash/bashrc'
 alias sudo='sudo env PATH=$PATH'
 alias cat='ge ccat'
+alias jq='jq --indent 4 "."'
 
 # network
 alias arp='sudo arp-scan --interface=wlp2s0b1 --localnet'
