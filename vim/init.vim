@@ -249,12 +249,11 @@ let g:tsuquyomi_disable_quickfix = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " File Type Autocmd {{{
-"
+
 augroup FiletypeDetect
     autocmd!
-    autocmd BufRead,BufNewFile .stylelintrc,.htmlhintrc setfiletype json
-    autocmd BufRead,BufNewFile search-result setfiletype javascript
-    autocmd BufRead,BufNewFile FAR* nnoremap <buffer> q :bd<CR>
+    autocmd BufRead,BufNewFile .stylelintrc,.htmlhintrc set filetype=json
+    autocmd BufRead,BufNewFile i3* set filetype=i3
 augroup END
 
 " }}}
@@ -264,7 +263,7 @@ augroup END
 " Plugin settings {{{
 
 " Netrw
-let g:netrw_winsize = -34
+let g:netrw_winsize = 41
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 let g:netrw_sort_sequence = '[\/]$,*'
