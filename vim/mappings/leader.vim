@@ -51,9 +51,10 @@ nnoremap <Leader><C-O> :Bufonly<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Search {{{
 
-" nnoremap <Leader>a :F<Space><Space>**/*.*<Left><Left><Left><Left><Left><Left><Left>
-nnoremap <Leader>r :OverCommandLine<CR>%s/\v
-vnoremap <Leader>r :OverCommandLine<CR>s/\v
+" nnoremap <Leader>r :OverCommandLine<CR>%s/\v
+" vnoremap <Leader>r :OverCommandLine<CR>s/\v
+nnoremap <Leader>r :%s/\v
+vnoremap <Leader>r :s/\v
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

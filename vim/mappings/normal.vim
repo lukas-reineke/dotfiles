@@ -45,6 +45,7 @@ noremap <Down> :move+1<CR>==
 " Plugins {{{
 
 nnoremap <C-p> :Files<CR>
+nnoremap <C-]> :A<CR>
 
 " function! ToggleNERDTreeFind()
 "     if exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)

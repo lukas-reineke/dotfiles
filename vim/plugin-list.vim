@@ -13,6 +13,7 @@ Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-capslock'
+Plug 'tpope/vim-projectionist'
 " Plug 'tpope/vim-unimpaired'
 
 " Shougo
@@ -120,7 +121,7 @@ Plug 'haya14busa/incsearch.vim'
 Plug 'haya14busa/incsearch-fuzzy.vim'
 Plug 'haya14busa/incsearch-easymotion.vim'
 Plug 'eugen0329/vim-esearch'
-Plug 'osyo-manga/vim-over'
+" Plug 'osyo-manga/vim-over'
 Plug 'fcpg/vim-spotlightify'
 
 " Themes

@@ -66,6 +66,7 @@ set smartcase
 set infercase
 set hlsearch
 set incsearch
+set inccommand=nosplit
 set grepprg=rg\ --vimgrep
 set formatprg=par\ -w80rq
 set nowrap
@@ -180,7 +181,7 @@ set wildignore+=*/dll/*
 set wildignore+=*venv*
 
 let g:incsearch#auto_nohlsearch = 1
-let g:over_command_line_prompt = ''
+" let g:over_command_line_prompt = ''
 
 call esearch#map('<leader>a', 'esearch')
 let g:esearch#cmdline#help_prompt = 0

@@ -38,11 +38,6 @@ augroup stripWhitespaces
     autocmd stripWhitespaces BufWritePre * :call s:StripTrailingWhitespaces()
 augroup END
 
-augroup stripWhitespaces
-    autocmd!
-    autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") && &filetype != "gitcommit" | exe "normal! g'\"" | endif
-augroup END
-
 au CursorHold * checktime
 
 " }}}
@@ -154,7 +149,7 @@ command -bang -bar -nargs=? -complete=file E :call s:MKDir(<f-args>) | e<bang> <
 " Restore Session {{{
 
 function! RestoreSession()
-    let ignore = ['.env.sh', '.secrets']
+    let ignore = ['.env.sh', '.secrets', '.projections.json']
     if filereadable(getcwd() . '/Session.vim') && &filetype != "gitcommit" && index(ignore, expand('%:t')) < 0
         execute 'so ' . getcwd() . '/Session.vim'
         if bufexists(1)
