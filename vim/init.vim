@@ -365,9 +365,9 @@ let g:sandwich#recipes += [
 let g:winresizer_start_key = '<C-T>'
 
 " AutoPairs
-let g:AutoPairs = {'[':']', '{':'}',"'":"'",'"':'"', '`':'`', '<': '>'}
-let g:AutoPairsMapBS = 0
+let g:AutoPairs = {'[':']', '{':'}',"'":"'",'"':'"', '`':'`', '<': '>', '(': ')'}
 let g:AutoPairsCenterLine = 0
+let g:AutoPairsSkipCharacter = 0
 
 " Clever F
 let g:clever_f_use_migemo = 1

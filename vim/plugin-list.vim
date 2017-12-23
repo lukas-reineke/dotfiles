@@ -62,7 +62,7 @@ Plug 'honza/vim-snippets'
 Plug 'tenfyzhong/CompleteParameter.vim'
 
 " Auto pairs
-Plug 'jiangmiao/auto-pairs'
+Plug 'lukas-reineke/auto-pairs'
 
 " Text Object
 Plug 'michaeljsmith/vim-indent-object'

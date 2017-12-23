@@ -221,12 +221,13 @@ nmap <CLEAR-5> <Plug>UnconditionalPasteCommaSingleQuoteAfter
 nmap <CLEAR-6> <Plug>UnconditionalPasteCommaSingleQuoteBefore
 nmap glp <Plug>UnconditionalPasteIndentedAfter<ESC>ddP
 nmap glP <Plug>UnconditionalPasteIndentedBefore
-nmap g#p <ESC>o<C-W><ESC>gcpddk<Plug>UnconditionalPasteCommentedAfter
-nmap g#P <ESC>o<C-W><ESC>gcpddk<Plug>UnconditionalPasteCommentedBefore
+" nmap g#p <ESC>o<C-W><ESC>gcpddk<Plug>UnconditionalPasteCommentedAfter
+" nmap g#P <ESC>o<C-W><ESC>gcpddk<Plug>UnconditionalPasteCommentedBefore
 nmap gjp <Plug>UnconditionalPasteCommaAfter
 nmap gjP <Plug>UnconditionalPasteCommaBefore
 nmap gj'p <Plug>UnconditionalPasteCommaSingleQuoteAfter
 nmap gj'P <Plug>UnconditionalPasteCommaSingleQuoteBefore
+nnoremap gco m'yyp:Commentary<CR>`'
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
