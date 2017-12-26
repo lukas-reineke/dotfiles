@@ -89,6 +89,7 @@ set undodir=~/.config/nvim/backups
 set undofile
 set path+=**
 set virtualedit=onemore
+set spellcapcheck=
 
 
 " }}}
@@ -101,6 +102,7 @@ set background=dark
 color base16-onedark
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 highlight CursorLine guibg='#22262d' guifg='#000'
+highlight WinNormalNC guibg='#22262d' guifg='#777777'
 highlight QuickFixLine guibg='#22262d' guifg='#000'
 highlight Search guibg='#565c64' guifg='#000'
 highlight ESearchMatch guibg='#565c64' guifg='#000'
@@ -110,6 +112,7 @@ let g:airline_theme = 'bubblegum'
 let g:airline_colornum_reversed = 1
 let g:highlightedyank_highlight_duration = 100
 match OverLength /\%81v./
+set winhighlight=NormalNC:WinNormalNC
 
 augroup HiglightDebug
     autocmd!
@@ -269,12 +272,6 @@ let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 let g:netrw_sort_sequence = '[\/]$,*'
 let g:netrw_browse_split = 4
-
-" " NERDTree
-" let g:NERDTreeShowHidden=1
-" let g:NERDTreeWinSize=50
-" let g:NERDSpaceDelims = 1
-" let g:NERDCompactSexyComs = 1
 
 "EasyMotion
 let g:EasyMotion_smartcase = 1

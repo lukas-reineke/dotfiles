@@ -1,2 +1,2 @@
+nnoremap <buffer> <ESC> :bd<CR>
 
-nnoremap <buffer> <ESC> :call ToggleNetrw()<CR>
