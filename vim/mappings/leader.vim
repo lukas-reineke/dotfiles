@@ -8,6 +8,7 @@ nnoremap <Leader><Leader> <C-^>
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :call CloseOnLast()<CR>
 nnoremap <Leader>Q :q<CR>
+nnoremap <Leader><C-O> :Bufonly<CR>
 
 nnoremap <Leader>n :Files %:h<CR>
 nnoremap <Leader>N :E %:h/
@@ -32,18 +33,6 @@ nnoremap <Leader>; :CommaOrSemiColon<CR>
 nnoremap <Leader>p :Buffers<CR>
 nnoremap <Leader><C-P> :Commands<CR>
 nnoremap <Leader><C-W> :Windows<CR>
-
-" }}}
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Splits {{{
-
-nnoremap <Leader><C-H> :hide<CR>
-nnoremap <Leader><C-J> :only<CR>
-nnoremap <Leader><C-K> :sv#<CR>
-nnoremap <Leader><C-L> :vs#<CR>
-nnoremap <Leader><C-O> :Bufonly<CR>
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
