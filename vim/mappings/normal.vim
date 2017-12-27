@@ -38,7 +38,13 @@ nnoremap gV m``[v`]
 noremap <Up> :move-2<CR>==
 noremap <Down> :move+1<CR>==
 
-nnoremap - :Sexplore<CR>
+function! FixIndentation()
+    let view = winsaveview()
+    normal gg=G
+    call winrestview(view)
+endfunction
+
+nnoremap =+ :call FixIndentation()<CR>
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -48,6 +54,9 @@ nnoremap - :Sexplore<CR>
 
 nnoremap <C-p> :Files<CR>
 nnoremap <C-]> :A<CR>
+
+nnoremap - :VimFilerCurrentDir<CR>
+nnoremap + :VimFilerBufferDir -split<CR>
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -195,8 +204,6 @@ nmap <CLEAR-5> <Plug>UnconditionalPasteCommaSingleQuoteAfter
 nmap <CLEAR-6> <Plug>UnconditionalPasteCommaSingleQuoteBefore
 nmap glp <Plug>UnconditionalPasteIndentedAfter<ESC>ddP
 nmap glP <Plug>UnconditionalPasteIndentedBefore
-" nmap g#p <ESC>o<C-W><ESC>gcpddk<Plug>UnconditionalPasteCommentedAfter
-" nmap g#P <ESC>o<C-W><ESC>gcpddk<Plug>UnconditionalPasteCommentedBefore
 nmap gjp <Plug>UnconditionalPasteCommaAfter
 nmap gjP <Plug>UnconditionalPasteCommaBefore
 nmap gj'p <Plug>UnconditionalPasteCommaSingleQuoteAfter

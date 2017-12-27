@@ -18,6 +18,8 @@ Plug 'tpope/vim-projectionist'
 
 " Shougo
 Plug 'Shougo/vimproc.vim'
+Plug 'Shougo/vimfiler.vim'
+Plug 'Shougo/unite.vim'
 
 " Git
 Plug 'mhinz/vim-signify'
@@ -172,4 +174,6 @@ Plug 'AndrewRadev/undoquit.vim'
 Plug 'krisajenkins/vim-projectlocal'
 
 Plug 'abaldwin88/roamer.vim'
+
+Plug 'schickling/vim-bufonly'
 

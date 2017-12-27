@@ -49,6 +49,7 @@ set shortmess+=A
 set noswapfile
 set termguicolors
 set noshowmode
+set noshowcmd
 set encoding=utf8
 set t_ut=
 set ttimeoutlen=0
@@ -100,7 +101,7 @@ set spellcapcheck=
 
 set background=dark
 color base16-onedark
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+" highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 highlight CursorLine guibg='#22262d' guifg='#000'
 highlight WinNormalNC guibg='#22262d' guifg='#777777'
 highlight QuickFixLine guibg='#22262d' guifg='#000'
@@ -111,7 +112,7 @@ highlight Folded  ctermfg=cyan ctermbg=black
 let g:airline_theme = 'bubblegum'
 let g:airline_colornum_reversed = 1
 let g:highlightedyank_highlight_duration = 100
-match OverLength /\%81v./
+" match OverLength /\%81v./
 set winhighlight=NormalNC:WinNormalNC
 
 augroup HiglightDebug
@@ -266,12 +267,29 @@ augroup END
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin settings {{{
 
-" Netrw
-let g:netrw_winsize = 41
-let g:netrw_banner = 0
-let g:netrw_liststyle = 3
-let g:netrw_sort_sequence = '[\/]$,*'
-let g:netrw_browse_split = 4
+let g:vimfiler_as_default_explorer = 1
+let g:vimfiler_tree_indentation = 4
+let g:vimfiler_tree_opened_icon = '├'
+let g:vimfiler_tree_closed_icon = '│'
+let g:vimfiler_marked_file_icon = '⚫'
+let g:vimfiler_tree_leaf_icon = ''
+call vimfiler#custom#profile('default', 'context', {
+            \ 'safe' : 0,
+            \ 'horizontal' : 1,
+            \ 'find' : 1,
+            \ 'force-quit' : 1,
+            \ 'direction' : 'rightbelow',
+            \ })
+
+
+" " Netrw
+" let g:netrw_winsize = 41
+" let g:netrw_banner = 0
+" let g:netrw_liststyle = 0
+" " let g:netrw_liststyle = 3
+" let g:netrw_sort_sequence = '[\/]$,*'
+" let g:netrw_browse_split = 4
+" let g:netrw_keepdir = 0
 
 "EasyMotion
 let g:EasyMotion_smartcase = 1
