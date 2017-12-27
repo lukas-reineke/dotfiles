@@ -2,10 +2,6 @@
 " => Plugs
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Nerd Tree
-" Plug 'scrooloose/nerdtree'
-" Plug 'Xuyuanp/nerdtree-git-plugin'
-
 " tpope
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
@@ -14,7 +10,6 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-capslock'
 Plug 'tpope/vim-projectionist'
-" Plug 'tpope/vim-unimpaired'
 
 " Shougo
 Plug 'Shougo/vimproc.vim'
@@ -30,18 +25,23 @@ Plug 'idanarye/vim-merginal'
 Plug 'leafgarland/typescript-vim'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'Quramy/tsuquyomi'
+
 " Javascript
 Plug 'pangloss/vim-javascript'
 Plug 'heavenshell/vim-jsdoc'
+
 " Json
 Plug 'elzr/vim-json'
+
 " HTML5
 Plug 'othree/html5.vim'
 Plug 'othree/html5-syntax.vim'
 Plug 'lukas-reineke/sparkup'
 Plug 'gregsexton/matchtag'
+
 " Markdown
 Plug 'shime/vim-livedown'
+
 " i3 config
 Plug 'PotatoesMaster/i3-vim-syntax'
 
@@ -69,8 +69,6 @@ Plug 'lukas-reineke/auto-pairs'
 " Text Object
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'wellle/targets.vim'
-" Plug 'kana/vim-textobj-user'
-" Plug 'glts/vim-textobj-comment'
 
 Plug 'justinmk/vim-ipmotion'
 
@@ -95,7 +93,7 @@ Plug 'augustold/vim-airline-colornum'
 Plug 'easymotion/vim-easymotion'
 
 " Undo Tree
-Plug 'simnalamburt/vim-mundo'
+" Plug 'simnalamburt/vim-mundo'
 
 " Autoformat
 " Plug 'Chiel92/vim-autoformat'
@@ -123,7 +121,6 @@ Plug 'haya14busa/incsearch.vim'
 Plug 'haya14busa/incsearch-fuzzy.vim'
 Plug 'haya14busa/incsearch-easymotion.vim'
 Plug 'eugen0329/vim-esearch'
-" Plug 'osyo-manga/vim-over'
 Plug 'fcpg/vim-spotlightify'
 
 " Themes
@@ -134,8 +131,8 @@ Plug 'chriskempson/base16-vim'
 Plug 'z1mm32m4n/vim-superman'
 
 " Open on github
-Plug 'tyru/open-browser.vim'
-Plug 'tyru/open-browser-github.vim'
+" Plug 'tyru/open-browser.vim'
+" Plug 'tyru/open-browser-github.vim'
 
 " better f
 Plug 'rhysd/clever-f.vim'
@@ -159,7 +156,7 @@ Plug 'bounceme/poppy.vim'
 Plug 'machakann/vim-highlightedyank'
 
 " title comment
-Plug 'guywald1/vim-prismo'
+" Plug 'guywald1/vim-prismo'
 
 " Plug 'lfilho/cosco.vim'
 
