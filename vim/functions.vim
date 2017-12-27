@@ -282,5 +282,22 @@ augroup END
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Set Filetype{{{
+
+function! s:SetFiletype(filetype)
+    execute 'set filetype=' . a:filetype
+endfunction
+
+command FT :call fzf#run({
+            \ 'source': map(split(globpath(&rtp, 'syntax/*.vim')),
+            \ 'fnamemodify(v:val, ":t:r")'),
+            \ 'sink': function('<sid>SetFiletype'),
+            \ 'down': '40%'
+            \ })
+
+" }}}
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " vim:foldmethod=marker:foldlevel=0
 
