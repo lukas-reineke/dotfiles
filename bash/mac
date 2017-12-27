@@ -31,6 +31,7 @@ export PATH=${PATH}:/usr/local/bin/liquibase-3.5.1-bin
 export PATH=${PATH}:/usr/local/bin/redis-3.2.0/src
 export PATH=${PATH}:$HOME/Library/Android/sdk/build-tools/24.0.1
 export PATH=${PATH}:/Library/Frameworks/Python.framework/Versions/3.5/bin
+export PATH=${PATH}:$HOME/.npm-global/bin
 export CLASSPATH=/usr/local/bin/mysql-connector-java-5.1.39/mysql-connector-java-5.1.39-bin.jar:$CLASSPATH
 export ANDROID_HOME=$HOME/Library/Android/sdk
 # export ANDROID_HOME=/usr/local/share/android-sdk

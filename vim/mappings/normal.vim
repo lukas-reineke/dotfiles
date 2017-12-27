@@ -9,9 +9,9 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 nnoremap H ^
-nnoremap cH c^
+onoremap H ^
 nnoremap L $
-nnoremap cL c$
+onoremap L $
 
 nnoremap zl 20zl
 nnoremap zh 20zh
@@ -218,8 +218,6 @@ nnoremap gco m'yyp:Commentary<CR>`'
 
 nmap grr <Plug>ReplaceWithSameIndentRegisterLine
 nmap grR <Plug>ReplaceWithRegisterLine
-nmap grL <Plug>ReplaceWithRegisterOperator$
-nmap grH <Plug>ReplaceWithRegisterOperator^
 nmap gr <Plug>ReplaceWithRegisterOperator
 
 " }}}

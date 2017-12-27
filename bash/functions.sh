@@ -236,7 +236,9 @@ fcoc() {
 
 # fh - repeat history
 function fzf_history() {
-    eval $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf --height 20% --reverse +s --tac | sed 's/ *[0-9]* *//')
+    local command=$(([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf --height 20% --reverse +s --tac | sed 's/ *[0-9]* *//')
+    history -s "$command"
+    eval $($command)
 }
 bind '"\C-r":" fzf_history\n"'
 

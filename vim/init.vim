@@ -194,6 +194,9 @@ let g:esearch#out#win#context_syntax_highlight = 1
 let g:esearch#out#win#syntax_regeps = {
             \ 'typescript': '\%(\.ts\)$',
             \ 'javascript': '\%(\.js\)$',
+            \ 'html': '\%(\.html\)$',
+            \ 'scss': '\%(\.scss\)$',
+            \ 'css': '\%(\.css\)$',
             \ 'json': '\%(\.json\)$',
             \ 'yaml': '\%(yaml\|\.yml\)$',
             \ 'sh': '\%(\.bash\|\.sh\)$',

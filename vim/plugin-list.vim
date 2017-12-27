@@ -69,8 +69,8 @@ Plug 'lukas-reineke/auto-pairs'
 " Text Object
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'wellle/targets.vim'
-Plug 'kana/vim-textobj-user'
-Plug 'glts/vim-textobj-comment'
+" Plug 'kana/vim-textobj-user'
+" Plug 'glts/vim-textobj-comment'
 
 Plug 'justinmk/vim-ipmotion'
 
@@ -98,7 +98,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'simnalamburt/vim-mundo'
 
 " Autoformat
-Plug 'Chiel92/vim-autoformat'
+" Plug 'Chiel92/vim-autoformat'
 
 " Camel Case Motions
 Plug 'bkad/camelcasemotion'
