@@ -24,6 +24,9 @@ nmap <silent> <Leader>c <Plug>qf_qf_stay_toggle
 
 nnoremap <Leader>; :CommaOrSemiColon<CR>
 
+nmap <Leader>d d<Plug>(easymotion-j)
+nmap <Leader>D d<Plug>(easymotion-k)
+
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -136,6 +139,27 @@ nnoremap <leader>! :call <SID>goog(expand("<cWORD>"), 1)<cr>
 
 " nnoremap <silent> <leader>tl "tyy:call <SID>tmux_send("npm run lint\n", ".bottom")<cr>
 " nnoremap <silent> <leader>tu "tyy:call <SID>tmux_send("npm run test\n", ".bottom")<cr>
+
+" }}}
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Marks {{{
+
+function s:Marks()
+    marks abcdefghijklmnopqrstuvwxyz.ABCDEFGHIJKLMNOPQRSTUVWXYZ
+    echo 'Mark: '
+    let l:mark = nr2char(getchar())
+    redraw
+
+    execute 'normal! `' . mark
+
+endfunction
+
+command! Marks call s:Marks()
+
+nnoremap <leader>m :Marks<CR>
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
