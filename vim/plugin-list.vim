@@ -22,13 +22,11 @@ Plug 'vim-scripts/gitignore'
 Plug 'idanarye/vim-merginal'
 
 " Typescript
-Plug 'leafgarland/typescript-vim'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'Quramy/tsuquyomi'
 
 " Javascript
-Plug 'pangloss/vim-javascript'
-Plug 'heavenshell/vim-jsdoc'
+Plug 'othree/yajs.vim'
 
 " Json
 Plug 'elzr/vim-json'
@@ -56,12 +54,9 @@ Plug 'wellle/tmux-complete.vim'
 Plug 'w0rp/ale'
 
 " Autocomplete
-Plug 'ternjs/tern_for_vim'
-Plug 'Shougo/deoplete.nvim'
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'tenfyzhong/CompleteParameter.vim'
+Plug 'lukas-reineke/CompleteParameter.vim'
 
 " Auto pairs
 Plug 'lukas-reineke/auto-pairs'
@@ -94,9 +89,6 @@ Plug 'easymotion/vim-easymotion'
 
 " Undo Tree
 " Plug 'simnalamburt/vim-mundo'
-
-" Autoformat
-" Plug 'Chiel92/vim-autoformat'
 
 " Camel Case Motions
 Plug 'bkad/camelcasemotion'
@@ -155,11 +147,6 @@ Plug 'bounceme/poppy.vim'
 
 " Yank highlight
 Plug 'machakann/vim-highlightedyank'
-
-" title comment
-" Plug 'guywald1/vim-prismo'
-
-" Plug 'lfilho/cosco.vim'
 
 Plug 'romainl/vim-qf'
 

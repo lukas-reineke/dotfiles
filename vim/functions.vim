@@ -38,7 +38,7 @@ augroup stripWhitespaces
     autocmd stripWhitespaces BufWritePre * :call s:StripTrailingWhitespaces()
 augroup END
 
-au CursorHold * checktime
+" au CursorHold * checktime
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

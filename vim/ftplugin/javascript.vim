@@ -1,7 +1,10 @@
+if exists('b:did_ftplugin')
+    finish
+endif
 
-setlocal completeopt+=menu
+let b:did_ftplugin = 1
+
 setlocal completeopt-=preview
-setlocal omnifunc=tern#Complete
 
 nnoremap <silent> <buffer> [D :normal! m`<CR>:TernDef<CR>
 

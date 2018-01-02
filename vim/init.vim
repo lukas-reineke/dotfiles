@@ -296,7 +296,6 @@ augroup signify
     autocmd!
     autocmd FocusGained,cursormoved * :SignifyRefresh
 augroup END
-let g:signify_realtime = 1
 
 " poppy
 augroup poppy
@@ -380,7 +379,6 @@ let g:AutoPairs = {
 \   '"':'"',
 \   '`':'`',
 \   '<': '>',
-\   '(': ')'
 \}
 let g:AutoPairsCenterLine = 0
 let g:AutoPairsSkipCharacter = 0
@@ -431,6 +429,8 @@ let g:tmuxline_separators = {
 \   'right_alt': '',
 \   'space': ' '
 \}
+
+let g:complete_parameter_use_typescript_for_javascript = 1
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

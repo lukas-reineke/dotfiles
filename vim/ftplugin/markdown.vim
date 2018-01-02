@@ -1,4 +1,4 @@
-if exists("b:did_ftplugin")
+if exists('b:did_ftplugin')
     finish
 endif
 

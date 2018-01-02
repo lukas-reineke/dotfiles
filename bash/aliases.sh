@@ -55,6 +55,7 @@ alias jb='~/dotfiles/scripts/jira-branch.sh feature'
 alias grpo='git remote prune origin'
 alias gds='git diff --staged'
 alias ss='~/dotfiles/scripts/fzf-git-stash.sh'
+alias gwap='git diff -w --no-color | git apply --cached --ignore-whitespace && git checkout -- . && git reset && git add -p'
 
 
 # pacman
