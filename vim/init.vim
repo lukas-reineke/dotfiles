@@ -2,15 +2,15 @@
 " Mappings {{{
 
 " Leader Mappings
-so $HOME/dotfiles/vim/mappings/leader.vim
+source $HOME/dotfiles/vim/mappings/leader.vim
 " Normal Mappings
-so $HOME/dotfiles/vim/mappings/normal.vim
+source $HOME/dotfiles/vim/mappings/normal.vim
 " Visual Mappings
-so $HOME/dotfiles/vim/mappings/visual.vim
+source $HOME/dotfiles/vim/mappings/visual.vim
 " Command Mappings
-so $HOME/dotfiles/vim/mappings/command.vim
+source $HOME/dotfiles/vim/mappings/command.vim
 " Instert Mappings
-so $HOME/dotfiles/vim/mappings/insert.vim
+source $HOME/dotfiles/vim/mappings/insert.vim
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -20,7 +20,7 @@ so $HOME/dotfiles/vim/mappings/insert.vim
 
 call plug#begin('~/.vimpkg/bundle')
 
-so $HOME/dotfiles/vim/plugin-list.vim
+source $HOME/dotfiles/vim/plugin-list.vim
 
 call plug#end()
 
@@ -30,7 +30,7 @@ call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Functions {{{
 
-so $HOME/dotfiles/vim/functions.vim
+source $HOME/dotfiles/vim/functions.vim
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -107,7 +107,6 @@ highlight QuickFixLine guibg='#22262d' guifg='#000'
 highlight Search guibg='#565c64' guifg='#000'
 highlight ESearchMatch guibg='#565c64' guifg='#000'
 highlight HighlightedyankRegion guibg='#565c64'
-highlight Folded  ctermfg=cyan ctermbg=black
 let g:airline_theme = 'bubblegum'
 let g:airline_colornum_reversed = 1
 let g:highlightedyank_highlight_duration = 100
@@ -202,6 +201,7 @@ let g:esearch#out#win#syntax_regeps = {
 \   'yaml': '\%(yaml\|\.yml\)$',
 \   'sh': '\%(\.bash\|\.sh\)$',
 \   'vim': '\%(\.vim\)$',
+\   'python': '\%(\.py\)$',
 \}
 
 " }}}

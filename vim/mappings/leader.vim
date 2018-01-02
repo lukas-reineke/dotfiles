@@ -69,12 +69,10 @@ map <Leader>h <Plug>(easymotion-linebackward)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Git {{{
 
-nnoremap <Leader>gg :Merginal<CR>
 nnoremap <Leader>gd :Gvdiff<CR>
 nnoremap <Leader>gr :Gread<CR>
 nnoremap <Leader>gb :Gblame<CR>
 nnoremap <Leader>gs :Gstatus<CR>
-nnoremap <Leader>gm :Gsdiff :1 \| Gvdiff<CR>
 nnoremap <Leader>gl :BCommits<CR>
 nnoremap <Leader>gf :GFiles?<CR>
 nnoremap <Leader>gt :SignifyToggleHighlight<CR>

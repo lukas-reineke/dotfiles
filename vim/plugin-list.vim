@@ -8,7 +8,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-obsession'
-Plug 'tpope/vim-capslock'
 Plug 'tpope/vim-projectionist'
 
 " Shougo
@@ -19,7 +18,6 @@ Plug 'Shougo/unite.vim'
 " Git
 Plug 'mhinz/vim-signify'
 Plug 'vim-scripts/gitignore'
-Plug 'idanarye/vim-merginal'
 
 " Typescript
 Plug 'HerringtonDarkholme/yats.vim'
@@ -53,9 +51,11 @@ Plug 'wellle/tmux-complete.vim'
 " Linter
 Plug 'w0rp/ale'
 
-" Autocomplete
+" Snippets
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+
+" complete parameters
 Plug 'lukas-reineke/CompleteParameter.vim'
 
 " Auto pairs
@@ -79,16 +79,13 @@ Plug 'Yggdroot/indentLine'
 " inline colors
 Plug 'lilydjwg/colorizer'
 
-" " Airline
+" Airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'augustold/vim-airline-colornum'
 
 " Easy motion
 Plug 'easymotion/vim-easymotion'
-
-" Undo Tree
-" Plug 'simnalamburt/vim-mundo'
 
 " Camel Case Motions
 Plug 'bkad/camelcasemotion'
@@ -110,22 +107,15 @@ Plug 'sickill/vim-pasta'
 
 " Search
 Plug 'haya14busa/incsearch.vim'
-Plug 'haya14busa/incsearch-fuzzy.vim'
-Plug 'haya14busa/incsearch-easymotion.vim'
 Plug 'eugen0329/vim-esearch'
 Plug 'fcpg/vim-spotlightify'
 Plug 'osyo-manga/vim-anzu'
 
 " Themes
-Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'chriskempson/base16-vim'
 
 " Vim Man
 Plug 'z1mm32m4n/vim-superman'
-
-" Open on github
-" Plug 'tyru/open-browser.vim'
-" Plug 'tyru/open-browser-github.vim'
 
 " better f
 Plug 'rhysd/clever-f.vim'
@@ -143,8 +133,6 @@ Plug 'AndrewRadev/splitjoin.vim'
 " bracket highlighter
 Plug 'bounceme/poppy.vim'
 
-" Plug 'hotoo/highlight-cursor-word.vim'
-
 " Yank highlight
 Plug 'machakann/vim-highlightedyank'
 
@@ -152,13 +140,15 @@ Plug 'romainl/vim-qf'
 
 Plug 'kana/vim-niceblock'
 
+" Marks in column
 Plug 'kshenoy/vim-signature'
 
+" reopen closed buffer
 Plug 'AndrewRadev/undoquit.vim'
 
+" local .vimrc
 Plug 'krisajenkins/vim-projectlocal'
 
-Plug 'abaldwin88/roamer.vim'
-
+" close all other buffers
 Plug 'schickling/vim-bufonly'
 
