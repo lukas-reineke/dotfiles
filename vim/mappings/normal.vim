@@ -155,12 +155,10 @@ map g/ <Plug>(incsearch-stay)
 map z/ <Plug>(incsearch-fuzzy-/)
 map z? <Plug>(incsearch-fuzzy-?)
 map zg/ <Plug>(incsearch-fuzzy-stay)
-map n <Plug>(incsearch-nohl)<Plug>(anzu-n-with-echo)
-map N <Plug>(incsearch-nohl)<Plug>(anzu-N-with-echo)
+map n <Plug>(incsearch-nohl-n)
+map N <Plug>(incsearch-nohl-n)
 map * <Plug>(incsearch-nohl-*)N
 map # <Plug>(incsearch-nohl-#)
-map g* <Plug>(incsearch-nohl-g*)
-map g# <Plug>(incsearch-nohl-g#)
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

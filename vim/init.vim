@@ -187,6 +187,8 @@ let g:incsearch#magic = '\v'
 
 let g:splfy_no_matchinfo = 1
 
+let g:anzu_enable_CursorMoved_AnzuUpdateSearchStatus = 1
+
 call esearch#map('<leader>a', 'esearch')
 let g:esearch#cmdline#help_prompt = 0
 let g:esearch#out#win#open = 'enew'
