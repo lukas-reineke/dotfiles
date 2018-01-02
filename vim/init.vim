@@ -92,7 +92,6 @@ set path+=**
 set virtualedit=onemore
 set spellcapcheck=
 
-
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -152,7 +151,7 @@ set listchars+=nbsp:_
 set listchars+=space:⋅
 let g:indentLine_char = '│'
 let g:indentLine_first_char = '│'
-let g:indentLine_fileTypeExclude = ['json']
+let g:indentLine_fileTypeExclude = [ 'json' ]
 let g:indentLine_showFirstIndentLevel = 1
 
 " }}}
@@ -185,23 +184,25 @@ set wildignore+=*/dll/*
 set wildignore+=*venv*
 
 let g:incsearch#auto_nohlsearch = 1
-" let g:over_command_line_prompt = ''
+let g:incsearch#magic = '\v'
+
+let g:splfy_no_matchinfo = 1
 
 call esearch#map('<leader>a', 'esearch')
 let g:esearch#cmdline#help_prompt = 0
 let g:esearch#out#win#open = 'enew'
 let g:esearch#out#win#context_syntax_highlight = 1
 let g:esearch#out#win#syntax_regeps = {
-            \ 'typescript': '\%(\.ts\)$',
-            \ 'javascript': '\%(\.js\)$',
-            \ 'html': '\%(\.html\)$',
-            \ 'scss': '\%(\.scss\)$',
-            \ 'css': '\%(\.css\)$',
-            \ 'json': '\%(\.json\)$',
-            \ 'yaml': '\%(yaml\|\.yml\)$',
-            \ 'sh': '\%(\.bash\|\.sh\)$',
-            \ 'vim': '\%(\.vim\)$',
-            \}
+\   'typescript': '\%(\.ts\)$',
+\   'javascript': '\%(\.js\)$',
+\   'html': '\%(\.html\)$',
+\   'scss': '\%(\.scss\)$',
+\   'css': '\%(\.css\)$',
+\   'json': '\%(\.json\)$',
+\   'yaml': '\%(yaml\|\.yml\)$',
+\   'sh': '\%(\.bash\|\.sh\)$',
+\   'vim': '\%(\.vim\)$',
+\}
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -231,7 +232,7 @@ let g:UltiSnipsExpandTrigger = '<Tab>'
 let g:UltiSnipsJumpForwardTrigger = '<Tab>'
 let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'
 let g:UltiSnipsSnippetsDir = '~/dotfiles/vim/ultisnips'
-let g:UltiSnipsSnippetDirectories = ['ultisnips']
+let g:UltiSnipsSnippetDirectories = [ 'ultisnips' ]
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -240,9 +241,9 @@ let g:UltiSnipsSnippetDirectories = ['ultisnips']
 " Linter {{{
 
 let g:ale_linters = {
-\   'javascript': ['eslint', 'flow'],
-\   'typescript': ['tslint', 'tsserver', 'typecheck'],
-\   'html': ['htmlhint']
+\   'javascript': [ 'eslint', 'flow' ],
+\   'typescript': [ 'tslint', 'tsserver', 'typecheck' ],
+\   'html': [ 'htmlhint' ]
 \}
 let g:ale_sign_error = '誤'
 let g:ale_sign_warning = '危'
@@ -277,22 +278,13 @@ let g:vimfiler_tree_closed_icon = '│'
 let g:vimfiler_marked_file_icon = '┼'
 let g:vimfiler_tree_leaf_icon = ''
 call vimfiler#custom#profile('default', 'context', {
-            \ 'safe' : 0,
-            \ 'horizontal' : 1,
-            \ 'find' : 1,
-            \ 'force-quit' : 1,
-            \ 'direction' : 'rightbelow',
-            \ })
+\   'safe' : 0,
+\   'horizontal' : 1,
+\   'find' : 1,
+\   'force-quit' : 1,
+\   'direction' : 'rightbelow',
+\})
 
-
-" " Netrw
-" let g:netrw_winsize = 41
-" let g:netrw_banner = 0
-" let g:netrw_liststyle = 0
-" " let g:netrw_liststyle = 3
-" let g:netrw_sort_sequence = '[\/]$,*'
-" let g:netrw_browse_split = 4
-" let g:netrw_keepdir = 0
 
 "EasyMotion
 let g:EasyMotion_smartcase = 1
@@ -317,7 +309,7 @@ let g:poppy_point_enable = 1
 let g:fzf_buffers_jump = 1
 let g:fzf_action = {
 \   'ctrl-z': 'tab split',
-\   'ctrl-x': 'split',
+\   'ctrl-s': 'split',
 \   'ctrl-v': 'vsplit'
 \}
 
@@ -330,52 +322,50 @@ let g:sparkupArgs = '--no-last-newline --open-empty-tags'
 let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
 let g:sandwich#recipes += [
 \   {
-\       'buns'        : ['(', ')'],
-\       'motionwise'  : ['line'],
-\       'kind'        : ['add'],
-\       'linewise'    : 1,
-\       'command'     : ["'[+1,']-1normal! >>"],
-\   },
-\   {
-\       'buns'        : ['(', ')'],
-\       'motionwise'  : ['line'],
-\       'kind'        : ['delete'],
-\       'linewise'    : 1,
-\       'command'     : ["'[,']normal! <<"],
-\   },
-\   {
-\       'buns'        : ['{', '}'],
-\       'motionwise'  : ['line'],
-\       'kind'        : ['add'],
-\       'linewise'    : 1,
-\       'command'     : ["'[+1,']-1normal! >>"],
-\   },
-\   {
-\       'buns'        : ['{', '}'],
-\       'motionwise'  : ['line'],
-\       'kind'        : ['delete'],
-\       'linewise'    : 1,
-\       'command'     : ["'[,']normal! <<"],
-\   },
-\   {
-\       'buns'        : ['[', ']'],
-\       'motionwise'  : ['line'],
-\       'kind'        : ['add'],
-\       'linewise'    : 1,
-\       'command'     : ["'[+1,']-1normal! >>"],
-\   },
-\   {
-\       'buns'        : ['[', ']'],
-\       'motionwise'  : ['line'],
-\       'kind'        : ['delete'],
-\       'linewise'    : 1,
-\       'command'     : ["'[,']normal! <<"],
-\   },
-\   {
-\       'external': ['it', 'at'],
-\       'noremap' : 1,
-\       'filetype': ['html'],
-\       'input'   : ['t'],
+\       'buns': [ '{ ', ' }' ],
+\       'nesting': 1,
+\       'match_syntax': 1,
+\       'kind': [ 'add', 'replace' ],
+\       'action': [ 'add' ],
+\       'input': [ '{' ]
+\   }, {
+\       'buns': [ '[ ', ' ]' ],
+\       'nesting': 1,
+\       'match_syntax': 1,
+\       'kind': [ 'add', 'replace' ],
+\       'action': [ 'add' ],
+\       'input': [ '[' ]
+\   }, {
+\       'buns': [ '( ', ' )' ],
+\       'nesting': 1,
+\       'match_syntax': 1,
+\       'kind': [ 'add', 'replace' ],
+\       'action': [ 'add' ],
+\       'input': [ '(' ]
+\   }, {
+\       'buns': [ '{\s*', '\s*}' ],
+\       'nesting': 1,
+\       'regex': 1,
+\       'match_syntax': 1,
+\       'kind': [ 'delete', 'replace', 'textobj' ],
+\       'action': [ 'delete' ],
+\       'input': [ '{' ]
+\   }, {
+\       'buns': [ '\[\s*', '\s*\]' ],
+\       'nesting': 1,
+\       'regex': 1,
+\       'match_syntax': 1,
+\       'kind': [ 'delete', 'replace', 'textobj' ],
+\       'action': [ 'delete' ],
+\       'input': [ '[' ]
+\   }, {
+\       'buns': [ '(\s*', '\s*)' ],
+\       'nesting': 1,
+\       'regex': 1,
+\       'match_syntax': 1,
+\       'kind': [ 'delete', 'replace', 'textobj' ],
+\       'action': [ 'delete' ],
+\       'input': [ '(' ]
 \   }
 \]
 
@@ -383,7 +373,15 @@ let g:sandwich#recipes += [
 let g:winresizer_start_key = '<C-T>'
 
 " AutoPairs
-let g:AutoPairs = {'[':']', '{':'}',"'":"'",'"':'"', '`':'`', '<': '>', '(': ')'}
+let g:AutoPairs = {
+\   '[':']',
+\   '{':'}',
+\   "'":"'",
+\   '"':'"',
+\   '`':'`',
+\   '<': '>',
+\   '(': ')'
+\}
 let g:AutoPairsCenterLine = 0
 let g:AutoPairsSkipCharacter = 0
 
@@ -397,43 +395,42 @@ let g:airline_section_x = 0
 let g:airline_section_y = 0
 let g:airline_section_z = 0
 let g:airline_mode_map = {
-            \ '__': '-',
-            \ 'n': '正則',
-            \ 'i': '入る',
-            \ 'R': '代る',
-            \ 'c': 'C',
-            \ 'v': '選択',
-            \ 'V': '選択',
-            \ '': '選択',
-            \ 's': 'S',
-            \ 'S': 'S',
-            \ '': 'S',
-            \ }
+\   '__': '-',
+\   'n': 'ノーマル',
+\   'i': 'インサート',
+\   'R': 'リプレース',
+\   'c': 'C',
+\   'v': 'セレクト',
+\   'V': 'セレクト',
+\   '': 'セレクト',
+\   's': 'S',
+\   'S': 'S',
+\   '': 'S',
+\}
 let g:airline#extensions#default#layout = [
-            \ [ 'a', 'c' ],
-            \ [ 'b', 'error', 'warning' ]
-            \ ]
-" let g:airline_section_c = '%t'
+\   [ 'a', 'c' ],
+\   [ 'b', 'error', 'warning' ]
+\]
 let g:airline#extensions#branch#format = 'CustomBranchName'
 function! CustomBranchName(name)
      return ''
 endfunction
-
 let g:airline#extensions#whitespace#enabled = 0
 
 let g:tmuxline_preset = {
-            \ 'a': '#{window_panes}',
-            \ 'x': '#(cd #{pane_current_path} && git rev-parse --abbrev-ref HEAD)',
-            \ 'win': '#I #{pane_title}',
-            \ 'cwin': '#I #{pane_title}',
-            \ 'options': {'status-justify': 'left'}
-            \ }
+\   'a': '#{window_panes}',
+\   'x': '#(cd #{pane_current_path} && git rev-parse --abbrev-ref HEAD)',
+\   'win': '#I #{pane_title}',
+\   'cwin': '#I #{pane_title}',
+\   'options': {'status-justify': 'left'}
+\}
 let g:tmuxline_separators = {
-            \ 'left': '',
-            \ 'left_alt': '',
-            \ 'right': '',
-            \ 'right_alt': '',
-            \ 'space': ' '}
+\   'left': '',
+\   'left_alt': '',
+\   'right': '',
+\   'right_alt': '',
+\   'space': ' '
+\}
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

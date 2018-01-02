@@ -122,6 +122,7 @@ Plug 'haya14busa/incsearch-fuzzy.vim'
 Plug 'haya14busa/incsearch-easymotion.vim'
 Plug 'eugen0329/vim-esearch'
 Plug 'fcpg/vim-spotlightify'
+Plug 'osyo-manga/vim-anzu'
 
 " Themes
 Plug 'kristijanhusak/vim-hybrid-material'

@@ -46,6 +46,9 @@ endfunction
 
 nnoremap =+ :call FixIndentation()<CR>
 
+nmap gj <plug>(signify-next-hunk)
+nmap gk <plug>(signify-prev-hunk)
+
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -135,6 +138,10 @@ nnoremap <silent> zk :call NextClosedFold('k')<cr>zo[z
 "
 nnoremap do2 :diffget //2<CR> :diffupdate<CR>
 nnoremap do3 :diffget //3<CR> :diffupdate<CR>
+omap ic <plug>(signify-motion-inner-pending)
+xmap ic <plug>(signify-motion-inner-visual)
+omap ac <plug>(signify-motion-outer-pending)
+xmap ac <plug>(signify-motion-outer-visual)
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -142,14 +149,14 @@ nnoremap do3 :diffget //3<CR> :diffupdate<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Incsearch {{{
 
-map / <Plug>(incsearch-forward)\v
-map ? <Plug>(incsearch-backward)\v
-map g/ <Plug>(incsearch-stay)\v
-map z/ <Plug>(incsearch-fuzzy-/)\v
-map z? <Plug>(incsearch-fuzzy-?)\v
-map zg/ <Plug>(incsearch-fuzzy-stay)\v
-map n <Plug>(incsearch-nohl-n)
-map N <Plug>(incsearch-nohl-N)
+map / <Plug>(incsearch-forward)
+map ? <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
+map z/ <Plug>(incsearch-fuzzy-/)
+map z? <Plug>(incsearch-fuzzy-?)
+map zg/ <Plug>(incsearch-fuzzy-stay)
+map n <Plug>(incsearch-nohl)<Plug>(anzu-n-with-echo)
+map N <Plug>(incsearch-nohl)<Plug>(anzu-N-with-echo)
 map * <Plug>(incsearch-nohl-*)N
 map # <Plug>(incsearch-nohl-#)
 map g* <Plug>(incsearch-nohl-g*)
@@ -204,10 +211,6 @@ nmap <CLEAR-5> <Plug>UnconditionalPasteCommaSingleQuoteAfter
 nmap <CLEAR-6> <Plug>UnconditionalPasteCommaSingleQuoteBefore
 nmap glp <Plug>UnconditionalPasteIndentedAfter<ESC>ddP
 nmap glP <Plug>UnconditionalPasteIndentedBefore
-nmap gjp <Plug>UnconditionalPasteCommaAfter
-nmap gjP <Plug>UnconditionalPasteCommaBefore
-nmap gj'p <Plug>UnconditionalPasteCommaSingleQuoteAfter
-nmap gj'P <Plug>UnconditionalPasteCommaSingleQuoteBefore
 nnoremap gco m'yyp:Commentary<CR>`'
 
 " }}}
