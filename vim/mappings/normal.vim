@@ -156,7 +156,7 @@ map z/ <Plug>(incsearch-fuzzy-/)
 map z? <Plug>(incsearch-fuzzy-?)
 map zg/ <Plug>(incsearch-fuzzy-stay)
 map n <Plug>(incsearch-nohl-n)
-map N <Plug>(incsearch-nohl-n)
+map N <Plug>(incsearch-nohl-N)
 map * <Plug>(incsearch-nohl-*)N
 map # <Plug>(incsearch-nohl-#)
 

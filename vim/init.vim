@@ -382,8 +382,18 @@ let g:AutoPairs = {
 \   '`':'`',
 \   '<': '>',
 \}
+let g:AutoPairsDelete = {
+\   '(':')',
+\   '[':']',
+\   '{':'}',
+\   "'":"'",
+\   '"':'"',
+\   '`':'`',
+\   '<': '>',
+\}
 let g:AutoPairsCenterLine = 0
 let g:AutoPairsSkipCharacter = 0
+let g:AutoPairsMoveCharacter = ''
 
 " Clever F
 let g:clever_f_use_migemo = 1
