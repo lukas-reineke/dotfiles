@@ -7,15 +7,15 @@ console.log($1${VISUAL});
 endsnippet
 
 snippet ssp "spacer" Ab
-console.log('-----${1/'/\\\'/g}${VISUAL/'/\\\'/g}----');
+console.group('`!v @%`:`!v line(".")` ┃ ${1/'/\\\'/g}${VISUAL/'/\\\'/g}');
 console.log($1${VISUAL}); /* DEBUG */
-console.log('-----${1/./-/g}${VISUAL/./-/g}----');
+console.groupEnd();
 endsnippet
 
 snippet sst "console table" Ab
-console.log('-----${1/'/\\\'/g}${VISUAL/'/\\\'/g}----');
+console.group('`!v @%`:`!v line(".")` ┃ ${1/'/\\\'/g}${VISUAL/'/\\\'/g}');
 console.table($1${VISUAL}); /* DEBUG */
-console.log('-----${1/./-/g}${VISUAL/./-/g}----');
+console.groupEnd();
 endsnippet
 
 snippet	vfu "var function" Ab
