@@ -261,7 +261,11 @@ export const routes: ModuleWithProviders = RouterModule.forChild(`!p snip.rv = v
 
 endsnippet
 
-snippet pri "Angular 2 argument" bw
-private `!p snip.rv = (lambda s: s[:1].lower() + s[1:] if s else '')(t[1])`: $1
+snippet pri "class private variable" bw
+private `!p snip.rv = (lambda s: s[:1].lower() + s[1:].split(';')[0].split(' ')[0] if s else '')(t[1])`: $1
+endsnippet
+
+snippet pub "class public variable" bw
+public `!p snip.rv = (lambda s: s[:1].lower() + s[1:].split(';')[0].split(' ')[0] if s else '')(t[1])`: $1
 endsnippet
 
