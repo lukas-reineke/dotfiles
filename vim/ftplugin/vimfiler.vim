@@ -1,9 +1,3 @@
-if exists('b:did_ftplugin')
-    finish
-endif
-
-let b:did_ftplugin = 1
-
 nnoremap <buffer> <ESC> :bd<CR>
 nmap <buffer> - <Plug>(vimfiler_switch_to_parent_directory)
 nmap <buffer> K 5k

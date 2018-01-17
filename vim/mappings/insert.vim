@@ -3,7 +3,7 @@
 
 inoremap <C-O> <C-X><C-O>
 inoremap <C-F> <ESC>:cd %:p:h<CR>a<C-X><C-F>
-inoremap <C-B> <ESC>a
+inoremap <C-B> <C-E>
 inoremap <silent><expr> ( complete_parameter#pre_complete("()")
 
 " }}}

@@ -14,6 +14,7 @@ Plug 'tpope/vim-projectionist'
 Plug 'Shougo/vimproc.vim'
 Plug 'Shougo/vimfiler.vim'
 Plug 'Shougo/unite.vim'
+Plug 'Shougo/echodoc.vim'
 
 " Git
 Plug 'mhinz/vim-signify'
@@ -25,6 +26,7 @@ Plug 'Quramy/tsuquyomi'
 
 " Javascript
 Plug 'othree/yajs.vim'
+Plug 'mxw/vim-jsx'
 
 " Json
 Plug 'elzr/vim-json'
@@ -34,6 +36,7 @@ Plug 'othree/html5.vim'
 Plug 'othree/html5-syntax.vim'
 Plug 'lukas-reineke/sparkup'
 Plug 'gregsexton/matchtag'
+Plug 'nikvdp/ejs-syntax'
 
 " Markdown
 Plug 'shime/vim-livedown'

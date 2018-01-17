@@ -49,6 +49,17 @@ nnoremap =+ :call FixIndentation()<CR>
 nmap gj <plug>(signify-next-hunk)
 nmap gk <plug>(signify-prev-hunk)
 
+nnoremap 1% 10%
+nnoremap 2% 20%
+nnoremap 3% 30%
+nnoremap 4% 40%
+nnoremap 5% 50%
+nnoremap 6% 60%
+nnoremap 7% 70%
+nnoremap 8% 80%
+nnoremap 9% 90%
+nnoremap 0% 100%
+
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 

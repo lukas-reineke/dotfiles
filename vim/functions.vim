@@ -2,13 +2,13 @@
 " Close Buffer {{{
 
 function! OpenBufferNumber()
-    let cnt = 0
+    let count = 0
     for i in range(0, bufnr("$"))
         if buflisted(i)
-            let cnt += 1
+            let count += 1
         endif
     endfor
-    return cnt
+    return count
 endfunction
 
 function! CloseOnLast()
@@ -26,11 +26,14 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Strip trailing whitespace {{{
 
+let g:DisableStripTrailingWhitespaces = 0
 function! s:StripTrailingWhitespaces()
-    let l:l = line(".")
-    let l:c = col(".")
-    %s/\s\+$//e
-    call cursor(l:l, l:c)
+    if !g:DisableStripTrailingWhitespaces
+        let l:l = line(".")
+        let l:c = col(".")
+        %s/\s\+$//e
+        call cursor(l:l, l:c)
+    endif
 endfunction
 
 augroup stripWhitespaces
@@ -38,7 +41,15 @@ augroup stripWhitespaces
     autocmd stripWhitespaces BufWritePre * :call s:StripTrailingWhitespaces()
 augroup END
 
-" au CursorHold * checktime
+function! ToggleStripTrailingWhitespaces()
+    if g:DisableStripTrailingWhitespaces
+        let g:DisableStripTrailingWhitespaces = 0
+    else
+        let g:DisableStripTrailingWhitespaces = 1
+    endif
+endfunction
+
+command ToggleStripTrailingWhitespaces :call ToggleStripTrailingWhitespaces()
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

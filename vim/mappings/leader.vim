@@ -16,6 +16,11 @@ nnoremap <Leader>N :E %:h/
 nnoremap <Leader>o o<esc>k
 nnoremap <Leader>O O<esc>j
 
+nnoremap <Leader>H H
+nnoremap <Leader>L L
+nnoremap <Leader>K HzzH
+nnoremap <Leader>J LzzL
+
 nnoremap <Leader>z 1z=
 
 nnoremap <Leader>u :MundoToggle<CR>

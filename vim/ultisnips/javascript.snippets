@@ -7,7 +7,7 @@ console.log($1${VISUAL});
 endsnippet
 
 snippet ssp "spacer" Ab
-console.group('`!v @%`:`!v line(".")` ┃ ${1/'/\\\'/g}${VISUAL/'/\\\'/g}');
+console.group('`!v expand("%:t")`:`!v line(".")` ┃ ${1/'/\\\'/g}${VISUAL/'/\\\'/g}');
 console.log($1${VISUAL}); /* DEBUG */
 console.groupEnd();
 endsnippet
@@ -267,5 +267,15 @@ endsnippet
 
 snippet pub "class public variable" bw
 public `!p snip.rv = (lambda s: s[:1].lower() + s[1:].split(';')[0].split(' ')[0] if s else '')(t[1])`: $1
+endsnippet
+
+snippet it "unit test it" bw
+it(\`$1\`, () => {
+});
+endsnippet
+
+snippet des "unit test describe" bw
+describe(\`$1\`, () => {
+});
 endsnippet
 

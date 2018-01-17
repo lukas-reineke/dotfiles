@@ -219,16 +219,9 @@ let g:tsuquyomi_single_quote_import = 1
 let g:tsuquyomi_javascript_support = 1
 let g:tsuquyomi_completion_detail = 1
 
-let g:tern_show_signature_in_pum = '0'
+let g:echodoc#enable_at_startup = 1
 
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#disable_auto_complete = 1
-let g:deoplete#enable_camel_case = 1
-
-let g:jsdoc_allow_input_prompt = 1
-let g:jsdoc_input_description = 1
-let g:jsdoc_additional_descriptions = 1
-let g:jsdoc_enable_es6 = 1
+let g:complete_parameter_use_typescript_for_javascript = 1
 
 let g:UltiSnipsExpandTrigger = '<Tab>'
 let g:UltiSnipsJumpForwardTrigger = '<Tab>'
@@ -265,6 +258,7 @@ augroup FiletypeDetect
     autocmd!
     autocmd BufRead,BufNewFile .stylelintrc,.htmlhintrc set filetype=json
     autocmd BufRead,BufNewFile i3* set filetype=i3
+    autocmd BufRead,BufNewFile *.tsx set filetype=typescript.jsx
 augroup END
 
 " }}}
@@ -318,6 +312,9 @@ let g:fzf_action = {
 let g:sparkupExecuteMapping = '<C-E>'
 let g:sparkupNextMapping = '<C-R>'
 let g:sparkupArgs = '--no-last-newline --open-empty-tags'
+
+" JSX
+let g:jsx_ext_required = 0
 
 " Sandwich
 let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
@@ -409,13 +406,13 @@ let g:airline_mode_map = {
 \   'n': 'ノーマル',
 \   'i': 'インサート',
 \   'R': 'リプレース',
-\   'c': 'C',
-\   'v': 'セレクト',
-\   'V': 'セレクト',
-\   '': 'セレクト',
-\   's': 'S',
-\   'S': 'S',
-\   '': 'S',
+\   'c': 'コマーンド',
+\   'v': 'ビズアル',
+\   'V': 'ビズアル',
+\   '': 'ビズアル',
+\   's': 'セレクト',
+\   'S': 'セレクト',
+\   '': 'セレクト',
 \}
 let g:airline#extensions#default#layout = [
 \   [ 'a', 'c' ],
@@ -441,8 +438,6 @@ let g:tmuxline_separators = {
 \   'right_alt': '',
 \   'space': ' '
 \}
-
-let g:complete_parameter_use_typescript_for_javascript = 1
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
