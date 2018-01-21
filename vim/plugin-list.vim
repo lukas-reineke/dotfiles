@@ -155,3 +155,6 @@ Plug 'krisajenkins/vim-projectlocal'
 " close all other buffers
 Plug 'schickling/vim-bufonly'
 
+" interactive scratchpad
+Plug 'metakirby5/codi.vim'
+

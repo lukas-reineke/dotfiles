@@ -395,6 +395,9 @@ let g:AutoPairsMoveCharacter = ''
 " Clever F
 let g:clever_f_use_migemo = 1
 
+" Codi
+let g:codi#rightsplit = 0
+
 " Airline
 let g:airline_detect_spell = 0
 let g:airline_detect_spelllang = 0
