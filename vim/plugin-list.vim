@@ -38,6 +38,10 @@ Plug 'lukas-reineke/sparkup'
 Plug 'gregsexton/matchtag'
 Plug 'nikvdp/ejs-syntax'
 
+" SCSS
+Plug 'cakebaker/scss-syntax.vim'
+Plug 'hail2u/vim-css3-syntax'
+
 " Markdown
 Plug 'shime/vim-livedown'
 
