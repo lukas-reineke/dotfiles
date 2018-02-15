@@ -229,6 +229,17 @@ let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'
 let g:UltiSnipsSnippetsDir = '~/dotfiles/vim/ultisnips'
 let g:UltiSnipsSnippetDirectories = [ 'ultisnips' ]
 
+let g:jedi#auto_vim_configuration = 0
+let g:jedi#popup_on_dot = 0
+" let g:jedi#completions_enabled = 0
+let g:jedi#goto_command = "<C-]>"
+let g:jedi#goto_assignments_command = ""
+let g:jedi#goto_definitions_command = ""
+let g:jedi#documentation_command = ""
+let g:jedi#usages_command = ""
+let g:jedi#completions_command = ""
+let g:jedi#rename_command = ""
+
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -310,7 +321,7 @@ let g:fzf_action = {
 
 " Sparkup
 let g:sparkupExecuteMapping = '<C-E>'
-let g:sparkupNextMapping = '<C-R>'
+let g:sparkupNextMapping = '<C-2>'
 let g:sparkupArgs = '--no-last-newline --open-empty-tags'
 
 " JSX

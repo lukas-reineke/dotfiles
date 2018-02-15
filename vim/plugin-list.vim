@@ -28,6 +28,10 @@ Plug 'Quramy/tsuquyomi'
 Plug 'othree/yajs.vim'
 Plug 'mxw/vim-jsx'
 
+" Python
+Plug 'Vimjas/vim-python-pep8-indent'
+Plug 'davidhalter/jedi-vim'
+
 " Json
 Plug 'elzr/vim-json'
 
@@ -116,7 +120,7 @@ Plug 'sickill/vim-pasta'
 Plug 'haya14busa/incsearch.vim'
 Plug 'eugen0329/vim-esearch'
 Plug 'fcpg/vim-spotlightify'
-Plug 'osyo-manga/vim-anzu'
+" Plug 'osyo-manga/vim-anzu'
 
 " Themes
 Plug 'chriskempson/base16-vim'
