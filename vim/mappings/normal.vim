@@ -66,7 +66,6 @@ nnoremap 9% 90%
 " Plugins {{{
 
 nnoremap <C-p> :Files<CR>
-nnoremap <C-]> :A<CR>
 
 nnoremap - :VimFilerCurrentDir<CR>
 nnoremap + :VimFilerBufferDir -split<CR>

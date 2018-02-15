@@ -32,6 +32,8 @@ nnoremap <Leader>; :CommaOrSemiColon<CR>
 nmap <Leader>d d<Plug>(easymotion-j)
 nmap <Leader>D d<Plug>(easymotion-k)
 
+nnoremap <Leader><C-]> :A<CR>
+
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
