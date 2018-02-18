@@ -303,6 +303,7 @@ augroup signify
     autocmd!
     autocmd FocusGained,cursormoved * :SignifyRefresh
 augroup END
+let g:signify_update_on_focusgained = 1
 
 " poppy
 augroup poppy

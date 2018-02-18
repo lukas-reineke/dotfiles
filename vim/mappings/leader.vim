@@ -85,6 +85,8 @@ nnoremap <Leader>gf :GFiles?<CR>
 nnoremap <Leader>gt :SignifyToggleHighlight<CR>
 nnoremap <Leader>gz :SignifyFold!<CR>
 
+nnoremap <Leader>do :Gvdiff<CR>:diffget<CR>:only<CR>
+
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
