@@ -70,6 +70,7 @@ set incsearch
 set inccommand=nosplit
 set grepprg=rg\ --vimgrep
 set formatprg=par\ -w80rq
+set formatoptions-=o
 set nowrap
 set whichwrap=b
 set whichwrap+=h
@@ -270,6 +271,7 @@ augroup FiletypeDetect
     autocmd BufRead,BufNewFile .stylelintrc,.htmlhintrc set filetype=json
     autocmd BufRead,BufNewFile i3* set filetype=i3
     autocmd BufRead,BufNewFile *.tsx set filetype=typescript.jsx
+    autocmd BufRead,BufNewFile * set formatoptions-=o
 augroup END
 
 " }}}
@@ -291,7 +293,6 @@ call vimfiler#custom#profile('default', 'context', {
 \   'force-quit' : 1,
 \   'direction' : 'rightbelow',
 \})
-
 
 "EasyMotion
 let g:EasyMotion_smartcase = 1
