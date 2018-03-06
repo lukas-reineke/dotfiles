@@ -1,0 +1,2 @@
+nnoremap <buffer> o <CR>
+

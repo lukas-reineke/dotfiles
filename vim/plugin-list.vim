@@ -148,6 +148,7 @@ Plug 'bounceme/poppy.vim'
 Plug 'machakann/vim-highlightedyank'
 
 Plug 'romainl/vim-qf'
+Plug 'romainl/vim-qlist'
 
 Plug 'kana/vim-niceblock'
 

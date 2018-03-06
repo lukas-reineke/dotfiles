@@ -250,7 +250,8 @@ let g:jedi#rename_command = ""
 let g:ale_linters = {
 \   'javascript': [ 'eslint', 'flow' ],
 \   'typescript': [ 'tslint', 'tsserver', 'typecheck' ],
-\   'html': [ 'htmlhint' ]
+\   'html': [ 'htmlhint' ],
+\   'scss': [ 'sasslint' ]
 \}
 let g:ale_sign_error = '誤'
 let g:ale_sign_warning = '危'
