@@ -52,8 +52,8 @@ nnoremap <Leader><C-W> :Windows<CR>
 
 " nnoremap <Leader>r :OverCommandLine<CR>%s/\v
 " vnoremap <Leader>r :OverCommandLine<CR>s/\v
-nnoremap <Leader>r :%s/\v
-vnoremap <Leader>r :s/\v
+nnoremap <Leader>r :%s/\v()
+vnoremap <Leader>r :s/\v()
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -85,7 +85,15 @@ nnoremap <Leader>gf :GFiles?<CR>
 nnoremap <Leader>gt :SignifyToggleHighlight<CR>
 nnoremap <Leader>gz :SignifyFold!<CR>
 
-nnoremap <Leader>do :Gvdiff<CR>:diffget<CR>:only<CR>
+function! CheckoutLine()
+    let view = winsaveview()
+    Gvdiff
+    diffget
+    only
+    call winrestview(view)
+endfunction
+
+nnoremap <Leader>go :call CheckoutLine()<CR>
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
