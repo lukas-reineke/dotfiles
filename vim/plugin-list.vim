@@ -27,6 +27,7 @@ Plug 'Quramy/tsuquyomi'
 " Javascript
 Plug 'othree/yajs.vim'
 Plug 'mxw/vim-jsx'
+Plug 'retorillo/istanbul.vim'
 
 " Python
 Plug 'Vimjas/vim-python-pep8-indent'

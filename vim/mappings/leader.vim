@@ -34,6 +34,9 @@ nmap <Leader>D d<Plug>(easymotion-k)
 
 nnoremap <Leader><C-]> :A<CR>
 
+nnoremap <Leader>it :IstanbulToggle<CR>
+nnoremap <Leader>iu :IstanbulUpdate<CR>
+
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
