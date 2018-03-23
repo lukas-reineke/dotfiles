@@ -109,6 +109,26 @@ command Japanese :call ToggleInput()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Match {{{
+
+let g:over_length = 0
+
+function! ToggleOverLength()
+    if g:over_length
+        let g:over_length=0
+        match none
+    else
+        let g:over_length=1
+        match Error /.\%>72v/
+    endif
+endfunction
+
+command OverLength :call ToggleOverLength()
+
+" }}}
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Json Format {{{
 
 command JsonFormat :%!python -m json.tool

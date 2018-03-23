@@ -101,7 +101,6 @@ set spellcapcheck=
 
 set background=dark
 color base16-onedark
-" highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 highlight CursorLine guibg='#22262d' guifg='#000'
 highlight WinNormalNC guibg='#22262d' guifg='#777777'
 highlight QuickFixLine guibg='#22262d' guifg='#000'

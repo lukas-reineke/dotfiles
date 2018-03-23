@@ -70,29 +70,15 @@ alias dsa='SSH_AUTH_SOCK=0'
 # sublime
 alias subl='sublime .'
 
-# webpkack
-alias wp='webpack --config webpack.config.js --progress --watch'
-alias wps='webpack-dev-server --content-base dist/'
-
-# redis
-alias redis='redis-server'
-
 # python
 alias http='simplehttpserver'
 alias da='deactivate'
-
-# ionic
-alias ri='ionic run'
-alias bi='ionic build'
-
-# irc
-alias wee='weechat'
 
 # android
 alias avd='/opt/android-sdk/tools/android avd'
 
 # stuff
-alias links='vim ~/Dropbox/links.txt'
+alias links='nvim ~/Dropbox/links.txt'
 alias ply='~/dotfiles/scripts/play.sh'
 alias clock='tty-clock -b -c -C 6'
 alias lock='~/scripts/i3lock-fancy/lock'
