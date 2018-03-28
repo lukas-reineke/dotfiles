@@ -280,6 +280,10 @@ augroup END
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin settings {{{
 
+" Man
+let g:no_man_maps = 1
+
+" vimfiler
 let g:vimfiler_as_default_explorer = 1
 let g:vimfiler_tree_indentation = 4
 let g:vimfiler_tree_opened_icon = '├'
