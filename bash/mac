@@ -36,7 +36,8 @@ export CLASSPATH=/usr/local/bin/mysql-connector-java-5.1.39/mysql-connector-java
 export ANDROID_HOME=$HOME/Library/Android/sdk
 # export ANDROID_HOME=/usr/local/share/android-sdk
 # export ANDROID_SDK_ROOT="/usr/local/share/android-sdk"
-export JAVA_HOME=$(/usr/libexec/java_home)
+# export JAVA_HOME=$(/usr/libexec/java_home)
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_152.jdk/Contents/Home/
 
 ### iTerm ###
 if [ -f ~/dotfiles/lib/iterm2_shell_integration.bash ]; then

@@ -180,8 +180,8 @@ command -bang -bar -nargs=? -complete=file E :call s:MKDir(<f-args>) | e<bang> <
 " Restore Session {{{
 
 function! RestoreSession()
-    let ignore = ['.env.sh', '.secrets', '.projections.json']
-    if filereadable(getcwd() . '/Session.vim') && &filetype != "gitcommit" && index(ignore, expand('%:t')) < 0
+    let ignore = [ 'gitcommit', 'man' ]
+    if filereadable(getcwd() . '/Session.vim') && index(ignore, &filetype) < 0 && argc() == 0
         execute 'so ' . getcwd() . '/Session.vim'
         if bufexists(1)
             for l in range(1, bufnr('$'))
@@ -206,15 +206,6 @@ function! QuickFix()
     let filetype_list = ['netrw']
     if (index(buftype_list, &buftype) >= 0 || index(filetype_list, &filetype) >= 0)
         let g:qs_enable = 0
-        " match Error /.*/
-        " syntax match Error /|.*|/
-        " syntax match Error /\d*\scol\s\d*/
-        if &buftype == 'quickfix'
-            match Error /|/
-            syntax match qfFileName /^[^|]*/ transparent conceal
-            syntax match qfError /error\(|\s\|\s\d*|\s\)/ transparent conceal
-            syntax match qfCol /\d*\scol\s\d*/ transparent conceal
-        endif
     else
         let g:qs_enable = 1
     endif
@@ -295,7 +286,7 @@ augroup END
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Win Highlight{{{
+" Win Highlight {{{
 
 function! WinHighlight()
     if &foldmethod == 'diff'
@@ -314,7 +305,7 @@ augroup END
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Set Filetype{{{
+" Set Filetype {{{
 
 function! s:SetFiletype(filetype)
     execute 'set filetype=' . a:filetype
@@ -330,5 +321,12 @@ command FT :call fzf#run({
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Man TOC {{{
+
+command TOC :call man#show_toc()<CR>
+
+" }}}
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim:foldmethod=marker:foldlevel=0
 
