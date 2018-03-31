@@ -250,7 +250,13 @@ let g:ale_linters = {
 \   'javascript': [ 'eslint', 'flow' ],
 \   'typescript': [ 'tslint', 'tsserver', 'typecheck' ],
 \   'html': [ 'htmlhint' ],
-\   'scss': [ 'sasslint' ]
+\   'scss': [ 'sasslint' ],
+\   'python': [ 'autopep8' ],
+\}
+let g:ale_fixers = {
+\   'javascript': ['eslint'],
+\   'typescript': ['tslint'],
+\   'python': ['autopep8'],
 \}
 let g:ale_sign_error = '誤'
 let g:ale_sign_warning = '危'
@@ -259,6 +265,7 @@ let g:airline#extensions#ale#warning_symbol = '危:'
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
 let g:tsuquyomi_disable_quickfix = 1
+let g:ale_fix_on_save = 1
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
