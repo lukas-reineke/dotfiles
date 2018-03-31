@@ -161,6 +161,9 @@ bindsym XF86AudioPrev exec playerctl previous
 # Reset keymaps ##
 bindsym $mod+m exec ~/scripts/keymaps/reset-keysettings.sh
 
+bindsym $alt+Shift+4 exec deepin-screenshot
+
+
 assign [class="Opera"] 2
 # i3 Gaps ##
 gaps inner 15
