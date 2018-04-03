@@ -454,8 +454,8 @@ let g:airline#extensions#whitespace#enabled = 0
 let g:tmuxline_preset = {
 \   'a': '#{window_panes}',
 \   'x': '#(cd #{pane_current_path} && git rev-parse --abbrev-ref HEAD)',
-\   'win': '#I #{pane_title}',
-\   'cwin': '#I #{pane_title}',
+\   'win': '│ #I #{pane_title}',
+\   'cwin': '│ #I #{pane_title}',
 \   'options': {'status-justify': 'left'}
 \}
 let g:tmuxline_separators = {
