@@ -329,7 +329,7 @@ let g:fzf_buffers_jump = 1
 let g:fzf_action = {
 \   'ctrl-z': 'tab split',
 \   'ctrl-s': 'split',
-\   'ctrl-v': 'vsplit'
+\   'ctrl-v': 'vsplit',
 \}
 
 " Sparkup
@@ -349,21 +349,21 @@ let g:sandwich#recipes += [
 \       'match_syntax': 1,
 \       'kind': [ 'add', 'replace' ],
 \       'action': [ 'add' ],
-\       'input': [ '{' ]
+\       'input': [ '{' ],
 \   }, {
 \       'buns': [ '[ ', ' ]' ],
 \       'nesting': 1,
 \       'match_syntax': 1,
 \       'kind': [ 'add', 'replace' ],
 \       'action': [ 'add' ],
-\       'input': [ '[' ]
+\       'input': [ '[' ],
 \   }, {
 \       'buns': [ '( ', ' )' ],
 \       'nesting': 1,
 \       'match_syntax': 1,
 \       'kind': [ 'add', 'replace' ],
 \       'action': [ 'add' ],
-\       'input': [ '(' ]
+\       'input': [ '(' ],
 \   }, {
 \       'buns': [ '{\s*', '\s*}' ],
 \       'nesting': 1,
@@ -371,7 +371,7 @@ let g:sandwich#recipes += [
 \       'match_syntax': 1,
 \       'kind': [ 'delete', 'replace', 'textobj' ],
 \       'action': [ 'delete' ],
-\       'input': [ '{' ]
+\       'input': [ '{' ],
 \   }, {
 \       'buns': [ '\[\s*', '\s*\]' ],
 \       'nesting': 1,
@@ -379,7 +379,7 @@ let g:sandwich#recipes += [
 \       'match_syntax': 1,
 \       'kind': [ 'delete', 'replace', 'textobj' ],
 \       'action': [ 'delete' ],
-\       'input': [ '[' ]
+\       'input': [ '[' ],
 \   }, {
 \       'buns': [ '(\s*', '\s*)' ],
 \       'nesting': 1,
@@ -387,7 +387,7 @@ let g:sandwich#recipes += [
 \       'match_syntax': 1,
 \       'kind': [ 'delete', 'replace', 'textobj' ],
 \       'action': [ 'delete' ],
-\       'input': [ '(' ]
+\       'input': [ '(' ],
 \   }
 \]
 
@@ -443,11 +443,11 @@ let g:airline_mode_map = {
 \}
 let g:airline#extensions#default#layout = [
 \   [ 'a', 'c' ],
-\   [ 'b', 'error', 'warning' ]
+\   [ 'b', 'error', 'warning' ],
 \]
 let g:airline#extensions#branch#format = 'CustomBranchName'
 function! CustomBranchName(name)
-     return ''
+    return ''
 endfunction
 let g:airline#extensions#whitespace#enabled = 0
 
@@ -456,14 +456,14 @@ let g:tmuxline_preset = {
 \   'x': '#(cd #{pane_current_path} && git rev-parse --abbrev-ref HEAD)',
 \   'win': '│ #I #{pane_title}',
 \   'cwin': '│ #I #{pane_title}',
-\   'options': {'status-justify': 'left'}
+\   'options': {'status-justify': 'left'},
 \}
 let g:tmuxline_separators = {
 \   'left': '',
 \   'left_alt': '',
 \   'right': '',
 \   'right_alt': '',
-\   'space': ' '
+\   'space': ' ',
 \}
 
 " }}}

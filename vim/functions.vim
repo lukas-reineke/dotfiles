@@ -3,7 +3,7 @@
 
 function! OpenBufferNumber()
     let count = 0
-    for i in range(0, bufnr("$"))
+    for i in range(0, bufnr('$'))
         if buflisted(i)
             let count += 1
         endif
@@ -29,8 +29,8 @@ endfunction
 let g:DisableStripTrailingWhitespaces = 0
 function! s:StripTrailingWhitespaces()
     if !g:DisableStripTrailingWhitespaces
-        let l:l = line(".")
-        let l:c = col(".")
+        let l:l = line('.')
+        let l:c = col('.')
         %s/\s\+$//e
         call cursor(l:l, l:c)
     endif
@@ -77,17 +77,17 @@ autocmd BufEnter * call <SID>AutoProjectRootCD()
 
 let g:input_toggle = 0
 function! FcitxToEn()
-    let s:input_status = system("fcitx-remote")
+    let s:input_status = system('fcitx-remote')
     if s:input_status == 2
         let g:input_toggle = 1
-        let l:a = system("fcitx-remote -c")
+        let l:a = system('fcitx-remote -c')
     endif
 endfunction
 
 function! FcitxToJp()
-    let s:input_status = system("fcitx-remote")
+    let s:input_status = system('fcitx-remote')
     if s:input_status != 2 && g:input_toggle == 1
-        let l:a = system("fcitx-remote -o")
+        let l:a = system('fcitx-remote -o')
         let g:input_toggle = 0
     endif
 endfunction
@@ -272,8 +272,8 @@ set foldtext=FoldText()
 function! FoldCloseAll()
     if winnr('$') > 1 && &foldmethod == 'diff'
         let l:currentWindow=winnr()
-        windo execute "normal! zm"
-        execute l:currentWindow . "wincmd w"
+        windo execute 'normal! zm'
+        execute l:currentWindow . 'wincmd w'
     endif
 endfunction
 
