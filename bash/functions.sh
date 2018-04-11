@@ -76,6 +76,7 @@ tt
 function ce {
     DEEP=$1; [ -z "${DEEP}" ] && { DEEP=1; }; for i in $(seq 1 ${DEEP}); do cd ../; done;
 }
+bind '"\C-e":"ce\n"'
 
 # bower
 function bower {

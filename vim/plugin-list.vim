@@ -122,6 +122,7 @@ Plug 'haya14busa/incsearch.vim'
 Plug 'eugen0329/vim-esearch'
 Plug 'fcpg/vim-spotlightify'
 Plug 'vim-scripts/CmdlineComplete'
+Plug 'vim-scripts/SearchComplete'
 " Plug 'osyo-manga/vim-anzu'
 
 " Themes
