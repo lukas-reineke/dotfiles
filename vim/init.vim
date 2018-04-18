@@ -48,6 +48,7 @@ set lazyredraw
 set shortmess+=A
 set noswapfile
 set termguicolors
+set colorcolumn=80
 set noshowmode
 set noshowcmd
 set encoding=utf8
