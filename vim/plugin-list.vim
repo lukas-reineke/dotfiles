@@ -22,12 +22,12 @@ Plug 'vim-scripts/gitignore'
 
 " Typescript
 Plug 'HerringtonDarkholme/yats.vim'
+Plug 'aanari/vim-tsx-pretty'
 Plug 'Quramy/tsuquyomi'
 
 " Javascript
 Plug 'othree/yajs.vim'
-Plug 'mxw/vim-jsx'
-Plug 'retorillo/istanbul.vim'
+Plug 'MaxMEllon/vim-jsx-pretty'
 
 " Python
 Plug 'Vimjas/vim-python-pep8-indent'
@@ -62,6 +62,7 @@ Plug 'wellle/tmux-complete.vim'
 
 " Linter
 Plug 'w0rp/ale'
+Plug 'retorillo/istanbul.vim'
 
 " Snippets
 Plug 'SirVer/ultisnips'

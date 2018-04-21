@@ -278,7 +278,6 @@ augroup FiletypeDetect
     autocmd!
     autocmd BufRead,BufNewFile .stylelintrc,.htmlhintrc set filetype=json
     autocmd BufRead,BufNewFile i3* set filetype=i3
-    autocmd BufRead,BufNewFile *.tsx set filetype=typescript.jsx
     autocmd BufRead,BufNewFile * set formatoptions-=o
 augroup END
 
@@ -337,9 +336,6 @@ let g:fzf_action = {
 let g:sparkupExecuteMapping = '<C-E>'
 let g:sparkupNextMapping = '<C-2>'
 let g:sparkupArgs = '--no-last-newline --open-empty-tags'
-
-" JSX
-let g:jsx_ext_required = 0
 
 " Sandwich
 let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
