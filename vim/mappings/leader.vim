@@ -87,6 +87,7 @@ nnoremap <Leader>gl :BCommits<CR>
 nnoremap <Leader>gf :GFiles?<CR>
 nnoremap <Leader>gt :SignifyToggleHighlight<CR>
 nnoremap <Leader>gz :SignifyFold!<CR>
+nnoremap <Leader>gc :Twiggy<CR>
 
 function! CheckoutLine()
     let view = winsaveview()

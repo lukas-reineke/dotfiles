@@ -19,6 +19,7 @@ Plug 'Shougo/echodoc.vim'
 " Git
 Plug 'mhinz/vim-signify'
 Plug 'vim-scripts/gitignore'
+Plug 'sodapopcan/vim-twiggy'
 
 " Typescript
 Plug 'HerringtonDarkholme/yats.vim'
