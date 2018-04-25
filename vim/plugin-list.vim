@@ -20,6 +20,7 @@ Plug 'Shougo/echodoc.vim'
 Plug 'mhinz/vim-signify'
 Plug 'vim-scripts/gitignore'
 Plug 'sodapopcan/vim-twiggy'
+Plug 'jreybert/vimagit'
 
 " Typescript
 Plug 'HerringtonDarkholme/yats.vim'

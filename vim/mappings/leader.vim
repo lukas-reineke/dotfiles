@@ -88,6 +88,7 @@ nnoremap <Leader>gf :GFiles?<CR>
 nnoremap <Leader>gt :SignifyToggleHighlight<CR>
 nnoremap <Leader>gz :SignifyFold!<CR>
 nnoremap <Leader>gc :Twiggy<CR>
+nnoremap <Leader>gm :Magit<CR>
 
 function! CheckoutLine()
     let view = winsaveview()
