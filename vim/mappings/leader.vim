@@ -88,7 +88,8 @@ nnoremap <Leader>gf :GFiles?<CR>
 nnoremap <Leader>gt :SignifyToggleHighlight<CR>
 nnoremap <Leader>gz :SignifyFold!<CR>
 nnoremap <Leader>gc :Twiggy<CR>
-nnoremap <Leader>gm :Magit<CR>
+nnoremap <Leader>gm :Magit<CR>zcgg
+let g:magit_show_magit_mapping='<NOPE>'
 
 function! CheckoutLine()
     let view = winsaveview()
