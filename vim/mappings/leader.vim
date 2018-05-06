@@ -23,11 +23,7 @@ nnoremap <Leader>J LzzL
 
 nnoremap <Leader>z 1z=
 
-nnoremap <Leader>u :MundoToggle<CR>
-
 nmap <silent> <Leader>c <Plug>qf_qf_stay_toggle
-
-nnoremap <Leader>; :CommaOrSemiColon<CR>
 
 nmap <Leader>d d<Plug>(easymotion-j)
 nmap <Leader>D d<Plug>(easymotion-k)
@@ -67,7 +63,6 @@ vnoremap <Leader>r :s/\v()
 map <Leader>ee <Plug>(easymotion-bd-w)
 nmap <Leader>ee <Plug>(easymotion-overwin-w)
 nmap <Leader>ef <Plug>(easymotion-overwin-f2)
-map <Leader>es <Plug>(incsearch-easymotion-/)\v
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 map <Leader>l <Plug>(easymotion-lineforward)
@@ -118,7 +113,7 @@ nnoremap <Leader>ut :call UnitTest()<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Google{{{
+" Google {{{
 
 function! s:goog(pat, lucky)
     let q = '"'.substitute(a:pat, '["\n]', ' ', 'g').'"'
@@ -135,7 +130,7 @@ nnoremap <leader>! :call <SID>goog(expand("<cWORD>"), 1)<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Tmux{{{
+" Tmux {{{
 
 " " https://github.com/junegunn/dotfiles/blob/ae8388976f8fd7339b717f65b0175d8e4e93aa71/vimrc#L384
 " function! s:tmux_send(content, dest) range
