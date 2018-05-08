@@ -25,9 +25,6 @@ nnoremap <Leader>z 1z=
 
 nmap <silent> <Leader>c <Plug>qf_qf_stay_toggle
 
-nmap <Leader>d d<Plug>(easymotion-j)
-nmap <Leader>D d<Plug>(easymotion-k)
-
 nnoremap <Leader><C-]> :A<CR>
 
 nnoremap <Leader>it :IstanbulToggle<CR>
