@@ -23,7 +23,7 @@ nnoremap <Leader>J LzzL
 
 nnoremap <Leader>z 1z=
 
-nmap <silent> <Leader>c <Plug>qf_qf_stay_toggle
+nmap <silent> <Leader>c <Plug>(qf_qf_toggle_stay)
 
 nnoremap <Leader><C-]> :A<CR>
 
