@@ -100,19 +100,10 @@ set spellcapcheck=
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Theme {{{
 
-set background=dark
-color base16-onedark
-highlight CursorLine guibg='#22262d' guifg='#000'
-highlight WinNormalNC guibg='#22262d' guifg='#777777'
-highlight QuickFixLine guibg='#22262d' guifg='#000'
-highlight Search guibg='#565c64' guifg='#000'
-highlight ESearchMatch guibg='#565c64' guifg='#000'
-highlight HighlightedyankRegion guibg='#565c64'
-let g:airline_theme = 'bubblegum'
+color onedark
+let g:airline_theme = 'onedark'
 let g:airline_colornum_reversed = 1
 let g:highlightedyank_highlight_duration = 100
-" match OverLength /\%81v./
-set winhighlight=NormalNC:WinNormalNC
 
 augroup HiglightDebug
     autocmd!
@@ -449,20 +440,20 @@ function! CustomBranchName(name)
 endfunction
 let g:airline#extensions#whitespace#enabled = 0
 
-let g:tmuxline_preset = {
-\   'a': '#{window_panes}',
-\   'x': '#(cd #{pane_current_path} && git rev-parse --abbrev-ref HEAD)',
-\   'win': '│ #I #{pane_title}',
-\   'cwin': '│ #I #{pane_title}',
-\   'options': {'status-justify': 'left'},
-\}
-let g:tmuxline_separators = {
-\   'left': '',
-\   'left_alt': '',
-\   'right': '',
-\   'right_alt': '',
-\   'space': ' ',
-\}
+" let g:tmuxline_preset = {
+" \   'a': '#{window_panes}',
+" \   'x': '#(cd #{pane_current_path} && git rev-parse --abbrev-ref HEAD)',
+" \   'win': '│ #I #{pane_title}',
+" \   'cwin': '│ #I #{pane_title}',
+" \   'options': {'status-justify': 'left'},
+" \}
+" let g:tmuxline_separators = {
+" \   'left': '',
+" \   'left_alt': '',
+" \   'right': '',
+" \   'right_alt': '',
+" \   'space': ' ',
+" \}
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

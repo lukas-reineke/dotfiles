@@ -58,7 +58,7 @@ Plug 'PotatoesMaster/i3-vim-syntax'
 " Tmux
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tmux-plugins/vim-tmux'
-Plug 'edkolev/tmuxline.vim'
+" Plug 'edkolev/tmuxline.vim'
 Plug 'roxma/vim-tmux-clipboard'
 Plug 'wellle/tmux-complete.vim'
 
@@ -96,7 +96,7 @@ Plug 'lilydjwg/colorizer'
 
 " Airline
 Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+" Plug 'vim-airline/vim-airline-themes'
 Plug 'augustold/vim-airline-colornum'
 
 " Easy motion
@@ -129,7 +129,8 @@ Plug 'vim-scripts/SearchComplete'
 " Plug 'osyo-manga/vim-anzu'
 
 " Themes
-Plug 'chriskempson/base16-vim'
+" Plug 'chriskempson/base16-vim'
+Plug 'lukas-reineke/onedark.vim'
 
 " Vim Man
 Plug 'z1mm32m4n/vim-superman'
