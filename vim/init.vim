@@ -111,6 +111,12 @@ augroup HiglightDebug
     autocmd WinEnter,VimEnter * :silent! call matchadd('Todo', 'DEBUG', -1)
 augroup END
 
+augroup cursorLine
+    autocmd!
+    autocmd VimEnter,BufEnter,BufWinEnter * setlocal cursorline
+    autocmd WinLeave,BufLeave,BufWinLeave * setlocal nocursorline
+  augroup END
+
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
