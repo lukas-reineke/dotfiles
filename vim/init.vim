@@ -1,15 +1,10 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mappings {{{
 
-" Leader Mappings
 source $HOME/dotfiles/vim/mappings/leader.vim
-" Normal Mappings
 source $HOME/dotfiles/vim/mappings/normal.vim
-" Visual Mappings
 source $HOME/dotfiles/vim/mappings/visual.vim
-" Command Mappings
 source $HOME/dotfiles/vim/mappings/command.vim
-" Instert Mappings
 source $HOME/dotfiles/vim/mappings/insert.vim
 
 " }}}
@@ -115,7 +110,7 @@ augroup cursorLine
     autocmd!
     autocmd VimEnter,BufEnter,BufWinEnter * setlocal cursorline
     autocmd WinLeave,BufLeave,BufWinLeave * setlocal nocursorline
-  augroup END
+augroup END
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -231,13 +226,13 @@ let g:UltiSnipsSnippetDirectories = [ 'ultisnips' ]
 let g:jedi#auto_vim_configuration = 0
 let g:jedi#popup_on_dot = 0
 " let g:jedi#completions_enabled = 0
-let g:jedi#goto_command = "<C-]>"
-let g:jedi#goto_assignments_command = ""
-let g:jedi#goto_definitions_command = ""
-let g:jedi#documentation_command = ""
-let g:jedi#usages_command = ""
-let g:jedi#completions_command = ""
-let g:jedi#rename_command = ""
+let g:jedi#goto_command = '<C-]>'
+let g:jedi#goto_assignments_command = ''
+let g:jedi#goto_definitions_command = ''
+let g:jedi#documentation_command = ''
+let g:jedi#usages_command = ''
+let g:jedi#completions_command = ''
+let g:jedi#rename_command = ''
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -296,11 +291,11 @@ let g:vimfiler_tree_closed_icon = '│'
 let g:vimfiler_marked_file_icon = '┼'
 let g:vimfiler_tree_leaf_icon = ''
 call vimfiler#custom#profile('default', 'context', {
-\   'safe' : 0,
-\   'horizontal' : 1,
-\   'find' : 1,
-\   'force-quit' : 1,
-\   'direction' : 'rightbelow',
+\   'safe': 0,
+\   'horizontal': 1,
+\   'find': 1,
+\   'force-quit': 1,
+\   'direction': 'rightbelow',
 \})
 
 "EasyMotion
