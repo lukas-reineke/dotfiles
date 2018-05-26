@@ -3,7 +3,7 @@
 #""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set $mod Mod4
 set $alt Mod1
-set $terminal termite
+set $terminal kitty -e tmux
 
 #""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 # => Mappings
