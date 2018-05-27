@@ -36,7 +36,6 @@ source $HOME/dotfiles/vim/functions.vim
 syntax enable
 filetype plugin indent on
 set synmaxcol=400
-set spell
 set history=10000
 set undolevels=10000
 set lazyredraw
@@ -97,6 +96,7 @@ set spellcapcheck=
 
 color onedark
 let g:airline_theme = 'onedark'
+let g:onedark_terminal_italics = 1
 let g:airline_colornum_reversed = 1
 let g:highlightedyank_highlight_duration = 100
 
@@ -142,9 +142,11 @@ set listchars+=precedes:❮
 set listchars+=nbsp:_
 set listchars+=space:⋅
 let g:indentLine_char = '│'
-let g:indentLine_first_char = '│'
+let g:indentLine_first_char = g:indentLine_char
 let g:indentLine_fileTypeExclude = [ 'json' ]
 let g:indentLine_showFirstIndentLevel = 1
+let g:indentLine_color_gui = onedark#GetColors().cursor_grey.gui
+let g:indentLine_bgcolor_gui = onedark#GetColors().black.gui
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -271,6 +273,7 @@ augroup FiletypeDetect
     autocmd!
     autocmd BufRead,BufNewFile .stylelintrc,.htmlhintrc set filetype=json
     autocmd BufRead,BufNewFile i3* set filetype=i3
+    autocmd BufRead,BufNewFile *.tsx set filetype=typescriptreact
     autocmd BufRead,BufNewFile * set formatoptions-=o
 augroup END
 
@@ -290,6 +293,7 @@ let g:vimfiler_tree_opened_icon = '├'
 let g:vimfiler_tree_closed_icon = '│'
 let g:vimfiler_marked_file_icon = '┼'
 let g:vimfiler_tree_leaf_icon = ''
+let g:vimfiler_ignore_pattern = []
 call vimfiler#custom#profile('default', 'context', {
 \   'safe': 0,
 \   'horizontal': 1,

@@ -24,7 +24,6 @@ Plug 'jreybert/vimagit'
 
 " Typescript
 Plug 'HerringtonDarkholme/yats.vim'
-Plug 'aanari/vim-tsx-pretty'
 Plug 'Quramy/tsuquyomi'
 
 " Javascript
