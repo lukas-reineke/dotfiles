@@ -245,14 +245,17 @@ let g:jedi#rename_command = ''
 let g:ale_linters = {
 \   'javascript': [ 'eslint', 'flow' ],
 \   'typescript': [ 'tslint', 'tsserver', 'typecheck' ],
+\   'typescriptreact': [ 'tslint', 'tsserver', 'typecheck' ],
 \   'html': [ 'htmlhint' ],
 \   'scss': [ 'sasslint' ],
 \   'python': [ 'autopep8' ],
 \}
 let g:ale_fixers = {
-\   'javascript': ['eslint'],
-\   'typescript': ['tslint'],
-\   'python': ['autopep8'],
+\   'javascript': ['prettier'],
+\   'typescript': ['prettier'],
+\   'typescriptreact': ['prettier'],
+\   'scss': [ 'prettier' ],
+\   'python': ['prettier'],
 \}
 let g:ale_sign_error = '誤'
 let g:ale_sign_warning = '危'
@@ -273,7 +276,7 @@ augroup FiletypeDetect
     autocmd!
     autocmd BufRead,BufNewFile .stylelintrc,.htmlhintrc set filetype=json
     autocmd BufRead,BufNewFile i3* set filetype=i3
-    autocmd BufRead,BufNewFile *.tsx set filetype=typescriptreact
+    autocmd BufRead,BufNewFile *.tsx set filetype=typescriptreact.typescript
     autocmd BufRead,BufNewFile * set formatoptions-=o
 augroup END
 
