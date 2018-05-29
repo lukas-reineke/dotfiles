@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Global {{{
 
-let mapleader = "\<Space>"
+let g:mapleader = "\<Space>"
 
 nnoremap <Leader><Leader> <C-^>
 
@@ -84,11 +84,11 @@ nnoremap <Leader>gm :Magit<CR>zcgg
 let g:magit_show_magit_mapping='<NOPE>'
 
 function! CheckoutLine()
-    let view = winsaveview()
+    let l:view = winsaveview()
     Gvdiff
     diffget
     only
-    call winrestview(view)
+    call winrestview(l:view)
 endfunction
 
 nnoremap <Leader>go :call CheckoutLine()<CR>
@@ -113,11 +113,11 @@ nnoremap <Leader>ut :call UnitTest()<CR>
 " Google {{{
 
 function! s:goog(pat, lucky)
-    let q = '"'.substitute(a:pat, '["\n]', ' ', 'g').'"'
-    let q = substitute(q, '[[:punct:] ]',
+    let l:q = '"'.substitute(a:pat, '["\n]', ' ', 'g').'"'
+    let l:q = substitute(l:q, '[[:punct:] ]',
                 \ '\=printf("%%%02X", char2nr(submatch(0)))', 'g')
     call system(printf('open "https://www.google.com/search?%sq=%s"',
-                \ a:lucky ? 'btnI&' : '', q))
+                \ a:lucky ? 'btnI&' : '', l:q))
 endfunction
 
 nnoremap <leader>? :call <SID>goog(expand("<cWORD>"), 0)<cr>
@@ -161,7 +161,7 @@ function s:Marks()
     let l:mark = nr2char(getchar())
     redraw
 
-    execute 'normal! `' . mark
+    execute 'normal! `' . l:mark
 
 endfunction
 

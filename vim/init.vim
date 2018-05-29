@@ -1,3 +1,4 @@
+scriptencoding utf8
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mappings {{{
 
@@ -45,11 +46,8 @@ set termguicolors
 set colorcolumn=80
 set noshowmode
 set noshowcmd
-set encoding=utf8
-set t_ut=
 set ttimeoutlen=0
 set timeoutlen=500
-set mouse=
 set clipboard+=unnamedplus
 set splitbelow
 set splitright
@@ -67,9 +65,7 @@ set grepprg=rg\ --vimgrep
 set formatprg=par\ -w80rq
 set formatoptions-=o
 set nowrap
-set whichwrap=b
-set whichwrap+=h
-set whichwrap+=l
+set whichwrap=b,h,l
 set expandtab
 set smarttab
 set shiftwidth=4
@@ -243,6 +239,7 @@ let g:jedi#rename_command = ''
 " Linter {{{
 
 let g:ale_linters = {
+\   'vim': [ 'vint' ],
 \   'javascript': [ 'eslint', 'flow' ],
 \   'typescript': [ 'tslint', 'tsserver', 'typecheck' ],
 \   'typescriptreact': [ 'tslint', 'tsserver', 'typecheck' ],

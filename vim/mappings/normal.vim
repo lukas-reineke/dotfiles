@@ -39,9 +39,9 @@ noremap <Up> :move-2<CR>==
 noremap <Down> :move+1<CR>==
 
 function! FixIndentation()
-    let view = winsaveview()
+    let l:view = winsaveview()
     normal gg=G
-    call winrestview(view)
+    call winrestview(l:view)
 endfunction
 
 nnoremap =+ :call FixIndentation()<CR>
@@ -80,8 +80,8 @@ function! s:SkipFold(direction) abort
     let l:posOrig = getpos('.')
     if a:direction
         let l:pos[1] = l:pos[1] + 5
-        if l:pos[1] >= line("w$")
-            let l:pos[1] = line("w$")
+        if l:pos[1] >= line('w$')
+            let l:pos[1] = line('w$')
         endif
         call cursor(l:pos[1:])
     else
@@ -104,7 +104,7 @@ function! s:SkipFold(direction) abort
             call cursor(l:pos[1:])
         endif
 
-        if l:pos[1] == line("w$")
+        if l:pos[1] == line('w$')
             let l:posOrig[1] = l:posOrig[1] + 5
             call cursor(l:posOrig[1:])
             break
@@ -123,16 +123,16 @@ nnoremap <silent>K :call <SID>SkipFold(0)<cr>
 
 
 function! NextClosedFold(dir)
-    let cmd = 'norm!z' . a:dir
-    let view = winsaveview()
-    let [l0, l, open] = [0, view.lnum, 1]
-    while l != l0 && open
-        exe cmd
-        let [l0, l] = [l, line('.')]
-        let open = foldclosed(l) < 0
+    let l:cmd = 'norm!z' . a:dir
+    let l:view = winsaveview()
+    let [l:l0, l:l, l:open] = [0, l:view.lnum, 1]
+    while l:l != l:l0 && l:open
+        exe l:cmd
+        let [l:l0, l:l] = [l:l, line('.')]
+        let l:open = foldclosed(l:l) < 0
     endwhile
-    if open
-        call winrestview(view)
+    if l:open
+        call winrestview(l:view)
     endif
 endfunction
 
@@ -181,18 +181,18 @@ nnoremap [t ?<<CR>:nohl<CR>
 nnoremap ]t /<<CR>:nohl<CR>
 
 function! WrapCommand(direction, prefix)
-    if a:direction == "up"
+    if a:direction ==# 'up'
         try
-            execute a:prefix . "previous"
+            execute a:prefix . 'previous'
+            execute a:prefix . 'last'
         catch /^Vim\%((\a\+)\)\=:E553/
-            execute a:prefix . "last"
         catch /^Vim\%((\a\+)\)\=:E\%(776\|42\):/
         endtry
-    elseif a:direction == "down"
+    elseif a:direction ==# 'down'
         try
-            execute a:prefix . "next"
+            execute a:prefix . 'next'
         catch /^Vim\%((\a\+)\)\=:E553/
-            execute a:prefix . "first"
+            execute a:prefix . 'first'
         catch /^Vim\%((\a\+)\)\=:E\%(776\|42\):/
         endtry
     endif

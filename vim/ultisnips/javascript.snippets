@@ -279,3 +279,90 @@ describe(\`$1\`, () => {
 });
 endsnippet
 
+# html snippets
+snippet div "div" w
+<div>
+	${0:${VISUAL}}
+</div>
+endsnippet
+
+snippet head "head" w
+<head>
+	${0:${VISUAL}}
+</head>
+endsnippet
+
+snippet span "span" w
+<span>
+	${0:${VISUAL}}
+</span>
+endsnippet
+
+snippet p "p" w
+<p>
+	${0:${VISUAL}}
+</p>
+endsnippet
+
+snippet h1 "h1" w
+<h1>
+	${0:${VISUAL}}
+</h1>
+endsnippet
+
+snippet h2 "h2" w
+<h2>
+	${1:${VISUAL}}
+</h2>
+endsnippet
+
+snippet h3 "h3" w
+<h3>
+	${2:${VISUAL}}
+</h3>
+endsnippet
+
+snippet h4 "h4" w
+<h4>
+	${3:${VISUAL}}
+</h4>
+endsnippet
+
+snippet h5 "h5" w
+<h5>
+	${4:${VISUAL}}
+</h5>
+endsnippet
+
+snippet h6 "h6" w
+<h6>
+	${5:${VISUAL}}
+</h6>
+endsnippet
+
+snippet img "img" w
+<img src="$1" alt="$2" />
+endsnippet
+
+snippet a "Link" w
+<a href="$1"${2: target="_blank"}>$3</a>
+endsnippet
+
+snippet body "<body>" w
+<body>
+	${0:${VISUAL}}
+</body>
+endsnippet
+
+snippet button "<button>" w
+<button>$1</button>
+endsnippet
+
+snippet . "class"
+<div className="$1">
+</div>
+endsnippet
+
+snippet cl "class attribute"
+className="$1"
+endsnippet

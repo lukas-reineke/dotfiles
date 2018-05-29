@@ -1,14 +1,15 @@
+scriptencoding utf8
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Close Buffer {{{
 
 function! OpenBufferNumber()
-    let count = 0
-    for i in range(0, bufnr('$'))
-        if buflisted(i)
-            let count += 1
+    let l:count = 0
+    for l:i in range(0, bufnr('$'))
+        if buflisted(l:i)
+            let l:count += 1
         endif
     endfor
-    return count
+    return l:count
 endfunction
 
 function! CloseOnLast()
@@ -59,7 +60,7 @@ command ToggleStripTrailingWhitespaces :call ToggleStripTrailingWhitespaces()
 
 function! <SID>AutoProjectRootCD()
     try
-        if &ft != 'help'
+        if &filetype !=# 'help'
             ProjectRootCD
         endif
     catch
@@ -67,7 +68,10 @@ function! <SID>AutoProjectRootCD()
     endtry
 endfunction
 
-autocmd BufEnter * call <SID>AutoProjectRootCD()
+augroup autoRoot
+    autocmd!
+    autocmd BufEnter * call <SID>AutoProjectRootCD()
+augroup END
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -92,8 +96,11 @@ function! FcitxToJp()
     endif
 endfunction
 
-autocmd InsertLeave * call FcitxToEn()
-autocmd InsertEnter * call FcitxToJp()
+augroup japaneseInput
+    autocmd!
+    autocmd InsertLeave * call FcitxToEn()
+    autocmd InsertEnter * call FcitxToJp()
+augroup END
 
 function! ToggleInput()
     if g:input_toggle
@@ -147,9 +154,9 @@ function! ClearRegisters()
     let l:register_list = split(l:register_out, '\n')
     call remove(l:register_list, 0) " remove header (-- Registers --)
     call map(l:register_list, "substitute(v:val, '^.\\(.\\).*', '\\1', '')")
-    call filter(l:register_list, 'v:val !~ "[%#=.:]"') " skip readonly registers
-    for elem in l:register_list
-        execute 'let @'.elem.'= ""'
+    call filter(l:register_list, 'v:val !~# "[%#=.:]"') " skip readonly registers
+    for l:elem in l:register_list
+        execute 'let @'.l:elem.'= ""'
     endfor
 endfunction
 
@@ -180,20 +187,23 @@ command -bang -bar -nargs=? -complete=file E :call s:MKDir(<f-args>) | e<bang> <
 " Restore Session {{{
 
 function! RestoreSession()
-    let ignore = [ 'gitcommit', 'man' ]
-    if filereadable(getcwd() . '/Session.vim') && index(ignore, &filetype) < 0 && argc() == 0
+    let l:ignore = [ 'gitcommit', 'man' ]
+    if filereadable(getcwd() . '/Session.vim') && index(l:ignore, &filetype) < 0 && argc() == 0
         execute 'so ' . getcwd() . '/Session.vim'
         if bufexists(1)
-            for l in range(1, bufnr('$'))
-                if bufwinnr(l) == -1
-                    exec 'sbuffer ' . l
+            for l:l in range(1, bufnr('$'))
+                if bufwinnr(l:l) ==# -1
+                    exec 'sbuffer ' . l:l
                 endif
             endfor
         endif
     endif
 endfunction
 
-autocmd VimEnter * nested call RestoreSession()
+augroup RestoreSession
+    autocmd!
+    autocmd VimEnter * nested call RestoreSession()
+augroup END
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -202,9 +212,9 @@ autocmd VimEnter * nested call RestoreSession()
 " Quick Fix{{{
 
 function! QuickFix()
-    let buftype_list = ['quickfix', 'help', 'nofile']
-    let filetype_list = ['netrw']
-    if (index(buftype_list, &buftype) >= 0 || index(filetype_list, &filetype) >= 0)
+    let l:buftype_list = ['quickfix', 'help', 'nofile']
+    let l:filetype_list = ['netrw']
+    if (index(l:buftype_list, &buftype) >= 0 || index(l:filetype_list, &filetype) >= 0)
         let g:qs_enable = 0
     else
         let g:qs_enable = 1
@@ -228,9 +238,9 @@ augroup Undouble_Completions
 augroup END
 
 function! Undouble_Completions ()
-    let col  = getpos('.')[2]
-    let line = getline('.')
-    call setline('.', substitute(line, '\(\.\?\k\+\)\%'.col.'c\zs\1', '', ''))
+    let l:col  = getpos('.')[2]
+    let l:line = getline('.')
+    call setline('.', substitute(l:line, '\(\.\?\k\+\)\%'.l:col.'c\zs\1', '', ''))
 endfunction
 
 " }}}
@@ -240,26 +250,26 @@ endfunction
 " Fold Text {{{
 
 function! FoldText()
-    let line = getline(v:foldstart)
+    let l:line = getline(v:foldstart)
 
-    let nucolwidth = &fdc + &number * &numberwidth
-    let windowwidth = winwidth(0) - nucolwidth - 3
-    let foldedlinecount = v:foldend - v:foldstart
+    let l:nucolwidth = &foldcolumn + &number * &numberwidth
+    let l:windowwidth = winwidth(0) - l:nucolwidth - 3
+    let l:foldedlinecount = v:foldend - v:foldstart
 
     " expand tabs into spaces
-    let onetab = strpart('          ', 0, &tabstop)
-    let line = substitute(line, '\t', onetab, 'g')
+    let l:onetab = strpart('          ', 0, &tabstop)
+    let l:line = substitute(l:line, '\t', l:onetab, 'g')
 
-    let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
+    let l:line = strpart(l:line, 0, l:windowwidth - 2 -len(l:foldedlinecount))
 
-    let [added, modified, removed] = sy#repo#get_stats()
-    if added > 0 || modified > 0 || removed > 0 || len(getqflist()) > 0 || len(signature#mark#GetList('used', 'buf_all')) > 0
-        let fillcharcount = windowwidth - len(line) - len(foldedlinecount) - 2
+    let [l:added, l:modified, l:removed] = sy#repo#get_stats()
+    if l:added > 0 || l:modified > 0 || l:removed > 0 || len(getqflist()) > 0 || len(signature#mark#GetList('used', 'buf_all')) > 0
+        let l:fillcharcount = l:windowwidth - len(l:line) - len(l:foldedlinecount) - 2
     else
-        let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
+        let l:fillcharcount = l:windowwidth - len(l:line) - len(l:foldedlinecount)
     endif
 
-    return '➔ ' . line . repeat(" ",fillcharcount) . foldedlinecount . ' '
+    return '➔ ' . l:line . repeat(' ', l:fillcharcount) . l:foldedlinecount . ' '
 endfunction
 set foldtext=FoldText()
 
@@ -270,7 +280,7 @@ set foldtext=FoldText()
 " Diff Fold {{{
 
 function! FoldCloseAll()
-    if winnr('$') > 1 && &foldmethod == 'diff'
+    if winnr('$') > 1 && &foldmethod ==# 'diff'
         let l:currentWindow=winnr()
         windo execute 'normal! zm'
         execute l:currentWindow . 'wincmd w'
@@ -289,7 +299,7 @@ augroup END
 " Win Highlight {{{
 
 function! WinHighlight()
-    if &foldmethod == 'diff'
+    if &foldmethod ==# 'diff'
         set winhighlight=
     else
         set winhighlight=NormalNC:WinNormalNC
