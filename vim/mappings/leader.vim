@@ -46,8 +46,6 @@ nnoremap <Leader><C-W> :Windows<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Search {{{
 
-" nnoremap <Leader>r :OverCommandLine<CR>%s/\v
-" vnoremap <Leader>r :OverCommandLine<CR>s/\v
 nnoremap <Leader>r :%s/\v()
 vnoremap <Leader>r :s/\v()
 
@@ -97,19 +95,6 @@ nnoremap <Leader>go :call CheckoutLine()<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Unit Test {{{
-
-function! UnitTest()
-    call system(printf('tmux load-buffer -b vim-tmux %s \; paste-buffer -d -b vim-tmux -t %s',
-                \ shellescape('npm run test'), shellescape('.bottom')))
-endfunction
-
-nnoremap <Leader>ut :call UnitTest()<CR>
-
-" }}}
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Google {{{
 
 function! s:goog(pat, lucky)
@@ -122,31 +107,6 @@ endfunction
 
 nnoremap <leader>? :call <SID>goog(expand("<cWORD>"), 0)<cr>
 nnoremap <leader>! :call <SID>goog(expand("<cWORD>"), 1)<cr>
-
-" }}}
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Tmux {{{
-
-" " https://github.com/junegunn/dotfiles/blob/ae8388976f8fd7339b717f65b0175d8e4e93aa71/vimrc#L384
-" function! s:tmux_send(content, dest) range
-"     let dest = empty(a:dest) ? input('To which pane? ') : a:dest
-"     let tempfile = tempname()
-"     call writefile(split(a:content, "\n", 1), tempfile, 'b')
-"     call system(printf('tmux load-buffer -b vim-tmux %s \; paste-buffer -d -b vim-tmux -t %s',
-"                 \ shellescape(tempfile), shellescape(dest)))
-"     call delete(tempfile)
-" endfunction
-
-" function! s:tmux_map_cursor(key, dest)
-"     execute printf('nnoremap <silent> %s "tyy:call <SID>tmux_send(@t, "%s")<cr>', a:key, a:dest)
-"     execute printf('xnoremap <silent> %s "ty:call <SID>tmux_send(@t, "%s")<cr>gv', a:key, a:dest)
-" endfunction
-" call s:tmux_map_cursor('<leader>tj', '.bottom')
-
-" nnoremap <silent> <leader>tl "tyy:call <SID>tmux_send("npm run lint\n", ".bottom")<cr>
-" nnoremap <silent> <leader>tu "tyy:call <SID>tmux_send("npm run test\n", ".bottom")<cr>
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

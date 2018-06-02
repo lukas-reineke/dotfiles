@@ -139,7 +139,6 @@ set listchars+=nbsp:_
 set listchars+=space:⋅
 let g:indentLine_char = '│'
 let g:indentLine_first_char = g:indentLine_char
-let g:indentLine_fileTypeExclude = [ 'json' ]
 let g:indentLine_showFirstIndentLevel = 1
 let g:indentLine_color_gui = onedark#GetColors().cursor_grey.gui
 let g:indentLine_bgcolor_gui = onedark#GetColors().black.gui
@@ -198,6 +197,8 @@ let g:esearch#out#win#syntax_regeps = {
 \   'python': '\%(\.py\)$',
 \}
 
+let g:swoopUseDefaultKeyMap = 0
+
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -243,6 +244,7 @@ let g:ale_linters = {
 \   'javascript': [ 'eslint', 'flow' ],
 \   'typescript': [ 'tslint', 'tsserver', 'typecheck' ],
 \   'typescriptreact': [ 'tslint', 'tsserver', 'typecheck' ],
+\   'json': [ 'jsonlint' ],
 \   'html': [ 'htmlhint' ],
 \   'scss': [ 'sasslint' ],
 \   'python': [ 'autopep8' ],
@@ -251,6 +253,7 @@ let g:ale_fixers = {
 \   'javascript': ['prettier'],
 \   'typescript': ['prettier'],
 \   'typescriptreact': ['prettier'],
+\   'json': ['prettier'],
 \   'scss': [ 'prettier' ],
 \   'python': ['prettier'],
 \}
@@ -275,6 +278,10 @@ augroup FiletypeDetect
     autocmd BufRead,BufNewFile i3* set filetype=i3
     autocmd BufRead,BufNewFile *.tsx set filetype=typescriptreact.typescript
     autocmd BufRead,BufNewFile * set formatoptions-=o
+    autocmd BufRead,BufNewFile swoopBuf nnoremap <buffer> q :bd!<CR>
+    autocmd BufRead,BufNewFile swoopBuf nnoremap <buffer> o :call SwoopSelect()<CR>
+    autocmd BufRead,BufNewFile swoopBuf nnoremap <buffer> J 5j
+    autocmd BufRead,BufNewFile swoopBuf nnoremap <buffer> K 5k
 augroup END
 
 " }}}
@@ -285,6 +292,9 @@ augroup END
 
 " Man
 let g:no_man_maps = 1
+
+" Json
+let g:vim_json_syntax_conceal = 0
 
 " vimfiler
 let g:vimfiler_as_default_explorer = 1

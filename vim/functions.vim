@@ -1,4 +1,3 @@
-scriptencoding utf8
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Close Buffer {{{
 
@@ -209,7 +208,7 @@ augroup END
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Quick Fix{{{
+" Quick Fix {{{
 
 function! QuickFix()
     let l:buftype_list = ['quickfix', 'help', 'nofile']
@@ -225,6 +224,27 @@ augroup QuickFix
     autocmd!
     autocmd BufWinEnter,BufEnter,cursormoved * call QuickFix()
 augroup END
+
+" }}}
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Swoop {{{
+
+augroup IndentLinesReset
+    autocmd!
+    autocmd BufWinEnter,BufEnter,cursormoved * IndentLinesReset
+augroup END
+
+function! LocalSwoop()
+    set winhighlight=
+    call SwoopMulti()
+    ALEDisableBuffer
+    setlocal colorcolumn=
+    set winhighlight=
+endfunction
+
+nnoremap <leader>s :call LocalSwoop()<cr>
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -269,7 +289,7 @@ function! FoldText()
         let l:fillcharcount = l:windowwidth - len(l:line) - len(l:foldedlinecount)
     endif
 
-    return '➔ ' . l:line . repeat(' ', l:fillcharcount) . l:foldedlinecount . ' '
+    return '➔ ' . l:line . repeat(' ',l:fillcharcount) . l:foldedlinecount . ' '
 endfunction
 set foldtext=FoldText()
 
@@ -299,7 +319,7 @@ augroup END
 " Win Highlight {{{
 
 function! WinHighlight()
-    if &foldmethod ==# 'diff'
+    if &foldmethod ==# 'diff' || bufwinnr('swoopBuf') > -1
         set winhighlight=
     else
         set winhighlight=NormalNC:WinNormalNC

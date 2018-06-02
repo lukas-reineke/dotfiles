@@ -15,7 +15,7 @@ vmap I <Plug>(niceblock-I)
 vmap gI <Plug>(niceblock-gI)
 vmap A <Plug>(niceblock-A)
 
-xnoremap Q :'<,'>:normal @q<CR>
+xnoremap Q :normal @q<CR>
 
 vnoremap H ^
 vnoremap L $
