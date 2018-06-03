@@ -1,3 +1,3 @@
 setlocal spell
-setlocal tw=79
+setlocal textwidth=79
 

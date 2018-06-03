@@ -1,2 +1,2 @@
-setlocal tw=120
+setlocal textwidth=120
 

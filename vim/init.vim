@@ -113,7 +113,7 @@ augroup END
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Fold {{{
-"
+
 set foldclose=all
 set nofoldenable
 set foldlevel=2
