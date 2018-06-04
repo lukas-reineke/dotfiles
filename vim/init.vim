@@ -36,6 +36,8 @@ source $HOME/dotfiles/vim/functions.vim
 
 syntax enable
 filetype plugin indent on
+set omnifunc=syntaxcomplete#Complete
+set completeopt+=menuone,noinsert
 set synmaxcol=400
 set history=10000
 set undolevels=10000
@@ -99,7 +101,9 @@ let g:highlightedyank_highlight_duration = 100
 augroup HiglightDebug
     autocmd!
     autocmd WinEnter,VimEnter * :silent! call matchadd('Todo', 'TODO', -1)
+    autocmd WinEnter,VimEnter * :silent! call matchadd('Todo', '@TODO', -1)
     autocmd WinEnter,VimEnter * :silent! call matchadd('Todo', 'DEBUG', -1)
+    autocmd WinEnter,VimEnter * :silent! call matchadd('Todo', '@DEBUG', -1)
 augroup END
 
 augroup cursorLine
