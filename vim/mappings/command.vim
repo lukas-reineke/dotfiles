@@ -7,5 +7,8 @@ set wildcharm=<C-Z>
 cnoremap <expr> <Tab> getcmdtype() == '/' \|\| getcmdtype() == '?' ? '<CR>/<C-r>/' : '<C-z>'
 cnoremap <expr> <S-Tab> getcmdtype() == '/' \|\| getcmdtype() == '?' ? '<CR>?<C-r>/' : '<S-Tab>'
 
-cnoremap <C-e> e %:h/
+cnoremap <C-E> e %:h/
+
+cnoremap <C-J> <DOWN>
+cnoremap <C-K> <UP>
 
