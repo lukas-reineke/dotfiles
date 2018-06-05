@@ -37,7 +37,7 @@ source $HOME/dotfiles/vim/functions.vim
 syntax enable
 filetype plugin indent on
 set omnifunc=syntaxcomplete#Complete
-set completeopt+=menuone,noinsert
+set completeopt+=menuone,noinsert,noselect
 set synmaxcol=400
 set history=10000
 set undolevels=10000
@@ -45,7 +45,8 @@ set lazyredraw
 set shortmess+=A
 set noswapfile
 set termguicolors
-set colorcolumn=80
+set textwidth=80
+set colorcolumn=+1
 set noshowmode
 set noshowcmd
 set ttimeoutlen=0
