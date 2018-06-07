@@ -3,7 +3,7 @@
 #""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set $mod Mod4
 set $alt Mod1
-set $terminal kitty -e tmux
+set $terminal kitty --title kitty -e tmux
 
 #""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 # => Mappings
@@ -113,7 +113,7 @@ bindsym $mod+shift+d exec --no-startup-id $rofipath/rofi.sh window
 bindsym $mod+shift+v exec --no-startup-id $rofipath/rofi.sh clipboard
 bindsym $alt+k       exec --no-startup-id $rofipath/rofi-keepass.sh
 # bindsym $mod+shift+o       exec --no-startup-id ~/dev/rofi-1password/rofi-1password.sh
-bindsym $mod+shift+o exec --no-startup-id rofi -modi lpass:rofi-lpass -show lpass
+bindsym $mod+shift+o exec --no-startup-id rofi -modi lpass:rofi-lpass -show lpass -theme onedark
 bindsym $mod+Shift+e exec --no-startup-id $rofipath/rofi-i3.sh
 exec --no-startup-id $rofipath/rofi-clipboard-manager/mclip.py daemon
 
