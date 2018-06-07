@@ -14,4 +14,7 @@ set keymap vi-command
 "k": history-search-backward
 "j": history-search-forward
 "cl": clear-screen
+"dL": kill-line
+"dH": backward-kill-line
+"gcc": insert-comment
 
