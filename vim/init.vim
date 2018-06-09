@@ -154,7 +154,7 @@ let g:indentLine_bgcolor_gui = onedark#GetColors().black.gui
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Search {{{
 
-set wildmode=list:full
+set wildmode=list:longest
 set wildignore=*.o,*.obj,*~
 set wildignore+=*vim/backups*
 set wildignore+=*sass-cache*
@@ -328,6 +328,11 @@ augroup signify
     autocmd FocusGained,cursormoved * :SignifyRefresh
 augroup END
 let g:signify_update_on_focusgained = 1
+let g:signify_sign_add = '│'
+let g:signify_sign_delete = g:signify_sign_add
+let g:signify_sign_delete_first_line = g:signify_sign_add
+let g:signify_sign_change = g:signify_sign_add
+let g:signify_sign_changedelete = g:signify_sign_add
 
 " poppy
 augroup poppy
