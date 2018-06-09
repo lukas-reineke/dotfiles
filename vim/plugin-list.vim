@@ -5,6 +5,7 @@
 " tpope
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-obsession'
@@ -33,6 +34,7 @@ Plug 'MaxMEllon/vim-jsx-pretty'
 " Python
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'davidhalter/jedi-vim'
+Plug 'raimon49/requirements.txt.vim'
 
 " Json
 Plug 'elzr/vim-json'
