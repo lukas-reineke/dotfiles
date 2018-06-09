@@ -35,8 +35,10 @@ nnoremap Q @q
 " make mark and jump to last insert
 nnoremap gV m``[v`]
 
-noremap <Up> :move-2<CR>==
-noremap <Down> :move+1<CR>==
+noremap <Up> 2<C-Y>
+noremap <Down> 2<C-E>
+noremap <LEFT> 5zh
+noremap <RIGHT> 5zl
 
 function! FixIndentation()
     let l:view = winsaveview()
