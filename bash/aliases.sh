@@ -36,6 +36,8 @@ alias reload='source ~/dotfiles/bash/bashrc'
 alias sudo='sudo env PATH=$PATH'
 alias cat='ge ccat'
 alias jq='jq --indent 4 "."'
+alias crypt='gpg --trust-model always -ear adgo'
+alias ucrypt='xsel -b | gpg'
 
 # network
 alias arp='sudo arp-scan --interface=wlp2s0b1 --localnet'

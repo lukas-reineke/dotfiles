@@ -38,6 +38,7 @@ syntax enable
 filetype plugin indent on
 set omnifunc=syntaxcomplete#Complete
 set completeopt+=menuone,noinsert,noselect
+set updatetime=0
 set synmaxcol=400
 set history=10000
 set undolevels=10000
@@ -154,7 +155,7 @@ let g:indentLine_bgcolor_gui = onedark#GetColors().black.gui
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Search {{{
 
-set wildmode=list:longest
+set wildmode=list:longest,full
 set wildignore=*.o,*.obj,*~
 set wildignore+=*vim/backups*
 set wildignore+=*sass-cache*
@@ -252,15 +253,15 @@ let g:ale_linters = {
 \   'json': [ 'jsonlint' ],
 \   'html': [ 'htmlhint' ],
 \   'scss': [ 'sasslint' ],
-\   'python': [ 'autopep8' ],
+\   'python': [ 'flake8' ],
 \}
 let g:ale_fixers = {
-\   'javascript': ['prettier'],
+\   'javascript': ['eslint'],
 \   'typescript': ['prettier'],
 \   'typescriptreact': ['prettier'],
 \   'json': ['prettier'],
 \   'scss': [ 'prettier' ],
-\   'python': ['prettier'],
+\   'python': ['autopep8'],
 \}
 let g:ale_sign_error = '誤'
 let g:ale_sign_warning = '危'
