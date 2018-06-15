@@ -9,7 +9,7 @@ if [[ ! -z $CLEAN ]]; then
     exit 1
 fi
 
-if [[ $BRANCHTYPE == 'feature' ]] || [[ $BRANCHTYPE == 'bugfix' ]] || [[ $BRANCHTYPE == 'hotfix' ]]; then
+if [[ $BRANCH =~ [A-Z]+-[0-9]+ ]] || [[ $BRANCHTYPE == 'feature' ]] || [[ $BRANCHTYPE == 'bugfix' ]] || [[ $BRANCHTYPE == 'hotfix' ]]; then
     FIRSTLINE=$(sed -n '1p' $1)
     if [[ -z $FIRSTLINE ]]; then
         BRANCH=${BRANCH##*/}
