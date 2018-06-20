@@ -3,7 +3,7 @@
 #""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set $mod Mod4
 set $alt Mod1
-set $terminal kitty --title kitty -e tmux
+set $terminal kitty --title kitty -e tmux new -s default
 
 #""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 # => Mappings
@@ -45,34 +45,38 @@ bindsym $alt+v split v
 bindsym $alt+f fullscreen
 
 bindsym $mod+e layout toggle split
+bindsym $alt+s layout toggle tabbed split
 
 #""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 # => Workspaces
 #""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-bindsym $mod+1 exec "i3-msg workspace 1 && $keymaps/reset-keysettings.sh"
-bindsym $mod+2 exec "i3-msg workspace 2 && $keymaps/reset-keysettings.sh"
-bindsym $mod+3 exec "i3-msg workspace 3 && $keymaps/reset-keysettings.sh"
-bindsym $mod+4 exec "i3-msg workspace 4 && $keymaps/reset-keysettings.sh"
-bindsym $mod+5 exec "i3-msg workspace 5 && $keymaps/reset-keysettings.sh"
-bindsym $mod+6 exec "i3-msg workspace 6 && $keymaps/reset-keysettings.sh"
-bindsym $mod+7 exec "i3-msg workspace 7 && $keymaps/reset-keysettings.sh"
-bindsym $mod+8 exec "i3-msg workspace 8 && $keymaps/reset-keysettings.sh"
-bindsym $mod+9 exec "i3-msg workspace 9 && $keymaps/reset-keysettings.sh"
-bindsym $mod+0 exec "i3-msg workspace 10 && $keymaps/reset-keysettings.sh"
+bindsym $mod+1 exec "i3-workspace-switch 1"
+bindsym $mod+2 exec "i3-workspace-switch 2"
+bindsym $mod+3 exec "i3-workspace-switch 3"
+bindsym $mod+4 exec "i3-workspace-switch 4"
+bindsym $mod+5 exec "i3-workspace-switch 5"
+bindsym $mod+6 exec "i3-workspace-switch 6"
+bindsym $mod+7 exec "i3-workspace-switch 7"
+bindsym $mod+8 exec "i3-workspace-switch 8"
+bindsym $mod+9 exec "i3-workspace-switch 9"
+bindsym $mod+0 exec "i3-workspace-switch 10"
 
-bindsym $mod+Shift+1 move container to workspace 1
-bindsym $mod+Shift+2 move container to workspace 2
-bindsym $mod+Shift+3 move container to workspace 3
-bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10
+bindsym $mod+Shift+1 exec "i3-workspace-switch -m 1"
+bindsym $mod+Shift+2 exec "i3-workspace-switch -m 2"
+bindsym $mod+Shift+3 exec "i3-workspace-switch -m 3"
+bindsym $mod+Shift+4 exec "i3-workspace-switch -m 4"
+bindsym $mod+Shift+5 exec "i3-workspace-switch -m 5"
+bindsym $mod+Shift+6 exec "i3-workspace-switch -m 6"
+bindsym $mod+Shift+7 exec "i3-workspace-switch -m 7"
+bindsym $mod+Shift+8 exec "i3-workspace-switch -m 8"
+bindsym $mod+Shift+9 exec "i3-workspace-switch -m 9"
+bindsym $mod+Shift+0 exec "i3-workspace-switch -m 10"
 
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
+
+bindsym $mod+Tab workspace next_on_output
+bindsym $mod+Shift+Tab workspace prev_on_output
 
 #""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 # => Resize
@@ -96,13 +100,13 @@ bindsym $alt+r mode "resize"
 #""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 # => Style
 #""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-font pango:Input 12
-new_window 1pixel
-hide_edge_borders both
-client.focused          #000000 #1f1f1f #555555 #1f1f1f
+font pango:Fira Code Reagular 1
+default_border pixel 2
+# hide_edge_borders both
+client.focused          #98c379 #98c379 #98c379 #98c379
 client.unfocused        #000000 #1f1f1f #777777 #1f1f1f
 client.focused_inactive #000000 #1f1f1f #555555 #1f1f1f
-client.urgent           #000000 #1f1f1f #555555 #1f1f1f
+client.urgent           #e06c75 #e06c75 #e06c75 #e06c75
 
 #""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 # => Rofi
@@ -114,7 +118,8 @@ bindsym $mod+shift+v exec --no-startup-id $rofipath/rofi.sh clipboard
 bindsym $alt+k       exec --no-startup-id $rofipath/rofi-keepass.sh
 # bindsym $mod+shift+o       exec --no-startup-id ~/dev/rofi-1password/rofi-1password.sh
 bindsym $mod+shift+o exec --no-startup-id rofi -modi lpass:rofi-lpass -show lpass -theme onedark
-bindsym $mod+Shift+e exec --no-startup-id $rofipath/rofi-i3.sh
+bindsym $mod+Shift+e exec --no-startup-id $rofipath/rofi-text.sh
+bindsym $mod+Shift+w exec --no-startup-id $rofipath/rofi-i3.sh
 exec --no-startup-id $rofipath/rofi-clipboard-manager/mclip.py daemon
 
 #""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -151,7 +156,7 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10
 
 # Lock ##
-bindsym $alt+l exec ~/scripts/i3lock-fancy/lock
+# bindsym $alt+l exec ~/scripts/i3lock-fancy/lock
 
 # Media player controls ##
 bindsym XF86AudioPlay exec ~/scripts/play.sh
@@ -163,13 +168,21 @@ bindsym $mod+m exec ~/scripts/keymaps/reset-keysettings.sh
 
 bindsym $alt+Shift+4 exec deepin-screenshot
 
+bindsym --whole-window $mod+button2 kill
+bindsym --whole-window $mod+button9 move right
+bindsym --whole-window $mod+button8 move left
 
-assign [class="Opera"] 2
+assign [class="Opera"] 11
 # i3 Gaps ##
 gaps inner 15
 gaps outer 1
 smart_gaps on
 
+for_window [urgent=latest] focus
+focus_on_window_activation focus
+workspace_auto_back_and_forth yes
+
 # Lemonbar ##
-exec --no-startup-id ~/scripts/lemonbar_script.sh | lemonbar -f "Input Mono:size=10"
+# exec --no-startup-id ~/scripts/lemonbar_script.sh | lemonbar -f "Input Mono:size=10"
+exec --no-startup-id ~/.screenlayout/default.sh
 
