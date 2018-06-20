@@ -310,3 +310,15 @@ function rep {
     rg $1 --no-heading --color=never --files-with-matches | xargs perl -pi -E 's/'$1'/'$2'/g'
 }
 
+function ccrypt {
+    if [[ $1 ]]; then
+        cat $1 | gpg --trust-model always -ear adgo | xsel -b
+    else
+        nvim /tmp/temp-text-file.txt \
+        && cat /tmp/temp-text-file.txt \
+        | gpg --trust-model always -ear adgo \
+        | xsel -b \
+        && rm /tmp/temp-text-file.txt
+    fi
+}
+
