@@ -253,15 +253,15 @@ let g:ale_linters = {
 \   'json': [ 'jsonlint' ],
 \   'html': [ 'htmlhint' ],
 \   'scss': [ 'sasslint' ],
-\   'python': [ 'flake8' ],
+\   'python': [ 'flake8', 'mypy' ],
 \}
 let g:ale_fixers = {
-\   'javascript': ['eslint'],
+\   'javascript': ['prettier'],
 \   'typescript': ['prettier'],
 \   'typescriptreact': ['prettier'],
 \   'json': ['prettier'],
 \   'scss': [ 'prettier' ],
-\   'python': ['autopep8'],
+\   'python': ['prettier'],
 \}
 let g:ale_sign_error = '誤'
 let g:ale_sign_warning = '危'
