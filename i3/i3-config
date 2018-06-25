@@ -3,7 +3,7 @@
 #""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set $mod Mod4
 set $alt Mod1
-set $terminal kitty --title kitty -e tmux new -s default
+set $terminal kitty --title kitty -e tmux
 
 #""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 # => Mappings
