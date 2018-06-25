@@ -231,20 +231,20 @@ augroup END
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Swoop {{{
 
-augroup IndentLinesReset
-    autocmd!
-    autocmd BufWinEnter,BufEnter,cursormoved * IndentLinesReset
-augroup END
+" augroup IndentLinesReset
+"     autocmd!
+"     autocmd BufWinEnter,BufEnter,cursormoved * IndentLinesReset
+" augroup END
 
-function! LocalSwoop()
-    set winhighlight=
-    call SwoopMulti()
-    ALEDisableBuffer
-    setlocal colorcolumn=
-    set winhighlight=
-endfunction
+" function! LocalSwoop()
+"     set winhighlight=
+"     call SwoopMulti()
+"     ALEDisableBuffer
+"     setlocal colorcolumn=
+"     set winhighlight=
+" endfunction
 
-nnoremap <leader>s :call LocalSwoop()<cr>
+" nnoremap <leader>s :call LocalSwoop()<cr>
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

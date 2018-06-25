@@ -58,6 +58,7 @@ set splitright
 set autoread
 set cursorline
 set hidden
+set confirm
 set virtualedit=block
 set ignorecase
 set smartcase
@@ -184,26 +185,15 @@ let g:incsearch#magic = '\v'
 
 let g:splfy_no_matchinfo = 1
 
-let g:anzu_enable_CursorMoved_AnzuUpdateSearchStatus = 1
-
-call esearch#map('<leader>a', 'esearch')
-let g:esearch#cmdline#help_prompt = 0
-let g:esearch#out#win#open = 'enew'
-let g:esearch#out#win#context_syntax_highlight = 1
-let g:esearch#out#win#syntax_regeps = {
-\   'typescript': '\%(\.ts\)$',
-\   'javascript': '\%(\.js\)$',
-\   'html': '\%(\.html\)$',
-\   'scss': '\%(\.scss\)$',
-\   'css': '\%(\.css\)$',
-\   'json': '\%(\.json\)$',
-\   'yaml': '\%(yaml\|\.yml\)$',
-\   'sh': '\%(\.bash\|\.sh\)$',
-\   'vim': '\%(\.vim\)$',
-\   'python': '\%(\.py\)$',
-\}
-
-let g:swoopUseDefaultKeyMap = 0
+let g:ctrlsf_confirm_save = 0
+let g:ctrlsf_regex_pattern = 1
+let g:ctrlsf_default_root = 'project'
+let g:ctrlsf_winsize = '100%'
+let g:ctrlsf_mapping = {
+    \ 'quit': '<space>q',
+    \ 'next': 'n',
+    \ 'prev': 'N',
+\ }
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -214,6 +204,7 @@ let g:swoopUseDefaultKeyMap = 0
 let g:tsuquyomi_disable_default_mappings = 1
 let g:tsuquyomi_shortest_import_path = 1
 let g:tsuquyomi_completion_case_sensitive = 1
+let g:tsuquyomi_case_sensitive_imports = 1
 let g:tsuquyomi_single_quote_import = 1
 let g:tsuquyomi_javascript_support = 1
 let g:tsuquyomi_completion_detail = 1
@@ -281,13 +272,9 @@ let g:ale_fix_on_save = 1
 augroup FiletypeDetect
     autocmd!
     autocmd BufRead,BufNewFile .stylelintrc,.htmlhintrc set filetype=json
-    autocmd BufRead,BufNewFile i3* set filetype=i3
     autocmd BufRead,BufNewFile *.tsx set filetype=typescriptreact.typescript
     autocmd BufRead,BufNewFile * set formatoptions-=o
-    autocmd BufRead,BufNewFile swoopBuf nnoremap <buffer> q :bd!<CR>
-    autocmd BufRead,BufNewFile swoopBuf nnoremap <buffer> o :call SwoopSelect()<CR>
-    autocmd BufRead,BufNewFile swoopBuf nnoremap <buffer> J 5j
-    autocmd BufRead,BufNewFile swoopBuf nnoremap <buffer> K 5k
+    autocmd FileType javascript set omnifunc=tsuquyomi#complete
 augroup END
 
 " }}}

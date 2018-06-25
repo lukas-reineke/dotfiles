@@ -47,7 +47,11 @@ nnoremap <Leader><C-W> :Windows<CR>
 " Search {{{
 
 nnoremap <Leader>r :%s/\v()
+nnoremap <Leader>R :let v=winsaveview()<CR>:%s/<C-R><C-W>// <Bar>:call winrestview(v)<C-Left><C-Left><Left><Left>a<BS>
 vnoremap <Leader>r :s/\v()
+
+nnoremap <Leader>a :CtrlSF<Space>
+nnoremap <Leader>s :CtrlSFToggle<CR>
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

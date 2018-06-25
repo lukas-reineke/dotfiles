@@ -115,8 +115,7 @@ set $rofipath ~/scripts/rofi
 bindsym $mod+d       exec --no-startup-id $rofipath/rofi.sh run
 bindsym $mod+shift+d exec --no-startup-id $rofipath/rofi.sh window
 bindsym $mod+shift+v exec --no-startup-id $rofipath/rofi.sh clipboard
-bindsym $alt+k       exec --no-startup-id $rofipath/rofi-keepass.sh
-# bindsym $mod+shift+o       exec --no-startup-id ~/dev/rofi-1password/rofi-1password.sh
+bindsym $mod+o       exec --no-startup-id $rofipath/rofi.sh web
 bindsym $mod+shift+o exec --no-startup-id rofi -modi lpass:rofi-lpass -show lpass -theme onedark
 bindsym $mod+Shift+e exec --no-startup-id $rofipath/rofi-text.sh
 bindsym $mod+Shift+w exec --no-startup-id $rofipath/rofi-i3.sh
@@ -180,9 +179,11 @@ smart_gaps on
 
 for_window [urgent=latest] focus
 focus_on_window_activation focus
-workspace_auto_back_and_forth yes
+# workspace_auto_back_and_forth yes
 
 # Lemonbar ##
 # exec --no-startup-id ~/scripts/lemonbar_script.sh | lemonbar -f "Input Mono:size=10"
 exec --no-startup-id ~/.screenlayout/default.sh
+
+# vim:filetype=i3
 

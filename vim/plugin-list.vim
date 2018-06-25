@@ -126,10 +126,11 @@ Plug 'sickill/vim-pasta'
 
 " Search
 Plug 'haya14busa/incsearch.vim'
-Plug 'eugen0329/vim-esearch'
-Plug 'pelodelfuego/vim-swoop'
+" Plug 'eugen0329/vim-esearch'
+" Plug 'pelodelfuego/vim-swoop'
 Plug 'fcpg/vim-spotlightify'
 Plug 'vim-scripts/CmdlineComplete'
+Plug 'dyng/ctrlsf.vim'
 " Plug 'vim-scripts/SearchComplete'
 " Plug 'osyo-manga/vim-anzu'
 
