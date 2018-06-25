@@ -128,7 +128,6 @@ set foldmethod=indent
 set foldnestmax=2
 set foldopen=all
 set foldminlines=0
-let g:ip_skipfold = 1
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -221,7 +220,6 @@ let g:UltiSnipsSnippetDirectories = [ 'ultisnips' ]
 
 let g:jedi#auto_vim_configuration = 0
 let g:jedi#popup_on_dot = 0
-" let g:jedi#completions_enabled = 0
 let g:jedi#goto_command = '<C-]>'
 let g:jedi#goto_assignments_command = ''
 let g:jedi#goto_definitions_command = ''
@@ -393,9 +391,6 @@ let g:sandwich#recipes += [
 \   }
 \]
 
-" Winresizer
-let g:winresizer_start_key = '<C-T>'
-
 " AutoPairs
 let g:AutoPairs = {
 \   '[':']',
@@ -420,9 +415,6 @@ let g:AutoPairsMoveCharacter = ''
 
 " Clever F
 let g:clever_f_use_migemo = 1
-
-" Codi
-let g:codi#rightsplit = 0
 
 " Airline
 let g:airline_detect_spell = 0

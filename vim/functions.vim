@@ -15,7 +15,6 @@ function! CloseOnLast()
     if OpenBufferNumber() <= 1
         q
     else
-        call undoquit#SaveWindowQuitHistory()
         bd
     endif
 endfunction
@@ -143,46 +142,6 @@ command JsonFormat :%!python -m json.tool
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Clear Registers {{{
-
-" https://stackoverflow.com/a/26043227
-function! ClearRegisters()
-    redir => l:register_out
-    silent register
-    redir end
-    let l:register_list = split(l:register_out, '\n')
-    call remove(l:register_list, 0) " remove header (-- Registers --)
-    call map(l:register_list, "substitute(v:val, '^.\\(.\\).*', '\\1', '')")
-    call filter(l:register_list, 'v:val !~# "[%#=.:]"') " skip readonly registers
-    for l:elem in l:register_list
-        execute 'let @'.l:elem.'= ""'
-    endfor
-endfunction
-
-" }}}
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Make Dir {{{
-
-" https://github.com/junegunn/fzf.vim/issues/89#issuecomment-187764499
-function s:MKDir(...)
-    if         !a:0
-           \|| stridx('`+', a:1[0])!=-1
-           \|| a:1=~#'\v\\@<![ *?[%#]'
-           \|| isdirectory(a:1)
-           \|| filereadable(a:1)
-           \|| isdirectory(fnamemodify(a:1, ':p:h'))
-        return
-    endif
-    return mkdir(fnamemodify(a:1, ':p:h'), 'p')
-endfunction
-command -bang -bar -nargs=? -complete=file E :call s:MKDir(<f-args>) | e<bang> <args>
-
-" }}}
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Restore Session {{{
 
 function! RestoreSession()
@@ -224,27 +183,6 @@ augroup QuickFix
     autocmd!
     autocmd BufWinEnter,BufEnter,cursormoved * call QuickFix()
 augroup END
-
-" }}}
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Swoop {{{
-
-" augroup IndentLinesReset
-"     autocmd!
-"     autocmd BufWinEnter,BufEnter,cursormoved * IndentLinesReset
-" augroup END
-
-" function! LocalSwoop()
-"     set winhighlight=
-"     call SwoopMulti()
-"     ALEDisableBuffer
-"     setlocal colorcolumn=
-"     set winhighlight=
-" endfunction
-
-" nnoremap <leader>s :call LocalSwoop()<cr>
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -330,23 +268,6 @@ augroup WinHighlight
     autocmd!
     autocmd WinEnter,VimEnter * :call WinHighlight()
 augroup END
-
-" }}}
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Set Filetype {{{
-
-function! s:SetFiletype(filetype)
-    execute 'set filetype=' . a:filetype
-endfunction
-
-command FT :call fzf#run({
-            \ 'source': map(split(globpath(&rtp, 'syntax/*.vim')),
-            \ 'fnamemodify(v:val, ":t:r")'),
-            \ 'sink': function('<sid>SetFiletype'),
-            \ 'down': '40%'
-            \ })
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

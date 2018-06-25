@@ -84,8 +84,6 @@ Plug 'lukas-reineke/auto-pairs'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'wellle/targets.vim'
 
-Plug 'justinmk/vim-ipmotion'
-
 " Terminus
 Plug 'wincent/terminus'
 
@@ -148,9 +146,6 @@ Plug 'kepbod/quick-scope'
 " surrounds
 Plug 'machakann/vim-sandwich'
 
-" i3 like resize mode
-Plug 'simeji/winresizer'
-
 " split and join lines
 Plug 'AndrewRadev/splitjoin.vim'
 
@@ -160,23 +155,19 @@ Plug 'bounceme/poppy.vim'
 " Yank highlight
 Plug 'machakann/vim-highlightedyank'
 
+" Better quickfix
 Plug 'romainl/vim-qf'
 Plug 'romainl/vim-qlist'
 
+" Better visual mode
 Plug 'kana/vim-niceblock'
 
 " Marks in column
 Plug 'kshenoy/vim-signature'
-
-" reopen closed buffer
-Plug 'AndrewRadev/undoquit.vim'
 
 " local .vimrc
 Plug 'krisajenkins/vim-projectlocal'
 
 " close all other buffers
 Plug 'schickling/vim-bufonly'
-
-" interactive scratchpad
-Plug 'metakirby5/codi.vim'
 
