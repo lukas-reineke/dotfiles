@@ -28,6 +28,11 @@ sunmap b
 sunmap e
 sunmap ge
 
+nnoremap <c-w>l <c-w>5>
+nnoremap <c-w>h <c-w>5<
+nnoremap <c-w>k <c-w>5+
+nnoremap <c-w>j <c-w>5-
+
 nnoremap <silent> <esc> :noh<cr><esc>
 
 nnoremap Q @q

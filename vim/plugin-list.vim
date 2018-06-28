@@ -30,6 +30,7 @@ Plug 'Quramy/tsuquyomi'
 " Javascript
 Plug 'othree/yajs.vim'
 Plug 'MaxMEllon/vim-jsx-pretty'
+Plug 'feix760/vim-javascript-gf'
 
 " Python
 Plug 'Vimjas/vim-python-pep8-indent'

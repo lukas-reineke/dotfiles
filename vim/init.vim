@@ -190,8 +190,8 @@ let g:ctrlsf_default_root = 'project'
 let g:ctrlsf_winsize = '100%'
 let g:ctrlsf_mapping = {
     \ 'quit': '<space>q',
-    \ 'next': 'n',
-    \ 'prev': 'N',
+    \ 'next': 'J',
+    \ 'prev': 'K',
 \ }
 
 " }}}

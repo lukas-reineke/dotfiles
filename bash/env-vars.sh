@@ -10,6 +10,7 @@ export VISUAL=nvim
 export EDITOR="$VISUAL"
 export PATH=${PATH}:$HOME/.npm-global
 export PATH=${PATH}:$HOME/dotfiles/lib/vimv
+export PATH=${PATH}:$HOME/.local/bin
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 export GOOGLE_APPLICATION_CREDENTIALS=~/.config/gcloud/application_default_credentials.json
 

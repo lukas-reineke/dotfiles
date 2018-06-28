@@ -184,6 +184,7 @@ focus_on_window_activation focus
 # Lemonbar ##
 # exec --no-startup-id ~/scripts/lemonbar_script.sh | lemonbar -f "Input Mono:size=10"
 exec --no-startup-id ~/.screenlayout/default.sh
+exec --no-startup-id lead
 
 # vim:filetype=i3
 
