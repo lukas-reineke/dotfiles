@@ -9,12 +9,39 @@
 //     Front.openOmnibar({ type: 'Tabs' });
 // });
 
-mapkey(
-    'yg',
-    '#7 git clone - git clone address',
-    () => Clipboard.write('git clone ' + window.location.href + '.git'),
-    { domain: /github\.com/i },
-);
+// unmap('T');
+const unmaps = [
+    // 'sb',
+    // 'sw',
+    'ob',
+    'ow',
+    // 'cp',
+    // ';cp',
+    // ';ap',
+    // 'spa',
+    // 'spb',
+    // 'spd',
+    // 'sps',
+    // 'spc',
+    // 'spi',
+    // 'sfr',
+    // 'zQ',
+    // 'zz',
+    // 'zR',
+    // 'ab',
+    // 'Q',
+    // 'q',
+    // 'ag',
+    // 'af',
+    // ';s',
+    // 'yp',
+];
+
+unmaps.forEach(u => {
+    unmap(u);
+});
+
+iunmap(':');
 
 let stackAnswer = 0;
 
@@ -46,45 +73,10 @@ mapkey(
     { domain: /stackoverflow\.com/i },
 );
 
-// Front.registerInlineQuery({
-//     url: 'https://api.shanbay.com/bdc/search/?word=',
-//     parseResult: function(res) {
-//         try {
-//             res = JSON.parse(res.text);
-//             var exp = res.msg;
-//             if (res.data.definition) {
-//                 var pronunciations = [];
-//                 for (var reg in res.data.pronunciations) {
-//                     pronunciations.push(
-//                         `<div>[${reg}] ${res.data.pronunciations[reg]}</div>`,
-//                     );
-//                     // pronunciations.push(`<div><audio src="${res.data[reg+'_audio']}" controls></audio></div>`);
-//                 }
-//                 var definition = res.data.definition
-//                     .split('\n')
-//                     .map(function(d) {
-//                         return `<li>${d}</li>`;
-//                     })
-//                     .join('');
-//                 exp = `${pronunciations.join('')}<ul>${definition}</ul>`;
-//             }
-//             if (res.data.en_definitions) {
-//                 exp += '<hr/>';
-//                 for (var lex in res.data.en_definitions) {
-//                     var sense = res.data.en_definitions[lex]
-//                         .map(function(s) {
-//                             return `<li>${s}</li>`;
-//                         })
-//                         .join('');
-//                     exp += `<div>${lex}</div><ul>${sense}</ul>`;
-//                 }
-//             }
-//             return exp;
-//         } catch (e) {
-//             return '';
-//         }
-//     },
-// });
+mapkey('P', 'Open link from clipboard', () => {
+    Clipboard.read(({ data }) => tabOpenLink(data));
+});
+
 // an example to replace `T` with `gt`, click `Default mappings` to see how `T` works.
 // map('gt', 'T');
 // unmap('H')
@@ -100,8 +92,12 @@ map('L', 'D');
 mapkey('gT', '#3Go one tab left', () => RUNTIME('previousTab'));
 mapkey('gt', '#3Go one tab right', () => RUNTIME('nextTab'));
 
+// map('<Ctrl-w>', '#3Go one tab left', () => Normal.feedkeys(['a']));
+
 map(']', ']]');
 map('[', '[[');
+map('h', 'E');
+map('l', 'R');
 
 cmap('<Ctrl-n>', '<Tab>');
 cmap('<Ctrl-p>', '<Shift-Tab>');
@@ -110,7 +106,8 @@ cmap('<Ctrl-p>', '<Shift-Tab>');
 
 imap('H', '_');
 imap('L', '$');
-// imap('<Ctrl-w>', '<Alt-w>');
+imap(' w', '$');
+imap('<Space>q', ':q');
 
 vmap('H', '0');
 vmap('L', '$');
@@ -122,6 +119,12 @@ addSearchAliasX(
     'L',
     'Im feeling lucky',
     'https://www.google.com/search?btnI=1&q=',
+);
+
+addSearchAliasX(
+    'j',
+    'Javascript',
+    'https://www.google.com/search?q=javascript%20',
 );
 
 addSearchAliasX(
@@ -139,13 +142,11 @@ addSearchAliasX(
 // an example to remove mapkey `Ctrl-i`
 // unmap('<Ctrl-i>');
 
-unmap('T');
-
 settings.scrollStepSize = 100;
 settings.blacklistPattern = /.*localhost.*/i;
 settings.focusAfterClosed = 'left';
 settings.historyMUOrder = false;
-settings.richHintsForKeystroke = 0;
+// settings.richHintsForKeystroke = 0;
 settings.omnibarMaxResults = 5;
 settings.focusFirstCandidate = true;
 Hints.numericHints = false;
@@ -156,89 +157,66 @@ Hints.characters = 'asdfghjklqwertyuiopzxcvbnm';
 // https:help.github.com/articles/using-keyboard-shortcuts/   //
 ////////////////////////////////////////////////////////////////
 
-mapkey(
-    'gC',
-    'Go to the code tab',
-    () => {
-        document
-            .querySelectorAll('.js-selected-navigation-item.reponav-item')[0]
-            .click();
-    },
-    { domain: /github\.com/i },
+const mapkeyGithub = (...args) => mapkey(...args, { domain: /github\.com/i });
+
+mapkeyGithub('yg', 'git clone - git clone address', () =>
+    Clipboard.write('git clone ' + window.location.href + '.git'),
 );
 
-mapkey(
-    'gI',
-    'Go to the Issues tab. ',
-    () => {
-        document
-            .querySelectorAll('.js-selected-navigation-item.reponav-item')[1]
-            .click();
-    },
-    { domain: /github\.com/i },
-);
+mapkeyGithub('yp', 'Copy project path', () => {
+    const path = new URL(window.location.href).pathname.split('/');
+    Clipboard.write(`${path[1]}/${path[2]}`);
+});
 
-mapkey(
-    'gP',
-    'Go to the Pull requests tab.  ',
-    () => {
-        document
-            .querySelectorAll('.js-selected-navigation-item.reponav-item')[2]
-            .click();
-    },
-    { domain: /github\.com/i },
-);
+mapkeyGithub('yv', 'Copy for vim', () => {
+    const path = new URL(window.location.href).pathname.split('/');
+    Clipboard.write(`Plug '${path[1]}/${path[2]}'`);
+});
 
-mapkey(
-    'gB',
-    'Go to the Projects tab. "',
-    () => {
-        document
-            .querySelectorAll('.js-selected-navigation-item.reponav-item')[3]
-            .click();
-    },
-    { domain: /github\.com/i },
-);
+mapkeyGithub('gC', 'Go to the code tab', () => {
+    document
+        .querySelectorAll('.js-selected-navigation-item.reponav-item')[0]
+        .click();
+});
 
-mapkey(
-    'gW',
-    'Go to the Wiki tab. ',
-    () => {
-        document
-            .querySelectorAll('.js-selected-navigation-item.reponav-item')[4]
-            .click();
-    },
-    { domain: /github\.com/i },
-);
+mapkeyGithub('gI', 'Go to the Issues tab', () => {
+    document
+        .querySelectorAll('.js-selected-navigation-item.reponav-item')[1]
+        .click();
+});
 
-mapkey(
-    'gO',
-    'Go to the Overview tab. ',
-    () => {
-        document.querySelectorAll('.UnderlineNav-item')[0].click();
-    },
-    { domain: /github\.com/i },
-);
-mapkey(
-    'gR',
-    'Go to the Repository tab. ',
-    () => {
-        document.querySelectorAll('.UnderlineNav-item')[1].click();
-    },
-    { domain: /github\.com/i },
-);
-mapkey(
-    'gS',
-    'Go to the Stars tab. ',
-    () => {
-        document.querySelectorAll('.UnderlineNav-item')[2].click();
-    },
-    { domain: /github\.com/i },
-);
+mapkeyGithub('gP', 'Go to the Pull requests tab', () => {
+    document
+        .querySelectorAll('.js-selected-navigation-item.reponav-item')[2]
+        .click();
+});
+
+mapkeyGithub('gB', 'Go to the Projects tab', () => {
+    document
+        .querySelectorAll('.js-selected-navigation-item.reponav-item')[3]
+        .click();
+});
+
+mapkeyGithub('gW', 'Go to the Wiki tab', () => {
+    document
+        .querySelectorAll('.js-selected-navigation-item.reponav-item')[4]
+        .click();
+});
+
+mapkeyGithub('gO', 'Go to the Overview tab', () => {
+    document.querySelectorAll('.UnderlineNav-item')[0].click();
+});
+mapkeyGithub('gR', 'Go to the Repository tab', () => {
+    document.querySelectorAll('.UnderlineNav-item')[1].click();
+});
+mapkeyGithub('gS', 'Go to the Stars tab', () => {
+    document.querySelectorAll('.UnderlineNav-item')[2].click();
+});
 
 //////////////////
 // end of github//
 //////////////////
+
 const colors = {
     dark_black: '#1a1a1a',
     black: '#1f1f1f',
@@ -310,6 +288,12 @@ settings.theme = `
 .sk_theme ul>li {
     background-color: ${colors.black};
 }
+#sk_banner {
+    color: ${colors.white};
+    font-family: "Fira Code";
+    border: none;
+    background: ${colors.black};
+}
 `;
 
 const textStyle = `
@@ -322,5 +306,11 @@ const textStyle = `
 Hints.style(textStyle, 'text');
 Hints.style(textStyle);
 
-Visual.style('marks', `background-color: ${colors.green};`);
-Visual.style('cursor', `background-color: ${colors.green};`);
+Visual.style(
+    'marks',
+    `background-color: ${colors.green} !important; font-family: "Fira Code";`,
+);
+Visual.style(
+    'cursor',
+    `background-color: ${colors.green} !important; font-family: "Fira Code";`,
+);
