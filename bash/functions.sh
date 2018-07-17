@@ -222,6 +222,13 @@ function db() {
     git remote prune origin
 }
 
+function dbm() {
+    local branches branch
+    branch=$(git branch --format="%(refname:short)" --merged | fzf --height 20% --reverse +m) &&
+    git branch -D $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##") &&
+    git remote prune origin
+}
+
 function gpsu() {
     local branch=$(git branch --no-color | grep \* | cut -d ' ' -f2)
     git push --set-upstream origin $branch

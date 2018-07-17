@@ -67,7 +67,6 @@ set hlsearch
 set incsearch
 set inccommand=nosplit
 set grepprg=rg\ --vimgrep
-set formatprg=par\ -w80rq
 set formatoptions-=o
 set nowrap
 set whichwrap=b,h,l

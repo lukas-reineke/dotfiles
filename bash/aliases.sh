@@ -40,11 +40,7 @@ alias crypt='gpg --trust-model always -ear adgo'
 alias ucrypt='xsel -b | gpg'
 
 # network
-alias arp='sudo arp-scan --interface=wlp2s0b1 --localnet'
-alias arpe='sudo arp-scan --interface=enp0s26f7u1u3 --localnet'
-alias arpt='sudo arp-scan --interface=tun0 --localnet'
-alias nl='nload wlp2s0b1'
-alias ethup='sudo ip link set enp0s26f7u1u3 up'
+alias ns='\ss -tnlp'
 
 # git
 alias gl='~/dotfiles/scripts/fzf-git-log.sh'

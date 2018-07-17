@@ -257,7 +257,7 @@ augroup END
 " Win Highlight {{{
 
 function! WinHighlight()
-    if &foldmethod ==# 'diff' || bufwinnr('swoopBuf') > -1 || &buftype ==# 'nofile'
+    if &foldmethod ==# 'diff' || &buftype ==# 'nofile'
         set winhighlight=
     else
         set winhighlight=NormalNC:WinNormalNC
