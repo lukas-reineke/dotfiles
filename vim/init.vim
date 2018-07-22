@@ -259,6 +259,7 @@ let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
 let g:tsuquyomi_disable_quickfix = 1
 let g:ale_fix_on_save = 1
+let g:semshi#error_sign = 0
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

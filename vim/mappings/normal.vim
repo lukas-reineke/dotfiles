@@ -77,6 +77,8 @@ nnoremap <C-p> :Files<CR>
 nnoremap - :VimFilerCurrentDir<CR>
 nnoremap + :VimFilerBufferDir -split<CR>
 
+nnoremap <F3> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">" . " FG:" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"fg#")<CR>
+
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 

@@ -1,4 +1,5 @@
 setlocal omnifunc=pythoncomplete#Complete
 setlocal completeopt-=preview
-set textwidth=160
+setlocal textwidth=160
+let b:cursorword=0
 

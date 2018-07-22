@@ -37,6 +37,7 @@ Plug 'moll/vim-node'
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'davidhalter/jedi-vim'
 Plug 'raimon49/requirements.txt.vim'
+Plug 'numirias/semshi'
 
 " Json
 Plug 'elzr/vim-json'
@@ -172,4 +173,6 @@ Plug 'krisajenkins/vim-projectlocal'
 
 " close all other buffers
 Plug 'schickling/vim-bufonly'
+
+Plug 'itchyny/vim-cursorword'
 
