@@ -211,7 +211,7 @@ function! FoldText()
     let l:line = getline(v:foldstart)
 
     let l:nucolwidth = &foldcolumn + &number * &numberwidth
-    let l:windowwidth = winwidth(0) - l:nucolwidth - 3
+    let l:windowwidth = winwidth(0) - l:nucolwidth - 6
     let l:foldedlinecount = v:foldend - v:foldstart
 
     " expand tabs into spaces
@@ -227,7 +227,7 @@ function! FoldText()
         let l:fillcharcount = l:windowwidth - len(l:line) - len(l:foldedlinecount)
     endif
 
-    return '➔ ' . l:line . repeat(' ',l:fillcharcount) . l:foldedlinecount . ' '
+    return '>- ' . l:line . repeat(' ',l:fillcharcount) . l:foldedlinecount . ' >-'
 endfunction
 set foldtext=FoldText()
 

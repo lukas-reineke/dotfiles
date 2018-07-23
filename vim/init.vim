@@ -186,12 +186,15 @@ let g:splfy_no_matchinfo = 1
 let g:ctrlsf_confirm_save = 0
 let g:ctrlsf_regex_pattern = 1
 let g:ctrlsf_default_root = 'project'
-let g:ctrlsf_winsize = '100%'
+let g:ctrlsf_auto_focus = { 'at': 'start' }
 let g:ctrlsf_mapping = {
     \ 'quit': '<space>q',
     \ 'next': 'J',
     \ 'prev': 'K',
 \ }
+function! g:CtrlSFAfterMainWindowInit()
+    only
+endfunction
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
