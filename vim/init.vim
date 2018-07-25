@@ -69,6 +69,8 @@ set inccommand=nosplit
 set grepprg=rg\ --vimgrep
 set formatoptions-=o
 set nowrap
+set breakindent
+set linebreak
 set whichwrap=b,h,l
 set expandtab
 set smarttab
@@ -87,6 +89,7 @@ set undofile
 set path+=**
 set virtualedit=onemore
 set spellcapcheck=
+set noruler
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -142,6 +145,7 @@ set listchars+=extends:❯
 set listchars+=precedes:❮
 set listchars+=nbsp:_
 set listchars+=space:⋅
+set showbreak=↪
 let g:indentLine_char = '│'
 let g:indentLine_first_char = g:indentLine_char
 let g:indentLine_showFirstIndentLevel = 1
@@ -254,8 +258,8 @@ let g:ale_fixers = {
 \   'scss': [ 'prettier' ],
 \   'python': ['prettier'],
 \}
-let g:ale_sign_error = '誤'
-let g:ale_sign_warning = '危'
+let g:ale_sign_error = '⭕'
+let g:ale_sign_warning = '⭕'
 let g:airline#extensions#ale#error_symbol = '誤:'
 let g:airline#extensions#ale#warning_symbol = '危:'
 let g:ale_set_loclist = 0
@@ -426,17 +430,17 @@ let g:airline_section_x = 0
 let g:airline_section_y = 0
 let g:airline_section_z = 0
 let g:airline_mode_map = {
-\   '__': '-',
-\   'n': 'ノーマル',
-\   'i': 'インサート',
-\   'R': 'リプレース',
-\   'c': 'コマーンド',
-\   'v': 'ビズアル',
-\   'V': 'ビズアル',
-\   '': 'ビズアル',
-\   's': 'セレクト',
-\   'S': 'セレクト',
-\   '': 'セレクト',
+\   '__': '❱',
+\   'n': '❱',
+\   'i': '❱',
+\   'R': '❱',
+\   'c': '❱',
+\   'v': '❱',
+\   'V': '❱',
+\   '': '❱',
+\   's': '❱',
+\   'S': '❱',
+\   '': '❱',
 \}
 let g:airline#extensions#default#layout = [
 \   [ 'a', 'c' ],
