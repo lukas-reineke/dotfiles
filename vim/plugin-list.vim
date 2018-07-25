@@ -174,5 +174,9 @@ Plug 'krisajenkins/vim-projectlocal'
 " close all other buffers
 Plug 'schickling/vim-bufonly'
 
+" highlight current word
 Plug 'itchyny/vim-cursorword'
+
+" open devdocs.io
+Plug 'rhysd/devdocs.vim'
 
