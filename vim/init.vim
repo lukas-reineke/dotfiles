@@ -256,6 +256,7 @@ let g:ale_fixers = {
 \   'typescriptreact': ['prettier'],
 \   'json': ['prettier'],
 \   'scss': [ 'prettier' ],
+\   'css': [ 'prettier' ],
 \   'python': ['prettier'],
 \}
 let g:ale_sign_error = '⭕'
