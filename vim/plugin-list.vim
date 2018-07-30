@@ -175,7 +175,7 @@ Plug 'krisajenkins/vim-projectlocal'
 Plug 'schickling/vim-bufonly'
 
 " highlight current word
-Plug 'itchyny/vim-cursorword'
+Plug 'RRethy/vim-illuminate'
 
 " open devdocs.io
 Plug 'rhysd/devdocs.vim'

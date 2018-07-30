@@ -277,6 +277,11 @@ td() {
         tmux kill-session -t "$session"
 }
 
+r() {
+    local script=$(python3 ~/dotfiles/scripts/npm-scripts.py | fzf --height 20% --reverse +m)
+    [ ! -z "$script" ] && npm run "$script"
+}
+
 # Colored man pages
 function man {
     LESS_TERMCAP_md=$'\e[01;31m' \

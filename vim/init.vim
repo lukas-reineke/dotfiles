@@ -187,6 +187,14 @@ let g:incsearch#magic = '\v'
 
 let g:splfy_no_matchinfo = 1
 
+let g:Illuminate_ftblacklist = [ 'python', 'vimfiler' ]
+
+let g:Illuminate_ftHighlightGroups = {
+    \ 'vim': ['vimVar', 'vimFBVar', 'vimString', 'vimLineComment',
+    \         'vimFuncName', 'vimFunction', 'vimUserFunc', 'vimFunc'],
+    \ 'javascript': ['javascriptIdentifierName', 'javascriptFuncArg']
+\ }
+
 let g:ctrlsf_confirm_save = 0
 let g:ctrlsf_regex_pattern = 1
 let g:ctrlsf_default_root = 'project'

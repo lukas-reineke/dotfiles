@@ -18,7 +18,6 @@ alias sv='sudoedit'
 alias v='ge nvim'
 alias vim='ge nvim'
 alias gv='ge nvim -c "Gdiff"'
-alias r='roamer --skip-approval'
 
 # vpn
 alias vpn='cd /etc/openvpn/de && sudo openvpn --config de.ovpn'
