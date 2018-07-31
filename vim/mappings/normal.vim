@@ -16,8 +16,8 @@ onoremap L $
 nnoremap zl 20zl
 nnoremap zh 20zh
 
-noremap <silent> j gj
-noremap <silent> k gk
+nnoremap <expr> j v:count ? (v:count > 5 ? "m'" . v:count : '') . 'j' : 'gj'
+nnoremap <expr> k v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk'
 
 map <silent> w <Plug>CamelCaseMotion_w
 map <silent> b <Plug>CamelCaseMotion_b

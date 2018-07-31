@@ -180,3 +180,6 @@ Plug 'RRethy/vim-illuminate'
 " open devdocs.io
 Plug 'rhysd/devdocs.vim'
 
+" alignment
+Plug 'tommcdo/vim-lion'
+

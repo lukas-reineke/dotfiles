@@ -68,7 +68,7 @@ set incsearch
 set inccommand=nosplit
 set grepprg=rg\ --vimgrep
 set formatoptions-=o
-set nowrap
+set wrap
 set breakindent
 set linebreak
 set whichwrap=b,h,l
@@ -138,14 +138,14 @@ set foldminlines=0
 " Chars {{{
 
 set list
-set listchars=eol:⬎
+set listchars=eol:↴
 set listchars+=tab:>-
 set listchars+=trail:•
 set listchars+=extends:❯
 set listchars+=precedes:❮
 set listchars+=nbsp:_
 set listchars+=space:⋅
-set showbreak=↪
+set showbreak=↳⋅
 let g:indentLine_char = '│'
 let g:indentLine_first_char = g:indentLine_char
 let g:indentLine_showFirstIndentLevel = 1
@@ -350,6 +350,9 @@ let g:fzf_action = {
 \   'ctrl-s': 'split',
 \   'ctrl-v': 'vsplit',
 \}
+
+" Lion
+let b:lion_squeeze_spaces = 1
 
 " Sparkup
 let g:sparkupExecuteMapping = '<C-E>'
