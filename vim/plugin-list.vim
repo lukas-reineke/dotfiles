@@ -29,7 +29,8 @@ Plug 'Quramy/tsuquyomi'
 
 " Javascript
 Plug 'othree/yajs.vim'
-Plug 'MaxMEllon/vim-jsx-pretty'
+" Plug 'MaxMEllon/vim-jsx-pretty'
+Plug 'chemzqm/vim-jsx-improve'
 Plug 'feix760/vim-javascript-gf'
 Plug 'moll/vim-node'
 
@@ -183,3 +184,8 @@ Plug 'rhysd/devdocs.vim'
 " alignment
 Plug 'tommcdo/vim-lion'
 
+" lsp
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
+" Plug 'ryanolsonx/vim-lsp-typescript'
+Plug 'ryanolsonx/vim-lsp-python'

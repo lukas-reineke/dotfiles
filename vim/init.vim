@@ -286,9 +286,11 @@ let g:semshi#error_sign = 0
 augroup FiletypeDetect
     autocmd!
     autocmd BufRead,BufNewFile .stylelintrc,.htmlhintrc set filetype=json
+    autocmd BufRead,BufNewFile requirements.txt set filetype=python
     autocmd BufRead,BufNewFile *.tsx set filetype=typescriptreact.typescript
     autocmd BufRead,BufNewFile * set formatoptions-=o
     autocmd FileType javascript set omnifunc=tsuquyomi#complete
+    autocmd FileType python set omnifunc=lsp#complete
 augroup END
 
 " }}}
