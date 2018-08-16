@@ -189,3 +189,7 @@ Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
 " Plug 'ryanolsonx/vim-lsp-typescript'
 Plug 'ryanolsonx/vim-lsp-python'
+
+" import cost for js
+Plug 'yardnsm/vim-import-cost', { 'do': 'npm install' }
+

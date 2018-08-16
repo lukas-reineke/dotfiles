@@ -11,7 +11,7 @@ nnoremap <Leader>Q :q<CR>
 nnoremap <Leader><C-O> :Bufonly<CR>
 
 nnoremap <Leader>n :Files %:h<CR>
-nnoremap <Leader>N :E %:h/
+nnoremap <Leader>N :e %:h/
 
 nnoremap <Leader>o o<esc>k
 nnoremap <Leader>O O<esc>j

@@ -195,6 +195,8 @@ let g:Illuminate_ftHighlightGroups = {
     \ 'javascript': ['javascriptIdentifierName', 'javascriptFuncArg']
 \ }
 
+let g:Illuminate_delay = 0
+
 let g:ctrlsf_confirm_save = 0
 let g:ctrlsf_regex_pattern = 1
 let g:ctrlsf_default_root = 'project'
@@ -354,7 +356,7 @@ let g:fzf_action = {
 \}
 
 " Lion
-let b:lion_squeeze_spaces = 1
+let g:lion_squeeze_spaces = 1
 
 " Sparkup
 let g:sparkupExecuteMapping = '<C-E>'

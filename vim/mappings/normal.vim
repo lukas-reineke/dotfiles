@@ -242,5 +242,22 @@ nmap gr <Plug>ReplaceWithRegisterOperator
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Fold Method {{{
+
+function! FoldMethod()
+    if &foldmethod == 'indent'
+        setlocal foldmethod=manual
+    else
+        setlocal foldmethod=indent
+    endif
+    echo 'set foldmethod to ' . &foldmethod
+endfunction
+
+nnoremap gz :call FoldMethod()<CR>
+
+" }}}
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " vim:foldmethod=marker:foldlevel=0
 
