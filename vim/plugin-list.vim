@@ -46,7 +46,7 @@ Plug 'elzr/vim-json'
 " HTML5
 Plug 'othree/html5.vim'
 Plug 'othree/html5-syntax.vim'
-Plug 'lukas-reineke/sparkup'
+" Plug 'lukas-reineke/sparkup'
 Plug 'gregsexton/matchtag'
 Plug 'nikvdp/ejs-syntax'
 

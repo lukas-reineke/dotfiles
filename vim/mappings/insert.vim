@@ -17,6 +17,7 @@ inoremap <silent><expr> ( complete_parameter#pre_complete("()")
 inoremap <C-L> <C-X><C-L>
 imap <C-X><C-L> <plug>(fzf-complete-line)
 inoremap <C-G> <C-Y>
+inoremap <C-E> <ESC>BDi<><ESC>hpyypa/<ESC>O
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
