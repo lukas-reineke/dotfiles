@@ -511,6 +511,20 @@ let g:LanguageClient_serverCommands = {
     \ 'sh': ['bash-language-server', 'start'],
     \ }
 
+let g:LanguageClient_diagnosticsDisplay = {
+\    1: {
+\        "signTexthl": "none",
+\    },
+\    2: {
+\        "signTexthl": "none",
+\    },
+\    3: {
+\        "signTexthl": "none",
+\    },
+\    4: {
+\        "signTexthl": "none",
+\    },
+\}
 " if executable('typescript-language-server')
 "     au User lsp_setup call lsp#register_server({
 "       \ 'name': 'typescript-language-server',
