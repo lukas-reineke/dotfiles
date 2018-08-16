@@ -259,6 +259,7 @@ let g:ale_linters = {
 \   'html': [ 'htmlhint' ],
 \   'scss': [ 'sasslint' ],
 \   'python': [ 'flake8', 'mypy' ],
+\   'sh': ['language_server'],
 \}
 let g:ale_fixers = {
 \   'javascript': ['prettier'],
@@ -285,14 +286,22 @@ let g:semshi#error_sign = 0
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " File Type Autocmd {{{
 
+function! JavascriptOmnifunc()
+    let l:filetypeList = [ 'javascript', 'typescript', 'typescriptreact.typescript' ]
+    if index(l:filetypeList, &filetype) > -1
+        set omnifunc=tsuquyomi#complete
+    endif
+endfunction
+
 augroup FiletypeDetect
     autocmd!
     autocmd BufRead,BufNewFile .stylelintrc,.htmlhintrc set filetype=json
     autocmd BufRead,BufNewFile requirements.txt set filetype=python
     autocmd BufRead,BufNewFile *.tsx set filetype=typescriptreact.typescript
     autocmd BufRead,BufNewFile * set formatoptions-=o
-    autocmd FileType javascript set omnifunc=tsuquyomi#complete
-    autocmd FileType python set omnifunc=lsp#complete
+    " autocmd FileType javascript set omnifunc=tsuquyomi#complete
+    autocmd User LanguageClientBufReadPost :call JavascriptOmnifunc()
+    " autocmd FileType python set omnifunc=lsp#complete
 augroup END
 
 " }}}
@@ -482,6 +491,58 @@ let g:airline#extensions#whitespace#enabled = 0
 " \   'right_alt': '',
 " \   'space': ' ',
 " \}
+
+" }}}
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Language Server {{{
+
+" \ 'javascript': ['node', $HOME . '/dev/javascript-typescript-langserver/lib/language-server-stdio'],
+let g:LanguageClient_diagnosticsEnable = 0
+let g:LanguageClient_serverCommands = {
+    \ 'javascript': ['typescript-language-server', '--stdio'],
+    \ 'typescript': ['typescript-language-server', '--stdio'],
+    \ 'scss': ['css-languageserver', '--stdio'],
+    \ 'css': ['css-languageserver', '--stdio'],
+    \ 'json': ['json-languageserver', '--stdio'],
+    \ 'html': ['html-languageserver', '--stdio'],
+    \ 'python': ['pyls'],
+    \ 'sh': ['bash-language-server', 'start'],
+    \ }
+
+" if executable('typescript-language-server')
+"     au User lsp_setup call lsp#register_server({
+"       \ 'name': 'typescript-language-server',
+"       \ 'cmd': { server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
+"       \ 'root_uri': { server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_directory(lsp#utils#get_buffer_path(), '.git/..'))},
+"       \ 'whitelist': ['typescript', 'javascript', 'typescriptreact.typescript']
+"       \ })
+" endif
+
+" if executable('css-languageserver')
+"     au User lsp_setup call lsp#register_server({
+"         \ 'name': 'css-languageserver',
+"         \ 'cmd': {server_info->[&shell, &shellcmdflag, 'css-languageserver --stdio']},
+"         \ 'whitelist': ['css', 'less', 'sass', 'scss'],
+"         \ })
+" endif
+
+" if executable('json-languageserver')
+"     au User lsp_setup call lsp#register_server({
+"         \ 'name': 'json-languageserver',
+"         \ 'cmd': {server_info->[&shell, &shellcmdflag, 'json-languageserver --stdio']},
+"         \ 'whitelist': ['json'],
+"         \ })
+" endif
+
+" if executable('html-languageserver')
+"     au User lsp_setup call lsp#register_server({
+"         \ 'name': 'html-languageserver',
+"         \ 'cmd': {server_info->[&shell, &shellcmdflag, 'html-languageserver --stdio']},
+"         \ 'whitelist': ['html'],
+"         \ })
+" endif
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

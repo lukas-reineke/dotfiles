@@ -25,10 +25,14 @@ nnoremap <Leader>z 1z=
 
 nmap <silent> <Leader>c <Plug>(qf_qf_toggle_stay)
 
-nnoremap <Leader><C-]> :A<CR>
+nnoremap <Leader><C-]> :LspHover<CR>
 
 nnoremap <Leader>it :IstanbulToggle<CR>
 nnoremap <Leader>iu :IstanbulUpdate<CR>
+
+" nnoremap <Leader>s :LspDocumentSymbol<Cr>
+nnoremap <Leader>s :call LanguageClient_textDocument_documentSymbol()<Cr>
+nnoremap <Leader><CR> :call LanguageClient_contextMenu()<Cr>
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -51,7 +55,7 @@ nnoremap <Leader>R :let v=winsaveview()<CR>:%s/<C-R><C-W>// <Bar>:call winrestvi
 vnoremap <Leader>r :s/\v()
 
 nnoremap <Leader>a :CtrlSF<Space>
-nnoremap <Leader>s :CtrlSFToggle<CR>
+" nnoremap <Leader>s :CtrlSFToggle<CR>
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

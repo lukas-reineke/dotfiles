@@ -66,6 +66,8 @@ nnoremap 7% 70%
 nnoremap 8% 80%
 nnoremap 9% 90%
 
+nnoremap <C-]> :call LanguageClient#textDocument_definition()<CR>
+
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 

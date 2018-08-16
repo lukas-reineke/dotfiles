@@ -9,7 +9,7 @@ Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-obsession'
-Plug 'tpope/vim-projectionist'
+" Plug 'tpope/vim-projectionist'
 
 " Shougo
 Plug 'Shougo/vimproc.vim'
@@ -184,11 +184,15 @@ Plug 'rhysd/devdocs.vim'
 " alignment
 Plug 'tommcdo/vim-lion'
 
-" lsp
-Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/vim-lsp'
-" Plug 'ryanolsonx/vim-lsp-typescript'
-Plug 'ryanolsonx/vim-lsp-python'
+" " lsp
+" Plug 'prabirshrestha/async.vim'
+" Plug 'prabirshrestha/vim-lsp'
+" " Plug 'ryanolsonx/vim-lsp-typescript'
+" Plug 'ryanolsonx/vim-lsp-python'
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
 
 " import cost for js
 Plug 'yardnsm/vim-import-cost', { 'do': 'npm install' }
