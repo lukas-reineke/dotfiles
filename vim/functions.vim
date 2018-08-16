@@ -174,8 +174,12 @@ function! QuickFix()
     let l:filetype_list = ['netrw']
     if (index(l:buftype_list, &buftype) >= 0 || index(l:filetype_list, &filetype) >= 0)
         let g:qs_enable = 0
+        if &buftype == 'quickfix'
+            execute 'highlight CursorLine guibg=' . onedark#GetColors().cursor_grey.gui
+        endif
     else
         let g:qs_enable = 1
+        execute 'highlight CursorLine guibg=' . onedark#GetColors().dark_black.gui
     endif
 endfunction
 
