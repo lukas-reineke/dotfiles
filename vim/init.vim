@@ -252,7 +252,7 @@ let g:jedi#rename_command = ''
 
 let g:ale_linters = {
 \   'vim': [ 'vint' ],
-\   'javascript': [ 'eslint', 'flow' ],
+\   'javascript': [ 'eslint', 'flow', 'tsserver' ],
 \   'typescript': [ 'tslint', 'tsserver', 'typecheck' ],
 \   'typescriptreact': [ 'tslint', 'tsserver', 'typecheck' ],
 \   'json': [ 'jsonlint' ],
@@ -499,7 +499,7 @@ let g:airline#extensions#whitespace#enabled = 0
 " Language Server {{{
 
 " \ 'javascript': ['node', $HOME . '/dev/javascript-typescript-langserver/lib/language-server-stdio'],
-" let g:LanguageClient_diagnosticsEnable = 0
+let g:LanguageClient_diagnosticsEnable = 0
 let g:LanguageClient_settingsPath = '.ls-settings.json'
 let g:LanguageClient_loggingFile = '/tmp/language-client.log'
 let g:LanguageClient_serverCommands = {
@@ -514,10 +514,10 @@ let g:LanguageClient_serverCommands = {
 \}
 
 let g:LanguageClient_diagnosticsDisplay = {
-\    1: { 'signTexthl': 'Error', 'signText': '⭕' },
-\    2: { 'signTexthl': 'Todo',  'signText': '⭕' },
-\    3: { 'signTexthl': 'Todo',  'signText': '⭕' },
-\    4: { 'signTexthl': 'Todo',  'signText': '⭕' },
+\   1: { 'signTexthl': 'Error', 'signText': '⭕' },
+\   2: { 'signTexthl': 'Todo',  'signText': '⭕' },
+\   3: { 'signTexthl': 'Todo',  'signText': '⭕' },
+\   4: { 'signTexthl': 'Todo',  'signText': '⭕' },
 \}
 
 " }}}
