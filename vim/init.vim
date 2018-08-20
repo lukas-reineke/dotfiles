@@ -499,64 +499,26 @@ let g:airline#extensions#whitespace#enabled = 0
 " Language Server {{{
 
 " \ 'javascript': ['node', $HOME . '/dev/javascript-typescript-langserver/lib/language-server-stdio'],
-let g:LanguageClient_diagnosticsEnable = 0
+" let g:LanguageClient_diagnosticsEnable = 0
+let g:LanguageClient_settingsPath = '.ls-settings.json'
+let g:LanguageClient_loggingFile = '/tmp/language-client.log'
 let g:LanguageClient_serverCommands = {
-    \ 'javascript': ['typescript-language-server', '--stdio'],
-    \ 'typescript': ['typescript-language-server', '--stdio'],
-    \ 'scss': ['css-languageserver', '--stdio'],
-    \ 'css': ['css-languageserver', '--stdio'],
-    \ 'json': ['json-languageserver', '--stdio'],
-    \ 'html': ['html-languageserver', '--stdio'],
-    \ 'python': ['pyls'],
-    \ 'sh': ['bash-language-server', 'start'],
-    \ }
+\   'javascript': [ 'typescript-language-server', '--stdio', '--tsserver-log-file', '/tmp/tsserver.log', '--log-level', '1' ],
+\   'typescript': [ 'typescript-language-server', '--stdio' ],
+\   'scss':       [ 'css-languageserver', '--stdio' ],
+\   'css':        [ 'css-languageserver', '--stdio' ],
+\   'json':       [ 'json-languageserver', '--stdio' ],
+\   'html':       [ 'html-languageserver', '--stdio' ],
+\   'python':     [ 'pyls', '-vv' ],
+\   'sh':         [ 'bash-language-server', 'start' ],
+\}
 
 let g:LanguageClient_diagnosticsDisplay = {
-\    1: {
-\        "signTexthl": "none",
-\    },
-\    2: {
-\        "signTexthl": "none",
-\    },
-\    3: {
-\        "signTexthl": "none",
-\    },
-\    4: {
-\        "signTexthl": "none",
-\    },
+\    1: { 'signTexthl': 'Error', 'signText': '⭕' },
+\    2: { 'signTexthl': 'Todo',  'signText': '⭕' },
+\    3: { 'signTexthl': 'Todo',  'signText': '⭕' },
+\    4: { 'signTexthl': 'Todo',  'signText': '⭕' },
 \}
-" if executable('typescript-language-server')
-"     au User lsp_setup call lsp#register_server({
-"       \ 'name': 'typescript-language-server',
-"       \ 'cmd': { server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
-"       \ 'root_uri': { server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_directory(lsp#utils#get_buffer_path(), '.git/..'))},
-"       \ 'whitelist': ['typescript', 'javascript', 'typescriptreact.typescript']
-"       \ })
-" endif
-
-" if executable('css-languageserver')
-"     au User lsp_setup call lsp#register_server({
-"         \ 'name': 'css-languageserver',
-"         \ 'cmd': {server_info->[&shell, &shellcmdflag, 'css-languageserver --stdio']},
-"         \ 'whitelist': ['css', 'less', 'sass', 'scss'],
-"         \ })
-" endif
-
-" if executable('json-languageserver')
-"     au User lsp_setup call lsp#register_server({
-"         \ 'name': 'json-languageserver',
-"         \ 'cmd': {server_info->[&shell, &shellcmdflag, 'json-languageserver --stdio']},
-"         \ 'whitelist': ['json'],
-"         \ })
-" endif
-
-" if executable('html-languageserver')
-"     au User lsp_setup call lsp#register_server({
-"         \ 'name': 'html-languageserver',
-"         \ 'cmd': {server_info->[&shell, &shellcmdflag, 'html-languageserver --stdio']},
-"         \ 'whitelist': ['html'],
-"         \ })
-" endif
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
