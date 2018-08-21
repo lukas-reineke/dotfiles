@@ -7,4 +7,5 @@ nmap <buffer> M <Plug>(vimfiler_toggle_mark_current_line)
 nunmap <buffer> <C-J>
 nunmap <buffer> <C-L>
 nunmap <buffer> <SPACE>
+setlocal nobuflisted
 

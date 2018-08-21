@@ -155,7 +155,7 @@ nnoremap <silent> zk :call NextClosedFold('k')<cr>zo[z
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Git {{{
-"
+
 nnoremap do2 :diffget //2<CR> :diffupdate<CR>
 nnoremap do3 :diffget //3<CR> :diffupdate<CR>
 omap ic <plug>(signify-motion-inner-pending)

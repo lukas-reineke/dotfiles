@@ -1,14 +1,16 @@
 {
     "compilerOptions": {
         "allowSyntheticDefaultImports": true,
-        "target": "es6",
+        "target": "es2017",
         "module": "commonjs",
         "jsx": "react",
         "checkJs": true,
         "baseUrl": ".",
-        "paths": {}
+        "paths": {
+            "src": ["./src"]
+        }
     },
-    "exclude": ["node_modules"],
+    "exclude": ["node_modules", "**/node_modules/*"],
     "typeAcquisition": {
         "include": ["react"]
     }

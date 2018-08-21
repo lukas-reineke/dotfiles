@@ -258,7 +258,7 @@ let g:ale_linters = {
 \   'json': [ 'jsonlint' ],
 \   'html': [ 'htmlhint' ],
 \   'scss': [ 'sasslint' ],
-\   'python': [ 'flake8', 'mypy' ],
+\   'python': [ 'flake8', 'mypy', 'pyls' ],
 \   'sh': ['language_server'],
 \}
 let g:ale_fixers = {
@@ -299,6 +299,7 @@ augroup FiletypeDetect
     autocmd BufRead,BufNewFile requirements.txt set filetype=python
     autocmd BufRead,BufNewFile *.tsx set filetype=typescriptreact.typescript
     autocmd BufRead,BufNewFile * set formatoptions-=o
+    autocmd FileType qf set wrap
     " autocmd FileType javascript set omnifunc=tsuquyomi#complete
     autocmd User LanguageClientBufReadPost :call JavascriptOmnifunc()
     " autocmd FileType python set omnifunc=lsp#complete
@@ -500,7 +501,7 @@ let g:airline#extensions#whitespace#enabled = 0
 
 " \ 'javascript': ['node', $HOME . '/dev/javascript-typescript-langserver/lib/language-server-stdio'],
 let g:LanguageClient_diagnosticsEnable = 0
-let g:LanguageClient_settingsPath = '.ls-settings.json'
+" let g:LanguageClient_settingsPath = '.ls-settings.json'
 let g:LanguageClient_loggingFile = '/tmp/language-client.log'
 let g:LanguageClient_serverCommands = {
 \   'javascript': [ 'typescript-language-server', '--stdio', '--tsserver-log-file', '/tmp/tsserver.log', '--log-level', '1' ],
@@ -509,7 +510,7 @@ let g:LanguageClient_serverCommands = {
 \   'css':        [ 'css-languageserver', '--stdio' ],
 \   'json':       [ 'json-languageserver', '--stdio' ],
 \   'html':       [ 'html-languageserver', '--stdio' ],
-\   'python':     [ 'pyls', '-vv' ],
+\   'python':     [ 'pyls', '-vv', '--log-file', '/tmp/pyls.log' ],
 \   'sh':         [ 'bash-language-server', 'start' ],
 \}
 
