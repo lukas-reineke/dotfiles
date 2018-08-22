@@ -4,3 +4,4 @@ nnoremap <buffer> gj gj
 nnoremap <buffer> k k
 nnoremap <buffer> gk gk
 setlocal wrap
+setlocal colorcolumn=
