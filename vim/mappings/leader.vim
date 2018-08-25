@@ -25,8 +25,6 @@ nnoremap <Leader>z 1z=
 
 nmap <silent> <Leader>c <Plug>(qf_qf_toggle_stay)
 
-nnoremap <Leader><C-]> :LspHover<CR>
-
 nnoremap <Leader>it :IstanbulToggle<CR>
 nnoremap <Leader>iu :IstanbulUpdate<CR>
 
