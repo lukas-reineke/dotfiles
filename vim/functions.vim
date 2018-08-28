@@ -25,30 +25,10 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Strip trailing whitespace {{{
 
-let g:DisableStripTrailingWhitespaces = 0
-function! s:StripTrailingWhitespaces()
-    if !g:DisableStripTrailingWhitespaces
-        let l:l = line('.')
-        let l:c = col('.')
-        %s/\s\+$//e
-        call cursor(l:l, l:c)
-    endif
-endfunction
-
-augroup stripWhitespaces
+augroup stripWhitespace
     autocmd!
-    autocmd stripWhitespaces BufWritePre * :call s:StripTrailingWhitespaces()
+    autocmd stripWhitespace BufWritePre * :ALEFix trim_whitespace
 augroup END
-
-function! ToggleStripTrailingWhitespaces()
-    if g:DisableStripTrailingWhitespaces
-        let g:DisableStripTrailingWhitespaces = 0
-    else
-        let g:DisableStripTrailingWhitespaces = 1
-    endif
-endfunction
-
-command ToggleStripTrailingWhitespaces :call ToggleStripTrailingWhitespaces()
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

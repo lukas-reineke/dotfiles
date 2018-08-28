@@ -501,6 +501,7 @@ let g:airline#extensions#whitespace#enabled = 0
 
 " \ 'javascript': ['node', $HOME . '/dev/javascript-typescript-langserver/lib/language-server-stdio'],
 let g:LanguageClient_diagnosticsEnable = 0
+let g:LanguageClient_rootMarkers = ['.git', 'package.json']
 " let g:LanguageClient_settingsPath = '.ls-settings.json'
 let g:LanguageClient_loggingFile = '/tmp/language-client.log'
 let g:LanguageClient_serverCommands = {

@@ -4,12 +4,8 @@ vnoremap <DOWN> :m '>+1<CR>gv=gv
 vnoremap <UP> :m '<-2<CR>gv=gv
 vnoremap < <gv
 vnoremap > >gv
-
-" }}}
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Global {{{
+vnoremap * "vygv:<C-U>/\<<C-R>v\><CR>
+vnoremap # "vygv:<C-U>?\<<C-R>v\><CR>
 
 vmap I <Plug>(niceblock-I)
 vmap gI <Plug>(niceblock-gI)
