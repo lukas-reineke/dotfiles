@@ -272,9 +272,8 @@ tm() {
 
 # tmux kill session
 td() {
-    local session=$(tmux list-sessions -F "#{session_name}" | \
-        fzf --query="$1" --select-1 --exit-0) &&
-        tmux kill-session -t "$session"
+    local session=$(tmux list-sessions -F "#{session_name}" | fzf --query="$1" --select-1 --exit-0)
+    [ ! -z "$session" ] && tmux kill-session -t "$session"
 }
 
 r() {
