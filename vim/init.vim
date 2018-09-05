@@ -270,6 +270,7 @@ let g:ale_fixers = {
 \   'css': [ 'prettier' ],
 \   'python': ['prettier'],
 \}
+let g:ale_javascript_prettier_options = '--tab-width 4 --single-quote --trailing-comma'
 let g:ale_sign_error = '⭕'
 let g:ale_sign_warning = '⭕'
 let g:airline#extensions#ale#error_symbol = '誤:'
