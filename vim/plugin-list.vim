@@ -198,3 +198,5 @@ Plug 'autozimu/LanguageClient-neovim', {
 " import cost for js
 Plug 'yardnsm/vim-import-cost', { 'do': 'npm install' }
 
+Plug 'arthurxavierx/vim-caser'
+
