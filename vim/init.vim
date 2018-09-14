@@ -37,7 +37,7 @@ source $HOME/dotfiles/vim/functions.vim
 syntax enable
 filetype plugin indent on
 set omnifunc=syntaxcomplete#Complete
-set completeopt+=menuone,noinsert,noselect
+set completeopt=menuone,noinsert,noselect
 set updatetime=0
 set synmaxcol=400
 set history=10000

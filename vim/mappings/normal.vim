@@ -215,6 +215,9 @@ nnoremap <silent> [l  :call WrapCommand('down', 'l')<CR>
 nnoremap <silent> ]c :call WrapCommand('up', 'c')<CR>
 nnoremap <silent> [c  :call WrapCommand('down', 'c')<CR>
 
+nnoremap [a :ALENextWrap<CR>
+nnoremap ]a :ALEPreviousWrap<CR>
+
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
