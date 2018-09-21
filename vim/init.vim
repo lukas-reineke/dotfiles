@@ -259,9 +259,10 @@ let g:ale_linters = {
 \   'html': [ 'htmlhint' ],
 \   'scss': [ 'sasslint' ],
 \   'python': [ 'flake8', 'mypy', 'pyls' ],
-\   'sh': ['language_server'],
+\   'sh': ['language_server', 'shellcheck'],
 \}
 let g:ale_fixers = {
+\   '*': [ 'trim_whitespace' ],
 \   'javascript': ['prettier'],
 \   'typescript': ['prettier'],
 \   'typescriptreact': ['prettier'],
@@ -280,6 +281,7 @@ let g:ale_set_quickfix = 1
 let g:tsuquyomi_disable_quickfix = 1
 let g:ale_fix_on_save = 1
 let g:semshi#error_sign = 0
+let g:semshi#mark_selected_nodes = 2
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -504,12 +506,12 @@ let g:airline#extensions#whitespace#enabled = 0
 let g:LanguageClient_diagnosticsEnable = 0
 let g:LanguageClient_rootMarkers = ['.git', 'package.json']
 " let g:LanguageClient_settingsPath = '.ls-settings.json'
+" \   'scss':       [ 'css-languageserver', '--stdio' ],
+" \   'css':        [ 'css-languageserver', '--stdio' ],
 let g:LanguageClient_loggingFile = '/tmp/language-client.log'
 let g:LanguageClient_serverCommands = {
 \   'javascript': [ 'typescript-language-server', '--stdio', '--tsserver-log-file', '/tmp/tsserver.log', '--log-level', '1' ],
 \   'typescript': [ 'typescript-language-server', '--stdio' ],
-\   'scss':       [ 'css-languageserver', '--stdio' ],
-\   'css':        [ 'css-languageserver', '--stdio' ],
 \   'json':       [ 'json-languageserver', '--stdio' ],
 \   'html':       [ 'html-languageserver', '--stdio' ],
 \   'python':     [ 'pyls', '-vv', '--log-file', '/tmp/pyls.log' ],
