@@ -23,17 +23,6 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Strip trailing whitespace {{{
-
-augroup stripWhitespace
-    autocmd!
-    autocmd stripWhitespace BufWritePre * :ALEFix trim_whitespace
-augroup END
-
-" }}}
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Auto Root {{{
 
 function! <SID>AutoProjectRootCD()
@@ -141,6 +130,17 @@ endfunction
 augroup RestoreSession
     autocmd!
     autocmd VimEnter * nested call RestoreSession()
+augroup END
+
+" }}}
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Magit {{{
+
+augroup VimagitBufferInit
+    autocmd!
+    autocmd User VimagitBufferInit only
 augroup END
 
 " }}}
