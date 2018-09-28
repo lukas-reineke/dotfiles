@@ -250,6 +250,13 @@ function fzf_history() {
 }
 bind '"\C-r":" fzf_history\n"'
 
+function kc() {
+    local context=$(kubectl config view -o jsonpath='{.contexts[*].name}' | sed -e 's/ /\n/g' | fzf --height 20% --reverse +m)
+    if [[ ! -z $context ]]; then
+        kubectl config use-context $context
+    fi
+}
+
 # fkill - kill process
 fkill() {
     local pid
