@@ -190,14 +190,30 @@ function gll {
 }
 
 # fbr - checkout git branch (including remote branches), sorted by most recent commit
-function b() {
-    local branches branch
-    branches=$(git for-each-ref --sort=-committerdate refs/heads/ --format="%(refname:short)") &&
-        branch=$(echo "$branches" |
-        fzf --height 20% --reverse +m) &&
-        git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+function ba() {
+    local BRANCHES BRANCH
+
+    BRANCHES=$(git for-each-ref --sort=-committerdate refs/ --format="%(refname:short)@%(contents:subject)")
+
+    BRANCH=$(echo "$BRANCHES" | column -t -s '@' | fzf --height 20% --reverse +m | awk '{print $1}' )
+
+    if [[ ! -z $BRANCH ]]; then
+        git checkout $(echo "$BRANCH" | sed "s/.* //" | sed "s#[^/]*/##")
+    fi
 }
-bind '"\C-b":" b\n"'
+bind '"\C-b":" ba\n"'
+
+function b() {
+    local BRANCHES BRANCH
+
+    BRANCHES=$(git for-each-ref --sort=-committerdate refs/heads --format="%(refname:short)@%(contents:subject)")
+
+    BRANCH=$(echo "$BRANCHES" | column -t -s '@' | fzf --height 20% --reverse +m | awk '{print $1}' )
+
+    if [[ ! -z $BRANCH ]]; then
+        git checkout $(echo "$BRANCH" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+    fi
+}
 
 function f {
     DIR=$(~/dotfiles/lib/bfs/bfs -type d| fzf --height 20% --reverse +m)
@@ -215,18 +231,27 @@ function vf {
 }
 
 function db() {
-    local branches branch
-    branches=$(git for-each-ref --sort=-committerdate refs/heads/ --format="%(refname:short)") &&
-    branch=$(echo "$branches" | fzf --height 20% --reverse +m) &&
-    git branch -D $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##") &&
-    git remote prune origin
+    local ALL_BRANCHES BRANCHES BRANCH
+    ALL_BRANCHES=$(git for-each-ref --sort=-committerdate refs/heads --format="%(refname:short)@%(contents:subject)")
+    BRANCHES=$(echo "$ALL_BRANCHES" | column -t -s '@' | fzf --height 20% --reverse -m | awk '{print $1}' )
+
+    if [[ ! -z $BRANCHES ]]; then
+        for BRANCH in $BRANCHES; do
+            git branch -D $(echo "$BRANCH" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+        done
+    fi
 }
 
 function dbm() {
-    local branches branch
-    branch=$(git branch --format="%(refname:short)" --merged | fzf --height 20% --reverse +m) &&
-    git branch -D $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##") &&
-    git remote prune origin
+    local ALL_BRANCHES BRANCHES BRANCH
+    ALL_BRANCHES=$(git branch --sort=-committerdate --format="%(refname:short)@%(contents:subject)" --merged)
+    BRANCHES=$(echo "$ALL_BRANCHES" | column -t -s '@' | fzf --height 20% --reverse -m | awk '{print $1}' )
+
+    if [[ ! -z $BRANCHES ]]; then
+        for BRANCH in $BRANCHES; do
+            git branch -D $(echo "$BRANCH" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+        done
+    fi
 }
 
 function gpsu() {
@@ -251,9 +276,14 @@ function fzf_history() {
 bind '"\C-r":" fzf_history\n"'
 
 function kc() {
-    local context=$(kubectl config view -o jsonpath='{.contexts[*].name}' | sed -e 's/ /\n/g' | fzf --height 20% --reverse +m)
-    if [[ ! -z $context ]]; then
-        kubectl config use-context $context
+    local CONTEXT
+    CONTEXT=$(
+        kubectl config view -o jsonpath='{.contexts[*].name}' |
+        sed -e 's/ /\n/g' |
+        fzf --height 20% --reverse
+    )
+    if [[ ! -z $CONTEXT ]]; then
+        kubectl config use-context "$CONTEXT"
     fi
 }
 
