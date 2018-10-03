@@ -34,14 +34,14 @@ function cs {
 }
 alias cd='exec_scmb_expand_args cs'
 
-function mvv {
-    if git ls-files --error-unmatch $1 > /dev/null 2>&1; then
-        git mv $*
-    else
-        /bin/mv $*
-    fi
-}
-alias mv='mvv'
+# function mvv {
+#     if git ls-files --error-unmatch $1 > /dev/null 2>&1; then
+#         git mv $*
+#     else
+#         /bin/mv $*
+#     fi
+# }
+# alias mv='mvv'
 
 # temp folder
 function temp {
@@ -189,16 +189,18 @@ function gll {
     git log origin/${branch}..${branch} $* -p
 }
 
+GIT_REF_FORMAT="%(refname:short)@[0;90m[[0;31m%(committername)[0;90m]@[0;37m%(contents:subject)[0m"
+
 # fbr - checkout git branch (including remote branches), sorted by most recent commit
 function ba() {
     local BRANCHES BRANCH
 
-    BRANCHES=$(git for-each-ref --sort=-committerdate refs/ --format="%(refname:short)@%(contents:subject)")
+    BRANCHES=$(git for-each-ref --sort=-committerdate refs/heads/ refs/remotes --format="$GIT_REF_FORMAT" | sed "s#[^/]*/##" | awk '! a[$0]++')
 
-    BRANCH=$(echo "$BRANCHES" | column -t -s '@' | fzf --height 20% --reverse +m | awk '{print $1}' )
+    BRANCH=$(echo "$BRANCHES" | column -t -s '@' | fzf --height 20% --reverse --ansi | awk '{print $1}' )
 
     if [[ ! -z $BRANCH ]]; then
-        git checkout $(echo "$BRANCH" | sed "s/.* //" | sed "s#[^/]*/##")
+        git checkout $(echo "$BRANCH" | sed "s/.* //")
     fi
 }
 bind '"\C-b":" ba\n"'
@@ -206,12 +208,12 @@ bind '"\C-b":" ba\n"'
 function b() {
     local BRANCHES BRANCH
 
-    BRANCHES=$(git for-each-ref --sort=-committerdate refs/heads --format="%(refname:short)@%(contents:subject)")
+    BRANCHES=$(git for-each-ref --sort=-committerdate refs/heads/ --format="$GIT_REF_FORMAT" | sed "s#[^/]*/##" | awk '! a[$0]++')
 
-    BRANCH=$(echo "$BRANCHES" | column -t -s '@' | fzf --height 20% --reverse +m | awk '{print $1}' )
+    BRANCH=$(echo "$BRANCHES" | column -t -s '@' | fzf --height 20% --reverse --ansi | awk '{print $1}' )
 
     if [[ ! -z $BRANCH ]]; then
-        git checkout $(echo "$BRANCH" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+        git checkout $(echo "$BRANCH" | sed "s/.* //")
     fi
 }
 
@@ -232,8 +234,8 @@ function vf {
 
 function db() {
     local ALL_BRANCHES BRANCHES BRANCH
-    ALL_BRANCHES=$(git for-each-ref --sort=-committerdate refs/heads --format="%(refname:short)@%(contents:subject)")
-    BRANCHES=$(echo "$ALL_BRANCHES" | column -t -s '@' | fzf --height 20% --reverse -m | awk '{print $1}' )
+    ALL_BRANCHES=$(git for-each-ref --sort=-committerdate refs/heads/ --format="$GIT_REF_FORMAT")
+    BRANCHES=$(echo "$ALL_BRANCHES" | column -t -s '@' | fzf --height 20% --reverse -m --ansi | awk '{print $1}' )
 
     if [[ ! -z $BRANCHES ]]; then
         for BRANCH in $BRANCHES; do
@@ -244,8 +246,8 @@ function db() {
 
 function dbm() {
     local ALL_BRANCHES BRANCHES BRANCH
-    ALL_BRANCHES=$(git branch --sort=-committerdate --format="%(refname:short)@%(contents:subject)" --merged)
-    BRANCHES=$(echo "$ALL_BRANCHES" | column -t -s '@' | fzf --height 20% --reverse -m | awk '{print $1}' )
+    ALL_BRANCHES=$(git branch --sort=-committerdate --format="$GIT_REF_FORMAT" --merged)
+    BRANCHES=$(echo "$ALL_BRANCHES" | column -t -s '@' | fzf --height 20% --reverse -m --ansi | awk '{print $1}' )
 
     if [[ ! -z $BRANCHES ]]; then
         for BRANCH in $BRANCHES; do
