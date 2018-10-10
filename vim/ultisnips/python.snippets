@@ -3,6 +3,10 @@ snippet todo "todo" b
 # @TODO [`git config user.name`] `date +%d-%m-%Y`: $0${VISUAL}
 endsnippet
 
+snippet nc "NO_COMMIT" b
+# NO_COMMIT
+endsnippet
+
 snippet ssp "spacer" Ab
 print('`!v expand("%:t")`:`!v line(".")` ┃ ${1/'/\\\'/g}${VISUAL/'/\\\'/g}')
 print($1${VISUAL})  # DEBUG
