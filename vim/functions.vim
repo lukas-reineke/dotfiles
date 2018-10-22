@@ -240,17 +240,46 @@ augroup END
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Win Highlight {{{
 
-function! WinHighlight()
-    if &foldmethod ==# 'diff' || &buftype ==# 'nofile'
+" https://github.com/wincent/wincent/blob/4578e56cc23/roles/dotfiles/files/.vim/autoload/autocmds.vim#L39-L76
+function! Blur_window() abort
+    let l:buftype_list = ['quickfix', 'help', 'nofile', 'nowrite']
+    if &foldmethod ==# 'diff' || (index(l:buftype_list, &buftype) >= 0)
         set winhighlight=
     else
         set winhighlight=NormalNC:WinNormalNC
+        if !exists('w:matches')
+            let w:matches=[]
+        endif
+        let l:height=&lines
+        let l:slop=l:height / 2
+        let l:start=max([1, line('w0') - l:slop])
+        let l:end=min([line('$'), line('w$') + l:slop])
+        while l:start <= l:end
+            let l:next=l:start + 8
+            let l:id=matchaddpos(
+                        \   'WinNormalNC',
+                        \   range(l:start, min([l:end, l:next])),
+                        \   1000
+                        \ )
+            call add(w:matches, l:id)
+            let l:start=l:next
+        endwhile
+    endif
+endfunction
+
+function! Focus_window() abort
+    if exists('w:matches')
+        for l:match in w:matches
+            call matchdelete(l:match)
+        endfor
+        let w:matches=[]
     endif
 endfunction
 
 augroup WinHighlight
     autocmd!
-    autocmd WinEnter,VimEnter * :call WinHighlight()
+    autocmd BufEnter,FocusGained,VimEnter,WinEnter * call Focus_window()
+    autocmd FocusLost,WinLeave * call Blur_window()
 augroup END
 
 " }}}
