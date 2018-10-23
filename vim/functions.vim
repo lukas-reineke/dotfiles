@@ -257,7 +257,7 @@ function! Blur_window() abort
         while l:start <= l:end
             let l:next=l:start + 8
             let l:id=matchaddpos(
-                        \   'WinNormalNC',
+                        \   'StatusLineNC',
                         \   range(l:start, min([l:end, l:next])),
                         \   1000
                         \ )
@@ -276,11 +276,11 @@ function! Focus_window() abort
     endif
 endfunction
 
-augroup WinHighlight
-    autocmd!
-    autocmd BufEnter,FocusGained,VimEnter,WinEnter * call Focus_window()
-    autocmd FocusLost,WinLeave * call Blur_window()
-augroup END
+" augroup WinHighlight
+"     autocmd!
+"     autocmd BufEnter,FocusGained,VimEnter,WinEnter * call Focus_window()
+"     autocmd FocusLost,WinLeave * call Blur_window()
+" augroup END
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
