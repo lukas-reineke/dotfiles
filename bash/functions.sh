@@ -169,8 +169,13 @@ function hr {
     printf '%s%s%s\n' "$start" "${line:0:cols}" "$end"
 }
 
+is_in_git_repo() {
+    git rev-parse HEAD > /dev/null 2>&1
+}
+
 # Git info
 function gi {
+    is_in_git_repo || return
     echo '➤ local branches'
     git branch
     echo ''
@@ -182,7 +187,16 @@ function gi {
     echo ''
 }
 
+function gt {
+    is_in_git_repo || return
+
+    git tag --sort -version:refname |
+    fzf --multi --preview-window right:70% \
+    --preview 'git show --color=always {} | head -'$LINES
+}
+
 function gll {
+    is_in_git_repo || return
     ref=$(git symbolic-ref HEAD)
     branch=${ref#refs/heads/}
 
@@ -193,6 +207,7 @@ GIT_REF_FORMAT="%(refname:short)@[0;90m[[0;31m%(committername)[0;90m]@[0;37m
 
 # fbr - checkout git branch (including remote branches), sorted by most recent commit
 function ba() {
+    is_in_git_repo || return
     local BRANCHES BRANCH
 
     BRANCHES=$(git for-each-ref --sort=-committerdate refs/heads/ refs/remotes --format="$GIT_REF_FORMAT" | sed "s#[^/]*/##" | awk '! a[$0]++')
@@ -206,6 +221,7 @@ function ba() {
 bind '"\C-b":" ba\n"'
 
 function b() {
+    is_in_git_repo || return
     local BRANCHES BRANCH
 
     BRANCHES=$(git for-each-ref --sort=-committerdate refs/heads/ --format="$GIT_REF_FORMAT" | sed "s#[^/]*/##" | awk '! a[$0]++')
