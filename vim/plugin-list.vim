@@ -9,6 +9,7 @@ Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-obsession'
+Plug 'tpope/vim-repeat'
 " Plug 'tpope/vim-projectionist'
 
 " Shougo
