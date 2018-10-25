@@ -85,6 +85,8 @@ nnoremap <Leader>gt :SignifyToggleHighlight<CR>
 nnoremap <Leader>gz :SignifyFold!<CR>
 nnoremap <Leader>gc :Twiggy<CR>
 nnoremap <Leader>gm :Magit<CR>zcgg
+nnoremap <Leader>gu :GitGutterUndoHunk<CR>
+nnoremap <Leader>ga :GitGutterStageHunk<CR>:SignifyRefresh<CR>
 let g:magit_show_magit_mapping='<NOPE>'
 
 function! CheckoutLine()
