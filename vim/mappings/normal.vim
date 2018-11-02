@@ -188,8 +188,8 @@ map # <Plug>(incsearch-nohl-#)
 
 nnoremap [[ ?[<CR>:nohl<CR>
 nnoremap ]] /]<CR>:nohl<CR>
-nnoremap [t ?<<CR>:nohl<CR>
-nnoremap ]t /<<CR>:nohl<CR>
+nnoremap [t /todo\><CR>:nohl<CR>
+nnoremap ]t ?todo\><CR>:nohl<CR>
 
 function! WrapCommand(direction, prefix)
     if a:direction ==# 'up'
