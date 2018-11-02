@@ -301,6 +301,7 @@ augroup FiletypeDetect
     autocmd BufRead,BufNewFile .stylelintrc,.htmlhintrc set filetype=json
     autocmd BufRead,BufNewFile requirements.txt set filetype=python
     autocmd BufRead,BufNewFile *.tsx set filetype=typescriptreact.typescript
+    autocmd BufRead,BufNewFile .eslintrc set filetype=json
     autocmd BufRead,BufNewFile * set formatoptions-=o
     autocmd FileType qf set wrap
     " autocmd FileType javascript set omnifunc=tsuquyomi#complete
