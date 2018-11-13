@@ -184,6 +184,8 @@ set wildignore+=*venv*
 
 let g:incsearch#auto_nohlsearch = 1
 let g:incsearch#magic = '\v'
+let g:incsearch#consistent_n_direction = 1
+let g:incsearch#do_not_save_error_message_history = 1
 
 let g:splfy_no_matchinfo = 1
 

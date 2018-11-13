@@ -42,6 +42,7 @@ Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'davidhalter/jedi-vim'
 Plug 'raimon49/requirements.txt.vim'
 Plug 'numirias/semshi'
+Plug 'bps/vim-textobj-python'
 
 " Json
 Plug 'elzr/vim-json'
@@ -89,6 +90,8 @@ Plug 'lukas-reineke/auto-pairs'
 
 " Text Object
 Plug 'michaeljsmith/vim-indent-object'
+Plug 'pianohacker/vim-indented-paragraph'
+Plug 'kana/vim-textobj-user'
 Plug 'wellle/targets.vim'
 
 " Terminus
