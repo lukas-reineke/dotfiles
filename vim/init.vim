@@ -281,6 +281,7 @@ let g:airline#extensions#ale#warning_symbol = '危:'
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
 let g:tsuquyomi_disable_quickfix = 1
+let g:qf_nowrap = 0
 let g:ale_fix_on_save = 1
 let g:semshi#error_sign = 0
 let g:semshi#mark_selected_nodes = 2
@@ -298,6 +299,15 @@ function! JavascriptOmnifunc()
     endif
 endfunction
 
+function! RemoveQuickfixItem()
+    let curqfidx = line('.') - 1
+    let qfall = getqflist()
+    call remove(qfall, curqfidx)
+    call setqflist(qfall, 'r')
+    execute curqfidx + 1 . "cfirst"
+    copen
+endfunction
+
 augroup FiletypeDetect
     autocmd!
     autocmd BufRead,BufNewFile .stylelintrc,.htmlhintrc set filetype=json
@@ -305,10 +315,10 @@ augroup FiletypeDetect
     autocmd BufRead,BufNewFile *.tsx set filetype=typescriptreact.typescript
     autocmd BufRead,BufNewFile .eslintrc set filetype=json
     autocmd BufRead,BufNewFile * set formatoptions-=o
-    autocmd FileType qf set wrap
     " autocmd FileType javascript set omnifunc=tsuquyomi#complete
     autocmd User LanguageClientBufReadPost :call JavascriptOmnifunc()
     " autocmd FileType python set omnifunc=lsp#complete
+    autocmd FileType qf nnoremap <silent><buffer> dd :call RemoveQuickfixItem()<CR>
 augroup END
 
 " }}}
