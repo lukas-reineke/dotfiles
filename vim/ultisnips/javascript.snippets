@@ -8,13 +8,13 @@ endsnippet
 
 snippet ssp "spacer" Ab
 console.group('`!v expand("%:t")`:`!v line(".")` ┃ ${1/'/\\\'/g}${VISUAL/'/\\\'/g}');
-console.log($1${VISUAL}); /* DEBUG */
+console.log($1${VISUAL}); /* NO_COMMIT */
 console.groupEnd();
 endsnippet
 
 snippet sst "console table" Ab
 console.group('`!v @%`:`!v line(".")` ┃ ${1/'/\\\'/g}${VISUAL/'/\\\'/g}');
-console.table($1${VISUAL}); /* DEBUG */
+console.table($1${VISUAL}); /* NO_COMMIT */
 console.groupEnd();
 endsnippet
 
@@ -374,4 +374,16 @@ endsnippet
 
 snippet cl "class attribute"
 className="$1"
+endsnippet
+
+snippet rclass "react class"
+export class $1 extends React.Component {
+
+	constructor(props) {
+		super(props);
+	}
+
+	render() {}
+
+}
 endsnippet

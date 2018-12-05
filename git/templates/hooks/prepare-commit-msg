@@ -2,18 +2,17 @@
 BRANCH=$(git branch | grep '^\*' | cut -b3- | cut -f1,2 -d'-')
 BRANCHTYPE=${BRANCH%/*}
 FILE=$(cat "$1")
-CLEAN=$(cat "$1" | grep DEBUG)
+CLEAN=$(cat "$1" | grep NO_COMMIT)
 
-if [[ ! -z $CLEAN ]]; then
-    echo 'clean up first'
+if [[ -n $CLEAN ]]; then
+    printf "[0;31mno cake for you[0m\n"
     exit 1
 fi
 
 if [[ $BRANCH =~ [A-Z]+-[0-9]+ ]] || [[ $BRANCHTYPE == 'feature' ]] || [[ $BRANCHTYPE == 'bugfix' ]] || [[ $BRANCHTYPE == 'hotfix' ]]; then
-    FIRSTLINE=$(sed -n '1p' $1)
+    FIRSTLINE=$(sed -n "1p" $1)
     if [[ -z $FIRSTLINE ]]; then
         BRANCH=${BRANCH##*/}
         echo "$BRANCH $FILE" > "$1"
     fi
 fi
-

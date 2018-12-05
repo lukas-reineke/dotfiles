@@ -9,6 +9,6 @@ endsnippet
 
 snippet ssp "spacer" Ab
 print('`!v expand("%:t")`:`!v line(".")` ┃ ${1/'/\\\'/g}${VISUAL/'/\\\'/g}')
-print($1${VISUAL})  # DEBUG
+print($1${VISUAL})  # NO_COMMIT
 print('`!v expand("%:t")`:`!v line(".")` ┃ ${1/./-/g}${VISUAL/./-/g}')
 endsnippet
