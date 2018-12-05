@@ -214,7 +214,7 @@ function ba() {
 
     BRANCH=$(echo "$BRANCHES" | column -t -s '@' | fzf --height 20% --reverse --ansi | awk '{print $1}' )
 
-    if [[ ! -z $BRANCH ]]; then
+    if [[ -n $BRANCH ]]; then
         git checkout $(echo "$BRANCH" | sed "s/.* //")
     fi
 }
@@ -228,23 +228,33 @@ function b() {
 
     BRANCH=$(echo "$BRANCHES" | column -t -s '@' | fzf --height 20% --reverse --ansi | awk '{print $1}' )
 
-    if [[ ! -z $BRANCH ]]; then
+    if [[ -n $BRANCH ]]; then
         git checkout $(echo "$BRANCH" | sed "s/.* //")
+    fi
+}
+
+function fa() {
+    local FILES
+    FILES=$(git ls-files --modified | fzf --height 20% --reverse -m --ansi)
+    if [[ -n $FILES ]]; then
+        for FILE in $FILES; do
+            git add --verbose "$FILE"
+        done
     fi
 }
 
 function f {
     DIR=$(~/dotfiles/lib/bfs/bfs -type d| fzf --height 20% --reverse +m)
-    if [[ ! -z $DIR ]]; then
-        cs $DIR
+    if [[ -n $DIR ]]; then
+        cs "$DIR"
     fi
 }
 bind '"\C-f":" f\n"'
 
 function vf {
     FILE=$(~/dotfiles/lib/bfs/bfs -type f | fzf --height 20% --reverse +m)
-    if [[ ! -z $FILE ]]; then
-        nvim $FILE
+    if [[ -n $FILE ]]; then
+        nvim "$FILE"
     fi
 }
 
@@ -253,7 +263,7 @@ function db() {
     ALL_BRANCHES=$(git for-each-ref --sort=-committerdate refs/heads/ --format="$GIT_REF_FORMAT")
     BRANCHES=$(echo "$ALL_BRANCHES" | column -t -s '@' | fzf --height 20% --reverse -m --ansi | awk '{print $1}' )
 
-    if [[ ! -z $BRANCHES ]]; then
+    if [[ -n $BRANCHES ]]; then
         for BRANCH in $BRANCHES; do
             git branch -D $(echo "$BRANCH" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
         done
