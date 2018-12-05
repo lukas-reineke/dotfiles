@@ -40,7 +40,15 @@
     rebase = true
 
 [branch]
+    autosetupmerge = always
     autosetuprebase = always
+
+[rebase]
+    autosquash = true
+    autostash = true
+
+[fetch]
+    prune = true
 
 [init]
     templatedir = ~/dotfiles/git/templates
