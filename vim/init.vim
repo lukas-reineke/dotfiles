@@ -271,7 +271,7 @@ let g:ale_fixers = {
 \   'json': ['prettier'],
 \   'scss': [ 'prettier' ],
 \   'css': [ 'prettier' ],
-\   'python': ['prettier'],
+\   'python': ['black'],
 \}
 let g:ale_javascript_prettier_options = '--tab-width 4 --single-quote --trailing-comma all'
 let g:ale_sign_error = '⭕'
@@ -488,7 +488,7 @@ let g:airline_mode_map = {
 \}
 let g:airline#extensions#default#layout = [
 \   [ 'a', 'c' ],
-\   [ 'b', 'error', 'warning' ],
+\   [ 'error', 'warning' ],
 \]
 let g:airline#extensions#branch#format = 'CustomBranchName'
 function! CustomBranchName(name)
@@ -517,7 +517,9 @@ let g:airline#extensions#whitespace#enabled = 0
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Language Server {{{
 
+" \   'python':     [ 'pyls', '-vv', '--log-file', '/tmp/pyls.log' ],
 " \ 'javascript': ['node', $HOME . '/dev/javascript-typescript-langserver/lib/language-server-stdio'],
+" \   'javascript': [ 'typescript-language-server', '--stdio', '--tsserver-log-file', '/tmp/tsserver.log', '--log-level', '1' ],
 let g:LanguageClient_diagnosticsEnable = 0
 let g:LanguageClient_rootMarkers = ['.git', 'package.json']
 " let g:LanguageClient_settingsPath = '.ls-settings.json'
@@ -525,11 +527,11 @@ let g:LanguageClient_rootMarkers = ['.git', 'package.json']
 " \   'css':        [ 'css-languageserver', '--stdio' ],
 let g:LanguageClient_loggingFile = '/tmp/language-client.log'
 let g:LanguageClient_serverCommands = {
-\   'javascript': [ 'typescript-language-server', '--stdio', '--tsserver-log-file', '/tmp/tsserver.log', '--log-level', '1' ],
+\   'javascript': [ 'typescript-language-server', '--stdio' ],
 \   'typescript': [ 'typescript-language-server', '--stdio' ],
 \   'json':       [ 'json-languageserver', '--stdio' ],
 \   'html':       [ 'html-languageserver', '--stdio' ],
-\   'python':     [ 'pyls', '-vv', '--log-file', '/tmp/pyls.log' ],
+\   'python':     [ 'pyls' ],
 \   'sh':         [ 'bash-language-server', 'start' ],
 \}
 

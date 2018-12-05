@@ -28,9 +28,7 @@ nmap <silent> <Leader>c <Plug>(qf_qf_toggle_stay)
 nnoremap <Leader>it :IstanbulToggle<CR>
 nnoremap <Leader>iu :IstanbulUpdate<CR>
 
-" nnoremap <Leader>s :LspDocumentSymbol<Cr>
-nnoremap <Leader>s :call LanguageClient_textDocument_documentSymbol()<Cr>
-nnoremap <Leader><CR> :call LanguageClient_contextMenu()<Cr>
+nnoremap <Leader>s :set spell!<CR>
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -42,6 +40,9 @@ nnoremap <Leader>p :Buffers<CR>
 nnoremap <Leader><C-P> :Commands<CR>
 nnoremap <Leader><C-W> :Windows<CR>
 
+nnoremap <Leader>f :call LanguageClient_textDocument_documentSymbol()<Cr>
+nnoremap <Leader><CR> :call LanguageClient_contextMenu()<Cr>
+
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -49,7 +50,7 @@ nnoremap <Leader><C-W> :Windows<CR>
 " Search {{{
 
 nnoremap <Leader>r :%s/\v()
-nnoremap <Leader>R :let v=winsaveview()<CR>:%s/<C-R><C-W>// <Bar>:call winrestview(v)<C-Left><C-Left><Left><Left>a<BS>
+nnoremap <Leader>R :let v=winsaveview()<CR>:%s/<C-R><C-W>//g <Bar>:call winrestview(v)<C-Left><C-Left><Left><Left><Left>a<BS>
 vnoremap <Leader>r :s/\v()
 
 nnoremap <Leader>a :CtrlSF<Space>
