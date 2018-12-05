@@ -318,22 +318,33 @@ fkill() {
 
 # tmux new session
 tm() {
-    local session
+    local session, newsession
     newsession=${1:-dev}
-    session=$(tmux list-sessions -F "#{session_name}" | \
-        fzf --query="$1" --select-1 --exit-0) &&
-        tmux attach-session -t "$session" || tmux new-session -s $newsession
+    session=$(tmux list-sessions -F "#{session_name}" | fzf --query="$1" --select-1 --exit-0)
+    if [[ -n "$session" ]]; then
+        tmux attach-session -t "$session"
+    elif [[ -n "$newsession" ]]; then
+        tmux attach-session -t "$newsession"
+    fi
 }
 
 # tmux kill session
 td() {
-    local session=$(tmux list-sessions -F "#{session_name}" | fzf --query="$1" --select-1 --exit-0)
-    [ ! -z "$session" ] && tmux kill-session -t "$session"
+    local session
+    session=$(tmux list-sessions -F "#{session_name}" | fzf --query="$1" --select-1 --exit-0)
+    [ -n "$session" ] && tmux kill-session -t "$session"
 }
 
 r() {
-    local script=$(python3 ~/dotfiles/scripts/npm-scripts.py | fzf --height 20% --reverse +m)
-    [ ! -z "$script" ] && npm run "$script"
+    local script
+    script=$(python3 ~/dotfiles/scripts/npm-scripts.py | fzf --height 20% --reverse +m)
+    [ -n "$script" ] && npm run "$script"
+}
+
+m() {
+    local script
+    script=$(python3 ~/dotfiles/scripts/django-scripts.py | fzf --height 20% --reverse +m)
+    [ -n "$script" ] && eval python manage.py "$script"
 }
 
 # Colored man pages
