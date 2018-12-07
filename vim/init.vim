@@ -271,9 +271,31 @@ let g:ale_fixers = {
 \   'json': ['prettier'],
 \   'scss': [ 'prettier' ],
 \   'css': [ 'prettier' ],
+\   'markdown': [ 'prettier' ],
+\   'html': [ 'prettier' ],
+\   'yaml': [ 'prettier' ],
 \   'python': ['black'],
 \}
-let g:ale_javascript_prettier_options = '--tab-width 4 --single-quote --trailing-comma all'
+let g:ale_pattern_options_enabled = 1
+let g:ale_pattern_options = {
+\   '\.min\.(js\|css)$': {
+\       'ale_linters': [],
+\       'ale_fixers': []
+\   },
+\   'node_modules/.*': {
+\       'ale_linters': [],
+\       'ale_fixers': []
+\   },
+\   'package.json': {
+\       'ale_fixers': []
+\   },
+\}
+let g:ale_javascript_prettier_use_local_config = 1
+let g:ale_javascript_prettier_options = '--tab-width 4 --single-quote --trailing-comma all --print-width ' . &textwidth
+augroup prettier
+    autocmd!
+    autocmd OptionSet textwidth let g:ale_javascript_prettier_options = '--tab-width 4 --single-quote --trailing-comma all --print-width ' . &textwidth
+augroup END
 let g:ale_sign_error = '⭕'
 let g:ale_sign_warning = '⭕'
 let g:airline#extensions#ale#error_symbol = '誤:'
@@ -283,6 +305,10 @@ let g:ale_set_quickfix = 1
 let g:tsuquyomi_disable_quickfix = 1
 let g:qf_nowrap = 0
 let g:ale_fix_on_save = 1
+let g:ale_lint_on_text_changed = 0
+let g:ale_lint_on_save = 1
+let g:ale_virtualtext_cursor = 1
+let g:ale_virtualtext_prefix = '╸'
 let g:semshi#error_sign = 0
 let g:semshi#mark_selected_nodes = 2
 
@@ -316,7 +342,7 @@ augroup FiletypeDetect
     autocmd BufRead,BufNewFile .eslintrc set filetype=json
     autocmd BufRead,BufNewFile * set formatoptions-=o
     " autocmd FileType javascript set omnifunc=tsuquyomi#complete
-    autocmd User LanguageClientBufReadPost :call JavascriptOmnifunc()
+    autocmd User LanguageClientTextDocumentDidOpenPost :call JavascriptOmnifunc()
     " autocmd FileType python set omnifunc=lsp#complete
     autocmd FileType qf nnoremap <silent><buffer> dd :call RemoveQuickfixItem()<CR>
 augroup END

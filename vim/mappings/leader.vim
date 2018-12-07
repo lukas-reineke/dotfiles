@@ -54,7 +54,6 @@ nnoremap <Leader>R :let v=winsaveview()<CR>:%s/<C-R><C-W>//g <Bar>:call winrestv
 vnoremap <Leader>r :s/\v()
 
 nnoremap <Leader>a :CtrlSF<Space>
-" nnoremap <Leader>s :CtrlSFToggle<CR>
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
