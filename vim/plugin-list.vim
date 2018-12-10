@@ -60,6 +60,7 @@ Plug 'hail2u/vim-css3-syntax'
 
 " Markdown
 Plug 'shime/vim-livedown'
+Plug 'inkarkat/vim-SyntaxRange'
 
 " i3 config
 Plug 'PotatoesMaster/i3-vim-syntax'

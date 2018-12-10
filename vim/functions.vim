@@ -300,5 +300,30 @@ command TOC :call man#show_toc()<CR>
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim:foldmethod=marker:foldlevel=0
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Template Strings {{{
+
+let g:template_string_map = {
+    \ 'markdown': [ 'javascript', 'python', 'typescript', 'bash' ]
+\}
+
+function! TemplateString() abort
+    let l:language_map = {'bash': 'sh'}
+    for item in items(g:template_string_map)
+        if &filetype == item[0]
+            for language in item[1]
+                call SyntaxRange#Include('```'.language, '```', get(l:language_map, language, language), 'NonText')
+            endfor
+        endif
+    endfor
+endfunction
+
+augroup TemplateString
+    autocmd!
+    autocmd BufEnter * let currwin=winnr() | windo call TemplateString() | execute currwin . 'wincmd w'
+augroup END
+
+" }}}
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim:foldmethod=marker:foldlevel=0
