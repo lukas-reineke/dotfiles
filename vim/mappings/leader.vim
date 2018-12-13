@@ -50,7 +50,8 @@ nnoremap <Leader><CR> :call LanguageClient_contextMenu()<Cr>
 " Search {{{
 
 nnoremap <Leader>r :%s/\v()
-nnoremap <Leader>R :let v=winsaveview()<CR>:%s/<C-R><C-W>//g <Bar>:call winrestview(v)<C-Left><C-Left><Left><Left><Left>a<BS>
+nnoremap <Leader>R :let v=winsaveview()<CR>:%s/\<<C-R><C-W>\>//g
+            \ <Bar>:call winrestview(v)<C-Left><C-Left><Left><Left><Left>a<BS>
 vnoremap <Leader>r :s/\v()
 
 nnoremap <Leader>a :CtrlSF<Space>
