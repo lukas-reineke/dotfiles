@@ -244,12 +244,21 @@ function fa() {
 }
 
 function f {
+    local DIR
     DIR=$(~/dotfiles/lib/bfs/bfs -type d| fzf --height 20% --reverse +m)
     if [[ -n $DIR ]]; then
         cs "$DIR"
     fi
 }
 bind '"\C-f":" f\n"'
+
+function urls {
+    local URL
+    URL=$(tmux capture-pane -p | xurls | fzf --height 20% --reverse)
+    if [[ -n $URL ]]; then
+        xdg-open "$URL" &> /dev/null
+    fi
+}
 
 function vf {
     FILE=$(~/dotfiles/lib/bfs/bfs -type f | fzf --height 20% --reverse +m)
