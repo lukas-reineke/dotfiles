@@ -110,6 +110,8 @@ augroup HiglightDebug
     autocmd WinEnter,VimEnter * :silent! call matchadd('Todo', '@TODO', -1)
     autocmd WinEnter,VimEnter * :silent! call matchadd('Todo', 'DEBUG', -1)
     autocmd WinEnter,VimEnter * :silent! call matchadd('Todo', '@DEBUG', -1)
+    autocmd WinEnter,VimEnter * :highlight QuickScopePrimary gui=bold guifg=NONE
+    autocmd WinEnter,VimEnter * :highlight QuickScopeSecondary gui=bold guifg=NONE
 augroup END
 
 augroup cursorLine
