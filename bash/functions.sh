@@ -256,9 +256,10 @@ function urls {
     local URL
     URL=$(tmux capture-pane -p | xurls | fzf --height 20% --reverse)
     if [[ -n $URL ]]; then
-        xdg-open "$URL" &> /dev/null
+        opera-beta "$URL" &> /dev/null
     fi
 }
+bind '"\C-o":" urls\n"'
 
 function vf {
     FILE=$(~/dotfiles/lib/bfs/bfs -type f | fzf --height 20% --reverse +m)
