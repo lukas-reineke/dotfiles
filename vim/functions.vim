@@ -300,4 +300,22 @@ command TOC :call man#show_toc()<CR>
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Urls {{{
+
+function! Urls()
+    let l:urls = split(system('xurls '.expand('%')), '\n')
+
+    call fzf#run({
+    \   'source': l:urls,
+    \   'sink': '!open',
+    \   'down': len(l:urls) + 2
+    \})
+endfunction
+
+command! Urls call Urls()
+
+" }}}
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim:foldmethod=marker:foldlevel=0
