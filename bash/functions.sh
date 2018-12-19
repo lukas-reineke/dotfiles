@@ -23,6 +23,10 @@ function cs {
             source .env.sh
             echo -e ${RED}'➤ '${NC}'Added '${PWD##*/}' environment variables\n'
         fi
+        if [ -f ./.nvmrc ]; then
+            nvm use &> /dev/null
+            echo -e ${GRN}'➤ '${NC}'Use local Node version '$(node --version)'\n'
+        fi
     elif [[ -f "$*" ]]; then
         echo -e ${RED}"$* is not a directory"${NC} 1>&2
         local dir=$(dirname "$*")
