@@ -214,7 +214,7 @@ function ba() {
     is_in_git_repo || return
     local BRANCHES BRANCH
 
-    BRANCHES=$(git for-each-ref --sort=-committerdate refs/heads/ refs/remotes --format="$GIT_REF_FORMAT" | sed "s#[^/]*/##" | awk '! a[$0]++')
+    BRANCHES=$(git for-each-ref --sort=-committerdate refs/heads/ refs/remotes --format="$GIT_REF_FORMAT" | perl -pe 's|^[^@]*?/||' | awk '! a[$0]++')
 
     BRANCH=$(echo "$BRANCHES" | column -t -s '@' | fzf --height 20% --reverse --ansi | awk '{print $1}' )
 
@@ -228,7 +228,7 @@ function b() {
     is_in_git_repo || return
     local BRANCHES BRANCH
 
-    BRANCHES=$(git for-each-ref --sort=-committerdate refs/heads/ --format="$GIT_REF_FORMAT" | sed "s#[^/]*/##" | awk '! a[$0]++')
+    BRANCHES=$(git for-each-ref --sort=-committerdate refs/heads/ --format="$GIT_REF_FORMAT" | perl -pe 's|^[^@]*?/||' | awk '! a[$0]++')
 
     BRANCH=$(echo "$BRANCHES" | column -t -s '@' | fzf --height 20% --reverse --ansi | awk '{print $1}' )
 
@@ -364,7 +364,7 @@ tm() {
 # tmux kill session
 td() {
     local session
-    session=$(tmux list-sessions -F "#{session_name}" | fzf --query="$1" --select-1 --exit-0)
+    session=$(tmux list-sessions -F "#{session_name}" | fzf --query="$1" --select-1 --exit-0 --reverse --height 20%)
     [ -n "$session" ] && tmux kill-session -t "$session"
 }
 
