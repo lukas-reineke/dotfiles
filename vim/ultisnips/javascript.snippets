@@ -288,6 +288,23 @@ describe('$1', () => {
 });
 endsnippet
 
+snippet befa "unit test beforeAll" bw
+beforeAll(() => {
+	$0
+});
+endsnippet
+
+snippet afa "unit test afterAll" bw
+afterAll(() => {
+	$0
+});
+endsnippet
+
+snippet jemo "unit test jest mock" bw
+jest.mock('$1', () => ({
+}));
+endsnippet
+
 # html snippets
 snippet div "div" w
 <div>
