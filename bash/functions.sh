@@ -216,13 +216,12 @@ function ba() {
 
     BRANCHES=$(git for-each-ref --sort=-committerdate refs/heads/ refs/remotes --format="$GIT_REF_FORMAT" | perl -pe 's|^[^@]*?/||' | awk '! a[$0]++')
 
-    BRANCH=$(echo "$BRANCHES" | column -t -s '@' | fzf --height 20% --reverse --ansi | awk '{print $1}' )
+    BRANCH=$(echo "$BRANCHES" | column -t -s '@' | fzf --no-hscroll --height 40% --reverse --ansi | awk '{print $1}')
 
     if [[ -n $BRANCH ]]; then
         git checkout $(echo "$BRANCH" | sed "s/.* //")
     fi
 }
-bind '"\C-b":" ba\n"'
 
 function b() {
     is_in_git_repo || return
@@ -230,12 +229,13 @@ function b() {
 
     BRANCHES=$(git for-each-ref --sort=-committerdate refs/heads/ --format="$GIT_REF_FORMAT" | perl -pe 's|^[^@]*?/||' | awk '! a[$0]++')
 
-    BRANCH=$(echo "$BRANCHES" | column -t -s '@' | fzf --height 20% --reverse --ansi | awk '{print $1}' )
+    BRANCH=$(echo "$BRANCHES" | column -t -s '@' | fzf --no-hscroll --height 20% --reverse --ansi | awk '{print $1}' )
 
     if [[ -n $BRANCH ]]; then
         git checkout $(echo "$BRANCH" | sed "s/.* //")
     fi
 }
+bind '"\C-b":" b\n"'
 
 function fa() {
     local FILES
