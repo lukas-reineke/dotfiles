@@ -34,6 +34,8 @@ source $HOME/dotfiles/vim/functions.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Global Settings {{{
 
+let g:python_host_prog = '/home/lukas/.pyenv/versions/neovim2/bin/python'
+let g:python3_host_prog = '/home/lukas/.pyenv/versions/neovim3/bin/python'
 syntax enable
 filetype plugin indent on
 set omnifunc=syntaxcomplete#Complete
@@ -549,6 +551,7 @@ let g:airline#extensions#whitespace#enabled = 0
 " \   'python':     [ 'pyls', '-vv', '--log-file', '/tmp/pyls.log' ],
 " \ 'javascript': ['node', $HOME . '/dev/javascript-typescript-langserver/lib/language-server-stdio'],
 " \   'javascript': [ 'typescript-language-server', '--stdio', '--tsserver-log-file', '/tmp/tsserver.log', '--log-level', '1' ],
+" \   'javascript': [ 'typescript-language-server', '--stdio', '--tsserver-log-file', '/tmp/tsserver.log', '--log-level', '4', '--tsserver-log-verbosity', 'verbose' ],
 let g:LanguageClient_diagnosticsEnable = 0
 let g:LanguageClient_rootMarkers = ['.git', 'package.json']
 " let g:LanguageClient_settingsPath = '.ls-settings.json'
@@ -562,6 +565,7 @@ let g:LanguageClient_serverCommands = {
 \   'html':       [ 'html-languageserver', '--stdio' ],
 \   'python':     [ 'pyls' ],
 \   'sh':         [ 'bash-language-server', 'start' ],
+\   'go':         [ 'go-langserver' ],
 \}
 
 let g:LanguageClient_diagnosticsDisplay = {

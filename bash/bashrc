@@ -152,3 +152,5 @@ if [ -f ~/dotfiles/lib/cd-history.bash ]; then
     source ~/dotfiles/lib/cd-history.bash
 fi
 
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"

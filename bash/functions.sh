@@ -333,8 +333,28 @@ function kc() {
         sed -e 's/ /\n/g' |
         fzf --height 20% --reverse
     )
-    if [[ ! -z $CONTEXT ]]; then
+    if [[ -n $CONTEXT ]]; then
         kubectl config use-context "$CONTEXT"
+    fi
+}
+
+function klogs() {
+    local PODS
+    PODS=$(
+        kubectl get pods |
+        tail -n +2 |
+        fzf --reverse -m |
+        cut -f 1 -d ' '
+    )
+    if [[ -n $PODS ]]; then
+        for pod in $PODS; do
+            echo -e "\n\n"${MGT}""${BOLD}"$pod"${NC}"\n"
+            if [[ -n $1 ]]; then
+                kubectl logs "$pod" | tail -n"$1"
+            else
+                kubectl logs "$pod"
+            fi
+        done
     fi
 }
 
