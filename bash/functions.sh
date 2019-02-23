@@ -223,6 +223,32 @@ function ba() {
     fi
 }
 
+function prs() {
+    is_in_git_repo || return
+    local PRS BRANCH
+
+    PRS=$(\
+        hub pr list |\
+        sed "s/^\s*#//" |\
+        sed "s/DO.NOT.MERGE\s*/$(printf ${RED}"DNM"${NC}) /" |\
+        sed "s/Needs.Fixes\s*/$(printf ${RED}"NF"${NC}) /" |\
+        sed "s/Has.Migration\s*/$(printf ${BLU}"M"${NC}) /" |\
+        sed "s/Has.Partial.Test.Coverage\s*/$(printf ${YEL}"PTC"${NC}) /" |\
+        sed "s/Tests.Skipped\s*/$(printf ${YEL}"TS"${NC}) /" |\
+        sed "s/Has.Test.Coverage\s*/$(printf ${GRN}"TC"${NC}) /" |\
+        sed "s/Tests.Not.Required\s*/$(printf ${CYN}"TNR"${NC}) /" |\
+        sed "s/Awaiting.\{4\}\s*/$(printf ${GRN}"馬"${NC})/" |\
+        sed "s/\s\s\s/@/g" |\
+        column -t -s @\
+    )
+
+    PR=$(echo "$PRS" | fzf --no-hscroll --height 40% --reverse --ansi | awk '{print $1}')
+
+    if [[ -n $PR ]]; then
+        hub pr checkout $PR
+    fi
+}
+
 function b() {
     is_in_git_repo || return
     local BRANCHES BRANCH
