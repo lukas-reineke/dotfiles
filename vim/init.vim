@@ -335,7 +335,7 @@ function! RemoveQuickfixItem()
     let qfall = getqflist()
     call remove(qfall, curqfidx)
     call setqflist(qfall, 'r')
-    execute curqfidx + 1 . "cfirst"
+    execute curqfidx + 1 . 'cfirst'
     copen
 endfunction
 
@@ -527,6 +527,12 @@ function! CustomBranchName(name)
 endfunction
 let g:airline#extensions#whitespace#enabled = 0
 
+
+let g:vista_default_executive = 'coc'
+let g:vista_close_on_jump = 1
+let g:vista_blink = [1, 100]
+let g:vista_sidebar_width = 40
+
 " let g:tmuxline_preset = {
 " \   'a': '#{window_panes}',
 " \   'x': '#(cd #{pane_current_path} && git rev-parse --abbrev-ref HEAD)',
@@ -552,28 +558,28 @@ let g:airline#extensions#whitespace#enabled = 0
 " \ 'javascript': ['node', $HOME . '/dev/javascript-typescript-langserver/lib/language-server-stdio'],
 " \   'javascript': [ 'typescript-language-server', '--stdio', '--tsserver-log-file', '/tmp/tsserver.log', '--log-level', '1' ],
 " \   'javascript': [ 'typescript-language-server', '--stdio', '--tsserver-log-file', '/tmp/tsserver.log', '--log-level', '4', '--tsserver-log-verbosity', 'verbose' ],
-let g:LanguageClient_diagnosticsEnable = 0
-let g:LanguageClient_rootMarkers = ['.git', 'package.json']
-" let g:LanguageClient_settingsPath = '.ls-settings.json'
-" \   'scss':       [ 'css-languageserver', '--stdio' ],
-" \   'css':        [ 'css-languageserver', '--stdio' ],
-let g:LanguageClient_loggingFile = '/tmp/language-client.log'
-let g:LanguageClient_serverCommands = {
-\   'javascript': [ 'typescript-language-server', '--stdio' ],
-\   'typescript': [ 'typescript-language-server', '--stdio' ],
-\   'json':       [ 'json-languageserver', '--stdio' ],
-\   'html':       [ 'html-languageserver', '--stdio' ],
-\   'python':     [ 'pyls' ],
-\   'sh':         [ 'bash-language-server', 'start' ],
-\   'go':         [ 'go-langserver' ],
-\}
+" let g:LanguageClient_diagnosticsEnable = 0
+" let g:LanguageClient_rootMarkers = ['.git', 'package.json']
+" " let g:LanguageClient_settingsPath = '.ls-settings.json'
+" " \   'scss':       [ 'css-languageserver', '--stdio' ],
+" " \   'css':        [ 'css-languageserver', '--stdio' ],
+" let g:LanguageClient_loggingFile = '/tmp/language-client.log'
+" let g:LanguageClient_serverCommands = {
+" \   'javascript': [ 'typescript-language-server', '--stdio' ],
+" \   'typescript': [ 'typescript-language-server', '--stdio' ],
+" \   'json':       [ 'json-languageserver', '--stdio' ],
+" \   'html':       [ 'html-languageserver', '--stdio' ],
+" \   'python':     [ 'pyls' ],
+" \   'sh':         [ 'bash-language-server', 'start' ],
+" \   'go':         [ 'go-langserver' ],
+" \}
 
-let g:LanguageClient_diagnosticsDisplay = {
-\   1: { 'signTexthl': 'Error', 'signText': '⭕' },
-\   2: { 'signTexthl': 'Todo',  'signText': '⭕' },
-\   3: { 'signTexthl': 'Todo',  'signText': '⭕' },
-\   4: { 'signTexthl': 'Todo',  'signText': '⭕' },
-\}
+" let g:LanguageClient_diagnosticsDisplay = {
+" \   1: { 'signTexthl': 'Error', 'signText': '⭕' },
+" \   2: { 'signTexthl': 'Todo',  'signText': '⭕' },
+" \   3: { 'signTexthl': 'Todo',  'signText': '⭕' },
+" \   4: { 'signTexthl': 'Todo',  'signText': '⭕' },
+" \}
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

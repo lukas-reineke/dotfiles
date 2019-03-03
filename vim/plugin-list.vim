@@ -172,6 +172,7 @@ Plug 'romainl/vim-qlist'
 
 " Better visual mode
 Plug 'kana/vim-niceblock'
+Plug 'vim-scripts/vis'
 
 " Marks in column
 Plug 'kshenoy/vim-signature'
@@ -200,6 +201,8 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+Plug 'liuchengxu/vista.vim'
 
 " import cost for js
 Plug 'yardnsm/vim-import-cost', { 'do': 'npm install' }

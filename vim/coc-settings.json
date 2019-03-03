@@ -1,0 +1,8 @@
+{
+    "suggest.autoTrigger": "none",
+    "diagnostic.displayByAle": true,
+    "emmet.includeLanguages": {
+        "javascript": "javascriptreact"
+    },
+    "typescript.preferences.quoteStyle": "single"
+}

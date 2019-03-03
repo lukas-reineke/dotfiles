@@ -66,7 +66,10 @@ nnoremap 7% 70%
 nnoremap 8% 80%
 nnoremap 9% 90%
 
-nnoremap <C-]> :call LanguageClient#textDocument_definition()<CR>
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+nmap <C-]> <Plug>(coc-definition)
+" nnoremap <C-]> :call LanguageClient#textDocument_definition()<CR>
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

@@ -1,13 +1,14 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Complete {{{
 
-inoremap <C-O> <C-X><C-O>
+" inoremap <C-O> <C-X><C-O>
 imap <C-X><C-F> <ESC>:cd %:p:h<CR>a<plug>(fzf-complete-file)
 inoremap <C-B> <C-E>
 inoremap <silent><expr> ( complete_parameter#pre_complete("()")
 inoremap <C-L> <C-X><C-L>
 imap <C-X><C-L> <plug>(fzf-complete-line)
 inoremap <C-E> <ESC>BDi<><ESC>hpyypa/<ESC>O
+inoremap <silent><expr> <C-o> coc#refresh()
 
 inoremap <C-F>
     \ <C-O>:let b:oldpwd = getcwd() <bar>

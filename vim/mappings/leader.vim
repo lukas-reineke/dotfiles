@@ -40,8 +40,12 @@ nnoremap <Leader>p :Buffers<CR>
 nnoremap <Leader><C-P> :Commands<CR>
 nnoremap <Leader><C-W> :Windows<CR>
 
-nnoremap <Leader>f :call LanguageClient_textDocument_documentSymbol()<Cr>
-nnoremap <Leader><CR> :call LanguageClient_contextMenu()<Cr>
+nnoremap <Leader>f :Vista finder<CR>
+nnoremap <Leader>d :Vista!!<CR>
+" nnoremap <Leader>f :call LanguageClient_textDocument_documentSymbol()<Cr>
+" nnoremap <Leader><CR> :call LanguageClient_contextMenu()<Cr>
+nmap <leader>rn <Plug>(coc-rename)
+vmap <leader>a <Plug>(coc-codeaction-selected)
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
