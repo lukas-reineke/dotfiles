@@ -128,11 +128,6 @@ function sanitize {
     chmod -R u=rwX,g=rX,o= "$@" ;
 }
 
-# Display weather
-function weather {
-    curl -s "http://www.wunderground.com/global/stations/10147.html" | grep "og:title" | cut -d\" -f4 | sed 's/&deg;/ degrees C/';
-}
-
 # Generate random mac address
 function mac {
     hexdump -n6 -e '/1 ":%02X"' /dev/random|sed s/^://g
@@ -195,7 +190,7 @@ function gt {
     is_in_git_repo || return
 
     git tag --sort -version:refname |
-    fzf --multi --preview-window right:70% \
+    fzf --reverse --multi --preview-window right:70% \
     --preview 'git show --color=always {} | head -'$LINES
 }
 
@@ -246,6 +241,18 @@ function prs() {
 
     if [[ -n $PR ]]; then
         hub pr checkout $PR
+    fi
+}
+
+function ta() {
+    is_in_git_repo || return
+    local TAGS TAG
+    TAGS=$(git tag --sort=-version:refname)
+
+    TAG=$(echo "$TAGS" | fzf --height 20% --reverse --ansi --preview-window right:70% --preview 'git show --color=always {} | head -'$LINES)
+
+    if [[ -n $TAG ]]; then
+        git checkout "$TAG"
     fi
 }
 
