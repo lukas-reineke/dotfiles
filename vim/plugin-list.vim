@@ -24,11 +24,11 @@ Plug 'mhinz/vim-signify'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-scripts/gitignore'
 Plug 'sodapopcan/vim-twiggy'
-Plug 'jreybert/vimagit'
+" Plug 'jreybert/vimagit'
 
 " Typescript
 Plug 'HerringtonDarkholme/yats.vim'
-Plug 'Quramy/tsuquyomi'
+" Plug 'Quramy/tsuquyomi'
 
 " Javascript
 Plug 'othree/yajs.vim'
@@ -81,7 +81,7 @@ Plug 'retorillo/istanbul.vim'
 
 " Snippets
 Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+" Plug 'honza/vim-snippets'
 
 " complete parameters
 Plug 'lukas-reineke/CompleteParameter.vim'
@@ -197,11 +197,26 @@ Plug 'tommcdo/vim-lion'
 " Plug 'prabirshrestha/vim-lsp'
 " " Plug 'ryanolsonx/vim-lsp-typescript'
 " Plug 'ryanolsonx/vim-lsp-python'
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
+" Plug 'autozimu/LanguageClient-neovim', {
+"     \ 'branch': 'next',
+"     \ 'do': 'bash install.sh',
+"     \ }
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+" coc-css
+" coc-emoji
+" coc-highlight
+" coc-html
+" coc-emmet
+" coc-pyls
+" coc-snippets
+" coc-tsserver
+" coc-word
+" coc-yaml
+" coc-dictionary
+" coc-source-neco
+" coc-json
+Plug 'Shougo/neco-vim'
+Plug 'neoclide/coc-neco'
 Plug 'liuchengxu/vista.vim'
 
 " import cost for js

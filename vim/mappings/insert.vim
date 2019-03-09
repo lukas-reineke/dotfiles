@@ -1,6 +1,8 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Complete {{{
 
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
 " inoremap <C-O> <C-X><C-O>
 imap <C-X><C-F> <ESC>:cd %:p:h<CR>a<plug>(fzf-complete-file)
 inoremap <C-B> <C-E>

@@ -1,8 +1,13 @@
 {
     "suggest.autoTrigger": "none",
+    "coc.source.file.trimSameExts": ["js", "ts", "jsx", "tsx"],
+    "coc.source.file.ignoreHidden": false,
     "diagnostic.displayByAle": true,
     "emmet.includeLanguages": {
         "javascript": "javascriptreact"
     },
-    "typescript.preferences.quoteStyle": "single"
+    "typescript.preferences.quoteStyle": "single",
+    "suggest.enablePreview": false,
+    "suggest.echodocSupport": true,
+    "suggest.snippetIndicator": " ⚡"
 }

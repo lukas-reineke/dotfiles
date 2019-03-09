@@ -104,7 +104,7 @@ let g:airline_theme = 'onedark'
 let g:onedark_terminal_italics = 1
 let g:airline_colornum_reversed = 1
 let g:highlightedyank_highlight_duration = 100
-let g:markdown_fenced_languages = ['python', 'bash=sh', 'javascript', 'typescript']
+let g:markdown_fenced_languages = ['python', 'bash=sh', 'javascript', 'typescript', 'yaml', 'json']
 
 augroup HiglightDebug
     autocmd!
@@ -114,6 +114,7 @@ augroup HiglightDebug
     autocmd WinEnter,VimEnter * :silent! call matchadd('Todo', '@DEBUG', -1)
     autocmd WinEnter,VimEnter * :highlight QuickScopePrimary gui=bold guifg=NONE
     autocmd WinEnter,VimEnter * :highlight QuickScopeSecondary gui=bold guifg=NONE
+    autocmd CursorHold * silent call CocActionAsync('highlight')
 augroup END
 
 augroup cursorLine
@@ -194,7 +195,7 @@ let g:incsearch#do_not_save_error_message_history = 1
 
 let g:splfy_no_matchinfo = 1
 
-let g:Illuminate_ftblacklist = [ 'python', 'vimfiler' ]
+let g:Illuminate_ftblacklist = [ 'python', 'vimfiler', 'javascript']
 
 let g:Illuminate_ftHighlightGroups = {
     \ 'vim': ['vimVar', 'vimFBVar', 'vimString', 'vimLineComment',
@@ -223,13 +224,13 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Completion {{{
 
-let g:tsuquyomi_disable_default_mappings = 1
-let g:tsuquyomi_shortest_import_path = 1
-let g:tsuquyomi_completion_case_sensitive = 1
-let g:tsuquyomi_case_sensitive_imports = 1
-let g:tsuquyomi_single_quote_import = 1
-let g:tsuquyomi_javascript_support = 1
-let g:tsuquyomi_completion_detail = 1
+" let g:tsuquyomi_disable_default_mappings = 1
+" let g:tsuquyomi_shortest_import_path = 1
+" let g:tsuquyomi_completion_case_sensitive = 1
+" let g:tsuquyomi_case_sensitive_imports = 1
+" let g:tsuquyomi_single_quote_import = 1
+" let g:tsuquyomi_javascript_support = 1
+" let g:tsuquyomi_completion_detail = 1
 
 let g:echodoc#enable_at_startup = 1
 
@@ -305,9 +306,9 @@ let g:ale_sign_error = '⭕'
 let g:ale_sign_warning = '⭕'
 let g:airline#extensions#ale#error_symbol = '誤:'
 let g:airline#extensions#ale#warning_symbol = '危:'
-let g:ale_set_loclist = 0
-let g:ale_set_quickfix = 1
-let g:tsuquyomi_disable_quickfix = 1
+" let g:ale_set_loclist = 0
+" let g:ale_set_quickfix = 1
+" let g:tsuquyomi_disable_quickfix = 1
 let g:qf_nowrap = 0
 let g:ale_fix_on_save = 1
 let g:ale_lint_on_text_changed = 0
@@ -531,7 +532,8 @@ let g:airline#extensions#whitespace#enabled = 0
 let g:vista_default_executive = 'coc'
 let g:vista_close_on_jump = 1
 let g:vista_blink = [1, 100]
-let g:vista_sidebar_width = 40
+let g:vista_sidebar_width = 50
+let g:vista_icon_indent = ['╰─ ', '├─ ']
 
 " let g:tmuxline_preset = {
 " \   'a': '#{window_panes}',
