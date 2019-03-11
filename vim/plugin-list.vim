@@ -106,11 +106,13 @@ Plug 'Yggdroot/indentLine'
 
 " inline colors
 Plug 'lilydjwg/colorizer'
+Plug 'amadeus/vim-convert-color-to'
 
 " Airline
 Plug 'vim-airline/vim-airline'
 " Plug 'vim-airline/vim-airline-themes'
 Plug 'augustold/vim-airline-colornum'
+Plug 'TaDaa/vimade'
 
 " Easy motion
 Plug 'easymotion/vim-easymotion'
