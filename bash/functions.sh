@@ -452,6 +452,13 @@ function venv {
     source ./venv-${PWD##*/}/bin/activate
 }
 
+function venv36 {
+    if ! [[ -d ./venv-${PWD##*/} ]]; then
+        virtualenv -p python3.6 ./venv-${PWD##*/}
+    fi
+    source ./venv-${PWD##*/}/bin/activate
+}
+
 # venv python 2
 function venv2 {
     if ! [[ -d ./venv-${PWD##*/} ]]; then
