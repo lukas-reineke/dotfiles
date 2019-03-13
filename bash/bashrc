@@ -121,6 +121,10 @@ if [ -f ~/dotfiles/lib/minikube-completion.bash ]; then
     source ~/dotfiles/lib/minikube-completion.bash
 fi
 
+if [ -f ~/dotfiles/lib/kubectl-completion.bash ]; then
+    source ~/dotfiles/lib/kubectl-completion.bash
+fi
+
 # Setup fzf
 if [[ ! "$PATH" == *$HOME/dotfiles/lib/fzf/bin* ]]; then
     export PATH="$PATH:$HOME/dotfiles/lib/fzf/bin"
