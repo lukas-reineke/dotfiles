@@ -105,10 +105,10 @@ let g:onedark_terminal_italics = 1
 let g:airline_colornum_reversed = 1
 let g:highlightedyank_highlight_duration = 100
 let g:markdown_fenced_languages = ['python', 'bash=sh', 'javascript', 'typescript', 'yaml', 'json']
-let g:vimade = {
-    \ 'fadelevel': 0.8,
-    \ 'enablesigns': 1,
-\ }
+" let g:vimade = {
+"     \ 'fadelevel': 0.8,
+"     \ 'enablesigns': 1,
+" \ }
 
 augroup HiglightDebug
     autocmd!

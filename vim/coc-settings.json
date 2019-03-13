@@ -2,12 +2,15 @@
     "suggest.autoTrigger": "none",
     "coc.source.file.trimSameExts": ["js", "ts", "jsx", "tsx"],
     "coc.source.file.ignoreHidden": false,
+    "diagnostic.refreshAfterSave": true,
     "diagnostic.displayByAle": true,
     "emmet.includeLanguages": {
         "javascript": "javascriptreact"
     },
     "typescript.preferences.quoteStyle": "single",
+    "codeLens.enable": true,
     "suggest.enablePreview": false,
     "suggest.echodocSupport": true,
-    "suggest.snippetIndicator": " ⚡"
+    "suggest.snippetIndicator": " ⚡",
+    "suggest.noselect": false
 }

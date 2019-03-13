@@ -39,7 +39,7 @@ Plug 'moll/vim-node'
 
 " Python
 Plug 'Vimjas/vim-python-pep8-indent'
-Plug 'davidhalter/jedi-vim'
+" Plug 'davidhalter/jedi-vim'
 Plug 'raimon49/requirements.txt.vim'
 Plug 'numirias/semshi'
 Plug 'bps/vim-textobj-python'
@@ -112,7 +112,7 @@ Plug 'amadeus/vim-convert-color-to'
 Plug 'vim-airline/vim-airline'
 " Plug 'vim-airline/vim-airline-themes'
 Plug 'augustold/vim-airline-colornum'
-Plug 'TaDaa/vimade'
+" Plug 'TaDaa/vimade'
 
 " Easy motion
 Plug 'easymotion/vim-easymotion'
