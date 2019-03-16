@@ -168,7 +168,9 @@ let g:indentLine_bgcolor_gui = onedark#GetColors().black.gui
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Search {{{
 
-set wildmode=list:longest,full
+set pumblend=10
+set wildoptions=pum
+set wildmode=longest,full
 set wildignore=*.o,*.obj,*~
 set wildignore+=*vim/backups*
 set wildignore+=*sass-cache*
