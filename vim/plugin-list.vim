@@ -105,7 +105,7 @@ Plug 'djoshea/vim-autoread'
 Plug 'Yggdroot/indentLine'
 
 " inline colors
-Plug 'lilydjwg/colorizer'
+" Plug 'lilydjwg/colorizer'
 Plug 'amadeus/vim-convert-color-to'
 
 " Airline

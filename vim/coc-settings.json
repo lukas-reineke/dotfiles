@@ -4,6 +4,7 @@
     "coc.source.file.ignoreHidden": false,
     "diagnostic.refreshAfterSave": true,
     "diagnostic.displayByAle": true,
+    "diagnostic.level": "error",
     "emmet.includeLanguages": {
         "javascript": "javascriptreact"
     },
