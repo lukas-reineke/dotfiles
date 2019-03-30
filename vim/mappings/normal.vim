@@ -33,12 +33,9 @@ nnoremap <c-w>h <c-w>5<
 nnoremap <c-w>k <c-w>5+
 nnoremap <c-w>j <c-w>5-
 
-nnoremap <silent> <esc> :noh<cr><esc>
+" nnoremap <silent> <esc> :noh<cr><esc>
 
 nnoremap Q @q
-
-" make mark and jump to last insert
-nnoremap gV m``[v`]
 
 noremap <Up> 2<C-Y>
 noremap <Down> 2<C-E>
@@ -66,7 +63,8 @@ nnoremap 7% 70%
 nnoremap 8% 80%
 nnoremap 9% 90%
 
-nnoremap <C-]> :call LanguageClient#textDocument_definition()<CR>
+nmap <C-]> <Plug>(coc-definition)
+" nnoremap <C-]> :call LanguageClient#textDocument_definition()<CR>
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -251,7 +249,7 @@ nmap gr <Plug>ReplaceWithRegisterOperator
 " Fold Method {{{
 
 function! FoldMethod()
-    if &foldmethod == 'indent'
+    if &foldmethod ==# 'indent'
         setlocal foldmethod=manual
     else
         setlocal foldmethod=indent

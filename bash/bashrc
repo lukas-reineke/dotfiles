@@ -121,6 +121,10 @@ if [ -f ~/dotfiles/lib/minikube-completion.bash ]; then
     source ~/dotfiles/lib/minikube-completion.bash
 fi
 
+if [ -f ~/dotfiles/lib/kubectl-completion.bash ]; then
+    source ~/dotfiles/lib/kubectl-completion.bash
+fi
+
 # Setup fzf
 if [[ ! "$PATH" == *$HOME/dotfiles/lib/fzf/bin* ]]; then
     export PATH="$PATH:$HOME/dotfiles/lib/fzf/bin"
@@ -151,6 +155,9 @@ fi
 if [ -f ~/dotfiles/lib/cd-history.bash ]; then
     source ~/dotfiles/lib/cd-history.bash
 fi
+
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"

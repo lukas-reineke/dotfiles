@@ -146,10 +146,10 @@ augroup END
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Magit {{{
 
-augroup VimagitBufferInit
-    autocmd!
-    autocmd User VimagitBufferInit only
-augroup END
+" augroup VimagitBufferInit
+"     autocmd!
+"     autocmd User VimagitBufferInit only
+" augroup END
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -157,24 +157,24 @@ augroup END
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Quick Fix {{{
 
-function! QuickFix()
-    let l:buftype_list = ['quickfix', 'help', 'nofile']
-    let l:filetype_list = ['netrw']
-    if (index(l:buftype_list, &buftype) >= 0 || index(l:filetype_list, &filetype) >= 0)
-        let g:qs_enable = 0
-        if &buftype == 'quickfix'
-            execute 'highlight CursorLine guibg=' . onedark#GetColors().cursor_grey.gui
-        endif
-    else
-        let g:qs_enable = 1
-        execute 'highlight CursorLine guibg=' . onedark#GetColors().dark_black.gui
-    endif
-endfunction
+" function! QuickFix()
+"     let l:buftype_list = ['quickfix', 'help', 'nofile']
+"     let l:filetype_list = ['netrw']
+"     if (index(l:buftype_list, &buftype) >= 0 || index(l:filetype_list, &filetype) >= 0)
+"         let g:qs_enable = 0
+"         if &buftype == 'quickfix'
+"             execute 'highlight CursorLine guibg=' . onedark#GetColors().cursor_grey.gui
+"         endif
+"     else
+"         let g:qs_enable = 1
+"         execute 'highlight CursorLine guibg=' . onedark#GetColors().dark_black.gui
+"     endif
+" endfunction
 
-augroup QuickFix
-    autocmd!
-    autocmd BufWinEnter,BufEnter,cursormoved * call QuickFix()
-augroup END
+" augroup QuickFix
+"     autocmd!
+"     autocmd BufWinEnter,BufEnter,cursormoved * call QuickFix()
+" augroup END
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -249,40 +249,40 @@ augroup END
 " Win Highlight {{{
 
 " https://github.com/wincent/wincent/blob/4578e56cc23/roles/dotfiles/files/.vim/autoload/autocmds.vim#L39-L76
-function! Blur_window() abort
-    let l:buftype_list = ['quickfix', 'help', 'nofile', 'nowrite']
-    if &foldmethod ==# 'diff' || (index(l:buftype_list, &buftype) >= 0)
-        set winhighlight=
-    else
-        set winhighlight=NormalNC:WinNormalNC
-        if !exists('w:matches')
-            let w:matches=[]
-        endif
-        let l:height=&lines
-        let l:slop=l:height / 2
-        let l:start=max([1, line('w0') - l:slop])
-        let l:end=min([line('$'), line('w$') + l:slop])
-        while l:start <= l:end
-            let l:next=l:start + 8
-            let l:id=matchaddpos(
-                        \   'StatusLineNC',
-                        \   range(l:start, min([l:end, l:next])),
-                        \   1000
-                        \ )
-            call add(w:matches, l:id)
-            let l:start=l:next
-        endwhile
-    endif
-endfunction
+" function! Blur_window() abort
+"     let l:buftype_list = ['quickfix', 'help', 'nofile', 'nowrite']
+"     if &foldmethod ==# 'diff' || (index(l:buftype_list, &buftype) >= 0)
+"         set winhighlight=
+"     else
+"         set winhighlight=NormalNC:WinNormalNC
+"         if !exists('w:matches')
+"             let w:matches=[]
+"         endif
+"         let l:height=&lines
+"         let l:slop=l:height / 2
+"         let l:start=max([1, line('w0') - l:slop])
+"         let l:end=min([line('$'), line('w$') + l:slop])
+"         while l:start <= l:end
+"             let l:next=l:start + 8
+"             let l:id=matchaddpos(
+"                         \   'StatusLineNC',
+"                         \   range(l:start, min([l:end, l:next])),
+"                         \   1000
+"                         \ )
+"             call add(w:matches, l:id)
+"             let l:start=l:next
+"         endwhile
+"     endif
+" endfunction
 
-function! Focus_window() abort
-    if exists('w:matches')
-        for l:match in w:matches
-            call matchdelete(l:match)
-        endfor
-        let w:matches=[]
-    endif
-endfunction
+" function! Focus_window() abort
+"     if exists('w:matches')
+"         for l:match in w:matches
+"             call matchdelete(l:match)
+"         endfor
+"         let w:matches=[]
+"     endif
+" endfunction
 
 " augroup WinHighlight
 "     autocmd!

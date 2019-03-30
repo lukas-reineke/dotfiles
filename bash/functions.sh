@@ -433,6 +433,31 @@ m() {
     [ -n "$script" ] && eval python manage.py "$script"
 }
 
+nb() {
+    local branch
+    branch=$(python3 ~/dotfiles/scripts/trello-tickets.py | fzf --height 20% --reverse)
+    [ -z "$branch" ] && return
+
+    ID="$(cut -d' ' -f1 <<<"$branch")"
+    DESC="$(cut -d' ' -f2 <<<"$branch")"
+
+    echo "$DESC"
+    echo -n "Keep Description? [y/n]: "
+
+    read KEEP
+
+    if [[ $KEEP =~ ^(n|N)$ ]]; then
+        echo ""
+        echo -n "Description: "
+        read DESC
+        DESC="$DESC"
+    fi
+
+    if [[ -n $DESC ]] && [[ -n $ID ]]; then
+        git checkout -b $ID-$DESC
+    fi
+}
+
 # Colored man pages
 function man {
     LESS_TERMCAP_md=$'\e[01;31m' \

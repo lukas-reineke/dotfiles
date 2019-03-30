@@ -71,6 +71,7 @@ alias subl='sublime .'
 # python
 alias http='simplehttpserver'
 alias da='deactivate'
+alias iyoga='ipython --profile=yoga'
 
 # android
 alias avd='/opt/android-sdk/tools/android avd'

@@ -144,6 +144,7 @@ addSearchAliasX(
 
 settings.scrollStepSize = 100;
 // settings.blacklistPattern = /.*localhost.*/i;
+settings.blacklistPattern = /.*trello.*/i;
 settings.focusAfterClosed = 'left';
 settings.historyMUOrder = false;
 // settings.richHintsForKeystroke = 0;

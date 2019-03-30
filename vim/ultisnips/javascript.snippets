@@ -18,12 +18,6 @@ console.table($1${VISUAL}); /* NO_COMMIT */
 console.groupEnd();
 endsnippet
 
-snippet	vfu "var function" Ab
-var $1 = function($2) {
-	$3${VISUAL}
-};
-endsnippet
-
 snippet	cfu "const function" Ab
 const $1 = ($2) => {
 	$3${VISUAL}
@@ -74,7 +68,7 @@ endsnippet
 
 snippet }e "else" A
 } else {
-	$1${VISUAL}
+	$0${VISUAL}
 }
 endsnippet
 
@@ -286,7 +280,7 @@ public `!p snip.rv = (lambda s: s[:1].lower() + s[1:].split(';')[0].split(' ')[0
 endsnippet
 
 snippet it "unit test it" bw
-it('$1', () => {
+it('should $1', () => {
 });
 endsnippet
 
@@ -407,7 +401,8 @@ export class $1 extends React.Component {
 		super(props);
 	}
 
-	render() {}
+	render() {
+	}
 
 }
 endsnippet

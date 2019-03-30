@@ -23,7 +23,7 @@ nnoremap <Leader>J LzzL
 
 nnoremap <Leader>z 1z=
 
-nmap <silent> <Leader>c <Plug>(qf_qf_toggle_stay)
+nmap <silent> <Leader>c <Plug>(qf_loc_toggle_stay)
 
 nnoremap <Leader>it :IstanbulToggle<CR>
 nnoremap <Leader>iu :IstanbulUpdate<CR>
@@ -40,8 +40,12 @@ nnoremap <Leader>p :Buffers<CR>
 nnoremap <Leader><C-P> :Commands<CR>
 nnoremap <Leader><C-W> :Windows<CR>
 
-nnoremap <Leader>f :call LanguageClient_textDocument_documentSymbol()<Cr>
-nnoremap <Leader><CR> :call LanguageClient_contextMenu()<Cr>
+nnoremap <Leader>f :Vista finder<CR>
+nnoremap <Leader>d :Vista!!<CR>
+" nnoremap <Leader>f :call LanguageClient_textDocument_documentSymbol()<Cr>
+" nnoremap <Leader><CR> :call LanguageClient_contextMenu()<Cr>
+nmap <leader>rn <Plug>(coc-rename)
+vmap <leader>a <Plug>(coc-codeaction-selected)
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -85,20 +89,20 @@ nnoremap <Leader>gf :GFiles?<CR>
 nnoremap <Leader>gt :SignifyToggleHighlight<CR>
 nnoremap <Leader>gz :SignifyFold!<CR>
 nnoremap <Leader>gc :Twiggy<CR>
-nnoremap <Leader>gm :Magit<CR>zcgg
+" nnoremap <Leader>gm :Magit<CR>zcgg
 nnoremap <Leader>gu :GitGutterUndoHunk<CR>
 nnoremap <Leader>ga :GitGutterStageHunk<CR>:SignifyRefresh<CR>
-let g:magit_show_magit_mapping='<NOPE>'
+" let g:magit_show_magit_mapping='<NOPE>'
 
-function! CheckoutLine()
-    let l:view = winsaveview()
-    Gvdiff
-    diffget
-    only
-    call winrestview(l:view)
-endfunction
+" function! CheckoutLine()
+"     let l:view = winsaveview()
+"     Gvdiff
+"     diffget
+"     only
+"     call winrestview(l:view)
+" endfunction
 
-nnoremap <Leader>go :call CheckoutLine()<CR>
+" nnoremap <Leader>go :call CheckoutLine()<CR>
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -141,5 +145,32 @@ nnoremap <leader>m :Marks<CR>
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Coc {{{
+
+function! CocFzf()
+    let l:options = [
+        \ 'doHover',
+        \ 'rename',
+        \ 'codeAction',
+        \ 'codeLensAction',
+        \ 'highlight',
+        \ 'jumpReferences',
+        \ 'jumpImplementation',
+        \ 'quickfixes',
+        \ ]
+
+    call fzf#run({
+    \   'source': l:options,
+    \   'sink': function('CocAction'),
+    \   'down': len(l:options) + 2
+    \})
+endfunction
+
+nnoremap <Leader><CR> :call CocFzf()<CR>
+xnoremap <Leader><CR> :call CocFzf()<CR>
+
+" }}}
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim:foldmethod=marker:foldlevel=0
 

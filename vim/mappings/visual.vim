@@ -18,6 +18,8 @@ vnoremap L $
 vnoremap K 5k
 vnoremap J 5j
 
+xnoremap <expr> P '"_d"'.v:register.'P'
+
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
