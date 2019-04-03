@@ -156,11 +156,14 @@ set listchars+=precedes:❮
 set listchars+=nbsp:_
 set listchars+=space:⋅
 set showbreak=↳⋅
+set conceallevel=2
 let g:indentLine_char = '│'
 let g:indentLine_first_char = g:indentLine_char
 let g:indentLine_showFirstIndentLevel = 1
 let g:indentLine_color_gui = onedark#GetColors().cursor_grey.gui
 let g:indentLine_bgcolor_gui = onedark#GetColors().black.gui
+let g:indentLine_setConceal = 0
+let g:indentLine_fileTypeExclude = ['help']
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -289,6 +292,7 @@ let g:ale_fixers = {
 \   'python': ['black'],
 \}
 let g:ale_pattern_options_enabled = 1
+let g:ale_disable_lsp = 1
 let g:ale_pattern_options = {
 \   '\.min\.(js\|css)$': {
 \       'ale_linters': [],

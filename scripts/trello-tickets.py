@@ -18,5 +18,5 @@ response = requests.request("GET", url, params=querystring)
 for ticket in json.loads(response.text):
     if ticket["subscribed"]:
         id = ticket["idShort"]
-        name = re.sub(r"[\"|'|,]", "", ticket["name"].replace(" ", "-"))
-        print(f"{id} {name}")
+        name = re.sub(r"[\"|'|,|:]", "", ticket["name"].replace(" ", "-")).lower()
+        print(f"T-{id} {name}")
