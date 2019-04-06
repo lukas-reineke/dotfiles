@@ -24,16 +24,31 @@ const $1 = ($2) => {
 };
 endsnippet
 
-snippet for "for each index" b
-for (let i = 0; i < $1.length; i++) {
-	$2${VISUAL}
+snippet for "for of" Ab
+for (const ${1:value} of ${2:arr}) {
 }
 endsnippet
 
-snippet fo "for of"
-for (let ${1:prop} of ${2:obj}) {
-	$0${VISUAL}
+snippet arw "arrow function" A
+${1:()} => {
 }
+endsnippet
+
+snippet while "while" Ab
+while ($1) {
+}
+endsnippet
+
+snippet rt "return" Ab
+return $0
+endsnippet
+
+snippet co "const" Ab
+const $0
+endsnippet
+
+snippet le "let" Ab
+let $0
 endsnippet
 
 snippet try "try"
@@ -61,48 +76,35 @@ if (${1}) {
 endsnippet
 
 snippet vif "visual if" Abs
-if (${1}) {
-	$2${VISUAL}
+if ($1) {
 }
 endsnippet
 
 snippet }e "else" A
 } else {
-	$0${VISUAL}
+	$1
+}
+endsnippet
+
+snippet }i "else if" A
+} else if ($1) {
 }
 endsnippet
 
 snippet => "arrow function"
 => {
-	$1${VISUAL}
-}
-endsnippet
-
-snippet ar "arrow function" i
-($1) => {
+	$1
 }
 endsnippet
 
 snippet switch "switch" b
 switch ($1) {
-case '$2':
+case $2:
 	$3${VISUAL}
 	break;
 default:
 	$0
 }
-endsnippet
-
-snippet var "var" b
-var $1 = ${VISUAL}$2;
-endsnippet
-
-snippet let "let" b
-let $1 = ${VISUAL}$2;
-endsnippet
-
-snippet const "const" b
-const $1 = ${VISUAL}$2;
 endsnippet
 
 snippet stt "setTimeout" Ab
