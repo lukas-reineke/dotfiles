@@ -318,4 +318,28 @@ command! Urls call Urls()
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Codespell {{{
+
+command! SpellClear call clearmatches()
+command! Spell Codespell
+
+let g:spell_toggle = 0
+function! ToggleSpell()
+    if g:spell_toggle
+        let g:spell_toggle=0
+        set nospell
+        call clearmatches()
+    else
+        let g:spell_toggle=1
+        set spell
+        Codespell
+    endif
+endfunction
+
+nnoremap <Leader>s :call ToggleSpell()<CR>
+
+" }}}
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim:foldmethod=marker:foldlevel=0

@@ -43,6 +43,10 @@ snippet rt "return" Ab
 return $0
 endsnippet
 
+snippet trw "throw" Ab
+throw $0
+endsnippet
+
 snippet co "const" Ab
 const $0
 endsnippet
@@ -51,7 +55,7 @@ snippet le "let" Ab
 let $0
 endsnippet
 
-snippet try "try"
+snippet try "try" Ab
 try {
 	$0
 } catch (error) {
@@ -66,16 +70,11 @@ snippet todo "todo" b
 // @TODO [`git config user.name`] `date +%d-%m-%Y`: $0${VISUAL}
 endsnippet
 
-snippet nc "NO_COMMIT" b
+snippet nc "NO_COMMIT" Ab
 // NO_COMMIT
 endsnippet
 
 snippet if "if" Ab
-if (${1}) {
-}
-endsnippet
-
-snippet vif "visual if" Abs
 if ($1) {
 }
 endsnippet
@@ -97,7 +96,7 @@ snippet => "arrow function"
 }
 endsnippet
 
-snippet switch "switch" b
+snippet switch "switch" Ab
 switch ($1) {
 case $2:
 	$3${VISUAL}

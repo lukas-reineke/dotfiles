@@ -10,7 +10,8 @@ inoremap <silent><expr> ( complete_parameter#pre_complete("()")
 inoremap <C-L> <C-X><C-L>
 imap <C-X><C-L> <plug>(fzf-complete-line)
 inoremap <C-E> <ESC>BDi<><ESC>hpyypa/<ESC>O
-inoremap <silent><expr> <C-o> coc#refresh()
+inoremap <silent><expr> <C-n> coc#refresh()
+inoremap <C-O> <C-X><C-N>
 
 inoremap <C-F>
     \ <C-O>:let b:oldpwd = getcwd() <bar>

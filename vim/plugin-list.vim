@@ -46,6 +46,7 @@ Plug 'bps/vim-textobj-python'
 
 " Json
 Plug 'elzr/vim-json'
+Plug 'meain/vim-package-json', { 'do': 'npm install' }
 
 " HTML5
 Plug 'othree/html5.vim'
@@ -78,6 +79,7 @@ Plug 'wellle/tmux-complete.vim'
 " Linter
 Plug 'w0rp/ale'
 Plug 'retorillo/istanbul.vim'
+Plug 'shinglyu/vim-codespell'
 
 " Snippets
 Plug 'SirVer/ultisnips'

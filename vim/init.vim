@@ -325,6 +325,7 @@ let g:ale_lint_on_text_changed = 0
 let g:ale_lint_on_save = 1
 let g:ale_virtualtext_cursor = 1
 let g:ale_virtualtext_prefix = '╸'
+let g:ale_maximum_file_size = 100000
 let g:semshi#error_sign = 0
 let g:semshi#mark_selected_nodes = 2
 
@@ -352,10 +353,9 @@ endfunction
 
 augroup FiletypeDetect
     autocmd!
-    autocmd BufRead,BufNewFile .stylelintrc,.htmlhintrc set filetype=json
+    autocmd BufRead,BufNewFile .eslintrc,.stylelintrc,.htmlhintrc set filetype=json
     autocmd BufRead,BufNewFile requirements.txt set filetype=python
     autocmd BufRead,BufNewFile *.tsx set filetype=typescriptreact.typescript
-    autocmd BufRead,BufNewFile .eslintrc set filetype=json
     autocmd BufRead,BufNewFile * set formatoptions-=o
     " autocmd FileType javascript set omnifunc=tsuquyomi#complete
     autocmd User LanguageClientTextDocumentDidOpenPost :call JavascriptOmnifunc()

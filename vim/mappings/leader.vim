@@ -28,8 +28,6 @@ nmap <silent> <Leader>c <Plug>(qf_loc_toggle_stay)
 nnoremap <Leader>it :IstanbulToggle<CR>
 nnoremap <Leader>iu :IstanbulUpdate<CR>
 
-nnoremap <Leader>s :set spell!<CR>
-
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 

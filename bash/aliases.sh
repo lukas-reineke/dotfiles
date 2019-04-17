@@ -88,3 +88,9 @@ alias disco='while true; do printf "\e[38;5;$(($(od -d -N 2 -A n /dev/urandom)%$
 alias pokemon='xrandr --output eDP1 --mode 800x600 && sudo vbam -f 0 --no-opengl -F ~/.vbam/pokemon_fire_red.gba'
 alias wireshark='GTK_THEME=Flat-Plat wireshark-gtk & disown'
 
+
+# docker
+
+alias dmongo='docker run --rm --name mogno-docker -v mongodbdata:/data/db -p 27017:27017 mongo:3.2-jessie'
+alias dpostgres='docker run --rm --name pg-docker -e POSTGRES_PASSWORD=$POSTGRES_PASSWORD -e POSTGRES_DB=$POSTGRES_DB -p 5432:5432 -v postgresdbdata:/var/lib/postgresql/data postgres:9.5.16-alpine'
+
