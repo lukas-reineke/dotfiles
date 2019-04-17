@@ -291,7 +291,7 @@ bind '"\C-f":" f\n"'
 
 function urls {
     local URL
-    URL=$(tmux capture-pane -p | xurls | fzf --height 20% --reverse)
+    URL=$(tmux capture-pane -pJ | xurls | fzf --height 20% --reverse)
     if [[ -n $URL ]]; then
         opera-beta "$URL" &> /dev/null
     fi
@@ -300,7 +300,7 @@ bind '"\C-o":" urls\n"'
 
 function pr {
     local URL
-    URL=$(tmux capture-pane -p | xurls | grep --color=never 'pull/new')
+    URL=$(tmux capture-pane -pJ | xurls | grep --color=never 'pull/new')
     if [[ -n $URL ]]; then
         opera-beta "$URL" &> /dev/null
     fi
