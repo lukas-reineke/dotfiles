@@ -24,6 +24,7 @@ Plug 'mhinz/vim-signify'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-scripts/gitignore'
 Plug 'sodapopcan/vim-twiggy'
+Plug 'rhysd/git-messenger.vim'
 " Plug 'jreybert/vimagit'
 
 " Typescript

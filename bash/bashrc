@@ -148,10 +148,6 @@ if [ -f ~/dotfiles/lib/fzf-marks/fzf-marks.plugin.bash ]; then
     source ~/dotfiles/lib/fzf-marks/fzf-marks.plugin.bash
 fi
 
-if [ -f ~/dotfiles/lib/alias-completion.bash ]; then
-    source ~/dotfiles/lib/alias-completion.bash
-fi
-
 if [ -f ~/dotfiles/lib/cd-history.bash ]; then
     source ~/dotfiles/lib/cd-history.bash
 fi
