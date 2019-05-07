@@ -40,6 +40,8 @@ alias gds='git diff --staged'
 alias ss='~/dotfiles/scripts/fzf-git-stash-pop.sh'
 alias fs='~/dotfiles/scripts/fzf-git-stash-show.sh'
 alias gwap='git diff -w --no-color | git apply --cached --ignore-whitespace && git checkout -- . && git reset && git add -p'
+alias gca='git commit --amend --no-edit'
+alias gcae='git commit --amend'
 
 # python
 alias da='deactivate'
