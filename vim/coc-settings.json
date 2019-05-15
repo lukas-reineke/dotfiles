@@ -13,5 +13,5 @@
     "suggest.enablePreview": false,
     "suggest.echodocSupport": true,
     "suggest.snippetIndicator": " ⚡",
-    "suggest.noselect": false
+    "suggest.noselect": true
 }
