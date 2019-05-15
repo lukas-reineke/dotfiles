@@ -50,6 +50,7 @@ alias iyoga='ipython --profile=yoga'
 # stuff
 alias lock='~/scripts/i3lock-fancy/lock'
 alias installvm='sudo vmware-modconfig --console --install-all'
+alias cal='gcalcli calm'
 
 
 # docker
