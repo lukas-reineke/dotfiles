@@ -326,6 +326,28 @@ function db() {
     fi
 }
 
+function ss() {
+    local ALL_STASHES STASH
+    ALL_STASHES=$(git stash list)
+    STASH=$(echo "$ALL_STASHES" | fzf --reverse --ansi --bind "ctrl-n:preview-down,ctrl-p:preview-up" --preview "echo {1} | sed 's/://' | xargs -I % git show --color=always %" | awk '{print $1}' )
+
+    if [[ -n $STASH ]]; then
+        git stash pop $(echo "$STASH" | sed 's/://')
+    fi
+}
+
+function ssd() {
+    local ALL_STASHES STASHES STASH
+    ALL_STASHES=$(git stash list)
+    STASHES=$(echo "$ALL_STASHES" | fzf --reverse -m --ansi --bind "ctrl-n:preview-down,ctrl-p:preview-up" --preview "echo {1} | sed 's/://' | xargs -I % git show --color=always %" | awk '{print $1}' )
+
+    if [[ -n $STASHES ]]; then
+        for STASH in $STASHES; do
+            git stash drop $(echo "$STASH" | sed 's/://')
+        done
+    fi
+}
+
 function dbm() {
     local ALL_BRANCHES BRANCHES BRANCH
     ALL_BRANCHES=$(git branch --sort=-committerdate --format="$GIT_REF_FORMAT" --merged)
