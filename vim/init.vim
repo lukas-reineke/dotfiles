@@ -354,7 +354,6 @@ endfunction
 augroup FiletypeDetect
     autocmd!
     autocmd BufRead,BufNewFile .eslintrc,.stylelintrc,.htmlhintrc set filetype=json
-    autocmd BufRead,BufNewFile requirements.txt set filetype=python
     autocmd BufRead,BufNewFile *.tsx set filetype=typescriptreact.typescript
     autocmd BufRead,BufNewFile * set formatoptions-=o
     " autocmd FileType javascript set omnifunc=tsuquyomi#complete
