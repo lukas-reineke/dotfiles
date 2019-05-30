@@ -40,6 +40,8 @@ alias gds='git diff --staged'
 alias gwap='git diff -w --no-color | git apply --cached --ignore-whitespace && git checkout -- . && git reset && git add -p'
 alias gca='git commit --amend --no-edit'
 alias gcae='git commit --amend'
+alias gpsn='git push --no-verify'
+alias gpsfn='git push --force --no-verify'
 
 # python
 alias da='deactivate'
