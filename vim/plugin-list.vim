@@ -76,6 +76,7 @@ Plug 'tmux-plugins/vim-tmux'
 " Plug 'edkolev/tmuxline.vim'
 Plug 'roxma/vim-tmux-clipboard'
 Plug 'wellle/tmux-complete.vim'
+Plug 'jpalardy/vim-slime'
 
 " Linter
 Plug 'w0rp/ale'

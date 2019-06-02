@@ -544,6 +544,9 @@ let g:vista_blink = [1, 100]
 let g:vista_sidebar_width = 50
 let g:vista_icon_indent = ['╰─ ', '├─ ']
 
+let g:slime_target = 'tmux'
+let g:slime_default_config = {"socket_name": "default", "target_pane": "{bottom}"}
+
 " let g:tmuxline_preset = {
 " \   'a': '#{window_panes}',
 " \   'x': '#(cd #{pane_current_path} && git rev-parse --abbrev-ref HEAD)',
