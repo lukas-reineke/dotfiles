@@ -193,8 +193,8 @@ function! WrapCommand(direction, prefix)
     if a:direction ==# 'up'
         try
             execute a:prefix . 'previous'
-            execute a:prefix . 'last'
         catch /^Vim\%((\a\+)\)\=:E553/
+            execute a:prefix . 'last'
         catch /^Vim\%((\a\+)\)\=:E\%(776\|42\):/
         endtry
     elseif a:direction ==# 'down'
@@ -213,8 +213,8 @@ nnoremap <silent> [l  :call WrapCommand('down', 'l')<CR>
 nnoremap <silent> ]c :call WrapCommand('up', 'c')<CR>
 nnoremap <silent> [c  :call WrapCommand('down', 'c')<CR>
 
-nnoremap [a :ALENextWrap<CR>
-nnoremap ]a :ALEPreviousWrap<CR>
+nnoremap [v :ALENextWrap<CR>
+nnoremap ]v :ALEPreviousWrap<CR>
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

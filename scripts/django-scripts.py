@@ -3,6 +3,7 @@ scripts = [
     "shell_plus --vi --ptipython",
     "test --keepdb",
     "migrate",
+    "makemigrations",
     "generate_constants",
 ]
 

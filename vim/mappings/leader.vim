@@ -23,7 +23,8 @@ nnoremap <Leader>J LzzL
 
 nnoremap <Leader>z 1z=
 
-nmap <silent> <Leader>c <Plug>(qf_loc_toggle_stay)
+nmap <silent> <Leader>v <Plug>(qf_loc_toggle_stay)
+nmap <silent> <Leader>c <Plug>(qf_qf_toggle_stay)
 
 nnoremap <Leader>it :IstanbulToggle<CR>
 nnoremap <Leader>iu :IstanbulUpdate<CR>
@@ -35,6 +36,7 @@ nnoremap <Leader>iu :IstanbulUpdate<CR>
 " FZF {{{
 
 nnoremap <Leader>p :Buffers<CR>
+nnoremap <Leader>P :Rg<CR>
 nnoremap <Leader><C-P> :Commands<CR>
 nnoremap <Leader><C-W> :Windows<CR>
 
@@ -81,7 +83,7 @@ map <Leader>h <Plug>(easymotion-linebackward)
 nnoremap <Leader>gd :Gvdiff<CR>
 nnoremap <Leader>gr :Gread<CR>
 nnoremap <Leader>gb :Gblame<CR>
-nnoremap <Leader>gs :Gstatus<CR>
+nnoremap <Leader>gs :Gstatus<CR><C-w>o
 nnoremap <Leader>gl :BCommits<CR>
 nnoremap <Leader>gf :GFiles?<CR>
 nnoremap <Leader>gt :SignifyToggleHighlight<CR>
