@@ -23,9 +23,6 @@ nnoremap <Leader>J LzzL
 
 nnoremap <Leader>z 1z=
 
-nmap <silent> <Leader>v <Plug>(qf_loc_toggle_stay)
-nmap <silent> <Leader>c <Plug>(qf_qf_toggle_stay)
-
 nnoremap <Leader>it :IstanbulToggle<CR>
 nnoremap <Leader>iu :IstanbulUpdate<CR>
 
@@ -92,6 +89,8 @@ nnoremap <Leader>gc :Twiggy<CR>
 " nnoremap <Leader>gm :Magit<CR>zcgg
 nnoremap <Leader>gu :GitGutterUndoHunk<CR>
 nnoremap <Leader>ga :GitGutterStageHunk<CR>:SignifyRefresh<CR>
+nnoremap <Leader>gg :VcsJump diff<CR>:call ChangeActiveList('quickfix')<CR>
+nnoremap <Leader>gn :VcsJump merge<CR>:call ChangeActiveList('quickfix')<CR>
 " let g:magit_show_magit_mapping='<NOPE>'
 
 " function! CheckoutLine()
@@ -169,6 +168,71 @@ endfunction
 
 nnoremap <Leader><CR> :call CocFzf()<CR>
 xnoremap <Leader><CR> :call CocFzf()<CR>
+
+" }}}
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Lists {{{
+
+let g:active_list = 'location'
+
+function! ChangeActiveList(list)
+    let g:active_list = a:list
+endfunction
+
+nnoremap <Leader>ic :call ChangeActiveList('quickfix')<CR>
+nnoremap <Leader>iv :call ChangeActiveList('location')<CR>
+nnoremap <Leader>ib :call ChangeActiveList('ale')<CR>
+
+function! WrapCommand(direction, prefix)
+    if a:direction ==# 'up'
+        try
+            execute a:prefix . 'previous'
+        catch /^Vim\%((\a\+)\)\=:E553/
+            execute a:prefix . 'last'
+        catch /^Vim\%((\a\+)\)\=:E\%(776\|42\):/
+        endtry
+    elseif a:direction ==# 'down'
+        try
+            execute a:prefix . 'next'
+        catch /^Vim\%((\a\+)\)\=:E553/
+            execute a:prefix . 'first'
+        catch /^Vim\%((\a\+)\)\=:E\%(776\|42\):/
+        endtry
+    endif
+endfunction
+
+nnoremap <silent> ]c :call WrapCommand('up', 'c')<CR>
+nnoremap <silent> [c  :call WrapCommand('down', 'c')<CR>
+
+nnoremap <silent> ]v :call WrapCommand('up', 'l')<CR>
+nnoremap <silent> [v  :call WrapCommand('down', 'l')<CR>
+
+nnoremap [b :ALENextWrap<CR>
+nnoremap ]b :ALEPreviousWrap<CR>
+
+
+function! MoveInList(direction)
+    if g:active_list ==# 'ale'
+        if a:direction ==# 'up'
+            ALEPreviousWrap
+        elseif a:direction ==# 'down'
+            ALENextWrap
+        endif
+    elseif g:active_list ==# 'location'
+        call WrapCommand(a:direction, 'l')
+    elseif g:active_list ==# 'quickfix'
+        call WrapCommand(a:direction, 'c')
+    endif
+endfunction
+
+noremap <Up> :call MoveInList('up')<CR>
+noremap <Down> :call MoveInList('down')<CR>
+
+nmap <silent> <Leader>c <Plug>(qf_qf_toggle_stay):call ChangeActiveList('quickfix')<CR>
+nmap <silent> <Leader>v <Plug>(qf_loc_toggle_stay):call ChangeActiveList('location')<CR>
+nnoremap <Leader>b :call ChangeActiveList('ale')<CR>
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

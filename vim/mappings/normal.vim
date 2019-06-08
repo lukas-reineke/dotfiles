@@ -33,14 +33,13 @@ nnoremap <c-w>h <c-w>5<
 nnoremap <c-w>k <c-w>5+
 nnoremap <c-w>j <c-w>5-
 
-" nnoremap <silent> <esc> :noh<cr><esc>
-
 nnoremap Q @q
 
-noremap <Up> 2<C-Y>
-noremap <Down> 2<C-E>
 noremap <LEFT> 5zh
 noremap <RIGHT> 5zl
+
+noremap <C-Y> 2<C-Y>
+noremap <C-E> 2<C-E>
 
 function! FixIndentation()
     let l:view = winsaveview()
@@ -188,33 +187,6 @@ nnoremap [[ ?[<CR>:nohl<CR>
 nnoremap ]] /]<CR>:nohl<CR>
 nnoremap [t /todo\><CR>:nohl<CR>
 nnoremap ]t ?todo\><CR>:nohl<CR>
-
-function! WrapCommand(direction, prefix)
-    if a:direction ==# 'up'
-        try
-            execute a:prefix . 'previous'
-        catch /^Vim\%((\a\+)\)\=:E553/
-            execute a:prefix . 'last'
-        catch /^Vim\%((\a\+)\)\=:E\%(776\|42\):/
-        endtry
-    elseif a:direction ==# 'down'
-        try
-            execute a:prefix . 'next'
-        catch /^Vim\%((\a\+)\)\=:E553/
-            execute a:prefix . 'first'
-        catch /^Vim\%((\a\+)\)\=:E\%(776\|42\):/
-        endtry
-    endif
-endfunction
-
-nnoremap <silent> ]l :call WrapCommand('up', 'l')<CR>
-nnoremap <silent> [l  :call WrapCommand('down', 'l')<CR>
-
-nnoremap <silent> ]c :call WrapCommand('up', 'c')<CR>
-nnoremap <silent> [c  :call WrapCommand('down', 'c')<CR>
-
-nnoremap [v :ALENextWrap<CR>
-nnoremap ]v :ALEPreviousWrap<CR>
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
