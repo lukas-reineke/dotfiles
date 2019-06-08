@@ -149,6 +149,7 @@ Plug 'vim-scripts/CmdlineComplete'
 Plug 'dyng/ctrlsf.vim'
 " Plug 'vim-scripts/SearchComplete'
 " Plug 'osyo-manga/vim-anzu'
+Plug 'mileszs/ack.vim'
 
 " Themes
 " Plug 'chriskempson/base16-vim'

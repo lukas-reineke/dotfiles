@@ -92,6 +92,7 @@ set path+=**
 set virtualedit=onemore
 set spellcapcheck=
 set noruler
+set grepprg=rg\ --vimgrep\ --no-heading
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -197,6 +198,7 @@ set wildignore+=*/doc/*
 set wildignore+=*/dll/*
 set wildignore+=*venv*
 
+let g:ackprg = 'rg --vimgrep --no-heading'
 let g:incsearch#auto_nohlsearch = 1
 let g:incsearch#magic = '\v'
 let g:incsearch#consistent_n_direction = 1

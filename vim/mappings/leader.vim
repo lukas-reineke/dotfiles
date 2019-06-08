@@ -55,7 +55,8 @@ nnoremap <Leader>R :let v=winsaveview()<CR>:%s/\<<C-R><C-W>\>//g
             \ <Bar>:call winrestview(v)<C-Left><C-Left><Left><Left><Left>a<BS>
 vnoremap <Leader>r :s/\v()
 
-nnoremap <Leader>a :CtrlSF<Space>
+nnoremap <Leader>x :CtrlSF<Space>
+nnoremap <Leader>a :Ack<Space>
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -175,7 +176,7 @@ xnoremap <Leader><CR> :call CocFzf()<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Lists {{{
 
-let g:active_list = 'location'
+let g:active_list = 'quickfix'
 
 function! ChangeActiveList(list)
     let g:active_list = a:list
