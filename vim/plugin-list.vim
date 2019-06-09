@@ -177,6 +177,7 @@ Plug 'machakann/vim-highlightedyank'
 " Better quickfix
 Plug 'romainl/vim-qf'
 Plug 'romainl/vim-qlist'
+Plug 'fszymanski/fzf-quickfix'
 
 " Better visual mode
 Plug 'kana/vim-niceblock'

@@ -206,7 +206,7 @@ let g:incsearch#do_not_save_error_message_history = 1
 
 let g:splfy_no_matchinfo = 1
 
-let g:Illuminate_ftblacklist = [ 'python', 'vimfiler', 'javascript']
+let g:Illuminate_ftblacklist = [ 'python', 'vimfiler', 'javascript' ]
 
 let g:Illuminate_ftHighlightGroups = {
     \ 'vim': ['vimVar', 'vimFBVar', 'vimString', 'vimLineComment',
