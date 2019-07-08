@@ -229,8 +229,8 @@ function! MoveInList(direction)
     endif
 endfunction
 
-noremap <Up> :call MoveInList('up')<CR>
-noremap <Down> :call MoveInList('down')<CR>
+noremap <silent> <Up> :call MoveInList('up')<CR>
+noremap <silent> <Down> :call MoveInList('down')<CR>
 
 nmap <silent> <Leader>c <Plug>(qf_qf_toggle_stay):call ChangeActiveList('quickfix')<CR>
 nmap <silent> <Leader>v <Plug>(qf_loc_toggle_stay):call ChangeActiveList('location')<CR>

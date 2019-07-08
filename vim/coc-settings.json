@@ -2,9 +2,10 @@
     "suggest.autoTrigger": "none",
     "coc.source.file.trimSameExts": ["js", "ts", "jsx", "tsx"],
     "coc.source.file.ignoreHidden": false,
-    "diagnostic.refreshAfterSave": true,
-    "diagnostic.displayByAle": true,
-    "diagnostic.level": "error",
+    "xdiagnostic.refreshAfterSave": true,
+    "xdiagnostic.displayByAle": true,
+    "xdiagnostic.level": "error",
+    "diagnostic.enable": false,
     "emmet.includeLanguages": {
         "javascript": "javascriptreact"
     },

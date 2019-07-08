@@ -271,7 +271,7 @@ let g:jedi#rename_command = ''
 
 let g:ale_linters = {
 \   'vim': [ 'vint' ],
-\   'javascript': [ 'eslint', 'flow', 'tsserver' ],
+\   'javascript': [ 'eslint' ],
 \   'typescript': [ 'tslint', 'tsserver', 'typecheck' ],
 \   'typescriptreact': [ 'tslint', 'tsserver', 'typecheck' ],
 \   'json': [ 'jsonlint' ],
@@ -322,6 +322,7 @@ let g:airline#extensions#ale#warning_symbol = '危:'
 " let g:ale_set_quickfix = 1
 " let g:tsuquyomi_disable_quickfix = 1
 let g:qf_nowrap = 0
+let g:qf_max_height = 20
 let g:ale_fix_on_save = 1
 let g:ale_lint_on_text_changed = 0
 let g:ale_lint_on_save = 1

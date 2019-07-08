@@ -211,19 +211,21 @@ Plug 'tommcdo/vim-lion'
 "     \ 'do': 'bash install.sh',
 "     \ }
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+" coc-browser
 " coc-css
+" coc-dictionary
+" coc-emmet
 " coc-emoji
+" coc-github
 " coc-highlight
 " coc-html
-" coc-emmet
+" coc-json
 " coc-pyls
 " coc-snippets
 " coc-tsserver
+" coc-ultisnips
 " coc-word
 " coc-yaml
-" coc-dictionary
-" coc-source-neco
-" coc-json
 Plug 'Shougo/neco-vim'
 Plug 'neoclide/coc-neco'
 Plug 'liuchengxu/vista.vim'
