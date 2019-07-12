@@ -27,6 +27,7 @@ alias sudo='sudo env PATH=$PATH'
 alias cat='ge ccat'
 alias crypt='gpg --trust-model always -ear adgo'
 alias ucrypt='xsel -b | gpg'
+alias secrets='gpg -er lukas.reineke@protonmail.com .secrets'
 
 # git
 alias gl='~/dotfiles/scripts/fzf-git-log.sh'
