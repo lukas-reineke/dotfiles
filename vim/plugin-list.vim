@@ -71,6 +71,9 @@ Plug 'PotatoesMaster/i3-vim-syntax'
 " Nginx
 Plug 'chr4/nginx.vim'
 
+" GraphQL
+Plug 'jparise/vim-graphql'
+
 " Tmux
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tmux-plugins/vim-tmux'

@@ -277,6 +277,7 @@ let g:ale_linters = {
 \   'json': [ 'jsonlint' ],
 \   'html': [ 'htmlhint' ],
 \   'scss': [ 'sasslint' ],
+\   'graphql': [ 'eslint', 'gqlint' ],
 \   'python': [ 'flake8', 'mypy', 'pyls' ],
 \   'sh': ['language_server', 'shellcheck'],
 \}
@@ -291,6 +292,7 @@ let g:ale_fixers = {
 \   'markdown': [ 'prettier' ],
 \   'html': [ 'prettier' ],
 \   'yaml': [ 'prettier' ],
+\   'graphql': [ 'prettier' ],
 \   'python': ['black'],
 \}
 let g:ale_pattern_options_enabled = 1
