@@ -1,6 +1,7 @@
 [user]
-    name =
-    email =
+    name = Lukas Reineke
+    email = lukas.reineke@protonmail.com
+    signingkey = 72039D0994993AAD
 
 [advice]
     pushNonFastForward = false
