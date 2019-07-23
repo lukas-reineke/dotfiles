@@ -26,6 +26,8 @@ nnoremap <Leader>z 1z=
 nnoremap <Leader>it :IstanbulToggle<CR>
 nnoremap <Leader>iu :IstanbulUpdate<CR>
 
+nnoremap <Leader>u :UndotreeToggle<CR>:UndotreeFocus<CR>
+
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -43,7 +45,7 @@ nnoremap <Leader>d :Vista!!<CR>
 " nnoremap <Leader><CR> :call LanguageClient_contextMenu()<Cr>
 nmap <leader>rn <Plug>(coc-rename)
 vmap <leader>a <Plug>(coc-codeaction-selected)
-nmap <Leader>u <Plug>(fzf-quickfix)
+nmap <Leader>[ <Plug>(fzf-quickfix)
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
