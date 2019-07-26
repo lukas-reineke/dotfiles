@@ -1,5 +1,6 @@
 {
     "suggest.autoTrigger": "none",
+    "coc.preferences.useQuickfixForLocations": true,
     "coc.source.file.trimSameExts": ["js", "ts", "jsx", "tsx"],
     "coc.source.file.ignoreHidden": false,
     "xdiagnostic.refreshAfterSave": true,
