@@ -95,6 +95,8 @@ nnoremap <Leader>gu :GitGutterUndoHunk<CR>
 nnoremap <Leader>ga :GitGutterStageHunk<CR>:SignifyRefresh<CR>
 nnoremap <Leader>gg :VcsJump diff<CR>:call ChangeActiveList('quickfix')<CR>
 nnoremap <Leader>gn :VcsJump merge<CR>:call ChangeActiveList('quickfix')<CR>
+nmap <Leader>gw <Plug>(git-messenger)
+nmap <Leader>gi <Plug>(git-messenger-into-popup)
 " let g:magit_show_magit_mapping='<NOPE>'
 
 " function! CheckoutLine()

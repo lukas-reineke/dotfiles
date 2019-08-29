@@ -2,11 +2,11 @@ scriptencoding utf8
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mappings {{{
 
-source $HOME/dotfiles/vim/mappings/leader.vim
-source $HOME/dotfiles/vim/mappings/normal.vim
-source $HOME/dotfiles/vim/mappings/visual.vim
-source $HOME/dotfiles/vim/mappings/command.vim
-source $HOME/dotfiles/vim/mappings/insert.vim
+source ~/dotfiles/vim/mappings/leader.vim
+source ~/dotfiles/vim/mappings/normal.vim
+source ~/dotfiles/vim/mappings/visual.vim
+source ~/dotfiles/vim/mappings/command.vim
+source ~/dotfiles/vim/mappings/insert.vim
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -16,7 +16,7 @@ source $HOME/dotfiles/vim/mappings/insert.vim
 
 call plug#begin('~/.vimpkg/bundle')
 
-source $HOME/dotfiles/vim/plugin-list.vim
+source ~/dotfiles/vim/plugin-list.vim
 
 call plug#end()
 
@@ -26,7 +26,7 @@ call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Functions {{{
 
-source $HOME/dotfiles/vim/functions.vim
+source ~/dotfiles/vim/functions.vim
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -34,8 +34,8 @@ source $HOME/dotfiles/vim/functions.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Global Settings {{{
 
-let g:python_host_prog = '/home/lukas/.pyenv/versions/neovim2/bin/python'
-let g:python3_host_prog = '/home/lukas/.pyenv/versions/neovim3/bin/python'
+let g:python_host_prog = '~/.pyenv/versions/neovim2/bin/python'
+let g:python3_host_prog = '~/.pyenv/versions/neovim3/bin/python'
 syntax enable
 filetype plugin indent on
 set omnifunc=syntaxcomplete#Complete
@@ -105,7 +105,15 @@ let g:airline_theme = 'onedark'
 let g:onedark_terminal_italics = 1
 let g:airline_colornum_reversed = 1
 let g:highlightedyank_highlight_duration = 100
-let g:markdown_fenced_languages = ['python', 'bash=sh', 'javascript', 'typescript', 'yaml', 'json']
+let g:markdown_fenced_languages = [
+    \ 'python',
+    \ 'bash=sh',
+    \ 'javascript',
+    \ 'typescript',
+    \ 'yaml',
+    \ 'json',
+    \ 'gql=graphql'
+\ ]
 " let g:vimade = {
 "     \ 'fadelevel': 0.8,
 "     \ 'enablesigns': 1,
@@ -272,28 +280,28 @@ let g:jedi#rename_command = ''
 let g:ale_linters = {
 \   'vim': [ 'vint' ],
 \   'javascript': [ 'eslint' ],
-\   'typescript': [ 'tslint', 'tsserver', 'typecheck' ],
+\   'typescript': [ 'eslint', 'tslint', 'tsserver', 'typecheck' ],
 \   'typescriptreact': [ 'tslint', 'tsserver', 'typecheck' ],
 \   'json': [ 'jsonlint' ],
 \   'html': [ 'htmlhint' ],
 \   'scss': [ 'sasslint' ],
-\   'graphql': [ 'eslint', 'gqlint' ],
+\   'graphql': [ 'eslint' ],
 \   'python': [ 'flake8', 'mypy', 'pyls' ],
-\   'sh': ['language_server', 'shellcheck'],
+\   'sh': [ 'language_server', 'shellcheck' ],
 \}
 let g:ale_fixers = {
 \   '*': [ 'trim_whitespace' ],
-\   'javascript': ['prettier'],
-\   'typescript': ['prettier'],
-\   'typescriptreact': ['prettier'],
-\   'json': ['prettier'],
+\   'javascript': [ 'prettier', 'eslint' ],
+\   'typescript': [ 'prettier', 'eslint' ],
+\   'typescriptreact': [ 'prettier' ],
+\   'json': [ 'prettier'],
 \   'scss': [ 'prettier' ],
 \   'css': [ 'prettier' ],
 \   'markdown': [ 'prettier' ],
 \   'html': [ 'prettier' ],
 \   'yaml': [ 'prettier' ],
 \   'graphql': [ 'prettier' ],
-\   'python': ['black'],
+\   'python': [ 'black' ],
 \}
 let g:ale_pattern_options_enabled = 1
 let g:ale_disable_lsp = 1
@@ -539,10 +547,6 @@ let g:airline#extensions#default#layout = [
 \   [ 'a', 'c' ],
 \   [ 'error', 'warning' ],
 \]
-let g:airline#extensions#branch#format = 'CustomBranchName'
-function! CustomBranchName(name)
-    return ''
-endfunction
 let g:airline#extensions#whitespace#enabled = 0
 
 
@@ -553,55 +557,7 @@ let g:vista_sidebar_width = 50
 let g:vista_icon_indent = ['╰─ ', '├─ ']
 
 let g:slime_target = 'tmux'
-let g:slime_default_config = {"socket_name": "default", "target_pane": "{bottom}"}
-
-" let g:tmuxline_preset = {
-" \   'a': '#{window_panes}',
-" \   'x': '#(cd #{pane_current_path} && git rev-parse --abbrev-ref HEAD)',
-" \   'win': '│ #I #{pane_title}',
-" \   'cwin': '│ #I #{pane_title}',
-" \   'options': {'status-justify': 'left'},
-" \}
-" let g:tmuxline_separators = {
-" \   'left': '',
-" \   'left_alt': '',
-" \   'right': '',
-" \   'right_alt': '',
-" \   'space': ' ',
-" \}
-
-" }}}
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Language Server {{{
-
-" \   'python':     [ 'pyls', '-vv', '--log-file', '/tmp/pyls.log' ],
-" \ 'javascript': ['node', $HOME . '/dev/javascript-typescript-langserver/lib/language-server-stdio'],
-" \   'javascript': [ 'typescript-language-server', '--stdio', '--tsserver-log-file', '/tmp/tsserver.log', '--log-level', '1' ],
-" \   'javascript': [ 'typescript-language-server', '--stdio', '--tsserver-log-file', '/tmp/tsserver.log', '--log-level', '4', '--tsserver-log-verbosity', 'verbose' ],
-" let g:LanguageClient_diagnosticsEnable = 0
-" let g:LanguageClient_rootMarkers = ['.git', 'package.json']
-" " let g:LanguageClient_settingsPath = '.ls-settings.json'
-" " \   'scss':       [ 'css-languageserver', '--stdio' ],
-" " \   'css':        [ 'css-languageserver', '--stdio' ],
-" let g:LanguageClient_loggingFile = '/tmp/language-client.log'
-" let g:LanguageClient_serverCommands = {
-" \   'javascript': [ 'typescript-language-server', '--stdio' ],
-" \   'typescript': [ 'typescript-language-server', '--stdio' ],
-" \   'json':       [ 'json-languageserver', '--stdio' ],
-" \   'html':       [ 'html-languageserver', '--stdio' ],
-" \   'python':     [ 'pyls' ],
-" \   'sh':         [ 'bash-language-server', 'start' ],
-" \   'go':         [ 'go-langserver' ],
-" \}
-
-" let g:LanguageClient_diagnosticsDisplay = {
-" \   1: { 'signTexthl': 'Error', 'signText': '⭕' },
-" \   2: { 'signTexthl': 'Todo',  'signText': '⭕' },
-" \   3: { 'signTexthl': 'Todo',  'signText': '⭕' },
-" \   4: { 'signTexthl': 'Todo',  'signText': '⭕' },
-" \}
+let g:slime_default_config = {'socket_name': 'default', 'target_pane': '{bottom}'}
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

@@ -574,3 +574,5 @@ function clhistory {
     tac "$HOME"/.bash_history | awk '!x[$0]++' | tac > /tmp/.bash_history
     mv /tmp/.bash_history "$HOME"/.bash_history
 }
+
+bind '"\C-n":"$(fzf)\n"'

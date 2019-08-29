@@ -3,10 +3,10 @@
     "coc.preferences.useQuickfixForLocations": true,
     "coc.source.file.trimSameExts": ["js", "ts", "jsx", "tsx"],
     "coc.source.file.ignoreHidden": false,
-    "xdiagnostic.refreshAfterSave": true,
-    "xdiagnostic.displayByAle": true,
-    "xdiagnostic.level": "error",
-    "diagnostic.enable": false,
+    "diagnostic.refreshAfterSave": true,
+    "diagnostic.displayByAle": true,
+    "diagnostic.level": "error",
+    "diagnostic.enable": true,
     "emmet.includeLanguages": {
         "javascript": "javascriptreact"
     },
