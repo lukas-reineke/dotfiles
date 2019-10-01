@@ -8,4 +8,4 @@ nunmap <buffer> <C-J>
 nunmap <buffer> <C-L>
 nunmap <buffer> <SPACE>
 setlocal nobuflisted
-
+setlocal bufhidden=delete

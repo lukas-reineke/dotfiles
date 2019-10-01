@@ -575,4 +575,4 @@ function clhistory {
     mv /tmp/.bash_history "$HOME"/.bash_history
 }
 
-bind '"\C-n":"$(fzf)\n"'
+# bind '"\C-n":"$(fzf)\n"'

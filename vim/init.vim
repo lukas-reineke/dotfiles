@@ -112,7 +112,8 @@ let g:markdown_fenced_languages = [
     \ 'typescript',
     \ 'yaml',
     \ 'json',
-    \ 'gql=graphql'
+    \ 'gql=graphql',
+    \ 'graphql',
 \ ]
 " let g:vimade = {
 "     \ 'fadelevel': 0.8,
@@ -371,6 +372,7 @@ augroup FiletypeDetect
     autocmd!
     autocmd BufRead,BufNewFile .eslintrc,.stylelintrc,.htmlhintrc set filetype=json
     autocmd BufRead,BufNewFile *.tsx set filetype=typescriptreact.typescript
+    autocmd BufRead,BufNewFile *.jsx set filetype=javascript
     autocmd BufRead,BufNewFile * set formatoptions-=o
     " autocmd FileType javascript set omnifunc=tsuquyomi#complete
     autocmd User LanguageClientTextDocumentDidOpenPost :call JavascriptOmnifunc()

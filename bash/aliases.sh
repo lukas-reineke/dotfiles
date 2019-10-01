@@ -52,6 +52,7 @@ alias iyoga='ipython --profile=yoga'
 alias lock='~/scripts/i3lock-fancy/lock'
 alias installvm='sudo vmware-modconfig --console --install-all'
 alias cal='gcalcli calm'
+alias fakesmtp='sudo java -jar ~/dotfiles/fakeSMTP-1.13.jar'
 
 
 # docker
