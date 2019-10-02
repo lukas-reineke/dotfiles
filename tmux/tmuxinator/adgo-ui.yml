@@ -1,0 +1,10 @@
+name: adgo-ui
+root: ~/
+pre_window: tmux select-layout main-horizontal
+
+windows:
+    - editor:
+          root: ~/dev/adgo-ui
+          panes:
+              - v
+              - cl

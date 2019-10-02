@@ -1,0 +1,10 @@
+name: monolith
+root: ~/
+pre_window: tmux select-layout main-horizontal
+
+windows:
+    - editor:
+          root: ~/dev/monolith
+          panes:
+              - venv && v
+              - venv && cl

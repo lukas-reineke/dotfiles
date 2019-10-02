@@ -1,0 +1,11 @@
+name: docker
+root: ~/
+attach: false
+
+windows:
+    - mongo:
+          panes:
+              - dmongo
+    - postgres:
+          panes:
+              - dpostgres

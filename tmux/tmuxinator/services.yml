@@ -1,0 +1,10 @@
+name: services
+root: ~/
+pre_window: tmux select-layout main-horizontal
+
+windows:
+    - editor:
+          root: ~/dev/services
+          panes:
+              - venv && v
+              - venv && cl

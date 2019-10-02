@@ -1,0 +1,9 @@
+name: cinnamon-runtime
+root: ~/
+
+windows:
+    - editor:
+          layout: main-horizontal
+          root: ~/dev/cinnamon
+          panes:
+              - ./run.sh

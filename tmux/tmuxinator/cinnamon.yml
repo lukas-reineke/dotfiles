@@ -1,0 +1,10 @@
+name: cinnamon
+root: ~/
+pre_window: tmux select-layout main-horizontal
+
+windows:
+    - editor:
+          root: ~/dev/cinnamon
+          panes:
+              - v
+              - cl

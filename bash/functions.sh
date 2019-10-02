@@ -424,17 +424,21 @@ fkill() {
     fi
 }
 
-# tmux new session
 tm() {
-    local session, newsession
-    newsession=${1:-dev}
-    session=$(tmux list-sessions -F "#{session_name}" | fzf --query="$1" --select-1 --exit-0)
-    if [[ -n "$session" ]]; then
-        tmux attach-session -t "$session"
-    elif [[ -n "$newsession" ]]; then
-        tmux attach-session -t "$newsession"
+    local sessions
+    sessions=$(
+        find ~/dotfiles/tmux/tmuxinator/*.yml  -printf "%f\n" |
+        sed -s s/\.yml// |
+        fzf --reverse --height 20% --multi
+    )
+    if [[ -n "$sessions" ]]; then
+        clear
+        for session in $sessions; do
+            tmuxinator start "$session"
+        done
     fi
 }
+bind '"\C-t":"tm\n"'
 
 # tmux kill session
 td() {

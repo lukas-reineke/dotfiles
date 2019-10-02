@@ -1,0 +1,10 @@
+name: dotfiles
+root: ~/
+pre_window: tmux select-layout main-horizontal
+
+windows:
+    - editor:
+          root: ~/dotfiles
+          panes:
+              - v
+              - cl

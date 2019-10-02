@@ -1,0 +1,24 @@
+name: monolith-runtime
+root: ~/
+
+windows:
+    - webpack:
+          layout: main-horizontal
+          root: ~/dev/monolith
+          panes:
+              - venv && npm run dev
+    - celery:
+          layout: main-horizontal
+          root: ~/dev/monolith
+          panes:
+              - venv && npm run celery-beatless
+    - django:
+          layout: main-horizontal
+          root: ~/dev/monolith
+          panes:
+              - venv && ./manage.py runserver
+    - services:
+          layout: main-horizontal
+          root: ~/dev/services
+          panes:
+              - venv && ./run.sh
