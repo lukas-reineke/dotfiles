@@ -1,10 +1,16 @@
-name: services
-root: ~/
-pre_window: tmux select-layout main-horizontal
-
+session_name: services
+start_directory: '~'
 windows:
-    - editor:
-          root: ~/dev/services
-          panes:
-              - venv && v
-              - venv && cl
+    - window_name: services
+      focus: True
+      layout: main-horizontal
+      start_directory: ~/dev/services
+      panes:
+          - focus: True
+            shell_command:
+                - tmux resize-pane -Z
+                - venv
+                - v
+          - shell_command:
+                - venv
+                - cl

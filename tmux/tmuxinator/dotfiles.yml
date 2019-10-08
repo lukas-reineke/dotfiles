@@ -1,10 +1,13 @@
-name: dotfiles
-root: ~/
-pre_window: tmux select-layout main-horizontal
-
+session_name: dotfiles
+start_directory: '~'
 windows:
-    - editor:
-          root: ~/dotfiles
-          panes:
-              - v
-              - cl
+    - window_name: dotfiles
+      focus: True
+      layout: main-horizontal
+      start_directory: ~/dotfiles/
+      panes:
+          - focus: True
+            shell_command:
+                - tmux resize-pane -Z
+                - v
+          - cl

@@ -1,10 +1,16 @@
-name: monolith
-root: ~/
-pre_window: tmux select-layout main-horizontal
-
+session_name: monolith
+start_directory: '~'
 windows:
-    - editor:
-          root: ~/dev/monolith
-          panes:
-              - venv && v
-              - venv && cl
+    - window_name: monolith
+      focus: True
+      layout: main-horizontal
+      start_directory: ~/dev/monolith
+      panes:
+          - focus: True
+            shell_command:
+                - tmux resize-pane -Z
+                - venv
+                - v
+          - shell_command:
+                - venv
+                - cl

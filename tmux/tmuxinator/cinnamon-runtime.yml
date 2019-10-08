@@ -1,9 +1,9 @@
-name: cinnamon-runtime
-root: ~/
-
+session_name: cinnamon-runtime
+start_directory: '~'
 windows:
-    - editor:
-          layout: main-horizontal
-          root: ~/dev/cinnamon
-          panes:
-              - ./run.sh
+    - window_name: cinnamon
+      focus: True
+      layout: main-horizontal
+      start_directory: ~/dev/cinnamon
+      panes:
+          - ./run.sh

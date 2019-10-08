@@ -434,7 +434,7 @@ tm() {
     if [[ -n "$sessions" ]]; then
         clear
         for session in $sessions; do
-            tmuxinator start "$session"
+            $(cd && tmuxp load ./dotfiles/tmux/tmuxinator/"$session".yml  -y)
         done
     fi
 }

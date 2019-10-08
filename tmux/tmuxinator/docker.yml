@@ -1,11 +1,13 @@
-name: docker
-root: ~/
-attach: false
-
+session_name: docker
+start_directory: '~'
 windows:
-    - mongo:
-          panes:
-              - dmongo
-    - postgres:
-          panes:
-              - dpostgres
+    - window_name: mongo
+      layout: main-horizontal
+      start_directory: ~
+      panes:
+          - dmongo
+    - window_name: postgres
+      layout: main-horizontal
+      start_directory: ~
+      panes:
+          - dpostgres
