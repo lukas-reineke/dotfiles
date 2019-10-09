@@ -50,6 +50,7 @@ Plug 'bps/vim-textobj-python'
 " Json
 Plug 'elzr/vim-json'
 Plug 'meain/vim-package-json', { 'do': 'npm install' }
+Plug 'mogelbrod/vim-jsonpath'
 
 " HTML5
 Plug 'othree/html5.vim'
@@ -230,6 +231,9 @@ Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 " coc-ultisnips
 " coc-word
 " coc-yaml
+" coc-vimlsp
+" coc-go
+" coc-docker
 Plug 'Shougo/neco-vim'
 Plug 'neoclide/coc-neco'
 Plug 'liuchengxu/vista.vim'
