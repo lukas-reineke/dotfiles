@@ -77,6 +77,7 @@ bindsym $mod+minus scratchpad show
 
 bindsym $mod+Tab workspace next_on_output
 bindsym $mod+Shift+Tab workspace prev_on_output
+bindsym Control+$alt+Tab workspace next_on_output
 
 #""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 # => Resize
@@ -171,7 +172,7 @@ bindsym --whole-window $mod+button2 kill
 bindsym --whole-window $mod+button9 move right
 bindsym --whole-window $mod+button8 move left
 
-assign [class="Opera"] 11
+assign [class="Opera"] 1
 # i3 Gaps ##
 gaps inner 15
 gaps outer 1

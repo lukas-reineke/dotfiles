@@ -6,4 +6,4 @@ windows:
       layout: main-horizontal
       start_directory: ~/dev/cinnamon
       panes:
-          - ./run.sh
+          - cd . && ./run.sh

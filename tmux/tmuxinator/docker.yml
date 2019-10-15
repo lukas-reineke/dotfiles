@@ -3,11 +3,11 @@ start_directory: '~'
 windows:
     - window_name: mongo
       layout: main-horizontal
-      start_directory: ~
+      start_directory: '~'
       panes:
           - dmongo
     - window_name: postgres
       layout: main-horizontal
-      start_directory: ~
+      start_directory: '~'
       panes:
           - dpostgres

@@ -24,4 +24,4 @@ windows:
       panes:
           - shell_command:
                 - venv
-                - ./run.sh
+                - cd .  && ./run.sh
