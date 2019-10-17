@@ -16,9 +16,9 @@ override_git_prompt_colors() {
     function getKubeCluster {
         context=$(kubectl config current-context)
         if [[ $context == *dev* ]]; then
-            printf " \033[0;34m⚫"
+            printf " \033[0;34m●"
         elif [[ $context == *prod* ]]; then
-            printf " \033[0;31m⚫"
+            printf " \033[0;31m●"
         fi
     }
     kubecluster='$(getKubeCluster)'
