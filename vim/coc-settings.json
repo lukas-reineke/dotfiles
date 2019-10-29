@@ -35,12 +35,21 @@
     "diagnostic.level": "error",
     "diagnostic.enable": true,
     "emmet.includeLanguages": {
-        "javascript": "javascriptreact"
+        "javascript": "javascriptreact",
+        "typescript": "typescripttreact"
     },
+    "emmet.showSuggestionsAsSnippets": true,
     "typescript.preferences.quoteStyle": "single",
     "codeLens.enable": true,
     "suggest.enablePreview": false,
     "suggest.echodocSupport": true,
     "suggest.snippetIndicator": " ⚡",
-    "suggest.noselect": true
+    "suggest.noselect": true,
+    "coc.browser.port": 6789,
+    "coc.source.emmet.priority": 1,
+    "snippets.extends": {
+        "javascriptreact": ["javascript"],
+        "typescriptreact": ["typescript"]
+    },
+    "snippets.userSnippetsDirectory": "~/dotfiles/vim/ultisnips"
 }

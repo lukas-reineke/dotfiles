@@ -5,6 +5,8 @@ windows:
       focus: True
       layout: main-horizontal
       start_directory: ~/dev/monolith
+      shell_command_before:
+          - cd .
       panes:
           - focus: True
             shell_command:

@@ -5,5 +5,7 @@ windows:
       focus: True
       layout: main-horizontal
       start_directory: ~/dev/cinnamon
+      shell_command_before:
+          - cd .
       panes:
-          - cd . && ./run.sh
+          - ./run.sh

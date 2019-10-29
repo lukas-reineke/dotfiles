@@ -207,7 +207,7 @@ set wildignore+=*/doc/*
 set wildignore+=*/dll/*
 set wildignore+=*venv*
 
-let g:ackprg = 'rg --vimgrep --no-heading'
+let g:ackprg = 'rg --vimgrep --no-heading --hidden'
 let g:incsearch#auto_nohlsearch = 1
 let g:incsearch#magic = '\v'
 let g:incsearch#consistent_n_direction = 1
@@ -352,12 +352,12 @@ let g:semshi#mark_selected_nodes = 2
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " File Type Autocmd {{{
 
-function! JavascriptOmnifunc()
-    let l:filetypeList = [ 'javascript', 'typescript', 'typescriptreact.typescript' ]
-    if index(l:filetypeList, &filetype) > -1
-        set omnifunc=tsuquyomi#complete
-    endif
-endfunction
+" function! JavascriptOmnifunc()
+"     let l:filetypeList = [ 'javascript', 'typescript', 'typescriptreact.typescript' ]
+"     if index(l:filetypeList, &filetype) > -1
+"         set omnifunc=tsuquyomi#complete
+"     endif
+" endfunction
 
 function! RemoveQuickfixItem()
     let curqfidx = line('.') - 1
@@ -371,11 +371,12 @@ endfunction
 augroup FiletypeDetect
     autocmd!
     autocmd BufRead,BufNewFile .eslintrc,.stylelintrc,.htmlhintrc set filetype=json
-    autocmd BufRead,BufNewFile *.tsx set filetype=typescriptreact.typescript
+    autocmd BufRead,BufNewFile *.tsx set filetype=typescript.tsx
+    " autocmd BufRead,BufNewFile *.tsx set filetype=typescriptreact.typescript
     autocmd BufRead,BufNewFile *.jsx set filetype=javascript
     autocmd BufRead,BufNewFile * set formatoptions-=o
     " autocmd FileType javascript set omnifunc=tsuquyomi#complete
-    autocmd User LanguageClientTextDocumentDidOpenPost :call JavascriptOmnifunc()
+    " autocmd User LanguageClientTextDocumentDidOpenPost :call JavascriptOmnifunc()
     " autocmd FileType python set omnifunc=lsp#complete
     autocmd FileType qf nnoremap <silent><buffer> dd :call RemoveQuickfixItem()<CR>
 augroup END

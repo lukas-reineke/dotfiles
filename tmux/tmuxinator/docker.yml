@@ -4,10 +4,14 @@ windows:
     - window_name: mongo
       layout: main-horizontal
       start_directory: '~'
+      shell_command_before:
+          - cd .
       panes:
           - dmongo
     - window_name: postgres
       layout: main-horizontal
       start_directory: '~'
+      shell_command_before:
+          - cd .
       panes:
           - dpostgres
