@@ -9,3 +9,10 @@ windows:
           - cd .
       panes:
           - ./run.sh
+    - window_name: cinnamon-widget
+      layout: main-horizontal
+      start_directory: ~/dev/merchant-widget
+      shell_command_before:
+          - cd .
+      panes:
+          - npm run dev

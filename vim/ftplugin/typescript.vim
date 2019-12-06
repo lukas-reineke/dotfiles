@@ -1,5 +1,6 @@
 setlocal define=\\(const\\\|let\\\|private\\\|public\\\|class\\)
-setlocal suffixesadd+=.ts,.js,.tsx,.jsx
+setlocal iskeyword+=$
+setlocal suffixesadd+=.js,.tsx,.jsx
 setlocal path+=$PWD/node_modules
 
 " nmap <silent> <buffer> <C-]> <Plug>(TsuquyomiDefinition)<Plug>(TsuquyomiGoBack)<Plug>(TsuquyomiDefinition)

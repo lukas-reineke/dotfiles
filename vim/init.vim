@@ -68,7 +68,6 @@ set infercase
 set hlsearch
 set incsearch
 set inccommand=nosplit
-set grepprg=rg\ --vimgrep
 set formatoptions-=o
 set wrap
 set breakindent
@@ -92,7 +91,7 @@ set path+=**
 set virtualedit=onemore
 set spellcapcheck=
 set noruler
-set grepprg=rg\ --vimgrep\ --no-heading
+set grepprg=rg\ --vimgrep\ --no-heading\ --hidden
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -281,8 +280,7 @@ let g:jedi#rename_command = ''
 let g:ale_linters = {
 \   'vim': [ 'vint' ],
 \   'javascript': [ 'eslint' ],
-\   'typescript': [ 'eslint', 'tslint', 'tsserver', 'typecheck' ],
-\   'typescriptreact': [ 'tslint', 'tsserver', 'typecheck' ],
+\   'typescript': [ 'eslint' ],
 \   'json': [ 'jsonlint' ],
 \   'html': [ 'htmlhint' ],
 \   'scss': [ 'sasslint' ],
@@ -343,6 +341,7 @@ let g:ale_lint_on_insert_leave = 0
 let g:ale_virtualtext_cursor = 1
 let g:ale_virtualtext_prefix = '╸'
 let g:ale_maximum_file_size = 100000
+let g:ale_lsp_show_message_severity = 'warning'
 let g:semshi#error_sign = 0
 let g:semshi#mark_selected_nodes = 2
 

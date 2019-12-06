@@ -46,6 +46,7 @@
     "suggest.snippetIndicator": " ⚡",
     "suggest.noselect": true,
     "coc.browser.port": 6789,
+    "coc.browser.priority": 1,
     "coc.source.emmet.priority": 1,
     "snippets.extends": {
         "javascriptreact": ["javascript"],
