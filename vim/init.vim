@@ -420,10 +420,6 @@ call defx#custom#column('indent', {
 call defx#custom#option('_', {
 \   'columns': 'indent:icons:filename:mark:git:type:size:time',
 \})
-call defx#custom#column('filename', {
-\   'min_width': 85,
-\   'max_width': 85,
-\})
 
 let g:defx_icons_root_opened_tree_icon = '├'
 let g:defx_icons_nested_opened_tree_icon = '├'
