@@ -1,4 +1,4 @@
-nnoremap <buffer> <ESC> :VimFilerClose default<CR>
+nmap <buffer> <ESC> <Plug>(vimfiler_exit)
 nmap <buffer> - <Plug>(vimfiler_switch_to_parent_directory)
 nmap <buffer> K 5k
 nmap <buffer> <C-R> <Plug>(vimfiler_redraw_screen)

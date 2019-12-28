@@ -19,6 +19,9 @@ Plug 'Shougo/unite.vim'
 Plug 'Shougo/echodoc.vim'
 Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
 
+Plug 'kristijanhusak/defx-git'
+Plug 'kristijanhusak/defx-icons'
+
 " Git
 Plug 'mhinz/vim-signify'
 Plug 'airblade/vim-gitgutter'

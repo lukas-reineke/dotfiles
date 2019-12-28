@@ -59,7 +59,7 @@ nnoremap <Leader>R :let v=winsaveview()<CR>:%s/\<<C-R><C-W>\>//g
 vnoremap <Leader>r :s/\v()
 
 nnoremap <Leader>x :CtrlSF<Space>
-nnoremap <Leader>a :Ack<Space>
+nnoremap <Leader>a :call ChangeActiveList('quickfix')<CR>:Ack<Space>
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -145,7 +145,8 @@ endfunction
 
 command! Marks call s:Marks()
 
-nnoremap <leader>m :Marks<CR>
+nnoremap <leader>m :call ChangeActiveList('location')<CR>:SignatureListGlobalMarks<CR>
+" nnoremap <leader>m :Marks<CR>
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

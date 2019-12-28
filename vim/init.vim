@@ -172,7 +172,7 @@ let g:indentLine_showFirstIndentLevel = 1
 let g:indentLine_color_gui = onedark#GetColors().cursor_grey.gui
 let g:indentLine_bgcolor_gui = onedark#GetColors().black.gui
 let g:indentLine_setConceal = 0
-let g:indentLine_fileTypeExclude = ['help']
+let g:indentLine_fileTypeExclude = ['help', 'defx']
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -400,6 +400,7 @@ let g:vimfiler_tree_closed_icon = '│'
 let g:vimfiler_marked_file_icon = '┼'
 let g:vimfiler_tree_leaf_icon = ''
 let g:vimfiler_ignore_pattern = []
+let g:vimfiler_restore_alternate_file = 1
 call vimfiler#custom#profile('default', 'context', {
 \   'safe': 0,
 \   'horizontal': 1,
@@ -407,6 +408,44 @@ call vimfiler#custom#profile('default', 'context', {
 \   'force-quit': 1,
 \   'direction': 'rightbelow',
 \})
+
+" defx
+call defx#custom#column('mark', {
+\   'readonly_icon': '✗',
+\   'selected_icon': '│',
+\})
+call defx#custom#column('indent', {
+\   'indent': '    ',
+\})
+call defx#custom#option('_', {
+\   'columns': 'indent:icons:filename:mark:git:type:size:time',
+\})
+call defx#custom#column('filename', {
+\   'min_width': 85,
+\   'max_width': 85,
+\})
+
+let g:defx_icons_root_opened_tree_icon = '├'
+let g:defx_icons_nested_opened_tree_icon = '├'
+let g:defx_icons_nested_closed_tree_icon = '│'
+let g:defx_icons_directory_icon = '│'
+let g:defx_icons_parent_icon = '├'
+
+call defx#custom#column('git', 'indicators', {
+\   'Modified' : '✹',
+\   'Staged'   : '✚',
+\   'Untracked': '✭',
+\   'Renamed'  : '➜',
+\   'Unmerged' : '═',
+\   'Ignored'  : '☒',
+\   'Deleted'  : '✖',
+\   'Unknown'  : '?'
+\})
+
+augroup defx
+    autocmd!
+    autocmd BufWritePost * call defx#redraw()
+augroup END
 
 "EasyMotion
 let g:EasyMotion_smartcase = 1
@@ -444,6 +483,12 @@ let g:fzf_action = {
 
 " Lion
 let g:lion_squeeze_spaces = 1
+
+" Siganture
+let g:SignatureForceRemoveGlobal = 1
+
+" pasta
+let g:pasta_disabled_filetypes = ['defx']
 
 " Sparkup
 let g:sparkupExecuteMapping = '<C-E>'
