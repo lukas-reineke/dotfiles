@@ -12,7 +12,7 @@ nnoremap <silent><buffer><expr> o defx#is_directory() ?
 \   defx#do_action('multi', ['drop', 'quit'])
 
 
-noremap <silent><buffer><expr> s defx#do_action('multi', [['drop', 'split'], 'quit'])
+nnoremap <silent><buffer><expr> s defx#do_action('multi', [['drop', 'split'], 'quit'])
 nnoremap <silent><buffer><expr> N defx#do_action('new_multiple_files')
 nnoremap <silent><buffer><expr> D defx#do_action('remove')
 nnoremap <silent><buffer><expr> r defx#do_action('rename')

@@ -1,4 +1,4 @@
 
-set conceallevel=2
+setlocal conceallevel=2
 
-noremap <silent> <expr> <C-g> jsonpath#echo()
+noremap <silent><buffer><expr> <C-g> jsonpath#echo()
