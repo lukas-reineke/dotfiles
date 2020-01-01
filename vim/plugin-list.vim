@@ -14,7 +14,6 @@ Plug 'tpope/vim-repeat'
 
 " Shougo
 Plug 'Shougo/vimproc.vim'
-Plug 'Shougo/vimfiler.vim'
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/echodoc.vim'
 Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }

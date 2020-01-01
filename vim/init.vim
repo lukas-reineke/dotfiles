@@ -392,33 +392,16 @@ let g:no_man_maps = 1
 " Json
 let g:vim_json_syntax_conceal = 0
 
-" vimfiler
-let g:vimfiler_as_default_explorer = 1
-let g:vimfiler_tree_indentation = 4
-let g:vimfiler_tree_opened_icon = '├'
-let g:vimfiler_tree_closed_icon = '│'
-let g:vimfiler_marked_file_icon = '┼'
-let g:vimfiler_tree_leaf_icon = ''
-let g:vimfiler_ignore_pattern = []
-let g:vimfiler_restore_alternate_file = 1
-call vimfiler#custom#profile('default', 'context', {
-\   'safe': 0,
-\   'horizontal': 1,
-\   'find': 1,
-\   'force-quit': 1,
-\   'direction': 'rightbelow',
-\})
-
 " defx
 call defx#custom#column('mark', {
-\   'readonly_icon': '✗',
-\   'selected_icon': '│',
+\   'readonly_icon': '◆',
+\   'selected_icon': '■',
 \})
 call defx#custom#column('indent', {
 \   'indent': '    ',
 \})
 call defx#custom#option('_', {
-\   'columns': 'indent:icons:filename:mark:git:type:size:time',
+\   'columns': 'indent:mark:icons:filename:git:type:size:time',
 \})
 
 let g:defx_icons_root_opened_tree_icon = '├'
@@ -428,12 +411,12 @@ let g:defx_icons_directory_icon = '│'
 let g:defx_icons_parent_icon = '├'
 
 call defx#custom#column('git', 'indicators', {
-\   'Modified' : '✹',
+\   'Modified' : '◉',
 \   'Staged'   : '✚',
-\   'Untracked': '✭',
+\   'Untracked': '◈',
 \   'Renamed'  : '➜',
 \   'Unmerged' : '═',
-\   'Ignored'  : '☒',
+\   'Ignored'  : '▨',
 \   'Deleted'  : '✖',
 \   'Unknown'  : '?'
 \})
