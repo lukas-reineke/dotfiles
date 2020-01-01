@@ -3,7 +3,7 @@
 #""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set $mod Mod4
 set $alt Mod1
-set $terminal kitty --title kitty -e tmuxp load ~/dotfiles/tmux/tmuxinator/dotfiles.yml  -y
+set $terminal kitty --title kitty -e tmuxp load ~/dotfiles/tmux/tmuxinator/dotfiles.yml -y
 
 #""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 # => Mappings
@@ -19,16 +19,6 @@ bindsym $mod+Shift+r restart
 #""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 # => Movement
 #""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-bindsym Control+Up exec xdotool click 1
-bindsym $mod+Left exec xdotool mousemove_relative -- -80 0
-bindsym $mod+Down exec xdotool mousemove_relative 0 80
-bindsym $mod+Up exec xdotool mousemove_relative -- 0 -80
-bindsym $mod+Right exec xdotool mousemove_relative 80 0
-bindsym $mod+Shift+Left exec xdotool mousemove_relative -- -15 0
-bindsym $mod+Shift+Down exec xdotool mousemove_relative 0 15
-bindsym $mod+Shift+Up exec xdotool mousemove_relative -- 0 -15
-bindsym $mod+Shift+Right exec xdotool mousemove_relative 15 0
 
 bindsym $mod+h focus left
 bindsym $mod+j focus down
@@ -172,7 +162,6 @@ bindsym --whole-window $mod+button2 kill
 bindsym --whole-window $mod+button9 move right
 bindsym --whole-window $mod+button8 move left
 
-assign [class="Opera"] 11
 # i3 Gaps ##
 gaps inner 15
 gaps outer 1
@@ -186,6 +175,7 @@ focus_on_window_activation focus
 # exec --no-startup-id ~/scripts/lemonbar_script.sh | lemonbar -f "Input Mono:size=10"
 exec --no-startup-id ~/.screenlayout/default.sh
 exec --no-startup-id lead
+exec --no-startup-id nitrogen --restore
 
 # vim:filetype=i3
 
