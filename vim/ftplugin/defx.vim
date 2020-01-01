@@ -16,10 +16,10 @@ nnoremap <silent><buffer><expr> s defx#do_action('multi', [['drop', 'split'], 'q
 nnoremap <silent><buffer><expr> N defx#do_action('new_multiple_files')
 nnoremap <silent><buffer><expr> D defx#do_action('remove')
 nnoremap <silent><buffer><expr> r defx#do_action('rename')
-nnoremap <silent><buffer><expr> a defx#do_action('toggle_select') . 'j'
-xnoremap <silent><buffer><expr> a defx#do_action('toggle_select_visual')
+nnoremap <silent><buffer><expr> M defx#do_action('toggle_select') . 'j'
+xnoremap <silent><buffer><expr> M defx#do_action('toggle_select_visual')
 
-nnoremap <silent><buffer><expr> m defx#do_action('move')
+nnoremap <silent><buffer><expr><nowait> m defx#do_action('move')
 nnoremap <silent><buffer><expr> y defx#do_action('copy')
 nnoremap <silent><buffer><expr> p defx#do_action('paste')
 
