@@ -30,6 +30,6 @@ nmap <buffer> gr <Plug>(defx-git-reset)
 nmap <buffer> gu <Plug>(defx-git-discard)
 
 call defx#custom#column('filename', {
-\   'min_width': winwidth(0) - 32,
-\   'max_width': winwidth(0) - 32,
+\   'min_width': winwidth(0) - 30,
+\   'max_width': winwidth(0) - 30,
 \})
