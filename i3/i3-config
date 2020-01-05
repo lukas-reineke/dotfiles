@@ -69,6 +69,31 @@ bindsym $mod+Tab workspace next_on_output
 bindsym $mod+Shift+Tab workspace prev_on_output
 bindsym Control+$alt+Tab workspace next_on_output
 
+
+mode "swap" {
+    bindsym $mod+1 exec --no-startup-id "python3.6 ~/dev/i3-workspace-switch/i3-workspace-switch.py 1"
+    bindsym $mod+2 exec --no-startup-id "python3.6 ~/dev/i3-workspace-switch/i3-workspace-switch.py 2"
+    bindsym $mod+3 exec --no-startup-id "python3.6 ~/dev/i3-workspace-switch/i3-workspace-switch.py 3"
+    bindsym $mod+4 exec --no-startup-id "python3.6 ~/dev/i3-workspace-switch/i3-workspace-switch.py 4"
+    bindsym $mod+5 exec --no-startup-id "python3.6 ~/dev/i3-workspace-switch/i3-workspace-switch.py 5"
+    bindsym $mod+6 exec --no-startup-id "python3.6 ~/dev/i3-workspace-switch/i3-workspace-switch.py 6"
+    bindsym $mod+7 exec --no-startup-id "python3.6 ~/dev/i3-workspace-switch/i3-workspace-switch.py 7"
+    bindsym $mod+8 exec --no-startup-id "python3.6 ~/dev/i3-workspace-switch/i3-workspace-switch.py 8"
+    bindsym $mod+9 exec --no-startup-id "python3.6 ~/dev/i3-workspace-switch/i3-workspace-switch.py 9"
+    bindsym $mod+0 exec --no-startup-id "python3.6 ~/dev/i3-workspace-switch/i3-workspace-switch.py 10"
+
+    bindsym $mod+h focus left
+    bindsym $mod+j focus down
+    bindsym $mod+k focus up
+    bindsym $mod+l focus right
+
+    bindsym Return swap container with mark "swapee"; unmark "swapee"; mode "default";
+    bindsym $mod+Return swap container with mark "swapee"; unmark "swapee"; mode "default";
+    bindsym Escape unmark "swapee"; mode "default";
+}
+
+bindsym $mod+Shift+i mark --add "swapee"; mode "swap"
+
 #""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 # => Resize
 #""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
