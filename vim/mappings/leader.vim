@@ -3,7 +3,7 @@
 
 let g:mapleader = "\<Space>"
 
-nnoremap <Leader><Leader> <C-^>
+nnoremap <silent><Leader><Leader> :<C-u>exe v:count ? v:count . 'b' : 'b' . (bufloaded(0) ? '#' : 'n')<CR>
 
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :call CloseOnLast()<CR>
