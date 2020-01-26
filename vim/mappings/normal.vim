@@ -41,29 +41,10 @@ noremap <RIGHT> 5zl
 noremap <C-Y> 2<C-Y>
 noremap <C-E> 2<C-E>
 
-function! FixIndentation()
-    let l:view = winsaveview()
-    normal gg=G
-    call winrestview(l:view)
-endfunction
-
-nnoremap =+ :call FixIndentation()<CR>
-
 nmap gj <plug>(signify-next-hunk)
 nmap gk <plug>(signify-prev-hunk)
 
-nnoremap 1% 10%
-nnoremap 2% 20%
-nnoremap 3% 30%
-nnoremap 4% 40%
-nnoremap 5% 50%
-nnoremap 6% 60%
-nnoremap 7% 70%
-nnoremap 8% 80%
-nnoremap 9% 90%
-
 nmap <C-]> <Plug>(coc-definition)
-" nnoremap <C-]> :call LanguageClient#textDocument_definition()<CR>
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -72,6 +53,7 @@ nmap <C-]> <Plug>(coc-definition)
 " Plugins {{{
 
 nnoremap <C-p> :Files<CR>
+" nnoremap <C-p> :Clap gfiles<CR>
 
 nnoremap - :Defx -search=`expand('%:p')`<CR>
 " nnoremap - :VimFilerCurrentDir<CR>

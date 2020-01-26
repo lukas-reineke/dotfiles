@@ -143,6 +143,8 @@ Plug 'dbakker/vim-projectroot'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
+Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
+
 " Paste
 Plug 'vim-scripts/UnconditionalPaste'
 Plug 'sickill/vim-pasta'

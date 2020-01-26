@@ -10,7 +10,6 @@ nnoremap <Leader>q :call CloseOnLast()<CR>
 nnoremap <Leader>Q :q<CR>
 nnoremap <Leader><C-O> :Bufonly<CR>
 
-nnoremap <Leader>n :Files %:h<CR>
 nnoremap <Leader>N :e %:h/
 
 nnoremap <Leader>o o<esc>k
@@ -38,14 +37,21 @@ nnoremap <Leader>p :Buffers<CR>
 nnoremap <Leader>P :Rg<CR>
 nnoremap <Leader><C-P> :Commands<CR>
 nnoremap <Leader><C-W> :Windows<CR>
+nnoremap <Leader>n :Files %:h<CR>
+nmap <Leader>[ :Quickfix<CR>
+
+" nnoremap <Leader>n :exec "Clap files " . expand('%:h')<CR>
+" nnoremap <Leader>p :Clap buffers<CR>
+" nnoremap <Leader>P :Clap grep<CR>
+" nnoremap <Leader><C-P> :Clap command<CR>
+" nnoremap <Leader><C-R> :Clap registers<CR>
+" nnoremap <Leader>M :Clap marks<CR>
+" nnoremap <Leader>[ :Clap quickfix<CR>
 
 nnoremap <Leader>f :Vista finder<CR>
 nnoremap <Leader>d :Vista!!<CR>
-" nnoremap <Leader>f :call LanguageClient_textDocument_documentSymbol()<Cr>
-" nnoremap <Leader><CR> :call LanguageClient_contextMenu()<Cr>
 nmap <leader>rn <Plug>(coc-rename)
 vmap <leader>a <Plug>(coc-codeaction-selected)
-nmap <Leader>[ <Plug>(fzf-quickfix)
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -87,27 +93,16 @@ nnoremap <Leader>gb :Gblame<CR>
 nnoremap <Leader>gs :Gstatus<CR><C-w>o
 nnoremap <Leader>gl :BCommits<CR>
 nnoremap <Leader>gf :GFiles?<CR>
+" nnoremap <Leader>gf :Clap git_diff_files<CR>
 nnoremap <Leader>gt :SignifyToggleHighlight<CR>
 nnoremap <Leader>gz :SignifyFold!<CR>
 nnoremap <Leader>gc :Twiggy<CR>
-" nnoremap <Leader>gm :Magit<CR>zcgg
 nnoremap <Leader>gu :GitGutterUndoHunk<CR>
 nnoremap <Leader>ga :GitGutterStageHunk<CR>:SignifyRefresh<CR>
 nnoremap <Leader>gg :VcsJump diff<CR>:call ChangeActiveList('quickfix')<CR>
 nnoremap <Leader>gn :VcsJump merge<CR>:call ChangeActiveList('quickfix')<CR>
 nmap <Leader>gw <Plug>(git-messenger)
 nmap <Leader>gi <Plug>(git-messenger-into-popup)
-" let g:magit_show_magit_mapping='<NOPE>'
-
-" function! CheckoutLine()
-"     let l:view = winsaveview()
-"     Gvdiff
-"     diffget
-"     only
-"     call winrestview(l:view)
-" endfunction
-
-" nnoremap <Leader>go :call CheckoutLine()<CR>
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -133,20 +128,7 @@ nnoremap <leader>! :call <SID>goog(expand("<cWORD>"), 1)<cr>
 
 " Marks {{{
 
-function s:Marks()
-    marks abcdefghijklmnopqrstuvwxyz.ABCDEFGHIJKLMNOPQRSTUVWXYZ
-    echo 'Mark: '
-    let l:mark = nr2char(getchar())
-    redraw
-
-    execute 'normal! `' . l:mark
-
-endfunction
-
-command! Marks call s:Marks()
-
 nnoremap <leader>m :call ChangeActiveList('location')<CR>:SignatureListGlobalMarks<CR>
-" nnoremap <leader>m :Marks<CR>
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

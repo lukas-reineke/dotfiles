@@ -8,10 +8,16 @@ imap <C-X><C-F> <ESC>:cd %:p:h<CR>a<plug>(fzf-complete-file)
 inoremap <C-B> <C-E>
 inoremap <silent><expr> ( complete_parameter#pre_complete("()")
 inoremap <C-L> <C-X><C-L>
-imap <C-X><C-L> <plug>(fzf-complete-line)
 inoremap <C-E> <ESC>BDi<><ESC>hpyypa/<ESC>O
 inoremap <silent><expr> <C-n> coc#refresh()
 inoremap <C-O> <C-X><C-N>
+
+inoremap <expr> <C-X><C-L> fzf#vim#complete(fzf#wrap({
+\   'prefix': '^.*$',
+\   'source': 'rg -n ^ --color always',
+\   'options': '--ansi --delimiter : --nth 3..',
+\   'reducer': { lines -> join(split(lines[0], ':\zs')[2:], '') }
+\}))
 
 inoremap <C-F>
     \ <C-O>:let b:oldpwd = getcwd() <bar>

@@ -18,3 +18,4 @@ export GOOGLE_APPLICATION_CREDENTIALS=~/.config/gcloud/application_default_crede
 export TERMINFO="$HOME/.terminfo"
 
 export NVM_DIR="$HOME/.nvm"
+export BAT_THEME="ansi-dark"

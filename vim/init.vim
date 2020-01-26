@@ -454,11 +454,36 @@ let g:poppy_point_enable = 1
 
 " FZF
 let g:fzf_buffers_jump = 1
+function! s:build_quickfix_list(lines)
+    call setqflist(map(copy(a:lines), '{ "filename": v:val, "lnum": 1, "col": 1 }'))
+    copen
+    cc
+endfunction
 let g:fzf_action = {
+\   'ctrl-q': function('s:build_quickfix_list'),
 \   'ctrl-z': 'tab split',
 \   'ctrl-s': 'split',
 \   'ctrl-v': 'vsplit',
 \}
+
+let g:clap_layout = {'width': '80%', 'height': '45%', 'row': '15%', 'col': '10%'}
+let g:clap_enable_icon=1
+let g:clap_provider_grep_enable_icon=1
+let g:clap_bg = { 'guibg': onedark#GetColors().black.gui }
+let g:clap_theme = {
+\   'display': g:clap_bg,
+\   'input': g:clap_bg,
+\   'spinner': g:clap_bg,
+\   'search_text': g:clap_bg,
+\   'preview': g:clap_bg,
+\   'selected': { 'guibg': onedark#GetColors().dark_black.gui },
+\   'current_selection': { 'guibg': onedark#GetColors().dark_black.gui },
+\}
+let g:clap_fuzzy_match_hl_groups = [
+\   [ onedark#GetColors().green.cterm, onedark#GetColors().green.gui ],
+\]
+let g:clap_prompt_format = '%provider_id%> '
+let g:clap_disable_run_rooter = v:true
 
 " Lion
 let g:lion_squeeze_spaces = 1
