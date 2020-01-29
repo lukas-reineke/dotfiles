@@ -40,6 +40,7 @@ nnoremap <Leader><C-W> :Windows<CR>
 " nnoremap <Leader>n :Files %:h<CR>
 nnoremap <Leader>n :call Fzf_dev(expand('%:h'))<CR>
 nmap <Leader>[ :Quickfix<CR>
+nnoremap <Leader>M :Marks<CR>
 
 " nnoremap <Leader>n :exec "Clap files " . expand('%:h')<CR>
 " nnoremap <Leader>p :Clap buffers<CR>
@@ -95,6 +96,7 @@ nnoremap <Leader>gs :Gstatus<CR><C-w>o
 nnoremap <Leader>gl :BCommits<CR>
 nnoremap <Leader>gf :GFiles?<CR>
 " nnoremap <Leader>gf :Clap git_diff_files<CR>
+nnoremap <Leader>gf :call Fzf_dev('git')<CR>
 nnoremap <Leader>gt :SignifyToggleHighlight<CR>
 nnoremap <Leader>gz :SignifyFold!<CR>
 nnoremap <Leader>gc :Twiggy<CR>

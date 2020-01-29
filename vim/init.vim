@@ -498,11 +498,17 @@ function! CreateCenteredFloatingWindow()
     augroup END
 endfunction
 let g:fzf_layout = { 'window': 'call CreateCenteredFloatingWindow()' }
-let $FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS . ' --reverse '
+let $FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS . ' --reverse --ansi'
 
 function! Fzf_dev(path)
+    let s:path = a:path
+
     function! s:files(path)
-        let l:files = split(system($FZF_DEFAULT_COMMAND . ' -- ' . a:path), '\n')
+        if a:path ==? 'git'
+            let l:files = split(system('git diff --name-only'), '\n')
+        else
+            let l:files = split(system($FZF_DEFAULT_COMMAND . ' -- ' . a:path), '\n')
+        end
         return s:prepend_icon(l:files)
     endfunction
 
@@ -511,7 +517,7 @@ function! Fzf_dev(path)
         for l:candidate in a:candidates
             let l:filename = fnamemodify(l:candidate, ':p:t')
             let l:icon = WebDevIconsGetFileTypeSymbol(l:filename, isdirectory(l:filename))
-            call add(l:result, printf('%s %s', l:icon, l:candidate))
+            call add(l:result, printf('[0;31m%s[0m %s', l:icon, l:candidate))
         endfor
 
         return l:result
@@ -525,6 +531,11 @@ function! Fzf_dev(path)
     function! s:multi_edit_files(files)
         if len(a:files) == 1
             execute 'silent e' s:map_file('', a:files[0])
+            if s:path ==? 'git'
+                sleep 100m
+                execute 'normal gg'
+                execute "normal \<plug>(signify-next-hunk)"
+            end
         else
             call setqflist(
             \   map(
@@ -537,12 +548,18 @@ function! Fzf_dev(path)
         end
     endfunction
 
-    call fzf#run({
+    if a:path ==? 'git'
+        let l:fzf_files_options = '--preview "bat --italic-text=always --style=numbers,changes --color always {2..-1} | grep -A5 -B5 --color=never -P \"^..\d+.{0,19}[\+|\_|~]\""'
+    else
+        let l:fzf_files_options = ''
+    end
+
+    call fzf#run(fzf#wrap({
     \   'source': <sid>files(a:path),
     \   'sink*': function('s:multi_edit_files'),
-    \   'options': '--reverse --multi',
+    \   'options': '--multi ' . l:fzf_files_options,
     \   'window': 'call CreateCenteredFloatingWindow()',
-    \})
+    \}))
 
 endfunction
 
