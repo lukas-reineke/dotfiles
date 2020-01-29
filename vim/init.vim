@@ -498,11 +498,11 @@ function! CreateCenteredFloatingWindow()
     augroup END
 endfunction
 let g:fzf_layout = { 'window': 'call CreateCenteredFloatingWindow()' }
-let $FZF_DEFAULT_OPTS='--reverse '
+let $FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS . ' --reverse '
 
-function! Fzf_dev()
-    function! s:files()
-        let l:files = split(system($FZF_DEFAULT_COMMAND), '\n')
+function! Fzf_dev(path)
+    function! s:files(path)
+        let l:files = split(system($FZF_DEFAULT_COMMAND . ' -- ' . a:path), '\n')
         return s:prepend_icon(l:files)
     endfunction
 
@@ -517,17 +517,31 @@ function! Fzf_dev()
         return l:result
     endfunction
 
-    function! s:edit_file(item)
-        let l:pos = stridx(a:item, ' ')
-        let l:file_path = a:item[pos+1:-1]
-        execute 'silent e' l:file_path
+    function! s:map_file(_key, file)
+        let l:pos = stridx(a:file, ' ')
+        return a:file[pos+1:-1]
+    endfunction
+
+    function! s:multi_edit_files(files)
+        if len(a:files) == 1
+            execute 'silent e' s:map_file('', a:files[0])
+        else
+            call setqflist(
+            \   map(
+            \       map(copy(a:files), function('s:map_file')),
+            \       '{ "filename": v:val, "lnum": 1, "col": 1 }',
+            \   )
+            \)
+            copen
+            cc
+        end
     endfunction
 
     call fzf#run({
-    \   'source': <sid>files(),
-    \   'sink':   function('s:edit_file'),
-    \   'options': '-m --reverse ',
-    \   'window': 'call CreateCenteredFloatingWindow()'
+    \   'source': <sid>files(a:path),
+    \   'sink*': function('s:multi_edit_files'),
+    \   'options': '--reverse --multi',
+    \   'window': 'call CreateCenteredFloatingWindow()',
     \})
 
 endfunction
