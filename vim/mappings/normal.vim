@@ -52,7 +52,7 @@ nmap <C-]> <Plug>(coc-definition)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugins {{{
 
-nnoremap <C-p> :Files<CR>
+nnoremap <C-p> :call Fzf_dev()<CR>
 " nnoremap <C-p> :Clap gfiles<CR>
 
 nnoremap - :Defx -search=`expand('%:p')`<CR>
