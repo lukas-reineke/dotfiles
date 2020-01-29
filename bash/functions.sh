@@ -373,11 +373,14 @@ fcoc() {
         git checkout $(echo "$commit" | sed "s/ .*//")
 }
 
+function writecmd() {
+    perl -e 'ioctl STDOUT, 0x5412, $_ for split //, do{ chomp($_ = <>); $_ }';
+}
+
 # fh - repeat history
 function fzf_history() {
-    local command=$(([ -n "$ZSH_NAME" ] && fc -l 1 || history) | sed 's/ *[0-9]* *//' | fzf --height 20% --reverse +s --tac)
-    history -s "$command"
-    $command
+    local command=$(history | sed 's/ *[0-9]* *//' | fzf --height 20% --reverse +s --tac --tiebreak=index)
+    echo "$command" | writecmd
 }
 bind '"\C-r":" fzf_history\n"'
 
