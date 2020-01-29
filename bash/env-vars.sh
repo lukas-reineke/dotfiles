@@ -13,6 +13,7 @@ export PATH=${PATH}:$HOME/dotfiles/lib/vimv
 export PATH=${PATH}:$HOME/.local/bin
 export PATH=${PATH}:$HOME/go/bin
 export PATH=${PATH}:$HOME/.gem/ruby/2.6.0/bin
+export PATH=${PATH}:$HOME/.gem/ruby/2.7.0/bin
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 export GOOGLE_APPLICATION_CREDENTIALS=~/.config/gcloud/application_default_credentials.json
 export TERMINFO="$HOME/.terminfo"
