@@ -1,5 +1,5 @@
 [global]
-    font = Fira Code 12
+    font = Fira Code Regular 10
 
     # allow a small subset of html markup:
     # <b>bold</b>
@@ -19,7 +19,11 @@
     #   %I  iconname (without its path)
     #   %p  progress value if set ([  0%] to [100%]) or nothing
     # Markup is allowed
-    format = "<b>%a: </b>%s\n\n<i>%b</i>"
+    format = "%a\n\n<b>%s</b>\n%b"
+
+    # When word_wrap is set to no, specify where to ellipsize long lines.
+    # Possible values are "start", "middle" and "end".
+    ellipsize = middle
 
     # Sort messages by urgency
     sort = yes
@@ -71,7 +75,13 @@
     idle_threshold = 120
 
     # Which monitor should the notifications be displayed on.
-    monitor = 0
+    monitor = 1
+
+    # Define the title of the windows spawned by dunst
+    title = Dunst
+
+    # Define the class of the windows spawned by dunst
+    class = Dunst
 
     # Display notification on focused monitor. Possible modes are:
     # mouse: follow mouse pointer
@@ -118,7 +128,7 @@
     # print a notification on startup
     # This is mainly for error detection, since dbus (re-)starts dunst
     # automatically after a crash.
-    startup_notification = true
+    startup_notification = false
 
     # dmenu path
     dmenu = rofi -dmenu
@@ -169,8 +179,9 @@
     timeout = 10
 
 [urgency_critical]
-    background = "#be5046"
-    foreground = "#1a1a1a"
+    background = "#1a1a1a"
+    foreground = "#abb2bf"
+    frame_color = "#be5046"
     timeout = 0
 
 
