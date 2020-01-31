@@ -6,13 +6,13 @@ nnoremap <silent><buffer><expr> <ESC> defx#do_action('quit')
 
 nnoremap <silent><buffer><expr> <CR> defx#is_directory() ?
 \   defx#do_action('open_or_close_tree') . 'j' :
-\   defx#do_action('multi', ['edit', 'quit'])
+\   defx#do_action('open')
 nnoremap <silent><buffer><expr> o defx#is_directory() ?
 \   defx#do_action('open_or_close_tree') . 'j' :
-\   defx#do_action('multi', ['edit', 'quit'])
+\   defx#do_action('open')
 
 
-nnoremap <silent><buffer><expr> s defx#do_action('multi', [['edit', 'split'], 'quit'])
+nnoremap <silent><buffer><expr> s defx#do_action('multi', [['open', 'split'], 'quit'])
 nnoremap <silent><buffer><expr> N defx#do_action('new_multiple_files')
 nnoremap <silent><buffer><expr> D defx#do_action('remove')
 nnoremap <silent><buffer><expr> r defx#do_action('rename')
