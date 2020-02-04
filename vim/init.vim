@@ -517,7 +517,18 @@ function! Fzf_dev(path)
         for l:candidate in a:candidates
             let l:filename = fnamemodify(l:candidate, ':p:t')
             let l:icon = WebDevIconsGetFileTypeSymbol(l:filename, isdirectory(l:filename))
-            call add(l:result, printf('[0;31m%s[0m %s', l:icon, l:candidate))
+            " echoerr l:icon
+            let l:color_map = {
+            \   '': '[0;36m[0m',
+            \   '': '[0;97m[0m',
+            \   '': '[0;35m[0m',
+            \   '': '[0;36m[0m',
+            \   '': '[0;34m[0m',
+            \   '': '[0;33m[0m',
+            \   '': '[0;32m[0m',
+            \   '': '[0;33m[0m',
+            \}
+            call add(l:result, printf('%s %s', get(l:color_map, l:icon, '[0;31m' . l:icon . '[0m'), l:candidate))
         endfor
 
         return l:result
@@ -549,7 +560,7 @@ function! Fzf_dev(path)
     endfunction
 
     if a:path ==? 'git'
-        let l:fzf_files_options = '--preview "bat --italic-text=always --style=numbers,changes --color always {2..-1} | grep -A5 -B5 --color=never -P \"^..\d+.{0,19}[\+|\_|~]\""'
+        let l:fzf_files_options = '--preview "bat --italic-text=always --style=numbers,changes --color always {2..-1} | grep -A5 -B5 --color=never -P \"^..\d+.{0,30}[\+|\_|~]\""'
     else
         let l:fzf_files_options = ''
     end
