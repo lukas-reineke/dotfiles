@@ -89,7 +89,7 @@ map <Leader>h <Plug>(easymotion-linebackward)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Git {{{
 
-nnoremap <Leader>gd :Gvdiff<CR>
+nnoremap <Leader>gd :execute "Gvdiff " .. g:gitHead<CR>
 nnoremap <Leader>gr :Gread<CR>
 nnoremap <Leader>gb :Gblame<CR>
 nnoremap <Leader>gs :Gstatus<CR><C-w>o
@@ -102,7 +102,7 @@ nnoremap <Leader>gz :SignifyFold!<CR>
 nnoremap <Leader>gc :Twiggy<CR>
 nnoremap <Leader>gu :GitGutterUndoHunk<CR>
 nnoremap <Leader>ga :GitGutterStageHunk<CR>:SignifyRefresh<CR>
-nnoremap <Leader>gg :VcsJump diff<CR>:call ChangeActiveList('quickfix')<CR>
+nnoremap <Leader>gg :execute "VcsJump diff " .. g:gitHead<CR>:call ChangeActiveList('quickfix')<CR>
 nnoremap <Leader>gn :VcsJump merge<CR>:call ChangeActiveList('quickfix')<CR>
 nmap <Leader>gw <Plug>(git-messenger)
 nmap <Leader>gi <Plug>(git-messenger-into-popup)

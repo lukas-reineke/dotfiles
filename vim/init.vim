@@ -505,7 +505,7 @@ function! Fzf_dev(path)
 
     function! s:files(path)
         if a:path ==? 'git'
-            let l:files = split(system('git diff --name-only'), '\n')
+            let l:files = split(system('git diff --name-only ' .. g:gitHead), '\n')
         else
             let l:files = split(system($FZF_DEFAULT_COMMAND . ' -- ' . a:path), '\n')
         end

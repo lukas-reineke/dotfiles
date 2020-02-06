@@ -352,4 +352,36 @@ nnoremap <Leader>s :call ToggleSpell()<CR>
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Signify {{{
+
+command! -nargs=* SignifySet call SignifySet(<q-args>)
+
+function SignifySet(head)
+    let g:signify_vcs_cmds['git'] = 'git diff --no-color --no-ext-diff -U0 ' .. a:head .. ' -- %f'
+    echom 'Now diffing against ' .. a:head
+endfunction
+
+" }}}
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Git head {{{
+
+command! -nargs=* GitHead call SetGitHead(<q-args>)
+
+let g:gitHead = 'HEAD'
+function SetGitHead(head)
+    if len(a:head)
+        let g:gitHead = a:head
+    else
+        let g:gitHead = 'HEAD'
+    endif
+
+    call SignifySet(g:gitHead)
+endfunction
+
+" }}}
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim:foldmethod=marker:foldlevel=0
