@@ -3,6 +3,7 @@ https://addons.opera.com/en/extensions/details/adguard/
 https://addons.opera.com/en/extensions/details/google-translate/
 https://addons.opera.com/en/extensions/details/install-chrome-extensions/
 https://addons.opera.com/en/extensions/details/stylus/
+https://addons.opera.com/en/extensions/details/https-everywhere/
 https://chrome.google.com/webstore/detail/better-pull-request-for-g/nfhdjopbhlggibjlimhdbogflgmbiahc
 https://chrome.google.com/webstore/detail/browser-source-provider/lkaldcfmhailjfcbapicgkdkkamanlml
 # https://chrome.google.com/webstore/detail/custom-scroll-bar/ecdoolnmfaaljjdfkffnbolehkdageeb

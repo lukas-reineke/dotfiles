@@ -145,8 +145,6 @@ Plug 'dbakker/vim-projectroot'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
-Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
-
 " Paste
 Plug 'vim-scripts/UnconditionalPaste'
 Plug 'sickill/vim-pasta'
@@ -192,7 +190,6 @@ Plug 'fszymanski/fzf-quickfix'
 
 " Better visual mode
 Plug 'kana/vim-niceblock'
-Plug 'vim-scripts/vis'
 
 " Marks in column
 Plug 'kshenoy/vim-signature'
@@ -222,24 +219,28 @@ Plug 'tommcdo/vim-lion'
 "     \ 'do': 'bash install.sh',
 "     \ }
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
-" coc-browser
-" coc-css
-" coc-dictionary
-" coc-emmet
-" coc-emoji
-" coc-github
-" coc-highlight
-" coc-html
-" coc-json
-" coc-pyls
-" coc-snippets
-" coc-tsserver
-" coc-ultisnips
-" coc-word
-" coc-yaml
-" coc-vimlsp
-" coc-go
-" coc-docker
+
+let g:coc_global_extensions = [
+\   'coc-browser',
+\   'coc-css',
+\   'coc-dictionary',
+\   'coc-emmet',
+\   'coc-emoji',
+\   'coc-github',
+\   'coc-highlight',
+\   'coc-html',
+\   'coc-json',
+\   'coc-pyls',
+\   'coc-snippets',
+\   'coc-tsserver',
+\   'coc-ultisnips',
+\   'coc-word',
+\   'coc-yaml',
+\   'coc-vimlsp',
+\   'coc-go',
+\   'coc-docker',
+\]
+
 Plug 'Shougo/neco-vim'
 Plug 'neoclide/coc-neco'
 Plug 'liuchengxu/vista.vim'
