@@ -1,0 +1,5 @@
+[Desktop Entry]
+Exec=shutdown -h 0
+Icon=shutdown
+Name=Shutdown
+Type=Application
