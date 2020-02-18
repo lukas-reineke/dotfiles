@@ -517,7 +517,6 @@ function! Fzf_dev(path)
         for l:candidate in a:candidates
             let l:filename = fnamemodify(l:candidate, ':p:t')
             let l:icon = WebDevIconsGetFileTypeSymbol(l:filename, isdirectory(l:filename))
-            " echoerr l:icon
             let l:color_map = {
             \   '': '[0;36m[0m',
             \   '': '[0;97m[0m',
