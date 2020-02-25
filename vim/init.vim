@@ -502,8 +502,14 @@ let $FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS . ' --reverse --ansi'
 
 function! Fzf_dev(path)
     let s:path = a:path
+    let s:files_status = {}
 
     function! s:files(path)
+        let l:statuses_str = system('git -c color.status=false -C ' . $PWD . ' status -s')
+        for l:status_line in split(l:statuses_str, '\n')
+            let s:files_status[split(l:status_line, ' ')[1]] = split(l:status_line, ' ')[0]
+        endfor
+
         if a:path ==? 'git'
             let l:files = split(system('git diff --name-only ' .. g:gitHead), '\n')
         else
@@ -516,6 +522,7 @@ function! Fzf_dev(path)
         let l:result = []
         for l:candidate in a:candidates
             let l:filename = fnamemodify(l:candidate, ':p:t')
+            let l:git_icon = get(s:files_status, l:candidate, ' ')
             let l:icon = WebDevIconsGetFileTypeSymbol(l:filename, isdirectory(l:filename))
             let l:color_map = {
             \   '': '[0;36m[0m',
@@ -526,8 +533,19 @@ function! Fzf_dev(path)
             \   '': '[0;33m[0m',
             \   '': '[0;32m[0m',
             \   '': '[0;33m[0m',
+            \   'M': '[0;33mM[0m',
+            \   'D': '[0;31mD[0m',
+            \   '??': '[0;34m?[0m',
             \}
-            call add(l:result, printf('%s %s', get(l:color_map, l:icon, '[0;31m' . l:icon . '[0m'), l:candidate))
+            call add(
+            \   l:result,
+            \   printf(
+            \       '%s %s %s',
+            \       get(l:color_map, l:git_icon, '[0;32m' . l:git_icon . '[0m'),
+            \       get(l:color_map, l:icon, '[0;31m' . l:icon . '[0m'),
+            \       l:candidate
+            \   )
+            \)
         endfor
 
         return l:result
