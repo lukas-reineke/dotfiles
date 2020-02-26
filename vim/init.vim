@@ -505,13 +505,13 @@ function! Fzf_dev(path)
     let s:files_status = {}
 
     function! s:files(path)
-        let l:statuses_str = system('git -c color.status=false -C ' . $PWD . ' status -s')
+        let l:statuses_str = system('git diff --name-status ' . g:gitHead)
         for l:status_line in split(l:statuses_str, '\n')
-            let s:files_status[split(l:status_line, ' ')[1]] = split(l:status_line, ' ')[0]
+            let s:files_status[split(l:status_line, '	')[1]] = split(l:status_line, '	')[0]
         endfor
 
         if a:path ==? 'git'
-            let l:files = split(system('git diff --name-only ' .. g:gitHead), '\n')
+            let l:files = split(system('git diff --name-only ' . g:gitHead), '\n')
         else
             let l:files = split(system($FZF_DEFAULT_COMMAND . ' -- ' . a:path), '\n')
         end
