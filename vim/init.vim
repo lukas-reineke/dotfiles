@@ -505,13 +505,18 @@ function! Fzf_dev(path)
     let s:files_status = {}
 
     function! s:files(path)
-        let l:statuses_str = system('git diff --name-status ' . g:gitHead)
-        for l:status_line in split(l:statuses_str, '\n')
-            let s:files_status[split(l:status_line, '	')[1]] = split(l:status_line, '	')[0]
-        endfor
+        let l:status_lines = systemlist('git diff --name-status ' . g:gitHead)
+        if !v:shell_error
+            for l:status_line in systemlist('git diff --name-status ' . g:gitHead)
+                let s:files_status[split(l:status_line, '	')[1]] = split(l:status_line, '	')[0]
+            endfor
+        endif
 
         if a:path ==? 'git'
             let l:files = split(system('git diff --name-only ' . g:gitHead), '\n')
+            if v:shell_error ==? 129
+                throw 'this is not a git repo'
+            endif
         else
             let l:files = split(system($FZF_DEFAULT_COMMAND . ' -- ' . a:path), '\n')
         end
