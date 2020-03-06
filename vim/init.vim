@@ -243,14 +243,6 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Completion {{{
 
-" let g:tsuquyomi_disable_default_mappings = 1
-" let g:tsuquyomi_shortest_import_path = 1
-" let g:tsuquyomi_completion_case_sensitive = 1
-" let g:tsuquyomi_case_sensitive_imports = 1
-" let g:tsuquyomi_single_quote_import = 1
-" let g:tsuquyomi_javascript_support = 1
-" let g:tsuquyomi_completion_detail = 1
-
 let g:echodoc#enable_at_startup = 1
 
 let g:complete_parameter_use_typescript_for_javascript = 1
@@ -327,9 +319,6 @@ let g:ale_sign_error = '⭕'
 let g:ale_sign_warning = '⭕'
 let g:airline#extensions#ale#error_symbol = '誤:'
 let g:airline#extensions#ale#warning_symbol = '危:'
-" let g:ale_set_loclist = 0
-" let g:ale_set_quickfix = 1
-" let g:tsuquyomi_disable_quickfix = 1
 let g:qf_nowrap = 0
 let g:qf_max_height = 20
 let g:ale_fix_on_save = 1
@@ -351,13 +340,6 @@ let g:semshi#mark_selected_nodes = 2
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " File Type Autocmd {{{
 
-" function! JavascriptOmnifunc()
-"     let l:filetypeList = [ 'javascript', 'typescript', 'typescriptreact.typescript' ]
-"     if index(l:filetypeList, &filetype) > -1
-"         set omnifunc=tsuquyomi#complete
-"     endif
-" endfunction
-
 function! RemoveQuickfixItem()
     let curqfidx = line('.') - 1
     let qfall = getqflist()
@@ -371,12 +353,8 @@ augroup FiletypeDetect
     autocmd!
     autocmd BufRead,BufNewFile .eslintrc,.stylelintrc,.htmlhintrc set filetype=json
     autocmd BufRead,BufNewFile *.tsx set filetype=typescript.tsx
-    " autocmd BufRead,BufNewFile *.tsx set filetype=typescriptreact.typescript
     autocmd BufRead,BufNewFile *.jsx set filetype=javascript
     autocmd BufRead,BufNewFile * set formatoptions-=o
-    " autocmd FileType javascript set omnifunc=tsuquyomi#complete
-    " autocmd User LanguageClientTextDocumentDidOpenPost :call JavascriptOmnifunc()
-    " autocmd FileType python set omnifunc=lsp#complete
     autocmd FileType qf nnoremap <silent><buffer> dd :call RemoveQuickfixItem()<CR>
 augroup END
 
@@ -507,18 +485,22 @@ function! Fzf_dev(path)
     function! s:files(path)
         let l:status_lines = systemlist('git diff --name-status ' . g:gitHead)
         if !v:shell_error
-            for l:status_line in systemlist('git diff --name-status ' . g:gitHead)
+            for l:status_line in l:status_lines
                 let s:files_status[split(l:status_line, '	')[1]] = split(l:status_line, '	')[0]
+            endfor
+            let l:untracked_files = systemlist('git ls-files --exclude-standard --others')
+            for l:untracked_file in l:untracked_files
+                let s:files_status[untracked_file] = '??'
             endfor
         endif
 
         if a:path ==? 'git'
-            let l:files = split(system('git diff --name-only ' . g:gitHead), '\n')
+            let l:files = systemlist('git diff --name-only ' . g:gitHead) + systemlist('git ls-files --exclude-standard --others')
             if v:shell_error ==? 129
                 throw 'this is not a git repo'
             endif
         else
-            let l:files = split(system($FZF_DEFAULT_COMMAND . ' -- ' . a:path), '\n')
+            let l:files = systemlist($FZF_DEFAULT_COMMAND . ' -- ' . a:path)
         end
         return s:prepend_icon(l:files)
     endfunction
