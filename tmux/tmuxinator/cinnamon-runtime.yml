@@ -1,18 +1,26 @@
 session_name: cinnamon-runtime
 start_directory: '~'
 windows:
-    - window_name: cinnamon
+    - window_name: gql-server
       focus: True
       layout: main-horizontal
       start_directory: ~/dev/cinnamon
       shell_command_before:
           - cd .
       panes:
-          - ./run.sh
-    - window_name: cinnamon-widget
+          - ./gql-server/run.sh private 4000
+          - ./gql-server/run.sh public 4001
+    - window_name: mutagen
       layout: main-horizontal
-      start_directory: ~/dev/merchant-widget
+      start_directory: ~/dev/cinnamon
       shell_command_before:
           - cd .
       panes:
-          - npm run dev
+          - sleep 5 && ./mutagen/run.sh
+    - window_name: validator
+      layout: main-horizontal
+      start_directory: ~/dev/cinnamon
+      shell_command_before:
+          - cd .
+      panes:
+          - ./validator/run.sh

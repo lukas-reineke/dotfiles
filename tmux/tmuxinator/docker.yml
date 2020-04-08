@@ -15,3 +15,25 @@ windows:
           - cd .
       panes:
           - dpostgres
+    - window_name: redis
+      layout: main-horizontal
+      start_directory: '~'
+      shell_command_before:
+          - cd .
+      panes:
+          - redis-server
+    - window_name: nats
+      layout: main-horizontal
+      start_directory: '~'
+      shell_command_before:
+          - cd .
+      panes:
+          - nats-server
+    - window_name: rabbit
+      focus: True
+      layout: main-horizontal
+      start_directory: '~'
+      shell_command_before:
+          - cd .
+      panes:
+          - sudo rabbitmq-server

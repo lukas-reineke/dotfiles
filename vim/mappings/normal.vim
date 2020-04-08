@@ -55,7 +55,7 @@ nmap <C-]> <Plug>(coc-definition)
 nnoremap <C-p> :call Fzf_dev('')<CR>
 " nnoremap <C-p> :Clap gfiles<CR>
 
-nnoremap - :Defx -search=`expand('%:p')`<CR>
+nnoremap - :Defx -show-ignored-files -search=`expand('%:p')`<CR>
 " nnoremap - :VimFilerCurrentDir<CR>
 " nnoremap + :VimFilerBufferDir -split<CR>
 
@@ -159,6 +159,8 @@ map n <Plug>(incsearch-nohl-n)
 map N <Plug>(incsearch-nohl-N)
 map * <Plug>(incsearch-nohl-*)N
 map # <Plug>(incsearch-nohl-#)
+map g* <Plug>(incsearch-nohl-g*)N
+map g# <Plug>(incsearch-nohl-g#)
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -183,6 +185,8 @@ nmap <CLEAR-3> <Plug>UnconditionalPasteCommaAfter
 nmap <CLEAR-4> <Plug>UnconditionalPasteCommaBefore
 nmap <CLEAR-5> <Plug>UnconditionalPasteCommaSingleQuoteAfter
 nmap <CLEAR-6> <Plug>UnconditionalPasteCommaSingleQuoteBefore
+nmap <CLEAR-7> <Plug>VimwikiIncrementListItem
+nmap <CLEAR-8> <Plug>VimwikiDecrementListItem
 nmap glp <Plug>UnconditionalPasteIndentedAfter<ESC>ddP
 nmap glP <Plug>UnconditionalPasteIndentedBefore
 nnoremap gco m'yyp:Commentary<CR>`'
@@ -196,23 +200,6 @@ nnoremap gco m'yyp:Commentary<CR>`'
 nmap grr <Plug>ReplaceWithSameIndentRegisterLine
 nmap grR <Plug>ReplaceWithRegisterLine
 nmap gr <Plug>ReplaceWithRegisterOperator
-
-" }}}
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Fold Method {{{
-
-function! FoldMethod()
-    if &foldmethod ==# 'indent'
-        setlocal foldmethod=manual
-    else
-        setlocal foldmethod=indent
-    endif
-    echo 'set foldmethod to ' . &foldmethod
-endfunction
-
-nnoremap gz :call FoldMethod()<CR>
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

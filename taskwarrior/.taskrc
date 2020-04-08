@@ -1,0 +1,170 @@
+# [Created by task 2.5.1 2/18/2020 23:32:28]
+# Taskwarrior program configuration file.
+# For more documentation, see http://taskwarrior.org or try 'man task', 'man task-color',
+# 'man task-sync' or 'man taskrc'
+
+# Here is an example of entries that use the default, override and blank values
+#   variable=foo   -- By specifying a value, this overrides the default
+#   variable=      -- By specifying no value, this means no default
+#   #variable=foo  -- By commenting out the line, or deleting it, this uses the default
+
+# Use the command 'task show' to see all defaults and overrides
+
+# Files
+data.location=~/.task
+
+regex=on
+
+# Color theme (uncomment one to use)
+#include /usr/share/doc/task/rc/light-16.theme
+#include /usr/share/doc/task/rc/light-256.theme
+#include /usr/share/doc/task/rc/dark-16.theme
+#include /usr/share/doc/task/rc/dark-256.theme
+#include /usr/share/doc/task/rc/dark-red-256.theme
+#include /usr/share/doc/task/rc/dark-green-256.theme
+#include /usr/share/doc/task/rc/dark-blue-256.theme
+#include /usr/share/doc/task/rc/dark-violets-256.theme
+#include /usr/share/doc/task/rc/dark-yellow-green.theme
+#include /usr/share/doc/task/rc/dark-gray-256.theme
+#include /usr/share/doc/task/rc/dark-gray-blue-256.theme
+#include /usr/share/doc/task/rc/solarized-dark-256.theme
+#include /usr/share/doc/task/rc/solarized-light-256.theme
+#include /usr/share/doc/task/rc/no-color.theme
+
+taskd.certificate=~/.task-certs/private.certificate.pem
+taskd.key=~/.task-certs/private.key.pem
+taskd.ca=~/.task-certs/ca.cert.pem
+taskd.server=taskwarrior.inthe.am:53589
+taskd.credentials=inthe_am/lukas.reineke/2710b6d4-e4c9-4052-a09a-78fa4b093524
+taskd.trust=ignore hostname
+
+
+urgency.user.tag.github_do_not_merge.coefficient=-20.0
+
+urgency.uda.priority.H.coefficient=6.0
+urgency.uda.priority.M.coefficient=3.9
+urgency.uda.priority.L.coefficient=-1.0
+
+urgency.uda.tags.trello_prio:_high.coefficient=6.0
+urgency.uda.tags.trello_prio:_med.coefficient=3.9
+urgency.uda.tags.trello_prio:_low.coefficient=-1.0
+urgency.uda.tags.trello_high_priority.coefficient=6.0
+urgency.uda.tags.trello_medium_priority.coefficient=3.9
+urgency.uda.tags.trello_low_priority.coefficient=-1.0
+
+# Accepted
+urgency.uda.trellolistid.5d2fc1abe084cd108b186a3d.coefficient=6.0
+# Needs Specs
+urgency.uda.trellolistid.5d75b02dfb187688dcd1cad8.coefficient=-20.0
+# In Progress
+urgency.uda.trellolistid.5d2fc1afef8c560f5c8fbb0d.coefficient=-25.0
+# Merged in Develop
+urgency.uda.trellolistid.5d5b935111f0bf46f327cc25.coefficient=-40.0
+# PR Sent
+urgency.uda.trellolistid.5d2fc1b31f6d88689ae17ef2.coefficient=-30.0
+
+# Inbox
+urgency.uda.intheamtrellolistid.5e6323c15f478e1e35a94c80.coefficient=30.0
+
+
+# Bugwarrior UDAs
+uda.trellocard.type=string
+uda.trellocard.label=Trello card name
+uda.trellocardid.type=string
+uda.trellocardid.label=Trello card ID
+uda.trellocardidshort.type=string
+uda.trellocardidshort.label=Trello short card ID
+uda.trellodescription.type=string
+uda.trellodescription.label=Trello description
+uda.trelloboard.type=string
+uda.trelloboard.label=Trello board name
+uda.trellolist.type=string
+uda.trellolist.label=Trello list name
+uda.trellolistid.type=string
+uda.trellolistid.label=Trello list id
+uda.trelloshortlink.type=string
+uda.trelloshortlink.label=Trello shortlink
+uda.trelloshorturl.type=string
+uda.trelloshorturl.label=Trello short URL
+uda.trellourl.type=string
+uda.trellourl.label=Trello URL
+uda.githubtitle.type=string
+uda.githubtitle.label=Github Title
+uda.githubbody.type=string
+uda.githubbody.label=Github Body
+uda.githubcreatedon.type=date
+uda.githubcreatedon.label=Github Created
+uda.githubupdatedat.type=date
+uda.githubupdatedat.label=Github Updated
+uda.githubclosedon.type=date
+uda.githubclosedon.label=GitHub Closed
+uda.githubmilestone.type=string
+uda.githubmilestone.label=Github Milestone
+uda.githubrepo.type=string
+uda.githubrepo.label=Github Repo Slug
+uda.githuburl.type=string
+uda.githuburl.label=Github URL
+uda.githubtype.type=string
+uda.githubtype.label=Github Type
+uda.githubnumber.type=numeric
+uda.githubnumber.label=Github Issue/PR #
+uda.githubuser.type=string
+uda.githubuser.label=Github User
+uda.githubnamespace.type=string
+uda.githubnamespace.label=Github Namespace
+uda.githubstate.type=string
+uda.githubstate.label=GitHub State
+# END Bugwarrior UDAs
+uda.intheamattachments.type=string
+uda.intheamattachments.label=Inthe.AM Attachments
+uda.intheamoriginalemailsubject.type=string
+uda.intheamoriginalemailsubject.label=Inthe.AM E-mail Subject
+uda.intheamoriginalemailid.type=numeric
+uda.intheamoriginalemailid.label=Inthe.AM E-mail ID
+uda.intheamtrelloid.type=string
+uda.intheamtrelloid.label=Inthe.AM Trello Object ID
+uda.intheamtrelloboardid.type=string
+uda.intheamtrelloboardid.label=Inthe.AM Trello Board ID
+uda.intheamtrellolistid.type=string
+uda.intheamtrellolistid.label=Inthe.AM Trello List ID
+uda.intheamtrellolistname.type=string
+uda.intheamtrellolistname.label=Inthe.AM Trello List Name
+uda.intheamtrellourl.type=string
+uda.intheamtrellourl.label=Inthe.AM Trello URL
+uda.intheamtrellodescription.type=string
+uda.intheamtrellodescription.label=Inthe.AM Trello Description
+uda.intheamtrellolastupdated.type=string
+uda.intheamtrellolastupdated.label=Inthe.AM Trello Last Updated
+uda.intheamduplicateof.type=string
+uda.intheamduplicateof.label=Inthe.AM Duplicate of Task
+uda.intheammergedfrom.type=string
+uda.intheammergedfrom.label=Inthe.AM Duplicate Tasks Merged
+
+context.private=-adgo
+context.adgo=+adgo
+context.me=+me
+
+report.list.columns=id,priority,description.desc,tags,project,urgency,due,entry.relative
+report.list.labels=ID,Priority,Description,Tags,Project,Urgency,Due,Entry
+report.list.sort=project+/,urgency-
+
+report.trello.columns=id,priority,description.desc,trellolist,tags,project,urgency,due,entry.relative
+report.trello.labels=ID,Priority,Description,List,Tags,Project,Urgency,Due,Entry
+report.trello.sort=project+/,urgency-
+report.trello.filter=+trello status:Pending
+
+report.github.columns=id,priority,githubtitle,tags,project,urgency,due,entry.relative
+report.github.labels=ID,Priority,Description,Tags,Project,Urgency,Due,Entry
+report.github.sort=project+/,urgency-
+report.github.filter=+github status:Pending
+
+report.me.filter=+me status:Pending
+report.me.columns=id,priority,description.desc,tags,project,urgency,due,entry.relative
+report.me.labels=ID,Priority,Description,Tags,Project,Urgency,Due,Entry
+report.me.sort=project+/,urgency-
+
+report.private.filter=-adgo -github status:Pending
+report.private.columns=id,priority,description.desc,tags,project,intheamtrellolistname,urgency,due,entry.relative
+report.private.labels=ID,Priority,Description,Tags,Project,Trello,Urgency,Due,Entry
+report.private.sort=project+/,urgency-
+

@@ -35,6 +35,7 @@ Plug 'wincent/vcs-jump'
 " Typescript
 Plug 'HerringtonDarkholme/yats.vim'
 " Plug 'Quramy/tsuquyomi'
+
 Plug 'mbbill/undotree'
 
 " Javascript
@@ -107,6 +108,7 @@ Plug 'lukas-reineke/auto-pairs'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'pianohacker/vim-indented-paragraph'
 Plug 'kana/vim-textobj-user'
+Plug 'sgur/vim-textobj-parameter'
 Plug 'wellle/targets.vim'
 
 " Terminus
@@ -241,6 +243,7 @@ let g:coc_global_extensions = [
 \   'coc-docker',
 \]
 
+Plug 'antoinemadec/coc-fzf'
 Plug 'Shougo/neco-vim'
 Plug 'neoclide/coc-neco'
 Plug 'liuchengxu/vista.vim'
@@ -250,3 +253,7 @@ Plug 'yardnsm/vim-import-cost', { 'do': 'npm install' }
 
 Plug 'arthurxavierx/vim-caser'
 
+Plug 'vimwiki/vimwiki'
+Plug 'tbabej/taskwiki'
+Plug 'powerman/vim-plugin-AnsiEsc'
+Plug 'mattn/calendar-vim'

@@ -203,12 +203,16 @@ function! FoldText()
     let l:line = getline(v:foldstart)
 
     let l:nucolwidth = &foldcolumn + &number * &numberwidth
-    let l:windowwidth = winwidth(0) - l:nucolwidth - 4
+    let l:windowwidth = winwidth(0) - l:nucolwidth - 1
     let l:foldedlinecount = v:foldend - v:foldstart
 
     " expand tabs into spaces
     let l:onetab = strpart('          ', 0, &tabstop)
     let l:line = substitute(l:line, '\t', l:onetab, 'g')
+    let l:line = substitute(l:line, '^\s*', repeat(' ',indent(v:foldstart)), '')
+    let l:line = substitute(l:line, '|[^=]* =', '=', '')
+    let l:line = substitute(l:line, '@[^=]* =', '=', '')
+    let l:line = substitute(l:line, ' @[A-Za-z0-9]\+', '', '')
 
     let l:line = strpart(l:line, 0, l:windowwidth - 2 -len(l:foldedlinecount))
 
@@ -219,7 +223,7 @@ function! FoldText()
         let l:fillcharcount = l:windowwidth - len(l:line) - len(l:foldedlinecount)
     endif
 
-    return '>- ' . l:line . repeat(' ',l:fillcharcount) . l:foldedlinecount . ' >-'
+    return l:line . repeat(' ',l:fillcharcount) . l:foldedlinecount . ' >-'
 endfunction
 set foldtext=FoldText()
 
@@ -305,12 +309,12 @@ command TOC :call man#show_toc()<CR>
 " Fzf {{{
 
 function! Urls()
-    let l:urls = split(system('xurls '.expand('%')), '\n')
+    let l:urls = systemlist('xurls '.expand('%'))
 
     call fzf#run({
     \   'source': l:urls,
-    \   'sink': '!open',
-    \   'down': len(l:urls) + 2
+    \   'sink': 'silent !open',
+    \   'window': 'call CreateCenteredFloatingWindow()',
     \})
 endfunction
 
@@ -325,6 +329,33 @@ function! RipgrepFzf(query, fullscreen)
 endfunction
 
 command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+
+function! HeadersFzf(syntax)
+    let l:lines = getbufline('%', 0, '$')
+    let l:lines = map(l:lines, {index, value -> '[0;31m'. index . '[0;33m' . '	' . value})
+
+    if a:syntax ==# 'markdown'
+        call filter(l:lines, {_, value -> value =~# '^[0;31m\d\+[0;33m	#\+ .*$'})
+    else
+        call filter(l:lines, {_, value -> value =~# '^[0;31m\d\+[0;33m	=\+ .*$'})
+        let l:lines = map(l:lines, {_, line -> substitute(line, '|[^=]* =', '=', '')})
+        let l:lines = map(l:lines, {_, line -> substitute(line, '@[^=]* =', '=', '')})
+        let l:lines = map(l:lines, {_, line -> substitute(line, ' @[A-Za-z0-9]\+', '', '')})
+    endif
+
+    function! s:go_to_line(line)
+        execute 'normal ' . (split(a:line, '	')[0] + 1) . 'G'
+    endfunc
+
+    call fzf#run({
+    \   'source': l:lines,
+    \   'sink': function('s:go_to_line'),
+    \   'window': 'call CreateCenteredFloatingWindow()',
+    \})
+endfunction
+
+command! MarkdownHeadersFzf call HeadersFzf('markdown')
+command! VimwikiHeadersFzf call HeadersFzf('vimwiki')
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -341,27 +372,16 @@ function! ToggleSpell()
         let g:spell_toggle=0
         set nospell
         call clearmatches()
+        echom 'spell off'
     else
         let g:spell_toggle=1
         set spell
         Codespell
+        echom 'spell on'
     endif
 endfunction
 
 nnoremap <Leader>s :call ToggleSpell()<CR>
-
-" }}}
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Signify {{{
-
-command! -nargs=* SignifySet call SignifySet(<q-args>)
-
-function SignifySet(head)
-    let g:signify_vcs_cmds['git'] = 'git diff --no-color --no-ext-diff -U0 ' .. a:head .. ' -- %f'
-    echom 'Now diffing against ' .. a:head
-endfunction
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -379,7 +399,44 @@ function SetGitHead(head)
         let g:gitHead = 'HEAD'
     endif
 
-    call SignifySet(g:gitHead)
+    let g:signify_vcs_cmds['git'] = 'git diff --no-color --no-ext-diff -U0 ' . g:gitHead . ' -- %f'
+    echom 'Now diffing against ' . g:gitHead
+endfunction
+
+" }}}
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Prettier vimwiki {{{
+
+function! VimwikiPrettierAll()
+    let l:view=winsaveview()
+    for syntax in ['javascript', 'typescript']
+        call cursor(1, 1)
+        while 1
+            let l:start_line = search('^{{{' . syntax . '$', 'Wc')
+            if l:start_line ==# 0
+                break
+            endif
+            let l:end_line = search('^}}}$', 'W')
+            execute 'silent ' . (l:start_line + 1) . ',' . (l:end_line - 1) . '!prettier ' . g:ale_javascript_prettier_options
+        endwhile
+    endfor
+    call winrestview(l:view)
+endfunction
+
+function! VimwikiPrettierCurrent()
+    let l:view=winsaveview()
+    for syntax in ['javascript', 'typescript']
+        let l:start_line = search('^{{{' . syntax . '$', 'bnWc')
+        let l:end_prev_line = search('^}}}$', 'nbW')
+
+        if l:start_line && l:start_line > l:end_prev_line
+            let l:end_line = search('^}}}$', 'nW')
+            execute 'silent ' . (l:start_line + 1) . ',' . (l:end_line - 1) . '!prettier ' . g:ale_javascript_prettier_options
+        endif
+    endfor
+    call winrestview(l:view)
 endfunction
 
 " }}}

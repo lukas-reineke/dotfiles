@@ -68,7 +68,8 @@ set infercase
 set hlsearch
 set incsearch
 set inccommand=nosplit
-set formatoptions-=o
+set formatoptions=tcrqnbj
+set viewoptions=
 set wrap
 set breakindent
 set linebreak
@@ -128,6 +129,12 @@ augroup HiglightDebug
     autocmd WinEnter,VimEnter * :highlight QuickScopePrimary gui=bold guifg=NONE
     autocmd WinEnter,VimEnter * :highlight QuickScopeSecondary gui=bold guifg=NONE
     autocmd CursorHold * silent call CocActionAsync('highlight')
+    autocmd InsertLeave *.md call MarkdownBlocks()
+    autocmd BufEnter *.md call MarkdownBlocks()
+    autocmd BufWritePost *.md call MarkdownBlocks()
+    autocmd InsertLeave *.wiki call VimwikiBlocks()
+    autocmd BufEnter *.wiki call VimwikiBlocks()
+    autocmd BufWritePost *.wiki call VimwikiBlocks()
 augroup END
 
 augroup cursorLine
@@ -172,7 +179,7 @@ let g:indentLine_showFirstIndentLevel = 1
 let g:indentLine_color_gui = onedark#GetColors().cursor_grey.gui
 let g:indentLine_bgcolor_gui = onedark#GetColors().black.gui
 let g:indentLine_setConceal = 0
-let g:indentLine_fileTypeExclude = ['help', 'defx']
+let g:indentLine_fileTypeExclude = ['help', 'defx', 'vimwiki']
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -206,7 +213,7 @@ set wildignore+=*/doc/*
 set wildignore+=*/dll/*
 set wildignore+=*venv*
 
-let g:ackprg = 'rg --vimgrep --no-heading --hidden'
+let g:ackprg = 'rg --vimgrep --no-heading --hidden --smart-case'
 let g:incsearch#auto_nohlsearch = 1
 let g:incsearch#magic = '\v'
 let g:incsearch#consistent_n_direction = 1
@@ -478,6 +485,31 @@ endfunction
 let g:fzf_layout = { 'window': 'call CreateCenteredFloatingWindow()' }
 let $FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS . ' --reverse --ansi'
 
+function! s:multi_edit_files(files)
+    if len(a:files) == 1
+        let l:file = s:map_file('', a:files[0])
+        if isdirectory(l:file)
+            call Fzf_dev(l:file)
+        else
+            execute 'silent e' l:file
+            if s:path ==? 'git'
+                sleep 100m
+                execute 'normal gg'
+                execute "normal \<plug>(signify-next-hunk)"
+            end
+        endif
+    else
+        call setqflist(
+        \   map(
+        \       map(copy(a:files), function('s:map_file')),
+        \       '{ "filename": v:val, "lnum": 1, "col": 1 }',
+        \   )
+        \)
+        copen
+        cc
+    end
+endfunction
+
 function! Fzf_dev(path)
     let s:path = a:path
     let s:files_status = {}
@@ -501,6 +533,7 @@ function! Fzf_dev(path)
             endif
         else
             let l:files = systemlist($FZF_DEFAULT_COMMAND . ' -- ' . a:path)
+            " let l:files = l:files + systemlist('dirname '. join(l:files, ' ') . ' | sort -u')
         end
         return s:prepend_icon(l:files)
     endfunction
@@ -513,16 +546,20 @@ function! Fzf_dev(path)
             let l:icon = WebDevIconsGetFileTypeSymbol(l:filename, isdirectory(l:filename))
             let l:color_map = {
             \   '': '[0;36m[0m',
+            \   '': '[0;36m[0m',
             \   '': '[0;97m[0m',
-            \   '': '[0;35m[0m',
+            \   '': '[0;98m[0m',
             \   '': '[0;36m[0m',
             \   '': '[0;34m[0m',
             \   '': '[0;33m[0m',
+            \   '': '[0;33m[0m',
             \   '': '[0;32m[0m',
+            \   '': '[0;32m[0m',
+            \   '': '[0;34m[0m',
             \   '': '[0;33m[0m',
-            \   'M': '[0;33mM[0m',
-            \   'D': '[0;31mD[0m',
-            \   '??': '[0;34m?[0m',
+            \   'M': '[0;33m◉[0m',
+            \   'D': '[0;31m✖[0m',
+            \   '??': '[0;34m◈[0m',
             \}
             call add(
             \   l:result,
@@ -543,25 +580,6 @@ function! Fzf_dev(path)
         return a:file[pos+1:-1]
     endfunction
 
-    function! s:multi_edit_files(files)
-        if len(a:files) == 1
-            execute 'silent e' s:map_file('', a:files[0])
-            if s:path ==? 'git'
-                sleep 100m
-                execute 'normal gg'
-                execute "normal \<plug>(signify-next-hunk)"
-            end
-        else
-            call setqflist(
-            \   map(
-            \       map(copy(a:files), function('s:map_file')),
-            \       '{ "filename": v:val, "lnum": 1, "col": 1 }',
-            \   )
-            \)
-            copen
-            cc
-        end
-    endfunction
 
     if a:path ==? 'git'
         let l:fzf_files_options = '--preview "bat --italic-text=always --style=numbers,changes --color always {2..-1} | grep -A5 -B5 --color=never -P \"^..\d+.{0,30}[\+|\_|~]\""'
@@ -724,6 +742,65 @@ let g:slime_default_config = {'socket_name': 'default', 'target_pane': '{bottom}
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+let wiki = {
+\   'path': '~/vimwiki/',
+\   'syntax': 'markdown',
+\   'ext': '.md',
+\   'auto_tags': 1,
+\   'auto_generate_links': 1,
+\   'auto_generate_tags': 1,
+\   'links_space_char': '-',
+\}
+let wiki.syntax = 'default'
+let wiki.ext = 'wiki'
+let wiki.nested_syntaxes = {
+\   'python': 'python',
+\   'javascript': 'javascript',
+\   'typescript': 'typescript',
+\   'bash': 'sh',
+\   'yaml': 'yaml',
+\   'json': 'json',
+\}
+let g:vimwiki_list = [wiki]
+let g:vimwiki_folding = 'custom'
+let g:vimwiki_use_calendar = 0
+let g:vimwiki_global_ext = 0
+let g:vimwiki_valid_html_tags = 'b,i,s,u,sub,sup,kbd,br,hr,span'
+" let g:vimwiki_conceal_pre = 1
+
+let g:vimwiki_key_mappings = {
+\   'all_maps': 1,
+\   'global': 0,
+\   'headers': 0,
+\   'text_objs': 1,
+\   'table_format': 0,
+\   'table_mappings': 1,
+\   'lists': 1,
+\   'links': 0,
+\   'html': 0,
+\   'mouse': 1,
+\}
+
+function MyCalAction(day,month,year,week,dir)
+    function! s:prefix_zero(num) abort
+        if a:num < 10
+            return '0'.a:num
+        endif
+        return a:num
+    endfunction
+
+    let day = s:prefix_zero(a:day)
+    let month = s:prefix_zero(a:month)
+    let @+ = a:year . '-' . l:month . '-' . l:day
+    bdelete
+endfunction
+let g:calendar_action = 'MyCalAction'
+let g:calendar_monday = 1
+let g:calendar_navi = 'bottom'
+
+command! CL CalendarH
 
 " vim:foldmethod=marker:foldlevel=0
 

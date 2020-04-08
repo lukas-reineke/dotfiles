@@ -1,0 +1,21 @@
+session_name: tasks
+start_directory: '~'
+windows:
+    - window_name: wiki
+      focus: True
+      layout: main-horizontal
+      start_directory: ~/vimwiki
+      shell_command_before:
+          - cd .
+      panes:
+          - focus: True
+            shell_command:
+                - tmux resize-pane -Z
+                - v
+          - cl
+    - window_name: tasks
+      layout: main-horizontal
+      shell_command_before:
+          - cd .
+      panes:
+          - cl

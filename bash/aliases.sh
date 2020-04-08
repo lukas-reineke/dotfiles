@@ -60,3 +60,11 @@ alias fakesmtp='sudo java -jar ~/dotfiles/fakeSMTP-1.13.jar'
 alias dmongo='docker run --rm --name mogno-docker -v mongodbdata:/data/db -p 27017:27017 mongo:3.2-jessie'
 alias dpostgres='docker run --rm --name pg-docker -e POSTGRES_PASSWORD=$POSTGRES_PASSWORD -e POSTGRES_DB=$POSTGRES_DB -p 5432:5432 -v postgresdbdata:/var/lib/postgresql/data postgres:9.5.16-alpine'
 
+
+# taskwarrior
+alias t='task'
+alias tp='task private'
+alias tl='task list'
+alias ta='task add'
+alias to='taskopen'
+alias td='task done'

@@ -19,3 +19,4 @@ endfunction
 nnoremap ;f :call TestToggle('f')<CR>
 nnoremap ;x :call TestToggle('x')<CR>
 nnoremap ;c :call TestToggle('c')<CR>
+nnoremap <buffer> <CR> :call CocAction('doHover')<CR>

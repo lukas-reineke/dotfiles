@@ -52,5 +52,6 @@
         "javascriptreact": ["javascript"],
         "typescriptreact": ["typescript"]
     },
-    "snippets.userSnippetsDirectory": "~/dotfiles/vim/ultisnips"
+    "snippets.userSnippetsDirectory": "~/dotfiles/vim/ultisnips",
+    "highlight.disableLanguages": ["vimwiki"]
 }

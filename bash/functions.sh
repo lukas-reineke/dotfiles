@@ -444,7 +444,7 @@ tm() {
 bind '"\C-t":"tm\n"'
 
 # tmux kill session
-td() {
+tmd() {
     local session
     session=$(tmux list-sessions -F "#{session_name}" | fzf --query="$1" --select-1 --exit-0 --reverse --height 20%)
     [ -n "$session" ] && tmux kill-session -t "$session"

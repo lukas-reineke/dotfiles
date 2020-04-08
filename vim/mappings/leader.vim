@@ -37,6 +37,7 @@ nnoremap <Leader>p :Buffers<CR>
 nnoremap <Leader>P :Rg<CR>
 nnoremap <Leader><C-P> :Commands<CR>
 nnoremap <Leader><C-W> :Windows<CR>
+nnoremap <Leader><C-h> :Helptags<CR>
 " nnoremap <Leader>n :Files %:h<CR>
 nnoremap <Leader>n :call Fzf_dev(expand('%:h'))<CR>
 nmap <Leader>[ :Quickfix<CR>

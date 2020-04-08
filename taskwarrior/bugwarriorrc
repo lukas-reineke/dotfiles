@@ -1,0 +1,64 @@
+[general]
+targets = github_adgo, github_me, trello_me, trello_all
+inline_links = False
+annotation_links = True
+annotation_comments = True
+annotation_newlines = True
+annotation_length = 5000
+description_length = 50
+legacy_matching = False
+static_fields = priority,project
+
+[notifications]
+notifications = False
+backend = gobject
+
+[github_adgo]
+service = github
+github.default_priority = M
+github.add_tags = github,adgo
+github.username = adgorithmics-inc
+github.login = lukas-reineke
+github.password = @oracle:eval:echo $GITHUB_TOKEN
+github.import_labels_as_tags = True
+github.label_template = github_{{label|lower|replace(' ', '_')|replace('awaiting____', 'awaiting')}}
+github.description_template = {{githubtitle}} {{githubtype|replace('pull_request', 'PR')|replace('issue', 'IS')}}:{{githubnumber}} ({{githubuser}})
+
+[github_me]
+service = github
+github.default_priority = M
+github.add_tags = github,me
+github.username = lukas-reineke
+github.login = lukas-reineke
+github.password = @oracle:eval:echo $GITHUB_TOKEN
+github.import_labels_as_tags = True
+github.label_template = github_{{label|lower|replace(' ', '_')|replace('awaiting____', 'awaiting')}}
+github.involved_issues = True
+github.description_template = {{githubtitle}} {{githubtype|replace('pull_request', 'PR')|replace('issue', 'IS')}}:{{githubnumber}} ({{githubuser}})
+
+# [my_gmail]
+# service = gmail
+# gmail.query = label:action OR label:readme
+# gmail.login_name = you@example.com
+
+
+[trello_me]
+service = trello
+trello.api_key = 6f5a42996fd93c2e09e71861fccadba9
+trello.token = @oracle:eval:echo $TRELLO_TOKEN
+trello.include_boards = cBs6ymmE, YN0UPvdB, P96aE0RD, 8705zEsH
+trello.only_if_assigned = lukasreineke1
+trello.import_labels_as_tags = true
+trello.label_template = trello_{{label|lower|replace(' ', '_')|replace('prio:_high', 'high_priority')|replace('prio:_medium', 'medium_priority')|replace('prio:_low', 'low_priority')}}
+trello.add_tags = trello,adgo,me
+trello.description_template = T-{{trellocardidshort}} {{trellocard}}
+
+[trello_all]
+service = trello
+trello.api_key = 6f5a42996fd93c2e09e71861fccadba9
+trello.token = @oracle:eval:echo $TRELLO_TOKEN
+trello.include_boards = cBs6ymmE, YN0UPvdB, P96aE0RD, 8705zEsH
+trello.import_labels_as_tags = true
+trello.label_template = trello_{{label|lower|replace(' ', '_')|replace('prio:_high', 'high_priority')|replace('prio:_medium', 'medium_priority')|replace('prio:_low', 'low_priority')}}
+trello.add_tags = trello,adgo
+trello.description_template = T-{{trellocardidshort}} {{trellocard}}
