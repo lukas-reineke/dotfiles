@@ -157,3 +157,4 @@ fi
 
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+eval $(dircolors -b ~/dotfiles/bash/dir_colors)
