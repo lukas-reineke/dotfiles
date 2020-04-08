@@ -1,10 +1,10 @@
 # list
 alias la='~/dotfiles/scripts/git-ll-mac.sh'
 alias cll='clear && ~/dotfiles/scripts/git-ll-mac.sh'
-alias ls='ls -lshHFG'
-alias lg='ls -AlshHFG | grep'
-alias ll='ls -AlshHFG'
-alias lll='ls -AlshHFG | less -R'
+alias ls='ls -lshHFGX --color=always --group-directories-first'
+alias lg='ls -AlshHFGX --group-directories-first | grep'
+alias ll='ls -AlshHFGX --color=always --group-directories-first'
+alias lll='ls -AlshHFGX --color=always --group-directories-first | less -R'
 
 # move
 alias cl='clear'
