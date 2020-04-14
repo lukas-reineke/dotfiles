@@ -137,12 +137,6 @@ augroup HiglightDebug
     autocmd BufWritePost *.wiki call VimwikiBlocks()
 augroup END
 
-augroup cursorLine
-    autocmd!
-    autocmd VimEnter,BufEnter,BufWinEnter * setlocal cursorline
-    autocmd WinLeave,BufLeave,BufWinLeave * setlocal nocursorline
-augroup END
-
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -173,13 +167,21 @@ set listchars+=nbsp:_
 set listchars+=space:⋅
 set showbreak=↳⋅
 set conceallevel=2
+set concealcursor=n
 let g:indentLine_char = '│'
 let g:indentLine_first_char = g:indentLine_char
 let g:indentLine_showFirstIndentLevel = 1
 let g:indentLine_color_gui = onedark#GetColors().cursor_grey.gui
-let g:indentLine_bgcolor_gui = onedark#GetColors().black.gui
+let g:indentLine_bgcolor_gui = 'NONE'
 let g:indentLine_setConceal = 0
 let g:indentLine_fileTypeExclude = ['help', 'defx', 'vimwiki']
+let g:indentLine_autoResetWidth = 0
+let g:indent_blankline_space_char = ' '
+
+augroup IndentBlankline
+    autocmd!
+    autocmd User ALEFixPost IndentBlanklineRefresh
+augroup END
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

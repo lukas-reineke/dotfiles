@@ -202,5 +202,7 @@ exec --no-startup-id ~/.screenlayout/default.sh
 exec --no-startup-id lead
 exec --no-startup-id nitrogen --restore
 
+bindsym XF86Tools exec --no-startup-id pgrep oneko && pkill oneko || oneko -fg '#551609' -bg '#d58635'
+
 # vim:filetype=i3
 

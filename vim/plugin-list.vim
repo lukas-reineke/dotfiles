@@ -119,6 +119,8 @@ Plug 'djoshea/vim-autoread'
 
 " Indent Lines
 Plug 'Yggdroot/indentLine'
+Plug 'lukas-reineke/indent-blankline.nvim'
+" Plug 'nathanaelkane/vim-indent-guides'
 
 " inline colors
 " Plug 'lilydjwg/colorizer'
@@ -239,6 +241,7 @@ let g:coc_global_extensions = [
 \   'coc-word',
 \   'coc-yaml',
 \   'coc-vimlsp',
+\   'coc-webpack',
 \   'coc-go',
 \   'coc-docker',
 \]
