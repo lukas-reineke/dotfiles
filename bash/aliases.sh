@@ -68,3 +68,6 @@ alias tl='task list'
 alias ta='task add'
 alias to='taskopen'
 alias td='task done'
+
+# kubernetes
+alias kcg='kubectl get pods | grep'

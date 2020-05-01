@@ -256,6 +256,10 @@ function ta() {
     fi
 }
 
+function yzy() {
+    yay -Slq | fzf -m --preview 'cat <(yay -Si {1}) <(yay -Fl {1} | awk "{print \$2}")' | xargs -ro  yay -S
+}
+
 function b() {
     is_in_git_repo || return
     local BRANCHES BRANCH

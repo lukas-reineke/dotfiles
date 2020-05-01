@@ -15,13 +15,16 @@
     excludesfile = ~/dotfiles/git/gitignore_global
     autocrlf = false
     editor = nvim
-    pager = diff-so-fancy | less --tabs=4 -RFX
+    pager = delta
 
 [clean]
     requireForce = false
 
 [diff]
     tool = nvim
+
+[interactive]
+    diffFilter = delta --color-only
 
 [merge]
     tool = nvim

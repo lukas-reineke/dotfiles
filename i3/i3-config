@@ -201,6 +201,7 @@ focus_on_window_activation focus
 exec --no-startup-id ~/.screenlayout/default.sh
 exec --no-startup-id lead
 exec --no-startup-id nitrogen --restore
+exec_always --no-startup-id autotiling
 
 bindsym XF86Tools exec --no-startup-id pgrep oneko && pkill oneko || oneko -fg '#551609' -bg '#d58635'
 

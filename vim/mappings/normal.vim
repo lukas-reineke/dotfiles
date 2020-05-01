@@ -7,6 +7,14 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+nnoremap <C-LEFT> :vertical resize +5<CR>
+nnoremap <C-RIGHT> :vertical resize -5<CR>
+nnoremap <C-UP> :resize +5<CR>
+nnoremap <C-DOWN> :resize -5<CR>
+
+nnoremap ( gT
+nnoremap ) gt
+
 
 nnoremap H ^
 onoremap H ^
@@ -52,12 +60,9 @@ nmap <C-]> <Plug>(coc-definition)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugins {{{
 
-nnoremap <C-p> :call Fzf_dev('')<CR>
-" nnoremap <C-p> :Clap gfiles<CR>
+nnoremap <C-p> :call fzf#files#Run('')<CR>
 
 nnoremap - :Defx -show-ignored-files -search=`expand('%:p')`<CR>
-" nnoremap - :VimFilerCurrentDir<CR>
-" nnoremap + :VimFilerBufferDir -split<CR>
 
 nnoremap <F3> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">" . " FG:" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"fg#")<CR>
 
@@ -66,69 +71,12 @@ nnoremap <F3> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> t
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Fold Movement {{{
-function! s:SkipFold(direction) abort
-    let l:pos = getpos('.')
-    let l:posOrig = getpos('.')
-    if a:direction
-        let l:pos[1] = l:pos[1] + 5
-        if l:pos[1] >= line('w$')
-            let l:pos[1] = line('w$')
-        endif
-        call cursor(l:pos[1:])
-    else
-        let l:pos[1] = l:pos[1] - 5
-        if l:pos[1] < 1
-            let l:pos[1] = 1
-        endif
-        call cursor(l:pos[1:])
-    endif
 
-    let l:currentLine = line('.')
+nnoremap <silent>J :call movement#SkipFold(1)<cr>
+nnoremap <silent>K :call movement#SkipFold(0)<cr>
 
-    while foldclosed(l:currentLine) != -1
-
-        if a:direction
-            let l:pos[1] = l:pos[1] + 1
-            call cursor(l:pos[1:])
-        else
-            let l:pos[1] = l:pos[1] - 1
-            call cursor(l:pos[1:])
-        endif
-
-        if l:pos[1] == line('w$')
-            let l:posOrig[1] = l:posOrig[1] + 5
-            call cursor(l:posOrig[1:])
-            break
-        elseif l:pos[1] == 0
-            let l:posOrig[1] = l:posOrig[1] - 5
-            call cursor(l:posOrig[1:])
-            break
-        endif
-
-        let l:currentLine = line('.')
-    endwhile
-endfunction
-
-nnoremap <silent>J :call <SID>SkipFold(1)<cr>
-nnoremap <silent>K :call <SID>SkipFold(0)<cr>
-
-
-function! NextClosedFold(dir)
-    let l:cmd = 'norm!z' . a:dir
-    let l:view = winsaveview()
-    let [l:l0, l:l, l:open] = [0, l:view.lnum, 1]
-    while l:l != l:l0 && l:open
-        exe l:cmd
-        let [l:l0, l:l] = [l:l, line('.')]
-        let l:open = foldclosed(l:l) < 0
-    endwhile
-    if l:open
-        call winrestview(l:view)
-    endif
-endfunction
-
-nnoremap <silent> zj :call NextClosedFold('j')<cr>
-nnoremap <silent> zk :call NextClosedFold('k')<cr>zo[z
+nnoremap <silent> zj :call fold#NextClosedFold('j')<cr>
+nnoremap <silent> zk :call fold#NextClosedFold('k')<cr>zo[z
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

@@ -46,66 +46,7 @@ augroup END
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Japanese {{{
 
-let g:input_toggle = 0
-function! FcitxToEn()
-    let s:input_status = system('fcitx-remote')
-    if s:input_status == 2
-        let g:input_toggle = 1
-        let l:a = system('fcitx-remote -c')
-    endif
-endfunction
-
-function! FcitxToJp()
-    let s:input_status = system('fcitx-remote')
-    if s:input_status != 2 && g:input_toggle == 1
-        let l:a = system('fcitx-remote -o')
-        let g:input_toggle = 0
-    endif
-endfunction
-
-augroup japaneseInput
-    autocmd!
-    autocmd InsertLeave * call FcitxToEn()
-    autocmd InsertEnter * call FcitxToJp()
-augroup END
-
-function! ToggleInput()
-    if g:input_toggle
-        let g:input_toggle=0
-    else
-        let g:input_toggle=1
-    endif
-endfunction
-
-command Japanese :call ToggleInput()
-
-" }}}
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Match {{{
-
-let g:over_length = 0
-
-function! ToggleOverLength()
-    if g:over_length
-        let g:over_length=0
-        match none
-    else
-        let g:over_length=1
-        match Error /.\%>72v/
-    endif
-endfunction
-
-command OverLength :call ToggleOverLength()
-
-" }}}
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Json Format {{{
-
-command JsonFormat :%!python -m json.tool
+command Japanese :call fcitx#ToggleInput()
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -123,7 +64,7 @@ command H :Helptags
 
 function! RestoreSession()
     let l:ignore = [ 'gitcommit', 'man' ]
-    if filereadable(getcwd() . '/Session.vim') && index(l:ignore, &filetype) < 0 && argc() == 0
+    if len(nvim_list_uis()) && filereadable(getcwd() . '/Session.vim') && index(l:ignore, &filetype) < 0 && argc() == 0
         execute 'so ' . getcwd() . '/Session.vim'
         if bufexists(1)
             for l:l in range(1, bufnr('$'))
@@ -199,33 +140,7 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Fold Text {{{
 
-function! FoldText()
-    let l:line = getline(v:foldstart)
-
-    let l:nucolwidth = &foldcolumn + &number * &numberwidth
-    let l:windowwidth = winwidth(0) - l:nucolwidth - 1
-    let l:foldedlinecount = v:foldend - v:foldstart
-
-    " expand tabs into spaces
-    let l:onetab = strpart('          ', 0, &tabstop)
-    let l:line = substitute(l:line, '\t', l:onetab, 'g')
-    let l:line = substitute(l:line, '^\s*', repeat(' ',indent(v:foldstart)), '')
-    let l:line = substitute(l:line, '|[^=]* =', '=', '')
-    let l:line = substitute(l:line, '@[^=]* =', '=', '')
-    let l:line = substitute(l:line, ' @[A-Za-z0-9]\+', '', '')
-
-    let l:line = strpart(l:line, 0, l:windowwidth - 2 -len(l:foldedlinecount))
-
-    let [l:added, l:modified, l:removed] = sy#repo#get_stats()
-    if l:added > 0 || l:modified > 0 || l:removed > 0 || len(getqflist()) > 0 || len(signature#mark#GetList('used', 'buf_all')) > 0
-        let l:fillcharcount = l:windowwidth - len(l:line) - len(l:foldedlinecount) - 2
-    else
-        let l:fillcharcount = l:windowwidth - len(l:line) - len(l:foldedlinecount)
-    endif
-
-    return l:line . repeat(' ',l:fillcharcount) . l:foldedlinecount . ' >-'
-endfunction
-set foldtext=FoldText()
+set foldtext=fold#FoldText()
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -308,54 +223,10 @@ command TOC :call man#show_toc()<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Fzf {{{
 
-function! Urls()
-    let l:urls = systemlist('xurls '.expand('%'))
-
-    call fzf#run({
-    \   'source': l:urls,
-    \   'sink': 'silent !open',
-    \   'window': 'call CreateCenteredFloatingWindow()',
-    \})
-endfunction
-
-command! Urls call Urls()
-
-function! RipgrepFzf(query, fullscreen)
-    let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s || true'
-    let initial_command = printf(command_fmt, shellescape(a:query))
-    let reload_command = printf(command_fmt, '{q}')
-    let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
-    call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
-endfunction
-
-command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
-
-function! HeadersFzf(syntax)
-    let l:lines = getbufline('%', 0, '$')
-    let l:lines = map(l:lines, {index, value -> '[0;31m'. index . '[0;33m' . '	' . value})
-
-    if a:syntax ==# 'markdown'
-        call filter(l:lines, {_, value -> value =~# '^[0;31m\d\+[0;33m	#\+ .*$'})
-    else
-        call filter(l:lines, {_, value -> value =~# '^[0;31m\d\+[0;33m	=\+ .*$'})
-        let l:lines = map(l:lines, {_, line -> substitute(line, '|[^=]* =', '=', '')})
-        let l:lines = map(l:lines, {_, line -> substitute(line, '@[^=]* =', '=', '')})
-        let l:lines = map(l:lines, {_, line -> substitute(line, ' @[A-Za-z0-9]\+', '', '')})
-    endif
-
-    function! s:go_to_line(line)
-        execute 'normal ' . (split(a:line, '	')[0] + 1) . 'G'
-    endfunc
-
-    call fzf#run({
-    \   'source': l:lines,
-    \   'sink': function('s:go_to_line'),
-    \   'window': 'call CreateCenteredFloatingWindow()',
-    \})
-endfunction
-
-command! MarkdownHeadersFzf call HeadersFzf('markdown')
-command! VimwikiHeadersFzf call HeadersFzf('vimwiki')
+command! Urls call fzf#urls#Open()
+command! -nargs=* -bang RG call fzf#ripgrep#Search(<q-args>, <bang>0)
+command! MarkdownHeadersFzf call fzf#headers#Show('markdown')
+command! VimwikiHeadersFzf call fzf#headers#Show('vimwiki')
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -365,23 +236,9 @@ command! VimwikiHeadersFzf call HeadersFzf('vimwiki')
 
 command! SpellClear call clearmatches()
 command! Spell Codespell
+command! SpellToggle :call spell#Toggle()
 
-let g:spell_toggle = 0
-function! ToggleSpell()
-    if g:spell_toggle
-        let g:spell_toggle=0
-        set nospell
-        call clearmatches()
-        echom 'spell off'
-    else
-        let g:spell_toggle=1
-        set spell
-        Codespell
-        echom 'spell on'
-    endif
-endfunction
-
-nnoremap <Leader>s :call ToggleSpell()<CR>
+nnoremap <Leader>s :SpellToggle<CR>
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -389,56 +246,27 @@ nnoremap <Leader>s :call ToggleSpell()<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Git head {{{
 
-command! -nargs=* GitHead call SetGitHead(<q-args>)
-
 let g:gitHead = 'HEAD'
-function SetGitHead(head)
-    if len(a:head)
-        let g:gitHead = a:head
-    else
-        let g:gitHead = 'HEAD'
+command! -nargs=* GitHead call git#SetHead(<q-args>)
+
+" }}}
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:foo = {}
+let g:defaultPrefix = 'default'
+
+function! Foo(...)
+
+    if a:0
+        let g:defaultPrefix = a:1
     endif
 
-    let g:signify_vcs_cmds['git'] = 'git diff --no-color --no-ext-diff -U0 ' . g:gitHead . ' -- %f'
-    echom 'Now diffing against ' . g:gitHead
+    if !has_key(g:foo, g:defaultPrefix)
+        let g:foo[g:defaultPrefix] = []
+    endif
+
+    call add(g:foo[g:defaultPrefix], expand('%'))
+
 endfunction
 
-" }}}
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Prettier vimwiki {{{
-
-function! VimwikiPrettierAll()
-    let l:view=winsaveview()
-    for syntax in ['javascript', 'typescript']
-        call cursor(1, 1)
-        while 1
-            let l:start_line = search('^{{{' . syntax . '$', 'Wc')
-            if l:start_line ==# 0
-                break
-            endif
-            let l:end_line = search('^}}}$', 'W')
-            execute 'silent ' . (l:start_line + 1) . ',' . (l:end_line - 1) . '!prettier ' . g:ale_javascript_prettier_options
-        endwhile
-    endfor
-    call winrestview(l:view)
-endfunction
-
-function! VimwikiPrettierCurrent()
-    let l:view=winsaveview()
-    for syntax in ['javascript', 'typescript']
-        let l:start_line = search('^{{{' . syntax . '$', 'bnWc')
-        let l:end_prev_line = search('^}}}$', 'nbW')
-
-        if l:start_line && l:start_line > l:end_prev_line
-            let l:end_line = search('^}}}$', 'nW')
-            execute 'silent ' . (l:start_line + 1) . ',' . (l:end_line - 1) . '!prettier ' . g:ale_javascript_prettier_options
-        endif
-    endfor
-    call winrestview(l:view)
-endfunction
-
-" }}}
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim:foldmethod=marker:foldlevel=0

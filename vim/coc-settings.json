@@ -40,7 +40,7 @@
     },
     "emmet.showSuggestionsAsSnippets": true,
     "typescript.preferences.quoteStyle": "single",
-    "codeLens.enable": true,
+    "codeLens.enable": false,
     "suggest.enablePreview": false,
     "suggest.echodocSupport": true,
     "suggest.snippetIndicator": " ⚡",

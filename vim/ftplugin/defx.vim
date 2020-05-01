@@ -3,6 +3,7 @@ setlocal bufhidden=delete
 
 nnoremap <silent><buffer><expr> - defx#do_action('cd', ['..'])
 nnoremap <silent><buffer><expr> <ESC> defx#do_action('quit')
+nnoremap <silent><buffer><expr> q defx#do_action('quit')
 
 nnoremap <silent><buffer><expr> <CR> defx#is_directory() ?
 \   defx#do_action('open_or_close_tree') . 'j' :
@@ -30,6 +31,6 @@ nmap <buffer> gr <Plug>(defx-git-reset)
 nmap <buffer> gu <Plug>(defx-git-discard)
 
 call defx#custom#column('filename', {
-\   'min_width': winwidth(0) - 30,
-\   'max_width': winwidth(0) - 30,
+\   'min_width': 60,
+\   'max_width': winwidth(0),
 \})

@@ -60,6 +60,8 @@ set splitright
 set autoread
 set cursorline
 set hidden
+set showtabline=0
+set switchbuf=usetab
 set confirm
 set virtualedit=block
 set ignorecase
@@ -85,7 +87,7 @@ set relativenumber
 set scrolloff=8
 set sidescrolloff=15
 set sidescroll=5
-silent !mkdir ~/.config/nvim/backups > /dev/null 2>&1
+" silent !mkdir ~/.config/nvim/backups > /dev/null 2>&1
 set undodir=~/.config/nvim/backups
 set undofile
 set path+=**
@@ -106,6 +108,7 @@ let g:onedark_terminal_italics = 1
 let g:airline_colornum_reversed = 1
 let g:highlightedyank_highlight_duration = 100
 let g:markdown_fenced_languages = [
+    \ 'vim',
     \ 'python',
     \ 'bash=sh',
     \ 'javascript',
@@ -129,12 +132,6 @@ augroup HiglightDebug
     autocmd WinEnter,VimEnter * :highlight QuickScopePrimary gui=bold guifg=NONE
     autocmd WinEnter,VimEnter * :highlight QuickScopeSecondary gui=bold guifg=NONE
     autocmd CursorHold * silent call CocActionAsync('highlight')
-    autocmd InsertLeave *.md call MarkdownBlocks()
-    autocmd BufEnter *.md call MarkdownBlocks()
-    autocmd BufWritePost *.md call MarkdownBlocks()
-    autocmd InsertLeave *.wiki call VimwikiBlocks()
-    autocmd BufEnter *.wiki call VimwikiBlocks()
-    autocmd BufWritePost *.wiki call VimwikiBlocks()
 augroup END
 
 " }}}
@@ -150,6 +147,7 @@ set foldmethod=indent
 set foldnestmax=2
 set foldopen=all
 set foldminlines=0
+set foldcolumn=0
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -177,6 +175,8 @@ let g:indentLine_setConceal = 0
 let g:indentLine_fileTypeExclude = ['help', 'defx', 'vimwiki']
 let g:indentLine_autoResetWidth = 0
 let g:indent_blankline_space_char = ' '
+let g:indent_blankline_debug = v:true
+" let g:indent_blankline_extra_indent_level = -1
 
 augroup IndentBlankline
     autocmd!
@@ -223,28 +223,14 @@ let g:incsearch#do_not_save_error_message_history = 1
 
 let g:splfy_no_matchinfo = 1
 
-let g:Illuminate_ftblacklist = [ 'python', 'vimfiler', 'javascript' ]
+let g:Illuminate_ftblacklist = [ 'python', 'defx', 'javascript' ]
 
 let g:Illuminate_ftHighlightGroups = {
     \ 'vim': ['vimVar', 'vimFBVar', 'vimString', 'vimLineComment',
     \         'vimFuncName', 'vimFunction', 'vimUserFunc', 'vimFunc'],
-    \ 'javascript': ['javascriptIdentifierName', 'javascriptFuncArg']
 \ }
 
 let g:Illuminate_delay = 0
-
-let g:ctrlsf_confirm_save = 0
-let g:ctrlsf_regex_pattern = 1
-let g:ctrlsf_default_root = 'project'
-let g:ctrlsf_auto_focus = { 'at': 'start' }
-let g:ctrlsf_mapping = {
-    \ 'quit': '<space>q',
-    \ 'next': 'J',
-    \ 'prev': 'K',
-\ }
-function! g:CtrlSFAfterMainWindowInit()
-    only
-endfunction
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -261,16 +247,6 @@ let g:UltiSnipsJumpForwardTrigger = '<Tab>'
 let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'
 let g:UltiSnipsSnippetsDir = '~/dotfiles/vim/ultisnips'
 let g:UltiSnipsSnippetDirectories = [ 'ultisnips' ]
-
-let g:jedi#auto_vim_configuration = 0
-let g:jedi#popup_on_dot = 0
-let g:jedi#goto_command = '<C-]>'
-let g:jedi#goto_assignments_command = ''
-let g:jedi#goto_definitions_command = ''
-let g:jedi#documentation_command = ''
-let g:jedi#usages_command = ''
-let g:jedi#completions_command = ''
-let g:jedi#rename_command = ''
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -305,6 +281,7 @@ let g:ale_fixers = {
 \}
 let g:ale_pattern_options_enabled = 1
 let g:ale_disable_lsp = 1
+let g:ale_sign_priority = 11
 let g:ale_pattern_options = {
 \   '\.min\.(js\|css)$': {
 \       'ale_linters': [],
@@ -319,15 +296,11 @@ let g:ale_pattern_options = {
 \   },
 \}
 let g:ale_javascript_prettier_use_local_config = 1
-let g:ale_javascript_prettier_options = '--tab-width 4 --single-quote --trailing-comma all --print-width ' . &textwidth
-augroup prettier
-    autocmd!
-    autocmd OptionSet textwidth let g:ale_javascript_prettier_options = '--tab-width 4 --single-quote --trailing-comma all --print-width ' . &textwidth
-augroup END
+let g:ale_javascript_prettier_options = '--tab-width 4 --single-quote --trailing-comma all'
 let g:ale_sign_error = '⭕'
 let g:ale_sign_warning = '⭕'
-let g:airline#extensions#ale#error_symbol = '誤:'
-let g:airline#extensions#ale#warning_symbol = '危:'
+let g:airline#extensions#ale#error_symbol = 'E '
+let g:airline#extensions#ale#warning_symbol = 'W '
 let g:qf_nowrap = 0
 let g:qf_max_height = 20
 let g:ale_fix_on_save = 1
@@ -373,11 +346,15 @@ augroup END
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin settings {{{
 
+" Markdown
+let g:markdown_enable_insert_mode_mappings = 0
+
 " Man
 let g:no_man_maps = 1
 
 " Json
 let g:vim_json_syntax_conceal = 0
+let g:vim_json_conceal = 0
 
 " defx
 call defx#custom#column('mark', {
@@ -388,7 +365,7 @@ call defx#custom#column('indent', {
 \   'indent': '    ',
 \})
 call defx#custom#option('_', {
-\   'columns': 'indent:mark:icons:filename:git:type:size:time',
+\   'columns': 'indent:mark:icons:git:filename',
 \})
 
 let g:defx_icons_root_opened_tree_icon = '├'
@@ -441,184 +418,14 @@ let g:poppy_point_enable = 1
 
 " FZF
 let g:fzf_buffers_jump = 1
-function! s:build_quickfix_list(lines)
-    call setqflist(map(copy(a:lines), '{ "filename": v:val, "lnum": 1, "col": 1 }'))
-    copen
-    cc
-endfunction
 let g:fzf_action = {
-\   'ctrl-q': function('s:build_quickfix_list'),
+\   'ctrl-q': function('quickfix#Build'),
 \   'ctrl-z': 'tab split',
 \   'ctrl-s': 'split',
 \   'ctrl-v': 'vsplit',
 \}
-function! CreateCenteredFloatingWindow()
-    let width = min([&columns - 4, max([80, &columns - 20])])
-    let height = min([&lines - 4, max([20, &lines - 50])])
-    let top = (&lines / 6) - 1
-    let left = (&columns - width) / 2
-    let opts = {
-    \   'relative': 'editor',
-    \   'row': top,
-    \   'col': left,
-    \   'width': width,
-    \   'height': height,
-    \   'style': 'minimal',
-    \}
-
-    let top = '╭' . repeat('─', width - 2) . '╮'
-    let mid = '│' . repeat(' ', width - 2) . '│'
-    let bot = '╰' . repeat('─', width - 2) . '╯'
-    let lines = [top] + repeat([mid], height - 2) + [bot]
-    let s:buf = nvim_create_buf(v:false, v:true)
-    call nvim_buf_set_lines(s:buf, 0, -1, v:true, lines)
-    call nvim_open_win(s:buf, v:true, opts)
-    set winhl=Normal:Floating
-    let opts.row += 1
-    let opts.height -= 2
-    let opts.col += 2
-    let opts.width -= 4
-    call nvim_open_win(nvim_create_buf(v:false, v:true), v:true, opts)
-    augroup fzf
-        autocmd!
-        autocmd BufWipeout <buffer> exe 'bw '.s:buf
-    augroup END
-endfunction
-let g:fzf_layout = { 'window': 'call CreateCenteredFloatingWindow()' }
+let g:fzf_layout = { 'window': 'call fzf#floating_window#Create()' }
 let $FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS . ' --reverse --ansi'
-
-function! s:multi_edit_files(files)
-    if len(a:files) == 1
-        let l:file = s:map_file('', a:files[0])
-        if isdirectory(l:file)
-            call Fzf_dev(l:file)
-        else
-            execute 'silent e' l:file
-            if s:path ==? 'git'
-                sleep 100m
-                execute 'normal gg'
-                execute "normal \<plug>(signify-next-hunk)"
-            end
-        endif
-    else
-        call setqflist(
-        \   map(
-        \       map(copy(a:files), function('s:map_file')),
-        \       '{ "filename": v:val, "lnum": 1, "col": 1 }',
-        \   )
-        \)
-        copen
-        cc
-    end
-endfunction
-
-function! Fzf_dev(path)
-    let s:path = a:path
-    let s:files_status = {}
-
-    function! s:files(path)
-        let l:status_lines = systemlist('git diff --name-status ' . g:gitHead)
-        if !v:shell_error
-            for l:status_line in l:status_lines
-                let s:files_status[split(l:status_line, '	')[1]] = split(l:status_line, '	')[0]
-            endfor
-            let l:untracked_files = systemlist('git ls-files --exclude-standard --others')
-            for l:untracked_file in l:untracked_files
-                let s:files_status[untracked_file] = '??'
-            endfor
-        endif
-
-        if a:path ==? 'git'
-            let l:files = systemlist('git diff --name-only ' . g:gitHead) + systemlist('git ls-files --exclude-standard --others')
-            if v:shell_error ==? 129
-                throw 'this is not a git repo'
-            endif
-        else
-            let l:files = systemlist($FZF_DEFAULT_COMMAND . ' -- ' . a:path)
-            " let l:files = l:files + systemlist('dirname '. join(l:files, ' ') . ' | sort -u')
-        end
-        return s:prepend_icon(l:files)
-    endfunction
-
-    function! s:prepend_icon(candidates)
-        let l:result = []
-        for l:candidate in a:candidates
-            let l:filename = fnamemodify(l:candidate, ':p:t')
-            let l:git_icon = get(s:files_status, l:candidate, ' ')
-            let l:icon = WebDevIconsGetFileTypeSymbol(l:filename, isdirectory(l:filename))
-            let l:color_map = {
-            \   '': '[0;36m[0m',
-            \   '': '[0;36m[0m',
-            \   '': '[0;97m[0m',
-            \   '': '[0;98m[0m',
-            \   '': '[0;36m[0m',
-            \   '': '[0;34m[0m',
-            \   '': '[0;33m[0m',
-            \   '': '[0;33m[0m',
-            \   '': '[0;32m[0m',
-            \   '': '[0;32m[0m',
-            \   '': '[0;34m[0m',
-            \   '': '[0;33m[0m',
-            \   'M': '[0;33m◉[0m',
-            \   'D': '[0;31m✖[0m',
-            \   '??': '[0;34m◈[0m',
-            \}
-            call add(
-            \   l:result,
-            \   printf(
-            \       '%s %s %s',
-            \       get(l:color_map, l:git_icon, '[0;32m' . l:git_icon . '[0m'),
-            \       get(l:color_map, l:icon, '[0;31m' . l:icon . '[0m'),
-            \       l:candidate
-            \   )
-            \)
-        endfor
-
-        return l:result
-    endfunction
-
-    function! s:map_file(_key, file)
-        let l:pos = stridx(a:file, ' ')
-        return a:file[pos+1:-1]
-    endfunction
-
-
-    if a:path ==? 'git'
-        let l:fzf_files_options = '--preview "bat --italic-text=always --style=numbers,changes --color always {2..-1} | grep -A5 -B5 --color=never -P \"^..\d+.{0,30}[\+|\_|~]\""'
-    else
-        let l:fzf_files_options = ''
-    end
-
-    call fzf#run(fzf#wrap({
-    \   'source': <sid>files(a:path),
-    \   'sink*': function('s:multi_edit_files'),
-    \   'options': '--multi ' . l:fzf_files_options,
-    \   'window': 'call CreateCenteredFloatingWindow()',
-    \}))
-
-endfunction
-
-let g:clap_layout = {'width': '80%', 'height': '45%', 'row': '15%', 'col': '10%'}
-let g:clap_enable_icon=1
-let g:clap_provider_grep_enable_icon=1
-let g:clap_bg = { 'guibg': onedark#GetColors().black.gui }
-let g:clap_theme = {
-\   'display': g:clap_bg,
-\   'input': g:clap_bg,
-\   'spinner': g:clap_bg,
-\   'search_text': g:clap_bg,
-\   'preview': g:clap_bg,
-\   'selected': { 'guibg': onedark#GetColors().dark_black.gui },
-\   'current_selection': { 'guibg': onedark#GetColors().dark_black.gui },
-\}
-let g:clap_fuzzy_match_hl_groups = [
-\   [ onedark#GetColors().green.cterm, onedark#GetColors().green.gui ],
-\]
-let g:clap_prompt_format = '%provider_id%> '
-let g:clap_disable_run_rooter = v:true
-
-" Lion
-let g:lion_squeeze_spaces = 1
 
 " Siganture
 let g:SignatureForceRemoveGlobal = 1
@@ -745,6 +552,7 @@ let g:slime_default_config = {'socket_name': 'default', 'target_pane': '{bottom}
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+let g:conjoin_map_J = '<con-nope>'
 
 let wiki = {
 \   'path': '~/vimwiki/',
@@ -785,20 +593,7 @@ let g:vimwiki_key_mappings = {
 \   'mouse': 1,
 \}
 
-function MyCalAction(day,month,year,week,dir)
-    function! s:prefix_zero(num) abort
-        if a:num < 10
-            return '0'.a:num
-        endif
-        return a:num
-    endfunction
-
-    let day = s:prefix_zero(a:day)
-    let month = s:prefix_zero(a:month)
-    let @+ = a:year . '-' . l:month . '-' . l:day
-    bdelete
-endfunction
-let g:calendar_action = 'MyCalAction'
+let g:calendar_action = 'cal#Action'
 let g:calendar_monday = 1
 let g:calendar_navi = 'bottom'
 
