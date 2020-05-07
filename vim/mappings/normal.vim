@@ -86,10 +86,10 @@ nnoremap <silent> zk :call fold#NextClosedFold('k')<cr>zo[z
 
 nnoremap do2 :diffget //2<CR> :diffupdate<CR>
 nnoremap do3 :diffget //3<CR> :diffupdate<CR>
-omap ic <plug>(signify-motion-inner-pending)
-xmap ic <plug>(signify-motion-inner-visual)
-omap ac <plug>(signify-motion-outer-pending)
-xmap ac <plug>(signify-motion-outer-visual)
+omap ih <plug>(signify-motion-inner-pending)
+xmap ih <plug>(signify-motion-inner-visual)
+omap ah <plug>(signify-motion-outer-pending)
+xmap ah <plug>(signify-motion-outer-visual)
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

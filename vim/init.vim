@@ -24,9 +24,9 @@ call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Functions {{{
+" Autocmds {{{
 
-source ~/dotfiles/vim/functions.vim
+source ~/dotfiles/vim/autocmds.vim
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -61,7 +61,6 @@ set autoread
 set cursorline
 set hidden
 set showtabline=0
-set switchbuf=usetab
 set confirm
 set virtualedit=block
 set ignorecase
@@ -72,7 +71,6 @@ set incsearch
 set inccommand=nosplit
 set formatoptions=tcrqnbj
 set viewoptions=
-set wrap
 set breakindent
 set linebreak
 set whichwrap=b,h,l
@@ -118,21 +116,6 @@ let g:markdown_fenced_languages = [
     \ 'gql=graphql',
     \ 'graphql',
 \ ]
-" let g:vimade = {
-"     \ 'fadelevel': 0.8,
-"     \ 'enablesigns': 1,
-" \ }
-
-augroup HiglightDebug
-    autocmd!
-    autocmd WinEnter,VimEnter * :silent! call matchadd('Todo', 'TODO', -1)
-    autocmd WinEnter,VimEnter * :silent! call matchadd('Todo', '@TODO', -1)
-    autocmd WinEnter,VimEnter * :silent! call matchadd('Todo', 'DEBUG', -1)
-    autocmd WinEnter,VimEnter * :silent! call matchadd('Todo', '@DEBUG', -1)
-    autocmd WinEnter,VimEnter * :highlight QuickScopePrimary gui=bold guifg=NONE
-    autocmd WinEnter,VimEnter * :highlight QuickScopeSecondary gui=bold guifg=NONE
-    autocmd CursorHold * silent call CocActionAsync('highlight')
-augroup END
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -148,6 +131,7 @@ set foldnestmax=2
 set foldopen=all
 set foldminlines=0
 set foldcolumn=0
+set foldtext=fold#FoldText()
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -176,12 +160,6 @@ let g:indentLine_fileTypeExclude = ['help', 'defx', 'vimwiki']
 let g:indentLine_autoResetWidth = 0
 let g:indent_blankline_space_char = ' '
 let g:indent_blankline_debug = v:true
-" let g:indent_blankline_extra_indent_level = -1
-
-augroup IndentBlankline
-    autocmd!
-    autocmd User ALEFixPost IndentBlanklineRefresh
-augroup END
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -320,30 +298,6 @@ let g:semshi#mark_selected_nodes = 2
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" File Type Autocmd {{{
-
-function! RemoveQuickfixItem()
-    let curqfidx = line('.') - 1
-    let qfall = getqflist()
-    call remove(qfall, curqfidx)
-    call setqflist(qfall, 'r')
-    execute curqfidx + 1 . 'cfirst'
-    copen
-endfunction
-
-augroup FiletypeDetect
-    autocmd!
-    autocmd BufRead,BufNewFile .eslintrc,.stylelintrc,.htmlhintrc set filetype=json
-    autocmd BufRead,BufNewFile *.tsx set filetype=typescript.tsx
-    autocmd BufRead,BufNewFile *.jsx set filetype=javascript
-    autocmd BufRead,BufNewFile * set formatoptions-=o
-    autocmd FileType qf nnoremap <silent><buffer> dd :call RemoveQuickfixItem()<CR>
-augroup END
-
-" }}}
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin settings {{{
 
 " Markdown
@@ -385,21 +339,11 @@ call defx#custom#column('git', 'indicators', {
 \   'Unknown'  : '?'
 \})
 
-augroup defx
-    autocmd!
-    autocmd BufWritePost * call defx#redraw()
-augroup END
-
 "EasyMotion
 let g:EasyMotion_smartcase = 1
 let g:EasyMotion_do_mapping = 0
 let g:EasyMotion_keys = 'asdfghjklqwertyuiopzxcvbnm'
 
-" signify
-augroup signify
-    autocmd!
-    autocmd FocusGained,cursormoved * :SignifyRefresh
-augroup END
 let g:signify_update_on_focusgained = 1
 let g:signify_sign_add = '│'
 let g:signify_sign_delete = g:signify_sign_add
@@ -410,10 +354,6 @@ let g:gitgutter_map_keys = 0
 let g:gitgutter_signs = 0
 
 " poppy
-augroup poppy
-    autocmd!
-    autocmd cursormoved * call PoppyInit()
-augroup END
 let g:poppy_point_enable = 1
 
 " FZF
@@ -598,6 +538,24 @@ let g:calendar_monday = 1
 let g:calendar_navi = 'bottom'
 
 command! CL CalendarH
+
+command Japanese :call fcitx#ToggleInput()
+
+command H :Helptags
+
+command TOC :call man#show_toc()<CR>
+
+command! Urls call fzf#urls#Open()
+command! -nargs=* -bang RG call fzf#ripgrep#Search(<q-args>, <bang>0)
+command! MarkdownHeadersFzf call fzf#headers#Show('markdown')
+command! VimwikiHeadersFzf call fzf#headers#Show('vimwiki')
+
+command! SpellClear call clearmatches()
+command! Spell Codespell
+command! SpellToggle :call spell#Toggle()
+
+let g:gitHead = 'HEAD'
+command! -nargs=* GitHead call git#SetHead(<q-args>)
 
 " vim:foldmethod=marker:foldlevel=0
 

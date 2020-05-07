@@ -19,12 +19,4 @@ syntax region VimwikiColorTagPurple matchgroup=VimwikiColorTag start='<span clas
 
 syntax match MarkdownDash /^---\+$/ conceal
 
-" syntax match VimwikiListTodo "◯"
-
 syntax match VimwikiSuperScriptT /(\?[12]\d\{3}-\(0[1-9]\|1[0-2]\)-\(0[1-9]\|[12]\d\|3[01]\)\( \d\{2}:\d\{2}:\d\{2}\)\?)\?/
-
-" syntax match VimwikiListTodoIcon "^*" conceal cchar=⬤
-" syntax match VimwikiListTodoIcon "^**" conceal cchar=◯
-
-" syntax match VimwikiListTodoIcon "*" conceal cchar=⬤
-" execute 'syntax match VimwikiListTodo /'.vimwiki#vars#get_syntaxlocal('rxListItem').'/ contains=VimwikiListTodoIcon'

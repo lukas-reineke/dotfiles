@@ -29,6 +29,8 @@ nnoremap <Leader>u :UndotreeToggle<CR>:UndotreeFocus<CR>
 
 nnoremap <Leader>tn :tabnew<CR>
 
+nnoremap <Leader>s :SpellToggle<CR>
+
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 

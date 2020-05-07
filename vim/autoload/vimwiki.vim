@@ -1,6 +1,11 @@
 
 function! vimwiki#PrettierAll()
+    if &filetype !=# 'vimwiki'
+        return
+    endif
+
     let l:view=winsaveview()
+
     for syntax in ['javascript', 'typescript']
         call cursor(1, 1)
         while 1
@@ -12,12 +17,18 @@ function! vimwiki#PrettierAll()
             execute 'silent ' . (l:start_line + 1) . ',' . (l:end_line - 1) . '!prettier ' . g:ale_javascript_prettier_options
         endwhile
     endfor
+
     call winrestview(l:view)
 endfunction
 
 function! vimwiki#PrettierCurrent()
+    if &filetype !=# 'vimwiki'
+        return
+    endif
+
     let l:parser_map = {'javascript': 'babel'}
     let l:view=winsaveview()
+
     for syntax in ['javascript', 'typescript']
         let l:start_line = search('^{{{' . syntax . '$', 'bnWc')
         let l:end_prev_line = search('^}}}$', 'nbW')
@@ -28,5 +39,6 @@ function! vimwiki#PrettierCurrent()
             execute 'silent ' . (l:start_line + 1) . ',' . (l:end_line - 1) . '!prettier ' . g:ale_javascript_prettier_options . ' --parser ' . l:parser
         endif
     endfor
+
     call winrestview(l:view)
 endfunction
