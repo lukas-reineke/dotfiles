@@ -1,5 +1,18 @@
 #!/bin/bash
 
+export RED='\e[0;31m'
+export GRN='\e[0;32m'
+export YEL='\e[33m'
+export CYN='\e[36m'
+export BLU='\e[34m'
+export LGR='\e[37m'
+export DGR='\e[90m'
+export WHT='\e[97m'
+export MGT='\e[35m'
+export UNDERLINE='\e[4m'
+export BOLD='\e[1m'
+export NC='\e[0m' # No Color
+
 export FZF_COMPLETION_TRIGGER='++'
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -9,7 +22,7 @@ export FZF_DEFAULT_OPTS="--bind \"ctrl-n:preview-down,ctrl-p:preview-up\" --colo
 export GIT_REPO_DIR="$HOME/dev"
 export VISUAL=nvim
 export EDITOR="$VISUAL"
-export PATH=${PATH}:$HOME/.npm-global
+export PATH=${PATH}:$HOME/.npm-global/bin
 export PATH=${PATH}:$HOME/dotfiles/lib/vimv
 export PATH=${PATH}:$HOME/.local/bin
 export PATH=${PATH}:$HOME/go/bin
@@ -21,3 +34,7 @@ export TERMINFO="$HOME/.terminfo"
 
 export NVM_DIR="$HOME/.nvm"
 export BAT_THEME="ansi-dark"
+
+export PROMPT_COMMAND=${PROMPT_COMMAND:+$PROMPT_COMMAND; }'printf "\033_%s\033\\" "${PWD##*/}"'
+export GIT_PROMPT_THEME=Custom
+export GIT_PROMPT_ONLY_IN_REPO=0

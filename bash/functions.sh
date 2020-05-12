@@ -38,15 +38,6 @@ function cs {
 }
 alias cd='exec_scmb_expand_args cs'
 
-# function mvv {
-#     if git ls-files --error-unmatch $1 > /dev/null 2>&1; then
-#         git mv $*
-#     else
-#         /bin/mv $*
-#     fi
-# }
-# alias mv='mvv'
-
 # temp folder
 function temp {
     if [ ! -n "$1" ]; then
@@ -82,15 +73,6 @@ function ce {
 }
 bind '"\C-e":"ce\n"'
 
-# bower
-function bower {
-    if [[ $1 == "i" ]]; then
-        command bower install "${@:2}"
-    else
-        command bower "$@"
-    fi
-}
-
 # yarn
 function yarn {
     if [[ $1 == "i" ]]; then
@@ -104,34 +86,9 @@ function yarn {
     fi
 }
 
-#brew
-function brew {
-    if [[ $1 == "i" ]]; then
-        command brew install "${@:2}"
-    else
-        command brew "$@"
-    fi
-}
-
-# Create a ZIP archive of a file or folder.
-function makezip {
-    zip -r "${1%%/}.zip" "$1" ;
-}
-
-# Creates an archive (*.tar.gz) from given directory.
-function maketar {
-    tar cvzf "${1%%/}.tar.gz"  "${1%%/}/";
-}
-
 # Make directories and files access rights sane.
 function sanitize {
     chmod -R u=rwX,g=rX,o= "$@" ;
-}
-
-# Generate random mac address
-function mac {
-    hexdump -n6 -e '/1 ":%02X"' /dev/random|sed s/^://g
-    echo ""
 }
 
 # run ssh-agent and add key
@@ -529,20 +486,12 @@ function markd {
     mark ${PWD##*/}
 }
 
-function clp {
-    cat $@ | pbcopy
-}
-
 function vman {
     vim -c "SuperMan $*"
 
     if [ "$?" != "0" ]; then
         echo "No manual entry for $*"
     fi
-}
-
-function rep {
-    rg $1 --no-heading --color=never --files-with-matches | xargs perl -pi -E 's/'$1'/'$2'/g'
 }
 
 function ccrypt {

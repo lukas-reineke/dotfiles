@@ -20,26 +20,26 @@ shopt -s checkwinsize
 
 shopt -s globstar
 
-# make less more friendly for non-text input files
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+# # make less more friendly for non-text input files
+# [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # set color with Ecma-48 (ISO/IEC-6429)
-if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-    force_color_promt=yes
-    color_prompt=yes
-else
-    color_prompt=
-fi
+# if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+#     force_color_promt=yes
+#     color_prompt=yes
+# else
+#     color_prompt=
+# fi
 
 
-# enable programmable completion features
-if ! shopt -oq posix; then
-    if [ -f /usr/share/bash-completion/bash_completion ]; then
-        . /usr/share/bash-completion/bash_completion
-    elif [ -f /etc/bash_completion ]; then
-        . /etc/bash_completion
-    fi
-fi
+# # enable programmable completion features
+# if ! shopt -oq posix; then
+#     if [ -f /usr/share/bash-completion/bash_completion ]; then
+#         . /usr/share/bash-completion/bash_completion
+#     elif [ -f /etc/bash_completion ]; then
+#         . /etc/bash_completion
+#     fi
+# fi
 
 
 ## external
@@ -75,16 +75,15 @@ fi
 # git prompt
 if [ -f ~/dotfiles/lib/bash-git-prompt/gitprompt.sh ]; then
     source ~/dotfiles/lib/bash-git-prompt/gitprompt.sh
-    GIT_PROMPT_ONLY_IN_REPO=0
 fi
 
-## os specific
-if [ $(uname) == 'Darwin' ]; then
-    source ~/dotfiles/bash/mac
-else
-    source ~/dotfiles/bash/linux
+# ssh
+if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+    ssh-agent > ~/.ssh-agent-thing
 fi
-
+if [[ "$SSH_AGENT_PID" == "" ]]; then
+    eval "$(<~/.ssh-agent-thing)"
+fi
 
 ### alias ###
 if [ -f ~/dotfiles/bash/aliases.sh ]; then
@@ -116,10 +115,10 @@ if [ -f ~/dotfiles/lib/pm2-completion.bash ]; then
     source ~/dotfiles/lib/pm2-completion.bash
 fi
 
-### minikube completion ###
-if [ -f ~/dotfiles/lib/minikube-completion.bash ]; then
-    source ~/dotfiles/lib/minikube-completion.bash
-fi
+# ### minikube completion ###
+# if [ -f ~/dotfiles/lib/minikube-completion.bash ]; then
+#     source ~/dotfiles/lib/minikube-completion.bash
+# fi
 
 if [ -f ~/dotfiles/lib/kubectl-completion.bash ]; then
     source ~/dotfiles/lib/kubectl-completion.bash
@@ -130,19 +129,6 @@ if [[ ! "$PATH" == *$HOME/dotfiles/lib/fzf/bin* ]]; then
     export PATH="$PATH:$HOME/dotfiles/lib/fzf/bin"
 fi
 
-# fzf Man path
-if [[ ! "$MANPATH" == *$HOME/dotfiles/lib/fzf/man* && -d "$HOME/dotfiles/lib/fzf/man" ]]; then
-    export MANPATH="$MANPATH:$HOME/dotfiles/lib/fzf/man"
-fi
-
-# fzf Auto-completion
-[[ $- == *i* ]] && source "$HOME/dotfiles/lib/fzf/shell/completion.bash" 2> /dev/null
-
-# fzf Key bindings
-# if [ -f ~/dotfiles/lib/fzf/shell/key-bindings.bash ]; then
-#     source ~/dotfiles/lib/fzf/shell/key-bindings.bash
-# fi
-
 # fzf mark
 if [ -f ~/dotfiles/lib/fzf-marks/fzf-marks.plugin.bash ]; then
     source ~/dotfiles/lib/fzf-marks/fzf-marks.plugin.bash
@@ -152,9 +138,9 @@ if [ -f ~/dotfiles/lib/cd-history.bash ]; then
     source ~/dotfiles/lib/cd-history.bash
 fi
 
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
-eval $(dircolors -b ~/dotfiles/bash/dir_colors)
+eval "$(dircolors -b ~/dotfiles/bash/dir_colors)"
