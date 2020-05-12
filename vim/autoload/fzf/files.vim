@@ -2,16 +2,16 @@
 function! s:multi_edit_files(files)
     if len(a:files) == 1
         let l:file = s:map_file('', a:files[0])
-        if isdirectory(l:file)
-            call fzf#files#Run(l:file)
-        else
+        " if isdirectory(l:file)
+        "     call fzf#files#Run(l:file)
+        " else
             execute 'silent e' l:file
             if s:path ==? 'git'
                 sleep 100m
                 execute 'normal gg'
                 execute "normal \<plug>(signify-next-hunk)"
             end
-        endif
+        " endif
     else
         call setqflist(
         \   map(

@@ -492,7 +492,8 @@ let g:slime_default_config = {'socket_name': 'default', 'target_pane': '{bottom}
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let g:conjoin_map_J = '<con-nope>'
+let g:conjoin_map_J = 'gJ'
+let g:conjoin_map_gJ = '<con-nope>'
 
 let wiki = {
 \   'path': '~/vimwiki/',
