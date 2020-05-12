@@ -32,11 +32,7 @@ augroup Autogroup
     autocmd cursormoved * call fold#CloseAll()
 
     autocmd CompleteDone * call complete#Undouble()
-    autocmd CompleteDone *
-        \ if exists('b:oldpwd') |
-        \     cd `=b:oldpwd` |
-        \     unlet b:oldpwd |
-        \ endif
+    autocmd CompleteDone * call complete#ReturnToOldPath()
 
     " autocmd BufWritePost * call defx#redraw()
 augroup END
