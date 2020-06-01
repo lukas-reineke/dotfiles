@@ -29,31 +29,33 @@ function! fzf#files#Run(path)
     let s:files_status = {}
 
     function! s:files(path)
-        let l:status_lines = systemlist('git diff --name-status ' . g:gitHead)
-        if !v:shell_error
-            for l:status_line in l:status_lines
-                let s:files_status[split(l:status_line, '	')[1]] = split(l:status_line, '	')[0]
-            endfor
-            let l:untracked_files = systemlist('git ls-files --exclude-standard --others')
-            for l:untracked_file in l:untracked_files
-                let s:files_status[untracked_file] = '??'
-            endfor
-        endif
-
-        " let l:uwu = split(a:path, '\.')
 
         if a:path ==? 'git'
             let l:files = systemlist('git diff --name-only ' . g:gitHead) + systemlist('git ls-files --exclude-standard --others')
             if v:shell_error ==? 129
                 throw 'this is not a git repo'
             endif
-        " elseif l:uwu[0] ==? 'foo'
-        "     let l:files = g:foo[l:uwu[1]]
         else
             let l:files = systemlist($FZF_DEFAULT_COMMAND . ' -- ' . a:path)
             " let l:files = l:files + systemlist('dirname '. join(l:files, ' ') . ' | sort -u')
         end
-        return s:prepend_icon(l:files)
+
+        if len(l:files) > 10000
+            return l:files
+        else
+            let l:status_lines = systemlist('git diff --name-status ' . g:gitHead)
+            if !v:shell_error
+                for l:status_line in l:status_lines
+                    let s:files_status[split(l:status_line, '	')[1]] = split(l:status_line, '	')[0]
+                endfor
+                let l:untracked_files = systemlist('git ls-files --exclude-standard --others')
+                for l:untracked_file in l:untracked_files
+                    let s:files_status[untracked_file] = '??'
+                endfor
+            endif
+
+            return s:prepend_icon(l:files)
+        endif
     endfunction
 
     function! s:prepend_icon(candidates)
@@ -74,6 +76,7 @@ function! fzf#files#Run(path)
             \   '': '[0;32m[0m',
             \   '': '[0;32m[0m',
             \   '': '[0;34m[0m',
+            \   '': '[0;36m[0m',
             \   '': '[0;33m[0m',
             \   'M': '[0;33m◉[0m',
             \   'D': '[0;31m✖[0m',

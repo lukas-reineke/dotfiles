@@ -88,7 +88,6 @@ set sidescroll=5
 " silent !mkdir ~/.config/nvim/backups > /dev/null 2>&1
 set undodir=~/.config/nvim/backups
 set undofile
-set path+=**
 set virtualedit=onemore
 set spellcapcheck=
 set noruler
@@ -141,7 +140,7 @@ set foldtext=fold#FoldText()
 
 set list
 set listchars=eol:↴
-set listchars+=tab:>-
+set listchars+=tab:│⋅
 set listchars+=trail:•
 set listchars+=extends:❯
 set listchars+=precedes:❮
@@ -226,6 +225,21 @@ let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'
 let g:UltiSnipsSnippetsDir = '~/dotfiles/vim/ultisnips'
 let g:UltiSnipsSnippetDirectories = [ 'ultisnips' ]
 
+let g:go_code_completion_enabled = 0
+let g:go_doc_keywordprg_enabled = 0
+let g:go_fmt_autosave = 0
+let g:go_highlight_extra_types = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_parameters = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_generate_tags = 1
+let g:go_highlight_variable_declarations = 1
+let g:go_highlight_variable_assignments = 1
+
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -242,6 +256,7 @@ let g:ale_linters = {
 \   'graphql': [ 'eslint' ],
 \   'python': [ 'flake8', 'mypy', 'pyls' ],
 \   'sh': [ 'language_server', 'shellcheck' ],
+\   'go': [ 'gofmt', 'golint', 'govet', 'gometalinter', 'staticcheck' ],
 \}
 let g:ale_fixers = {
 \   '*': [ 'trim_whitespace' ],
@@ -256,6 +271,7 @@ let g:ale_fixers = {
 \   'yaml': [ 'prettier' ],
 \   'graphql': [ 'prettier' ],
 \   'python': [ 'black' ],
+\   'go': [ 'gofmt', 'goimports' ],
 \}
 let g:ale_pattern_options_enabled = 1
 let g:ale_disable_lsp = 1
@@ -481,10 +497,12 @@ let g:airline#extensions#whitespace#enabled = 0
 
 
 let g:vista_default_executive = 'coc'
+let g:vista_echo_cursor = 0
 let g:vista_close_on_jump = 1
 let g:vista_blink = [1, 100]
 let g:vista_sidebar_width = 50
 let g:vista_icon_indent = ['╰─ ', '├─ ']
+let g:vista_fzf_preview = ['right:50%']
 
 let g:slime_target = 'tmux'
 let g:slime_default_config = {'socket_name': 'default', 'target_pane': '{bottom}'}

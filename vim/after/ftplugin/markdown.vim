@@ -1,6 +1,6 @@
 setlocal nowrap
 setlocal spell
-setlocal listchars=
+setlocal nolist
 setlocal colorcolumn=
 setlocal foldexpr=markdown#FoldExpression(v:lnum)
 setlocal foldmethod=expr

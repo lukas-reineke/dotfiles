@@ -1,8 +1,5 @@
 # If not running interactively, don't do anything
-case $- in
-    *i*) ;;
-        *) return;;
-esac
+[[ $- != *i* ]] && return
 
 # don't put duplicate lines or lines starting with space in the history.
 export HISTCONTROL=ignoreboth:erasedups
@@ -47,25 +44,27 @@ shopt -s globstar
 if [ -f ~/dotfiles/lib/git-completion.bash ]; then
     source ~/dotfiles/lib/git-completion.bash
 fi
-if [ -f ~/dotfiles/lib/git-flow-completion.bash ]; then
-    source ~/dotfiles/lib/git-flow-completion.bash
-fi
+
+# if [ -f ~/dotfiles/lib/git-flow-completion.bash ]; then
+#     source ~/dotfiles/lib/git-flow-completion.bash
+# fi
+
 # npm completion
-if [ -f ~/dotfiles/lib/npm-completion.bash ]; then
-    source ~/dotfiles/lib/npm-completion.bash
-fi
+# if [ -f ~/dotfiles/lib/npm-completion.bash ]; then
+#     source ~/dotfiles/lib/npm-completion.bash
+# fi
 
 
 # pip bash completion
-_pip_completion()
-{
-    COMPREPLY=( $(
-        COMP_WORDS="${COMP_WORDS[*]}" \
-        COMP_CWORD=$COMP_CWORD \
-        PIP_AUTO_COMPLETE=1 $1
-    ) )
-}
-complete -o default -F _pip_completion pip
+# _pip_completion()
+# {
+#     COMPREPLY=( $(
+#         COMP_WORDS="${COMP_WORDS[*]}" \
+#         COMP_CWORD=$COMP_CWORD \
+#         PIP_AUTO_COMPLETE=1 $1
+#     ) )
+# }
+# complete -o default -F _pip_completion pip
 
 # scm breeze
 if [ -f ~/dotfiles/lib/scm_breeze/scm_breeze.sh ]; then
@@ -110,10 +109,10 @@ if [ -f ~/dotfiles/.secrets ]; then
     source ~/dotfiles/.secrets
 fi
 
-### pm2 completion ###
-if [ -f ~/dotfiles/lib/pm2-completion.bash ]; then
-    source ~/dotfiles/lib/pm2-completion.bash
-fi
+# ### pm2 completion ###
+# if [ -f ~/dotfiles/lib/pm2-completion.bash ]; then
+#     source ~/dotfiles/lib/pm2-completion.bash
+# fi
 
 # ### minikube completion ###
 # if [ -f ~/dotfiles/lib/minikube-completion.bash ]; then
@@ -134,9 +133,9 @@ if [ -f ~/dotfiles/lib/fzf-marks/fzf-marks.plugin.bash ]; then
     source ~/dotfiles/lib/fzf-marks/fzf-marks.plugin.bash
 fi
 
-if [ -f ~/dotfiles/lib/cd-history.bash ]; then
-    source ~/dotfiles/lib/cd-history.bash
-fi
+# if [ -f ~/dotfiles/lib/cd-history.bash ]; then
+#     source ~/dotfiles/lib/cd-history.bash
+# fi
 
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"

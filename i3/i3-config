@@ -181,7 +181,7 @@ bindsym XF86AudioPrev exec playerctl previous
 # Reset keymaps ##
 bindsym $mod+m exec ~/scripts/keymaps/reset-keysettings.sh
 
-bindsym $alt+Shift+4 exec deepin-screenshot
+bindsym $alt+Shift+4 exec deepin-screen-recorder
 
 bindsym --whole-window $mod+button2 kill
 bindsym --whole-window $mod+button9 move right

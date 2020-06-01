@@ -38,7 +38,7 @@ nnoremap <Leader>s :SpellToggle<CR>
 " FZF {{{
 
 nnoremap <Leader>p :Buffers<CR>
-nnoremap <Leader>P :Rg<CR>
+nnoremap <Leader>P :RG<CR>
 nnoremap <Leader><C-P> :Commands<CR>
 nnoremap <C-W><Leader> :Windows<CR>
 nnoremap <Leader><C-h> :Helptags<CR>
@@ -89,7 +89,7 @@ nnoremap <Leader>gd :execute "Gvdiff " .. g:gitHead<CR>
 nnoremap <Leader>gr :Gread<CR>
 nnoremap <Leader>gb :Gblame<CR>
 nnoremap <Leader>gs :Gstatus<CR><C-w>o
-nnoremap <Leader>gl :BCommits<CR>
+nnoremap <Leader>gc :BCommits<CR>
 nnoremap <Leader>gf :GFiles?<CR>
 nnoremap <Leader>gf :call fzf#files#Run('git')<CR>
 nnoremap <Leader>gt :SignifyToggleHighlight<CR>
@@ -99,6 +99,8 @@ nnoremap <Leader>gu :GitGutterUndoHunk<CR>
 nnoremap <Leader>ga :GitGutterStageHunk<CR>:SignifyRefresh<CR>
 nnoremap <Leader>gg :call lists#ChangeActiveList('quickfix')<CR>:execute "VcsJump diff " .. g:gitHead<CR>
 nnoremap <Leader>gn :call lists#ChangeActiveList('quickfix')<CR>:VcsJump merge<CR>
+nnoremap <Leader>gh :diffget //2<CR> :diffupdate<CR>
+nnoremap <Leader>gl :diffget //3<CR> :diffupdate<CR>
 nmap <Leader>gw <Plug>(git-messenger)
 nmap <Leader>gi <Plug>(git-messenger-into-popup)
 

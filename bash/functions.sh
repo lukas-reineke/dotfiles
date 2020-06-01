@@ -34,7 +34,7 @@ function cs {
     else
         builtin cd "$*"
     fi
-    cd-history-save
+    # cd-history-save
 }
 alias cd='exec_scmb_expand_args cs'
 

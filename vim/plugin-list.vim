@@ -36,6 +36,9 @@ Plug 'wincent/vcs-jump'
 Plug 'HerringtonDarkholme/yats.vim'
 " Plug 'Quramy/tsuquyomi'
 
+" Go
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
 Plug 'mbbill/undotree'
 
 " Javascript
@@ -180,7 +183,7 @@ Plug 'machakann/vim-sandwich'
 
 " split and join lines
 Plug 'AndrewRadev/splitjoin.vim'
-Plug 'flwyd/vim-conjoin'
+" Plug 'flwyd/vim-conjoin'
 
 " bracket highlighter
 Plug 'bounceme/poppy.vim'
@@ -228,6 +231,7 @@ Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 let g:coc_global_extensions = [
 \   'coc-browser',
 \   'coc-css',
+\   'coc-scssmodules',
 \   'coc-dictionary',
 \   'coc-emmet',
 \   'coc-emoji',
@@ -245,6 +249,9 @@ let g:coc_global_extensions = [
 \   'coc-webpack',
 \   'coc-go',
 \   'coc-docker',
+\   'coc-marketplace',
+\   'coc-sql',
+\   'coc-sh',
 \]
 
 Plug 'antoinemadec/coc-fzf'
