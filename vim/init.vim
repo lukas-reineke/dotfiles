@@ -452,7 +452,6 @@ let g:AutoPairs = {
 \   "'":"'",
 \   '"':'"',
 \   '`':'`',
-\   '<': '>',
 \}
 let g:AutoPairsDelete = {
 \   '(':')',
@@ -461,7 +460,6 @@ let g:AutoPairsDelete = {
 \   "'":"'",
 \   '"':'"',
 \   '`':'`',
-\   '<': '>',
 \}
 let g:AutoPairsCenterLine = 0
 let g:AutoPairsSkipCharacter = 0
@@ -524,14 +522,14 @@ let wiki = {
 \}
 let wiki.syntax = 'default'
 let wiki.ext = 'wiki'
-let wiki.nested_syntaxes = {
-\   'python': 'python',
-\   'javascript': 'javascript',
-\   'typescript': 'typescript',
-\   'bash': 'sh',
-\   'yaml': 'yaml',
-\   'json': 'json',
-\}
+" let wiki.nested_syntaxes = {
+" \   'python': 'python',
+" \   'javascript': 'javascript',
+" \   'typescript': 'typescript',
+" \   'bash': 'sh',
+" \   'yaml': 'yaml',
+" \   'json': 'json',
+" \}
 let g:vimwiki_list = [wiki]
 let g:vimwiki_folding = 'custom'
 let g:vimwiki_use_calendar = 0
