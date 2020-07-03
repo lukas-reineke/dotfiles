@@ -12,6 +12,9 @@ nnoremap <C-RIGHT> :vertical resize -5<CR>
 nnoremap <C-UP> :resize +5<CR>
 nnoremap <C-DOWN> :resize -5<CR>
 
+nnoremap } {
+nnoremap { }
+
 nnoremap ( gT
 nnoremap ) gt
 
