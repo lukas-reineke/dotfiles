@@ -1,6 +1,10 @@
 
 function! s:multi_edit_files(files)
-    if len(a:files) == 1
+    let l:len = len(a:files)
+
+    if l:len == 0
+        return
+    elseif l:len == 1
         let l:file = s:map_file('', a:files[0])
         " if isdirectory(l:file)
         "     call fzf#files#Run(l:file)
