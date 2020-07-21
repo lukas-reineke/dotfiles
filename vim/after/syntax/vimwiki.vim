@@ -21,10 +21,14 @@ syntax match MarkdownDash /^---\+$/ conceal
 
 syntax match VimwikiSuperScriptT /(\?[12]\d\{3}-\(0[1-9]\|1[0-2]\)-\(0[1-9]\|[12]\d\|3[01]\)\( \d\{2}:\d\{2}:\d\{2}\)\?)\?/
 
-execute 'syntax match VimwikiListTodo /'.vimwiki#vars#get_syntaxlocal('rxListItem').'/ contains=todoCheckbox'
-syntax match TaskWikiTaskCompleted containedin=TaskWikiTask contained /\s*\*\s\[X\]\s[^#]*/ contains=todoCheckbox
-syntax match todoCheckbox "\[\ \]" conceal cchar=
-syntax match todoCheckbox "\[X\]" conceal cchar=
+" execute 'syntax match VimwikiListTodo /'.vimwiki#vars#get_wikilocal('rxListItem').'/ contains=todoCheckbox'
+" syntax match TaskWikiTaskCompleted containedin=TaskWikiTask contained /\s*\*\s\[X\]\s[^#]*/ contains=todoCheckbox
+" syntax match TaskWikiTaskDeleted containedin=TaskWikiTask contained /\s*\*\s*\[D\]\s[^#]*/ contains=todoCheckbox
+
+" syntax match todoCheckbox "\[\ \]" conceal cchar=
+" syntax match todoCheckbox "\[X\]" conceal cchar=
+" syntax match todoCheckbox "\[D\]" conceal cchar=☒
+
 let g:indentLine_color_gui = 'None'
 
 let g:language_map = {'SQL': 'pgsql', 'bash': 'sh'}

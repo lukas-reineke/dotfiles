@@ -513,15 +513,11 @@ let g:conjoin_map_gJ = '<con-nope>'
 
 let wiki = {
 \   'path': '~/vimwiki/',
-\   'syntax': 'markdown',
-\   'ext': '.md',
 \   'auto_tags': 1,
 \   'auto_generate_links': 1,
 \   'auto_generate_tags': 1,
 \   'links_space_char': '-',
 \}
-let wiki.syntax = 'default'
-let wiki.ext = 'wiki'
 " let wiki.nested_syntaxes = {
 " \   'python': 'python',
 " \   'javascript': 'javascript',
