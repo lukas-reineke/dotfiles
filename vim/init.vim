@@ -35,7 +35,7 @@ source ~/dotfiles/vim/autocmds.vim
 " Global Settings {{{
 
 let g:python_host_prog = '~/.pyenv/versions/neovim2/bin/python'
-let g:python3_host_prog = '~/.pyenv/versions/neovim3/bin/python'
+let g:python3_host_prog = '~/.pyenv/versions/neovim3.8.5/bin/python'
 syntax enable
 filetype plugin indent on
 set omnifunc=syntaxcomplete#Complete
@@ -382,6 +382,9 @@ let g:fzf_action = {
 \}
 let g:fzf_layout = { 'window': 'call fzf#floating_window#Create()' }
 let $FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS . ' --reverse --ansi'
+
+let g:terraform_align = 1
+let g:terraform_fmt_on_save = 1
 
 " Siganture
 let g:SignatureForceRemoveGlobal = 1

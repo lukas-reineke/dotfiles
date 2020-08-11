@@ -85,6 +85,9 @@ Plug 'chr4/nginx.vim'
 " GraphQL
 Plug 'jparise/vim-graphql'
 
+" Terraform
+Plug 'hashivim/vim-terraform'
+
 " Tmux
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tmux-plugins/vim-tmux'
