@@ -45,7 +45,7 @@ alias gpsn='git push --no-verify'
 alias gpsfn='git push --force --no-verify'
 
 # python
-alias da='deactivate'
+alias da='. deactivate'
 alias iyoga='ipython --profile=yoga'
 
 # stuff
