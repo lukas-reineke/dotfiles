@@ -161,14 +161,14 @@ function gll {
 
 GIT_REF_FORMAT="%(refname:short)@[0;90m[[0;31m%(committername)[0;90m]@[0;37m%(contents:subject)[0m"
 
-# fbr - checkout git branch (including remote branches), sorted by most recent commit
 function ba() {
     is_in_git_repo || return
-    local BRANCHES BRANCH
+    local BRANCHES BRANCH BRANCHES_REMOTE
 
-    BRANCHES=$(git for-each-ref --sort=-committerdate refs/heads/ refs/remotes --format="$GIT_REF_FORMAT" | perl -pe 's|^[^@]*?/||' | awk '! a[$0]++')
+    BRANCHES=$(git for-each-ref --sort=-committerdate refs/heads/ --format="$GIT_REF_FORMAT" | awk '! a[$0]++')
+    BRANCHES_REMOTE=$(git for-each-ref --sort=-committerdate refs/remotes --format="$GIT_REF_FORMAT@[0;90m[[0;33m" | perl -pe 's|(^[^@]*?)/(.*)|\2\1[0;90m][0m|' | awk '! a[$0]++')
 
-    BRANCH=$(echo "$BRANCHES" | column -t -s '@' | fzf --no-hscroll --height 40% --reverse --ansi | awk '{print $1}')
+    BRANCH=$(printf '%s\n%s' "$BRANCHES" "$BRANCHES_REMOTE" | column -t -s '@' | fzf --no-hscroll --height 40% --reverse --ansi | awk '{print $1}')
 
     if [[ -n $BRANCH ]]; then
         git checkout $(echo "$BRANCH" | sed "s/.* //")
@@ -182,14 +182,6 @@ function prs() {
     PRS=$(\
         hub pr list |\
         sed "s/^\s*#//" |\
-        sed "s/DO.NOT.MERGE\s*/$(printf ${RED}"DNM"${NC}) /" |\
-        sed "s/Needs.Fixes\s*/$(printf ${RED}"NF"${NC}) /" |\
-        sed "s/Has.Migration\s*/$(printf ${BLU}"M"${NC}) /" |\
-        sed "s/Has.Partial.Test.Coverage\s*/$(printf ${YEL}"PTC"${NC}) /" |\
-        sed "s/Tests.Skipped\s*/$(printf ${YEL}"TS"${NC}) /" |\
-        sed "s/Has.Test.Coverage\s*/$(printf ${GRN}"TC"${NC}) /" |\
-        sed "s/Tests.Not.Required\s*/$(printf ${CYN}"TNR"${NC}) /" |\
-        sed "s/Awaiting.\{4\}\s*/$(printf ${GRN}"馬"${NC})/" |\
         sed "s/\s\s\s/@/g" |\
         column -t -s @\
     )
@@ -214,14 +206,14 @@ function ta() {
 }
 
 function yzy() {
-    yay -Slq | fzf -m --preview 'cat <(yay -Si {1}) <(yay -Fl {1} | awk "{print \$2}")' | xargs -ro  yay -S
+    yay -Slq | fzf -m --reverse --preview 'cat <(yay -Si {1}) <(yay -Fl {1} | awk "{print \$2}")' | xargs -ro  yay -S
 }
 
 function b() {
     is_in_git_repo || return
     local BRANCHES BRANCH
 
-    BRANCHES=$(git for-each-ref --sort=-committerdate refs/heads/ --format="$GIT_REF_FORMAT" | perl -pe 's|^[^@]*?/||' | awk '! a[$0]++')
+    BRANCHES=$(git for-each-ref --sort=-committerdate refs/heads/ --format="$GIT_REF_FORMAT" | awk '! a[$0]++')
 
     BRANCH=$(echo "$BRANCHES" | column -t -s '@' | fzf --no-hscroll --height 20% --reverse --ansi | awk '{print $1}' )
 
