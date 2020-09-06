@@ -27,6 +27,8 @@ onoremap L $
 nnoremap zl 20zl
 nnoremap zh 20zh
 
+nnoremap x "_x
+
 nnoremap <expr> j v:count ? (v:count > 5 ? "m'" . v:count : '') . 'j' : 'gj'
 nnoremap <expr> k v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk'
 
