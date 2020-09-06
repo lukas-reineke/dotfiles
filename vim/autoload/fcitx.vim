@@ -1,27 +1,27 @@
 
 let g:input_toggle = 0
 function! fcitx#SwitchToEn()
+    if !g:input_toggle
+        return
+    endif
     let s:input_status = system('fcitx-remote')
     if s:input_status == 2
-        let g:input_toggle = 1
-        let l:a = system('fcitx-remote -c')
+        call system('fcitx-remote -c')
     endif
 endfunction
 
 function! fcitx#SwitchToJp()
+    if !g:input_toggle
+        return
+    endif
     let s:input_status = system('fcitx-remote')
-    if s:input_status != 2 && g:input_toggle == 1
-        let l:a = system('fcitx-remote -o')
-        let g:input_toggle = 0
+    if s:input_status != 2
+        call system('fcitx-remote -o')
     endif
 endfunction
 
 function! fcitx#ToggleInput()
-    if g:input_toggle
-        let g:input_toggle=0
-    else
-        let g:input_toggle=1
-    endif
+    let g:input_toggle = !g:input_toggle
 endfunction
 
 augroup japaneseInput
