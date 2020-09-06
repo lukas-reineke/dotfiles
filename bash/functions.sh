@@ -536,3 +536,13 @@ function clhistory {
 }
 
 # bind '"\C-n":"$(fzf)\n"'
+
+function sx {
+    if [ -d "${*: -1}" ] || [ -h "${*: -1}" ]; then
+        sxiv -abtq "$@" &>/dev/null
+    elif [[ $1 ]]; then
+        sxiv -abq "$@" &>/dev/null
+    else
+        sxiv -abtq . &>/dev/null
+    fi
+}
