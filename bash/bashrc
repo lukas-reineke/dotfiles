@@ -8,8 +8,8 @@ export HISTCONTROL=ignoreboth:erasedups
 shopt -s histappend
 
 # for setting history length
-export HISTSIZE=99999
-export HISTFILESIZE=
+export HISTSIZE=999999999999999
+export HISTFILESIZE=999999999999999
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
