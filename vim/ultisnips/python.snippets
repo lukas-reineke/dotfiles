@@ -8,7 +8,7 @@ snippet nc "NO_COMMIT" b
 endsnippet
 
 snippet ssp "spacer" Ab
-print("`!v expand('%:t')`:`!v line('.')` ┃ ${1/"/\\\"/g}${VISUAL/"/\\\"/g}")
+print("${1/./-/g}${VISUAL/./-/g} ┃ `!v expand('%:t')`:`!v line('.')` ┃ ${1/"/\\\"/g}${VISUAL/"/\\\"/g}")
 print($1${VISUAL})  # NO_COMMIT
-print("`!v expand('%:t')`:`!v line('.')` ┃ ${1/./-/g}${VISUAL/./-/g}")
+print("${1/./-/g}${VISUAL/./-/g} ┃ `!v expand('%:t')`:`!v line('.')` ┃ ${1/./-/g}${VISUAL/./-/g}")
 endsnippet
