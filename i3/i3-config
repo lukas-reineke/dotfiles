@@ -166,7 +166,8 @@ bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 1 +5%; exec pactl set-si
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume 1 -5%; exec pactl set-sink-volume 0 -5% #decrease sound volume
 bindsym XF86AudioMute exec pactl set-sink-mute 1 toggle; exec pactl set-sink-mute 0 toggle #mute sound
 
-bindsym XF86Launch7 exec deepin-screen-recorder
+bindsym XF86Launch6 exec killall -SIGUSR1 dunst && i3lock -c 000000 -e --nofork && killall -SIGUSR2 dunst
+bindsym XF86Launch7 exec systemctl suspend
 bindsym XF86Launch8 exec pactl set-source-mute 7 toggle
 bindsym XF86Launch9 exec pactl set-source-mute 7 toggle
 bindsym --release XF86Launch9 exec pactl set-source-mute 7 toggle
@@ -198,6 +199,7 @@ gaps outer 1
 smart_gaps on
 
 for_window [urgent=latest] focus
+for_window [class=".*"] border pixel 2
 focus_on_window_activation focus
 # workspace_auto_back_and_forth yes
 
