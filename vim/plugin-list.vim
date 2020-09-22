@@ -55,6 +55,9 @@ Plug 'raimon49/requirements.txt.vim'
 Plug 'numirias/semshi'
 " Plug 'bps/vim-textobj-python'
 
+" Lua
+Plug 'euclidianAce/BetterLua.vim'
+
 " Json
 Plug 'elzr/vim-json'
 " Plug 'meain/vim-package-info', { 'do': 'npm install' }
