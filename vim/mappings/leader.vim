@@ -95,7 +95,7 @@ nnoremap <Leader>gf :call fzf#files#Run('git')<CR>
 nnoremap <Leader>gt :SignifyToggleHighlight<CR>
 nnoremap <Leader>gz :SignifyFold!<CR>
 " nnoremap <Leader>gc :Twiggy<CR>
-nnoremap <Leader>gu :GitGutterUndoHunk<CR>
+nnoremap <Leader>gu :SignifyHunkUndo<CR>
 nnoremap <Leader>ga :GitGutterStageHunk<CR>:SignifyRefresh<CR>
 nnoremap <Leader>gg :call lists#ChangeActiveList('quickfix')<CR>:execute "VcsJump diff " .. g:gitHead<CR>
 nnoremap <Leader>gn :call lists#ChangeActiveList('quickfix')<CR>:VcsJump merge<CR>
