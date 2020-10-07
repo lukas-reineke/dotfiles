@@ -138,7 +138,7 @@ nmap <CLEAR-5> <Plug>UnconditionalPasteCommaSingleQuoteAfter
 nmap <CLEAR-6> <Plug>UnconditionalPasteCommaSingleQuoteBefore
 nmap <CLEAR-7> <Plug>VimwikiIncrementListItem
 nmap <CLEAR-8> <Plug>VimwikiDecrementListItem
-nmap glp <Plug>UnconditionalPasteIndentedAfter<ESC>ddP
+nmap glp <Plug>UnconditionalPasteIndentedAfter
 nmap glP <Plug>UnconditionalPasteIndentedBefore
 nnoremap gco m'yyp:Commentary<CR>`'
 
