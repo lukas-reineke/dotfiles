@@ -9,6 +9,7 @@ function! git#SetHead(head)
     let g:signify_vcs_cmds['git'] = 'git diff --no-color --no-ext-diff -U0 ' . g:gitHead . ' -- %f'
     call defx#custom#column('git', 'git_commit', g:gitHead)
     let g:gitgutter_diff_base = g:gitHead
+    SignifyRefresh
 
     echom 'Now diffing against ' . g:gitHead
 endfunction
