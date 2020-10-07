@@ -574,7 +574,7 @@ command! Spell Codespell
 command! SpellToggle :call spell#Toggle()
 
 let g:gitHead = 'HEAD'
-command! -nargs=* GitHead call git#SetHead(<q-args>)
+command! -nargs=* -complete=customlist,fugitive#CompleteObject GitHead call git#SetHead(<q-args>)
 
 " vim:foldmethod=marker:foldlevel=0
 
