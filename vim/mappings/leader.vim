@@ -60,7 +60,7 @@ vmap <leader>a <Plug>(coc-codeaction-selected)
 nnoremap <Leader>r :%s/\v()
 nnoremap <Leader>R :let v=winsaveview()<CR>:%s/\<<C-R><C-W>\>//g
             \ <Bar>:call winrestview(v)<C-Left><C-Left><Left><Left><Left>a<BS>
-vnoremap <Leader>r :s/\v()
+xnoremap <Leader>r :s/\v%V()
 
 " nnoremap <Leader>x :CtrlSF<Space>
 nnoremap <Leader>a :call lists#ChangeActiveList('quickfix')<CR>:Ack<Space>
