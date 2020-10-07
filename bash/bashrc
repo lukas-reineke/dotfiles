@@ -8,8 +8,9 @@ export HISTCONTROL=ignoreboth:erasedups
 shopt -s histappend
 
 # for setting history length
-export HISTSIZE=999999999999999
-export HISTFILESIZE=999999999999999
+export HISTSIZE=-1
+export HISTFILESIZE=-1
+export HISTFILE=~/.bash_eternal_history
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
