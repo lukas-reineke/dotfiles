@@ -35,4 +35,6 @@ augroup Autogroup
     autocmd CompleteDone * call complete#ReturnToOldPath()
 
     " autocmd BufWritePost * call defx#redraw()
+
+    autocmd BufEnter * call hijak#OpenDefx(expand('<amatch>'))
 augroup END

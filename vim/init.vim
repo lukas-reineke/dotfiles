@@ -508,6 +508,8 @@ let g:vista_fzf_preview = ['right:50%']
 let g:slime_target = 'tmux'
 let g:slime_default_config = {'socket_name': 'default', 'target_pane': '{bottom}'}
 
+let g:loaded_netrwPlugin=v:false
+
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
