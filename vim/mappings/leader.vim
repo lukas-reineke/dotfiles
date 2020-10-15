@@ -63,7 +63,7 @@ nnoremap <Leader>R :let v=winsaveview()<CR>:%s/\<<C-R><C-W>\>//g
 xnoremap <Leader>r :s/\v%V()
 
 " nnoremap <Leader>x :CtrlSF<Space>
-nnoremap <Leader>a :call lists#ChangeActiveList('quickfix')<CR>:Ack<Space>
+nnoremap <Leader>a :call lists#ChangeActiveList('Quickfix')<CR>:Ack<Space>
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -97,8 +97,8 @@ nnoremap <Leader>gz :SignifyFold!<CR>
 " nnoremap <Leader>gc :Twiggy<CR>
 nnoremap <Leader>gu :SignifyHunkUndo<CR>
 nnoremap <Leader>ga :GitGutterStageHunk<CR>:SignifyRefresh<CR>
-nnoremap <Leader>gg :call lists#ChangeActiveList('quickfix')<CR>:execute "VcsJump diff " .. g:gitHead<CR>
-nnoremap <Leader>gn :call lists#ChangeActiveList('quickfix')<CR>:VcsJump merge<CR>
+nnoremap <Leader>gg :call lists#ChangeActiveList('Quickfix')<CR>:execute "VcsJump diff " .. g:gitHead<CR>
+nnoremap <Leader>gn :call lists#ChangeActiveList('Quickfix')<CR>:VcsJump merge<CR>
 nnoremap <Leader>gh :diffget //2<CR> :diffupdate<CR>
 nnoremap <Leader>gl :diffget //3<CR> :diffupdate<CR>
 nmap <Leader>gw <Plug>(git-messenger)
@@ -119,7 +119,7 @@ nnoremap <leader>? :call search#DuckDuckGo(expand("<cword>"))<cr>
 
 " Marks {{{
 
-nnoremap <leader>m :call lists#ChangeActiveList('location')<CR>:SignatureListGlobalMarks<CR>
+nnoremap <leader>m :call lists#ChangeActiveList('Location')<CR>:SignatureListGlobalMarks<CR>
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -136,16 +136,16 @@ xnoremap <Leader><CR> :call fzf#coc#Actions()<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Lists {{{
 
-nnoremap <Leader>ic :call lists#ChangeActiveList('quickfix')<CR>
-nnoremap <Leader>iv :call lists#ChangeActiveList('location')<CR>
-nnoremap <Leader>ib :call lists#ChangeActiveList('ale')<CR>
+nnoremap <Leader>ic :call lists#ChangeActiveList('Quickfix')<CR>
+nnoremap <Leader>iv :call lists#ChangeActiveList('Location')<CR>
+nnoremap <Leader>ib :call lists#ChangeActiveList('Ale')<CR>
 
 noremap <silent> <Up> :call lists#MoveInList('up')<CR>
 noremap <silent> <Down> :call lists#MoveInList('down')<CR>
 
-nmap <silent> <Leader>c <Plug>(qf_qf_toggle_stay):call lists#ChangeActiveList('quickfix')<CR>
-nmap <silent> <Leader>v <Plug>(qf_loc_toggle_stay):call lists#ChangeActiveList('location')<CR>
-nnoremap <Leader>b :call lists#ChangeActiveList('ale')<CR>
+nmap <silent> <Leader>c <Plug>(qf_qf_toggle_stay):call lists#ChangeActiveList('Quickfix')<CR>
+nmap <silent> <Leader>v <Plug>(qf_loc_toggle_stay):call lists#ChangeActiveList('Location')<CR>
+nnoremap <Leader>b :call fzf#lists#Change()<CR>
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

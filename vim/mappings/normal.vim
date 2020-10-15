@@ -59,6 +59,9 @@ nmap gk <plug>(signify-prev-hunk)
 
 nmap <C-]> <Plug>(coc-definition)
 
+nmap s <Nop>
+xmap s <Nop>
+
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 

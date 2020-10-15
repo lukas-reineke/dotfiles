@@ -1,5 +1,5 @@
 
-let g:active_list = 'quickfix'
+let g:active_list = 'Quickfix'
 
 function! lists#WrapCommand(direction, prefix)
     if a:direction ==# 'up'
@@ -20,15 +20,15 @@ function! lists#WrapCommand(direction, prefix)
 endfunction
 
 function! lists#MoveInList(direction)
-    if g:active_list ==# 'ale'
+    if g:active_list ==# 'Ale'
         if a:direction ==# 'up'
             ALEPreviousWrap
         elseif a:direction ==# 'down'
             ALENextWrap
         endif
-    elseif g:active_list ==# 'location'
+    elseif g:active_list ==# 'Location'
         call lists#WrapCommand(a:direction, 'l')
-    elseif g:active_list ==# 'quickfix'
+    elseif g:active_list ==# 'Quickfix'
         call lists#WrapCommand(a:direction, 'c')
     endif
 endfunction

@@ -568,6 +568,7 @@ command! Urls call fzf#urls#Open()
 command! -nargs=* -bang RG call fzf#ripgrep#Search(<q-args>, <bang>0)
 command! MarkdownHeadersFzf call fzf#headers#Show('markdown')
 command! VimwikiHeadersFzf call fzf#headers#Show('vimwiki')
+command! List call fzf#lists#Change()
 
 command! SpellClear call clearmatches()
 command! Spell Codespell
