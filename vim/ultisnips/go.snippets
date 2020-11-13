@@ -4,3 +4,9 @@ if err != nil {
 	$1
 }
 endsnippet
+
+snippet ssp "spacer" Ab
+fmt.Println("${1/./-/g}${VISUAL/./-/g} ┃ `!v expand('%:t')`:`!v line('.')` ┃ ${1/"/\\\"/g}${VISUAL/"/\\\"/g}")
+fmt.Println($1${VISUAL})  // NO_COMMIT
+fmt.Println("${1/./-/g}${VISUAL/./-/g} ┃ `!v expand('%:t')`:`!v line('.')` ┃ ${1/./-/g}${VISUAL/./-/g}")
+endsnippet

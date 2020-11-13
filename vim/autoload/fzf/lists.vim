@@ -3,7 +3,6 @@ function! fzf#lists#Change()
     let l:options = [
         \ 'Quickfix',
         \ 'Location',
-        \ 'Ale',
     \ ]
 
     call fzf#run({

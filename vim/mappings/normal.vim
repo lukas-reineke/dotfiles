@@ -48,19 +48,17 @@ nnoremap <c-w>j <c-w>5-
 
 nnoremap Q @q
 
-noremap <LEFT> 5zh
-noremap <RIGHT> 5zl
-
 noremap <C-Y> 2<C-Y>
 noremap <C-E> 2<C-E>
 
-nmap gj <plug>(signify-next-hunk)
-nmap gk <plug>(signify-prev-hunk)
-
-nmap <C-]> <Plug>(coc-definition)
+nmap gj <Plug>(GitGutterNextHunk)
+nmap gk <Plug>(GitGutterPrevHunk)
 
 nmap s <Nop>
 xmap s <Nop>
+
+nmap gx <Plug>(openbrowser-smart-search)
+vmap gx <Plug>(openbrowser-smart-search)
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -90,17 +88,6 @@ nnoremap <silent> zk :call fold#NextClosedFold('k')<cr>zo[z
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Git {{{
-
-omap ih <plug>(signify-motion-inner-pending)
-xmap ih <plug>(signify-motion-inner-visual)
-omap ah <plug>(signify-motion-outer-pending)
-xmap ah <plug>(signify-motion-outer-visual)
-
-" }}}
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Incsearch {{{
 
 map / <Plug>(incsearch-forward)
@@ -115,17 +102,6 @@ map * <Plug>(incsearch-nohl-*)N
 map # <Plug>(incsearch-nohl-#)
 map g* <Plug>(incsearch-nohl-g*)N
 map g# <Plug>(incsearch-nohl-g#)
-
-" }}}
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" [ Mappings {{{
-
-nnoremap [[ ?[<CR>:nohl<CR>
-nnoremap ]] /]<CR>:nohl<CR>
-nnoremap [t /todo\><CR>:nohl<CR>
-nnoremap ]t ?todo\><CR>:nohl<CR>
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -154,17 +130,6 @@ nnoremap gco m'yyp:Commentary<CR>`'
 nmap grr <Plug>ReplaceWithSameIndentRegisterLine
 nmap grR <Plug>ReplaceWithRegisterLine
 nmap gr <Plug>ReplaceWithRegisterOperator
-
-" }}}
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Coc {{{
-
-xmap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap if <Plug>(coc-funcobj-i)
-omap af <Plug>(coc-funcobj-a)
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

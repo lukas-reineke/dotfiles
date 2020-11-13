@@ -1,35 +1,55 @@
 
-let g:active_list = 'Quickfix'
+let g:active_list = 'Location'
 
-function! lists#WrapCommand(direction, prefix)
+function! lists#MoveInList(direction)
     if a:direction ==# 'up'
         try
-            execute a:prefix . 'previous'
+            if g:active_list ==# 'Location'
+                execute 'labove'
+            elseif g:active_list ==# 'Quickfix'
+                execute 'cprevious'
+            endif
         catch /^Vim\%((\a\+)\)\=:E553/
-            execute a:prefix . 'last'
+            if g:active_list ==# 'Location'
+                execute 'llast'
+            elseif g:active_list ==# 'Quickfix'
+                execute 'clast'
+            endif
         catch /^Vim\%((\a\+)\)\=:E\%(776\|42\):/
         endtry
     elseif a:direction ==# 'down'
         try
-            execute a:prefix . 'next'
+            if g:active_list ==# 'Location'
+                execute 'lbelow'
+            elseif g:active_list ==# 'Quickfix'
+                execute 'cnext'
+            endif
         catch /^Vim\%((\a\+)\)\=:E553/
-            execute a:prefix . 'first'
+            if g:active_list ==# 'Location'
+                execute 'lfirst'
+            elseif g:active_list ==# 'Quickfix'
+                execute 'cfirst'
+            endif
         catch /^Vim\%((\a\+)\)\=:E\%(776\|42\):/
         endtry
-    endif
-endfunction
-
-function! lists#MoveInList(direction)
-    if g:active_list ==# 'Ale'
-        if a:direction ==# 'up'
-            ALEPreviousWrap
-        elseif a:direction ==# 'down'
-            ALENextWrap
-        endif
-    elseif g:active_list ==# 'Location'
-        call lists#WrapCommand(a:direction, 'l')
-    elseif g:active_list ==# 'Quickfix'
-        call lists#WrapCommand(a:direction, 'c')
+    elseif a:direction ==# 'left'
+        try
+            if g:active_list ==# 'Location'
+                execute 'lolder'
+            elseif g:active_list ==# 'Quickfix'
+                execute 'colder'
+            endif
+        catch /^Vim\%((\a\+)\)\=:E\%(380\):/
+        endtry
+    elseif a:direction ==# 'right'
+        try
+            if g:active_list ==# 'Location'
+                execute 'lnewer'
+            elseif g:active_list ==# 'Quickfix'
+                execute 'cnewer'
+            endif
+        catch /^Vim\%((\a\+)\)\=:E\%(381\):/
+        endtry
     endif
 endfunction
 

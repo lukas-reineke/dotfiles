@@ -12,3 +12,4 @@ cnoremap <C-E> e %:h/
 cnoremap <C-J> <DOWN>
 cnoremap <C-K> <UP>
 
+cabbrev nw noautocmd write

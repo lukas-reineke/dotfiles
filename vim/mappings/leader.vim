@@ -25,7 +25,7 @@ nnoremap <Leader>z 1z=
 nnoremap <Leader>it :IstanbulToggle<CR>
 nnoremap <Leader>iu :IstanbulUpdate<CR>
 
-nnoremap <Leader>u :UndotreeToggle<CR>:UndotreeFocus<CR>
+" nnoremap <Leader>u :UndotreeToggle<CR>:UndotreeFocus<CR>
 
 nnoremap <Leader>tn :tabnew<CR>
 
@@ -48,8 +48,8 @@ nnoremap <Leader>M :Marks<CR>
 
 nnoremap <Leader>f :Vista finder<CR>
 nnoremap <Leader>d :Vista!!<CR>
-nmap <leader>rn <Plug>(coc-rename)
-vmap <leader>a <Plug>(coc-codeaction-selected)
+" nmap <leader>rn <Plug>(coc-rename)
+" vmap <leader>a <Plug>(coc-codeaction-selected)
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -57,10 +57,10 @@ vmap <leader>a <Plug>(coc-codeaction-selected)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Search {{{
 
-nnoremap <Leader>r :%s/\v()
+nnoremap <Leader>rr :%s/\v()
 nnoremap <Leader>R :let v=winsaveview()<CR>:%s/\<<C-R><C-W>\>//g
             \ <Bar>:call winrestview(v)<C-Left><C-Left><Left><Left><Left>a<BS>
-xnoremap <Leader>r :s/\v%V()
+xnoremap <Leader>rr :s/\v%V()
 
 " nnoremap <Leader>x :CtrlSF<Space>
 nnoremap <Leader>a :call lists#ChangeActiveList('Quickfix')<CR>:Ack<Space>
@@ -92,11 +92,9 @@ nnoremap <Leader>gs :Gstatus<CR><C-w>o
 nnoremap <Leader>gc :BCommits<CR>
 nnoremap <Leader>gf :GFiles?<CR>
 nnoremap <Leader>gf :call fzf#files#Run('git')<CR>
-nnoremap <Leader>gt :SignifyToggleHighlight<CR>
-nnoremap <Leader>gz :SignifyFold!<CR>
 " nnoremap <Leader>gc :Twiggy<CR>
-nnoremap <Leader>gu :SignifyHunkUndo<CR>
-nnoremap <Leader>ga :GitGutterStageHunk<CR>:SignifyRefresh<CR>
+nmap <Leader>gu <Plug>(GitGutterUndoHunk)
+nmap <Leader>ga <Plug>(GitGutterStageHunk)
 nnoremap <Leader>gg :call lists#ChangeActiveList('Quickfix')<CR>:execute "VcsJump diff " .. g:gitHead<CR>
 nnoremap <Leader>gn :call lists#ChangeActiveList('Quickfix')<CR>:VcsJump merge<CR>
 nnoremap <Leader>gh :diffget //2<CR> :diffupdate<CR>
@@ -127,8 +125,9 @@ nnoremap <leader>m :call lists#ChangeActiveList('Location')<CR>:SignatureListGlo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Coc {{{
 
-nnoremap <Leader><CR> :call fzf#coc#Actions()<CR>
-xnoremap <Leader><CR> :call fzf#coc#Actions()<CR>
+" nnoremap <Leader><CR> :call fzf#coc#Actions()<CR>
+" xnoremap <Leader><CR> :call fzf#coc#Actions()<CR>
+nnoremap <Leader><CR> :lua vim.lsp.util.show_line_diagnostics()<CR>
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -138,10 +137,11 @@ xnoremap <Leader><CR> :call fzf#coc#Actions()<CR>
 
 nnoremap <Leader>ic :call lists#ChangeActiveList('Quickfix')<CR>
 nnoremap <Leader>iv :call lists#ChangeActiveList('Location')<CR>
-nnoremap <Leader>ib :call lists#ChangeActiveList('Ale')<CR>
 
 noremap <silent> <Up> :call lists#MoveInList('up')<CR>
 noremap <silent> <Down> :call lists#MoveInList('down')<CR>
+noremap <silent> <Left> :call lists#MoveInList('left')<CR>
+noremap <silent> <Right> :call lists#MoveInList('right')<CR>
 
 nmap <silent> <Leader>c <Plug>(qf_qf_toggle_stay):call lists#ChangeActiveList('Quickfix')<CR>
 nmap <silent> <Leader>v <Plug>(qf_loc_toggle_stay):call lists#ChangeActiveList('Location')<CR>

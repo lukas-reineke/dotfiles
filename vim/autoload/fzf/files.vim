@@ -13,7 +13,7 @@ function! s:multi_edit_files(files)
             if s:path ==? 'git'
                 sleep 100m
                 execute 'normal gg'
-                execute "normal \<plug>(signify-next-hunk)"
+                execute "normal \<plug>(GitGutterNextHunk)"
             end
         " endif
     else
