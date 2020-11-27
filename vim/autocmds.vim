@@ -9,15 +9,6 @@ augroup Autogroup
     autocmd BufRead,BufNewFile .eslintrc,.stylelintrc,.htmlhintrc set filetype=json
     autocmd BufRead,BufNewFile * set formatoptions-=o
 
-    autocmd Bufenter,FileChangedShellPost,InsertLeave *.md call markdown#Dashes()
-    autocmd Bufenter,FileChangedShellPost,InsertLeave *.wiki call markdown#Dashes()
-    autocmd Bufenter,FileChangedShellPost,InsertLeave *.md call markdown#Headlines()
-    autocmd Bufenter,FileChangedShellPost,InsertLeave *.wiki call markdown#Headlines()
-
-    autocmd Bufenter *.py lua vim.lsp.diagnostic.set_loclist({open_loclist = false})
-
-    autocmd User FormatterPost IndentBlanklineRefresh
-
     autocmd cursormoved * call PoppyInit()
     autocmd cursormoved * call fold#CloseAll()
 

@@ -1,9 +1,0 @@
-{
-    "pyls": {
-        "plugins": {
-            "pycodestyle": {
-                "maxLineLength": 160
-            }
-        }
-    }
-}

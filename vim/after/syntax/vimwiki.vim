@@ -31,7 +31,7 @@ syntax match VimwikiSuperScriptT /(\?[12]\d\{3}-\(0[1-9]\|1[0-2]\)-\(0[1-9]\|[12
 
 let g:indentLine_color_gui = 'None'
 
-let g:language_map = {'SQL': 'pgsql', 'bash': 'sh'}
-for language in [ 'typescript', 'javascript', 'json', 'python', 'go', 'bash', 'SQL', 'vim' ]
+let g:language_map = {'SQL': 'pgsql', 'bash': 'sh', 'txt': 'gitcommit'}
+for language in [ 'typescript', 'javascript', 'json', 'python', 'go', 'bash', 'SQL', 'vim', 'txt']
     call SyntaxRange#Include('{{{' . language, '}}}', get(g:language_map, language, language), 'markdownCodeDelimiter')
 endfor

@@ -49,6 +49,7 @@ let g:python_host_prog = '~/.pyenv/versions/neovim2/bin/python'
 let g:python3_host_prog = '~/.pyenv/versions/neovim3.8.5/bin/python'
 syntax enable
 filetype plugin indent on
+set winhighlight=NormalNC:WinNormalNC
 set omnifunc=syntaxcomplete#Complete
 set completeopt=menuone,noinsert,noselect
 set updatetime=0
@@ -61,7 +62,7 @@ set noswapfile
 set termguicolors
 set textwidth=80
 set colorcolumn=+1
-set signcolumn=auto:2
+set signcolumn=auto
 set noshowmode
 set noshowcmd
 set ttimeoutlen=0
@@ -105,6 +106,7 @@ set virtualedit=onemore
 set spellcapcheck=
 set noruler
 set grepprg=rg\ --vimgrep\ --no-heading\ --hidden
+set dict=~/dotfiles/lib/10k.txt
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -112,14 +114,13 @@ set grepprg=rg\ --vimgrep\ --no-heading\ --hidden
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Theme {{{
 
-color onedark
-let g:airline_theme = 'onedark'
-let g:onedark_terminal_italics = 1
-let g:airline_colornum_reversed = 1
+" color onedark
+" let g:onedark_terminal_italics = 1
 let g:highlightedyank_highlight_duration = 100
 let g:markdown_fenced_languages = [
     \ 'vim',
     \ 'python',
+    \ 'lua',
     \ 'bash=sh',
     \ 'javascript',
     \ 'typescript',
@@ -165,7 +166,8 @@ set concealcursor=n
 let g:indentLine_char = '│'
 let g:indentLine_first_char = g:indentLine_char
 let g:indentLine_showFirstIndentLevel = 1
-let g:indentLine_color_gui = onedark#GetColors().cursor_grey.gui
+let g:indentLine_color_gui = luaeval('require "onedark".colors.cursor_grey')
+" let g:indentLine_color_gui = onedark#GetColors().cursor_grey.gui
 let g:indentLine_bgcolor_gui = 'NONE'
 let g:indentLine_setConceal = 0
 let g:indentLine_fileTypeExclude = ['help', 'defx', 'vimwiki']
@@ -271,11 +273,6 @@ call defx#custom#column('git', 'indicators', {
 
 let g:openbrowser_default_search = 'duckduckgo'
 
-"EasyMotion
-let g:EasyMotion_smartcase = 1
-let g:EasyMotion_do_mapping = 0
-let g:EasyMotion_keys = 'asdfghjklqwertyuiopzxcvbnm'
-
 let g:gitgutter_map_keys = 0
 let g:gitgutter_sign_added = '│'
 let g:gitgutter_sign_modified = '│'
@@ -357,32 +354,6 @@ let g:sandwich#recipes += [
 
 " Clever F
 let g:clever_f_use_migemo = 1
-
-" Airline
-let g:airline_detect_spell = 0
-let g:airline_detect_spelllang = 0
-let g:airline_section_x = 0
-let g:airline_section_y = 0
-let g:airline_section_z = 0
-let g:airline_mode_map = {
-\   '__': '❱',
-\   'n': '❱',
-\   'i': '❱',
-\   'R': '❱',
-\   'c': '❱',
-\   'v': '❱',
-\   'V': '❱',
-\   '': '❱',
-\   's': '❱',
-\   'S': '❱',
-\   '': '❱',
-\}
-let g:airline#extensions#default#layout = [
-\   [ 'a', 'c' ],
-\   [ 'error', 'warning' ],
-\]
-let g:airline#extensions#whitespace#enabled = 0
-
 
 let g:vista_default_executive = 'nvim_lsp'
 let g:vista_echo_cursor = 0

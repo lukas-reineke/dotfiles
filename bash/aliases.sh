@@ -47,6 +47,7 @@ alias gpsfn='git push --force --no-verify'
 # python
 alias da='. deactivate'
 alias iyoga='ipython --profile=yoga'
+alias pa='. $(poetry env info -p)/bin/activate'
 
 # stuff
 alias lock='~/scripts/i3lock-fancy/lock'

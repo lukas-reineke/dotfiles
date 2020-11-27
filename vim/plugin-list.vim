@@ -33,12 +33,10 @@ Plug 'ryanoasis/vim-devicons'
 " Git
 Plug 'airblade/vim-gitgutter'
 Plug 'wincent/vcs-jump'
+Plug 'rhysd/git-messenger.vim'
 
 " Python
 Plug 'raimon49/requirements.txt.vim'
-
-" Lua
-Plug 'euclidianAce/BetterLua.vim'
 
 " Markdown
 Plug 'shime/vim-livedown'
@@ -86,12 +84,7 @@ Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua' }
 " inline colors
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 
-" Airline
-Plug 'vim-airline/vim-airline'
-Plug 'augustold/vim-airline-colornum'
-
-" Easy motion
-Plug 'easymotion/vim-easymotion'
+Plug 'glepnir/galaxyline.nvim'
 
 " Camel Case Motions
 Plug 'bkad/camelcasemotion'
@@ -114,7 +107,7 @@ Plug 'vim-scripts/CmdlineComplete'
 Plug 'mileszs/ack.vim'
 
 " Themes
-Plug 'lukas-reineke/onedark.vim'
+Plug 'lukas-reineke/onedark.nvim'
 
 " Vim Man
 Plug 'z1mm32m4n/vim-superman'
@@ -160,7 +153,7 @@ Plug 'liuchengxu/vista.vim'
 Plug 'arthurxavierx/vim-caser'
 
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
-Plug 'tbabej/taskwiki'
+" Plug 'tbabej/taskwiki'
 Plug 'powerman/vim-plugin-AnsiEsc'
-Plug 'mattn/calendar-vim'
+" Plug 'mattn/calendar-vim'
 

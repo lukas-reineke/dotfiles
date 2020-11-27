@@ -7,6 +7,7 @@ function! git#SetHead(head)
     endif
 
     let g:gitgutter_diff_base = g:gitHead
+    windo GitGutter
     " let g:signify_vcs_cmds['git'] = 'git diff --no-color --no-ext-diff -U0 ' . g:gitHead . ' -- %f'
     call defx#custom#column('git', 'git_commit', g:gitHead)
     let g:gitgutter_diff_base = g:gitHead

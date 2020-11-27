@@ -43,7 +43,7 @@ nnoremap <Leader><C-P> :Commands<CR>
 nnoremap <C-W><Leader> :Windows<CR>
 nnoremap <Leader><C-h> :Helptags<CR>
 nnoremap <Leader>n :call fzf#files#Run(expand('%:h'))<CR>
-nmap <Leader>[ :Quickfix<CR>
+nmap <Leader>[ :call lists#fzf()<CR>
 nnoremap <Leader>M :Marks<CR>
 
 nnoremap <Leader>f :Vista finder<CR>
@@ -71,13 +71,13 @@ nnoremap <Leader>a :call lists#ChangeActiveList('Quickfix')<CR>:Ack<Space>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Easy Motion {{{
 
-map <Leader>ee <Plug>(easymotion-bd-w)
-nmap <Leader>ee <Plug>(easymotion-overwin-w)
-nmap <Leader>ef <Plug>(easymotion-overwin-f2)
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
-map <Leader>l <Plug>(easymotion-lineforward)
-map <Leader>h <Plug>(easymotion-linebackward)
+" map <Leader>ee <Plug>(easymotion-bd-w)
+" nmap <Leader>ee <Plug>(easymotion-overwin-w)
+" nmap <Leader>ef <Plug>(easymotion-overwin-f2)
+" map <Leader>j <Plug>(easymotion-j)
+" map <Leader>k <Plug>(easymotion-k)
+" map <Leader>l <Plug>(easymotion-lineforward)
+" map <Leader>h <Plug>(easymotion-linebackward)
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -92,7 +92,7 @@ nnoremap <Leader>gs :Gstatus<CR><C-w>o
 nnoremap <Leader>gc :BCommits<CR>
 nnoremap <Leader>gf :GFiles?<CR>
 nnoremap <Leader>gf :call fzf#files#Run('git')<CR>
-" nnoremap <Leader>gc :Twiggy<CR>
+nmap <Leader>gm v<Plug>(git-messenger)
 nmap <Leader>gu <Plug>(GitGutterUndoHunk)
 nmap <Leader>ga <Plug>(GitGutterStageHunk)
 nnoremap <Leader>gg :call lists#ChangeActiveList('Quickfix')<CR>:execute "VcsJump diff " .. g:gitHead<CR>
@@ -142,6 +142,8 @@ noremap <silent> <Up> :call lists#MoveInList('up')<CR>
 noremap <silent> <Down> :call lists#MoveInList('down')<CR>
 noremap <silent> <Left> :call lists#MoveInList('left')<CR>
 noremap <silent> <Right> :call lists#MoveInList('right')<CR>
+nmap { <Plug>(qf_qf_switch)<Plug>(qf_next_file)o
+nmap } <Plug>(qf_qf_switch)<Plug>(qf_previous_file)o
 
 nmap <silent> <Leader>c <Plug>(qf_qf_toggle_stay):call lists#ChangeActiveList('Quickfix')<CR>
 nmap <silent> <Leader>v <Plug>(qf_loc_toggle_stay):call lists#ChangeActiveList('Location')<CR>

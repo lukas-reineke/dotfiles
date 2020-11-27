@@ -1,0 +1,27 @@
+session_name: vim
+start_directory: '~'
+windows:
+    - window_name: indent_blankline
+      focus: True
+      layout: main-horizontal
+      start_directory: ~/dev/indent-blankline.nvim
+      shell_command_before:
+          - cd .
+      panes:
+          - focus: True
+            shell_command:
+                - tmux resize-pane -Z
+                - v
+          - cl
+    - window_name: neovim
+      focus: True
+      layout: main-horizontal
+      start_directory: ~/dev/neovim
+      shell_command_before:
+          - cd .
+      panes:
+          - focus: True
+            shell_command:
+                - tmux resize-pane -Z
+                - v
+          - cl

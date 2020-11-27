@@ -22,7 +22,3 @@ inoremap <buffer> <C-O> <C-X><C-O>
 
 nnoremap <buffer> <leader>f :VimwikiHeadersFzf<CR>
 nmap <buffer> <Leader>w <Plug>VimwikiRenumberAllLists:w<CR>
-
-let g:AutoPairs['_'] = '_'
-let g:AutoPairsDelete['_'] = '_'
-

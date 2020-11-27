@@ -12,3 +12,7 @@ print("${1/./-/g}${VISUAL/./-/g} ┃ `!v expand('%:t')`:`!v line('.')` ┃ ${1/"
 print($1${VISUAL})  # NO_COMMIT
 print("${1/./-/g}${VISUAL/./-/g} ┃ `!v expand('%:t')`:`!v line('.')` ┃ ${1/./-/g}${VISUAL/./-/g}")
 endsnippet
+
+snippet skp "skip pytest" Ab
+@pytest.mark.skip(reason="NO_COMMIT")
+endsnippet

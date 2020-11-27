@@ -58,3 +58,11 @@ function! lists#ChangeActiveList(list)
     let g:active_list = a:list
 endfunction
 
+
+function! lists#fzf()
+    if g:active_list ==# 'Location'
+        Quickfix!
+    elseif g:active_list ==# 'Quickfix'
+        Quickfix
+    endif
+endfunction

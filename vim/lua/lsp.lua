@@ -1,6 +1,4 @@
-local nvim_lsp = require "nvim_lsp"
-local configs = require "nvim_lsp/configs"
-local util = require "nvim_lsp/util"
+local lspconfig = require "lspconfig"
 
 local map = function(mode, key, result, noremap)
     if noremap == nil then
@@ -13,20 +11,38 @@ vim.g.completion_enable_auto_popup = false
 vim.g.completion_enable_snippet = "UltiSnips"
 vim.g.completion_matching_strategy_list = {"exact", "substring", "fuzzy", "all"}
 vim.g.completion_auto_change_source = 1
+vim.g.completion_matching_smart_case = 1
 vim.g.completion_chain_complete_list = {
     default = {
         {complete_items = {"lsp"}},
         {complete_items = {"snippet"}},
-        {complete_items = {"path"}, triggered_only = {"/"}},
-        {mode = "<c-n>"}
+        {complete_items = {"path"}},
+        {mode = "<c-n>"},
+        {mode = "dict"}
     }
 }
 vim.g.completion_enable_auto_paren = 1
+vim.g.completion_customize_lsp_label = {
+    Function = " [function]",
+    Method = " [method]",
+    Reference = " [refrence]",
+    Enum = " [enum]",
+    Field = "ﰠ [field]",
+    Keyword = " [key]",
+    Variable = " [variable]",
+    Folder = " [folder]",
+    Snippet = " [snippet]",
+    Operator = " [operator]",
+    Module = " [module]",
+    Text = "ﮜ[text]",
+    Class = " [class]",
+    Interface = " [interface]"
+}
 
-vim.fn.sign_define("LspDiagnosticsSignError", {text = " ", numhl = "LspDiagnosticsDefaultError"})
-vim.fn.sign_define("LspDiagnosticsSignWarning", {text = " ", numhl = "LspDiagnosticsDefaultWarning"})
-vim.fn.sign_define("LspDiagnosticsSignInformation", {text = " ", numhl = "LspDiagnosticsDefaultInformation"})
-vim.fn.sign_define("LspDiagnosticsSignHint", {text = " ", numhl = "LspDiagnosticsDefaultHint"})
+vim.fn.sign_define("LspDiagnosticsSignError", {text = "", numhl = "LspDiagnosticsDefaultError"})
+vim.fn.sign_define("LspDiagnosticsSignWarning", {text = "", numhl = "LspDiagnosticsDefaultWarning"})
+vim.fn.sign_define("LspDiagnosticsSignInformation", {text = "", numhl = "LspDiagnosticsDefaultInformation"})
+vim.fn.sign_define("LspDiagnosticsSignHint", {text = "", numhl = "LspDiagnosticsDefaultHint"})
 
 vim.lsp.handlers["textDocument/formatting"] = function(err, _, result, _, bufnr)
     if err ~= nil or result == nil then
@@ -36,8 +52,10 @@ vim.lsp.handlers["textDocument/formatting"] = function(err, _, result, _, bufnr)
         local view = vim.fn.winsaveview()
         vim.lsp.util.apply_text_edits(result, bufnr)
         vim.fn.winrestview(view)
-        vim.api.nvim_command("noautocmd :update")
-        vim.api.nvim_command("GitGutter")
+        if bufnr == vim.api.nvim_get_current_buf() then
+            vim.cmd("noautocmd :update")
+            vim.cmd("GitGutter")
+        end
     end
 end
 
@@ -45,32 +63,48 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = function(...)
     vim.lsp.with(
         vim.lsp.diagnostic.on_publish_diagnostics,
         {
-            -- Enable underline, use default values
             underline = true,
-            -- Enable virtual text, override spacing to 4
-            -- virtual_text = {
-            --   spacing = 2,
-            --   prefix = '~',
-            -- },
-            -- Use a function to dynamically turn signs off
-            -- and on, using buffer local variables
-            -- signs = function(bufnr, client_id)
-            --   return vim.bo[bufnr].show_signs == false
-            -- end,
-            -- ■
-            -- Disable a feature
             update_in_insert = false
         }
     )(...)
-    vim.lsp.diagnostic.set_loclist({open_loclist = false})
+    pcall(vim.lsp.diagnostic.set_loclist, {open_loclist = false})
+end
+
+local format_options_prettier = {
+    tabWidth = 4,
+    singleQuote = true,
+    trailingComma = "all",
+    configPrecedence = "prefer-file"
+}
+vim.g.format_options_typescript = format_options_prettier
+vim.g.format_options_javascript = format_options_prettier
+vim.g.format_options_typescriptreact = format_options_prettier
+vim.g.format_options_javascriptreact = format_options_prettier
+vim.g.format_options_json = format_options_prettier
+vim.g.format_options_css = format_options_prettier
+vim.g.format_options_scss = format_options_prettier
+vim.g.format_options_html = format_options_prettier
+vim.g.format_options_yaml = format_options_prettier
+vim.g.format_options_markdown = format_options_prettier
+
+FormatToggle = function(value)
+    vim.g[string.format("format_disabled_%s", vim.bo.filetype)] = value
+end
+vim.cmd [[command! FormatDisable lua FormatToggle(true)]]
+vim.cmd [[command! FormatEndable lua FormatToggle(false)]]
+
+_G.formatting = function()
+    if not vim.g[string.format("format_disabled_%s", vim.bo.filetype)] then
+        vim.lsp.buf.formatting(vim.g[string.format("format_options_%s", vim.bo.filetype)] or {})
+    end
 end
 
 local on_attach = function(client)
     if client.resolved_capabilities.document_formatting then
-        vim.api.nvim_command [[augroup Format]]
-        vim.api.nvim_command [[autocmd! * <buffer>]]
-        vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting()]]
-        vim.api.nvim_command [[augroup END]]
+        vim.cmd [[augroup Format]]
+        vim.cmd [[autocmd! * <buffer>]]
+        vim.cmd [[autocmd BufWritePost <buffer> lua formatting()]]
+        vim.cmd [[augroup END]]
     end
     if client.resolved_capabilities.goto_definition then
         map("n", "<C-]>", "<cmd>lua vim.lsp.buf.definition()<CR>")
@@ -92,8 +126,23 @@ local on_attach = function(client)
     end
 end
 
+function _G.activeLSP()
+    local servers = {}
+    for _, lsp in pairs(vim.lsp.get_active_clients()) do
+        table.insert(servers, {name = lsp.name, id = lsp.id})
+    end
+    _G.dump(servers)
+end
+function _G.bufferActiveLSP()
+    local servers = {}
+    for _, lsp in pairs(vim.lsp.buf_get_clients()) do
+        table.insert(servers, {name = lsp.name, id = lsp.id})
+    end
+    _G.dump(servers)
+end
+
 -- https://github.com/golang/tools/tree/master/gopls
-nvim_lsp.gopls.setup {
+lspconfig.gopls.setup {
     on_attach = function(client)
         client.resolved_capabilities.document_formatting = false
         on_attach(client)
@@ -101,94 +150,159 @@ nvim_lsp.gopls.setup {
 }
 
 -- https://github.com/palantir/python-language-server
--- nvim_lsp.pyls.setup {
---     on_attach = on_attach,
---     settings = {
---         pyls = {
---             plugins = {
---                 pycodestyle = {
---                     enabled = false,
---                     ignore = {
---                         "E501"
---                     }
---                 }
---             }
---         }
---     }
--- }
+lspconfig.pyls.setup {
+    on_attach = on_attach,
+    settings = {
+        pyls = {
+            plugins = {
+                pycodestyle = {
+                    enabled = false,
+                    ignore = {
+                        "E501"
+                    }
+                }
+            }
+        }
+    }
+}
+
+lspconfig.pyright.setup {on_attach = on_attach}
 
 -- https://github.com/theia-ide/typescript-language-server
-nvim_lsp.tsserver.setup {on_attach = on_attach}
+lspconfig.tsserver.setup {
+    on_attach = function(client)
+        client.resolved_capabilities.document_formatting = false
+        on_attach(client)
+    end
+}
 
 -- https://github.com/sumneko/lua-language-server
-require("nlua.lsp.nvim").setup(
-    nvim_lsp,
-    {
-        on_attach = on_attach,
-        cmd = {"lua-language-server"}
+-- require("nlua.lsp.nvim").setup(
+--     lspconfig,
+--     {
+--         on_attach = on_attach,
+--         cmd = {"lua-language-server"}
+--     }
+-- )
+
+local function get_lua_runtime()
+    local result = {}
+    for _, path in pairs(vim.api.nvim_list_runtime_paths()) do
+        local lua_path = path .. "/lua/"
+        if vim.fn.isdirectory(lua_path) then
+            result[lua_path] = true
+        end
+    end
+    result[vim.fn.expand("$VIMRUNTIME/lua")] = true
+    result[vim.fn.expand("~/build/neovim/src/nvim/lua")] = true
+
+    return result
+end
+lspconfig.sumneko_lua.setup {
+    on_attach = on_attach,
+    cmd = {"lua-language-server"},
+    settings = {
+        Lua = {
+            runtime = {
+                version = "LuaJIT"
+            },
+            completion = {
+                keywordSnippet = "Disable"
+            },
+            diagnostics = {
+                enable = true,
+                globals = {
+                    -- Neovim
+                    "vim",
+                    -- Busted
+                    "describe",
+                    "it",
+                    "before_each",
+                    "after_each",
+                    "teardown",
+                    "pending"
+                },
+                workspace = {
+                    library = get_lua_runtime(),
+                    maxPreload = 1000,
+                    preloadFileSize = 1000
+                }
+            }
+        }
     }
-)
+}
 
 -- https://github.com/iamcco/vim-language-server
-nvim_lsp.vimls.setup {on_attach = on_attach}
+lspconfig.vimls.setup {on_attach = on_attach}
 
 -- https://github.com/vscode-langservers/vscode-json-languageserver
-nvim_lsp.jsonls.setup {
+lspconfig.jsonls.setup {
     on_attach = on_attach,
-    cmd = {
-        "json-languageserver",
-        "--stdio"
-    }
+    cmd = {"json-languageserver", "--stdio"}
 }
 
 -- https://github.com/redhat-developer/yaml-language-server
-nvim_lsp.yamlls.setup {on_attach = on_attach}
+lspconfig.yamlls.setup {on_attach = on_attach}
 
 -- https://github.com/joe-re/sql-language-server
-nvim_lsp.sqlls.setup {on_attach = on_attach}
+lspconfig.sqlls.setup {on_attach = on_attach}
 
 -- https://github.com/vscode-langservers/vscode-css-languageserver-bin
-nvim_lsp.cssls.setup {on_attach = on_attach}
+lspconfig.cssls.setup {on_attach = on_attach}
 
 -- https://github.com/vscode-langservers/vscode-html-languageserver-bin
-nvim_lsp.html.setup {on_attach = on_attach}
+lspconfig.html.setup {on_attach = on_attach}
 
 -- https://github.com/bash-lsp/bash-language-server
-nvim_lsp.bashls.setup {on_attach = on_attach}
+lspconfig.bashls.setup {on_attach = on_attach}
 
 -- https://github.com/rcjsuen/dockerfile-language-server-nodejs
-nvim_lsp.dockerls.setup {on_attach = on_attach}
+lspconfig.dockerls.setup {on_attach = on_attach}
 
 -- https://github.com/hashicorp/terraform-ls
-nvim_lsp.terraformls.setup {
+lspconfig.terraformls.setup {
     on_attach = on_attach,
-    cmd = {
-        "terraform-ls",
-        "serve"
-    }
+    cmd = {"terraform-ls", "serve"},
+    filetypes = {"tf"}
 }
 
+local vint = require "efm/vint"
+local luafmt = require "efm/luafmt"
+local golint = require "efm/golint"
+local goimports = require "efm/goimports"
+local black = require "efm/black"
+local isort = require "efm/isort"
+local flake8 = require "efm/flake8"
+local mypy = require "efm/mypy"
+local prettier = require "efm/prettier"
+local eslint = require "efm/eslint"
+local shellcheck = require "efm/shellcheck"
+local terraform = require "efm/terraform"
 -- https://github.com/mattn/efm-langserver
-nvim_lsp.efm.setup {on_attach = on_attach}
-
-configs["pyright"] = {
-    default_config = {
-        cmd = {"pyright-langserver", "--stdio"},
-        filetypes = {"python"},
-        root_dir = util.root_pattern(".git", "setup.py", "setup.cfg", "pyproject.toml", "requirements.txt"),
-        settings = {
-            analysis = {autoSearchPaths = true},
-            pyright = {useLibraryCodeForTypes = true}
-        },
-        before_init = function(initialize_params)
-            initialize_params["workspaceFolders"] = {
-                {
-                    name = "workspace",
-                    uri = initialize_params["rootUri"]
-                }
-            }
-        end
+lspconfig.efm.setup {
+    on_attach = on_attach,
+    init_options = {documentFormatting = true},
+    settings = {
+        rootMarkers = {".git/"},
+        languages = {
+            vim = {vint},
+            lua = {luafmt},
+            go = {golint, goimports},
+            python = {black, isort, flake8, mypy},
+            typescript = {prettier, eslint},
+            javascript = {prettier, eslint},
+            typescriptreact = {prettier, eslint},
+            javascriptreact = {prettier, eslint},
+            yaml = {prettier},
+            json = {prettier},
+            html = {prettier},
+            scss = {prettier},
+            css = {prettier},
+            markdown = {prettier},
+            sh = {shellcheck},
+            tf = {terraform}
+        }
     }
 }
 
-nvim_lsp.pyright.setup {on_attach = on_attach}
+lspconfig.clangd.setup {on_attach = on_attach}
