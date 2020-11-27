@@ -69,20 +69,6 @@ nnoremap <Leader>a :call lists#ChangeActiveList('Quickfix')<CR>:Ack<Space>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Easy Motion {{{
-
-" map <Leader>ee <Plug>(easymotion-bd-w)
-" nmap <Leader>ee <Plug>(easymotion-overwin-w)
-" nmap <Leader>ef <Plug>(easymotion-overwin-f2)
-" map <Leader>j <Plug>(easymotion-j)
-" map <Leader>k <Plug>(easymotion-k)
-" map <Leader>l <Plug>(easymotion-lineforward)
-" map <Leader>h <Plug>(easymotion-linebackward)
-
-" }}}
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Git {{{
 
 nnoremap <Leader>gd :execute "Gvdiff " .. g:gitHead<CR>
@@ -118,16 +104,6 @@ nnoremap <leader>? :call search#DuckDuckGo(expand("<cword>"))<cr>
 " Marks {{{
 
 nnoremap <leader>m :call lists#ChangeActiveList('Location')<CR>:SignatureListGlobalMarks<CR>
-
-" }}}
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Coc {{{
-
-" nnoremap <Leader><CR> :call fzf#coc#Actions()<CR>
-" xnoremap <Leader><CR> :call fzf#coc#Actions()<CR>
-nnoremap <Leader><CR> :lua vim.lsp.util.show_line_diagnostics()<CR>
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
