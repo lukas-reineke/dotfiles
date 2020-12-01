@@ -278,6 +278,7 @@ local prettier = require "efm/prettier"
 local eslint = require "efm/eslint"
 local shellcheck = require "efm/shellcheck"
 local terraform = require "efm/terraform"
+local misspell = require "efm/misspell"
 -- https://github.com/mattn/efm-langserver
 lspconfig.efm.setup {
     on_attach = on_attach,
@@ -285,6 +286,7 @@ lspconfig.efm.setup {
     settings = {
         rootMarkers = {".git/"},
         languages = {
+            ["="] = {misspell},
             vim = {vint},
             lua = {luafmt},
             go = {golint, goimports},
