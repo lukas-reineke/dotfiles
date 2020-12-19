@@ -1,4 +1,4 @@
 return {
-    formatCommand = "luafmt --stdin",
+    formatCommand = "luafmt ${-i:tabWidth} --stdin",
     formatStdin = true
 }

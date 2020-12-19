@@ -62,7 +62,7 @@ set noswapfile
 set termguicolors
 set textwidth=80
 set colorcolumn=+1
-set signcolumn=auto
+set signcolumn=auto:2
 set noshowmode
 set noshowcmd
 set ttimeoutlen=0
@@ -107,6 +107,7 @@ set spellcapcheck=
 set noruler
 set grepprg=rg\ --vimgrep\ --no-heading\ --hidden
 set dict=~/dotfiles/lib/10k.txt
+set noemoji
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -170,7 +171,7 @@ let g:indentLine_color_gui = luaeval('require "onedark".colors.cursor_grey')
 " let g:indentLine_color_gui = onedark#GetColors().cursor_grey.gui
 let g:indentLine_bgcolor_gui = 'NONE'
 let g:indentLine_setConceal = 0
-let g:indentLine_fileTypeExclude = ['help', 'defx', 'vimwiki']
+let g:indentLine_fileTypeExclude = ['help', 'defx', 'vimwiki', 'prcomment']
 let g:indentLine_autoResetWidth = 0
 let g:indent_blankline_space_char = ' '
 let g:indent_blankline_debug = v:true

@@ -71,7 +71,7 @@ nnoremap <Leader>a :call lists#ChangeActiveList('Quickfix')<CR>:Ack<Space>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Git {{{
 
-nnoremap <Leader>gd :execute "Gvdiff " .. g:gitHead<CR>
+nnoremap <Leader>gd :execute "Gvdiff " .. g:gitHead<CR>:lua require("pr").place_signs()<CR>
 nnoremap <Leader>gr :Gread<CR>
 nnoremap <Leader>gb :Gblame<CR>
 nnoremap <Leader>gs :Gstatus<CR><C-w>o
@@ -123,7 +123,7 @@ nmap } <Plug>(qf_qf_switch)<Plug>(qf_previous_file)o
 
 nmap <silent> <Leader>c <Plug>(qf_qf_toggle_stay):call lists#ChangeActiveList('Quickfix')<CR>
 nmap <silent> <Leader>v <Plug>(qf_loc_toggle_stay):call lists#ChangeActiveList('Location')<CR>
-nnoremap <Leader>b :call fzf#lists#Change()<CR>
+nnoremap <Leader>b :call lists#toggle()<CR>
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

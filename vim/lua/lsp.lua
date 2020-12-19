@@ -25,7 +25,7 @@ vim.g.completion_enable_auto_paren = 1
 vim.g.completion_customize_lsp_label = {
     Function = " [function]",
     Method = " [method]",
-    Reference = " [refrence]",
+    Reference = " [reference]",
     Enum = " [enum]",
     Field = "ﰠ [field]",
     Keyword = " [key]",
@@ -53,8 +53,8 @@ vim.lsp.handlers["textDocument/formatting"] = function(err, _, result, _, bufnr)
         vim.lsp.util.apply_text_edits(result, bufnr)
         vim.fn.winrestview(view)
         if bufnr == vim.api.nvim_get_current_buf() then
-            vim.cmd("noautocmd :update")
-            vim.cmd("GitGutter")
+            vim.cmd [[noautocmd :update]]
+            vim.cmd [[GitGutter]]
         end
     end
 end

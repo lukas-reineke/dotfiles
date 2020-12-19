@@ -66,3 +66,12 @@ function! lists#fzf()
         Quickfix
     endif
 endfunction
+
+function! lists#toggle()
+    if g:active_list ==# 'Location'
+        let g:active_list = 'Quickfix'
+    else
+        let g:active_list = 'Location'
+    endif
+    echo g:active_list . " list"
+endfunction

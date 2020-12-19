@@ -9,6 +9,9 @@ Plug 'nvim-treesitter/nvim-treesitter-refactor'
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'romgrk/nvim-treesitter-context'
 Plug 'tjdevries/nlua.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
 
 " tpope
 Plug 'tpope/vim-commentary'
@@ -34,6 +37,8 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'airblade/vim-gitgutter'
 Plug 'wincent/vcs-jump'
 Plug 'rhysd/git-messenger.vim'
+Plug 'lukas-reineke/pr.nvim'
+Plug 'pwntester/octo.nvim'
 
 " Python
 Plug 'raimon49/requirements.txt.vim'

@@ -41,10 +41,16 @@ function! fold#NextClosedFold(dir)
 endfunction
 
 function! fold#CloseAll()
-    if &foldmethod ==# 'diff' && winnr('$') > 1
+    if &diff && winnr('$') > 1
         let l:currentWindow=winnr()
-        windo execute 'normal! zm'
+        windo execute 'call fold#Close()'
         execute l:currentWindow . 'wincmd w'
+    endif
+endfunction
+
+function! fold#Close()
+    if &diff
+        execute 'normal! zm'
     endif
 endfunction
 

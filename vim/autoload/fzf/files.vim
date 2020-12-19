@@ -23,6 +23,7 @@ function! s:multi_edit_files(files)
         \       '{ "filename": v:val, "lnum": 1, "col": 1 }',
         \   )
         \)
+        call lists#ChangeActiveList("Quickfix")
         copen
         cc
     end
