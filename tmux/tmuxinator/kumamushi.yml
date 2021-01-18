@@ -44,9 +44,9 @@ windows:
                 - v
           - shell_command:
                 - cl
-    - window_name: kumamushi-frontend
+    - window_name: kumamushi-fe-download
       layout: main-horizontal
-      start_directory: ~/dev/kumamushi-frontend
+      start_directory: ~/dev/kumamushi-fe-download
       shell_command_before:
           - cd .
       panes:
