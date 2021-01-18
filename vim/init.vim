@@ -108,6 +108,7 @@ set noruler
 set grepprg=rg\ --vimgrep\ --no-heading\ --hidden
 set dict=~/dotfiles/lib/10k.txt
 set noemoji
+set diffopt=internal,filler,closeoff,foldcolumn:0,hiddenoff
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -296,7 +297,7 @@ let g:fzf_action = {
 let g:fzf_layout = { 'window': 'call fzf#floating_window#Create()' }
 let $FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS . ' --reverse --ansi'
 
-" Siganture
+" Signature
 let g:SignatureForceRemoveGlobal = 1
 
 " pasta
