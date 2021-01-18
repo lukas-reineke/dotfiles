@@ -42,9 +42,11 @@ endfunction
 
 function! fold#CloseAll()
     if &diff && winnr('$') > 1
+        let l:view = winsaveview()
         let l:currentWindow=winnr()
         windo execute 'call fold#Close()'
         execute l:currentWindow . 'wincmd w'
+        call winrestview(l:view)
     endif
 endfunction
 
