@@ -62,7 +62,7 @@ set noswapfile
 set termguicolors
 set textwidth=80
 set colorcolumn=+1
-set signcolumn=auto:2
+set signcolumn=yes:1
 set noshowmode
 set noshowcmd
 set ttimeoutlen=0

@@ -1,42 +1,57 @@
 local lspconfig = require "lspconfig"
 
-local map = function(mode, key, result, noremap)
+local map = function(mode, key, result, noremap, expr)
     if noremap == nil then
         noremap = true
     end
-    vim.api.nvim_buf_set_keymap(0, mode, key, result, {noremap = noremap, silent = true})
+    if expr == nil then
+        expr = false
+    end
+    vim.api.nvim_buf_set_keymap(0, mode, key, result, {noremap = noremap, silent = true, expr = expr})
 end
 
-vim.g.completion_enable_auto_popup = false
-vim.g.completion_enable_snippet = "UltiSnips"
-vim.g.completion_matching_strategy_list = {"exact", "substring", "fuzzy", "all"}
-vim.g.completion_auto_change_source = 1
-vim.g.completion_matching_smart_case = 1
-vim.g.completion_chain_complete_list = {
-    default = {
-        {complete_items = {"lsp"}},
-        {complete_items = {"snippet"}},
-        {complete_items = {"path"}},
-        {mode = "<c-n>"},
-        {mode = "dict"}
-    }
+vim.lsp.protocol.CompletionItemKind = {
+    " [text]",
+    " [method]",
+    " [function]",
+    " [constructor]",
+    "ﰠ [field]",
+    " [variable]",
+    " [class]",
+    " [interface]",
+    " [module]",
+    " [property]",
+    " [unit]",
+    " [value]",
+    " [enum]",
+    " [key]",
+    "﬌ [snippet]",
+    " [color]",
+    " [file]",
+    " [reference]",
+    " [folder]",
+    " [enum member]",
+    " [constant]",
+    " [struct]",
+    "⌘ [event]",
+    " [operator]",
+    "⌂ [type]"
 }
-vim.g.completion_enable_auto_paren = 1
-vim.g.completion_customize_lsp_label = {
-    Function = " [function]",
-    Method = " [method]",
-    Reference = " [reference]",
-    Enum = " [enum]",
-    Field = "ﰠ [field]",
-    Keyword = " [key]",
-    Variable = " [variable]",
-    Folder = " [folder]",
-    Snippet = " [snippet]",
-    Operator = " [operator]",
-    Module = " [module]",
-    Text = "ﮜ[text]",
-    Class = " [class]",
-    Interface = " [interface]"
+
+require "compe".setup {
+    enabled = true,
+    debug = false,
+    autocomplete = false,
+    min_length = 1,
+    preselect = "disable",
+    allow_prefix_unmatch = false,
+    source = {
+        path = true,
+        buffer = true,
+        nvim_lsp = true,
+        nvim_lua = true,
+        ultisnips = true
+    }
 }
 
 vim.fn.sign_define("LspDiagnosticsSignError", {text = "", numhl = "LspDiagnosticsDefaultError"})
@@ -100,6 +115,12 @@ _G.formatting = function()
 end
 
 local on_attach = function(client)
+    if client.resolved_capabilities.code_action then
+        vim.cmd [[augroup CodeAction]]
+        vim.cmd [[autocmd! * <buffer>]]
+        vim.cmd [[autocmd CursorHold * lua require'nvim-lightbulb'.update_lightbulb()]]
+        vim.cmd [[augroup END]]
+    end
     if client.resolved_capabilities.document_formatting then
         vim.cmd [[augroup Format]]
         vim.cmd [[autocmd! * <buffer>]]
@@ -110,10 +131,9 @@ local on_attach = function(client)
         map("n", "<C-]>", "<cmd>lua vim.lsp.buf.definition()<CR>")
     end
     if client.resolved_capabilities.completion then
-        require "completion".on_attach(client)
-        map("i", "<c-n>", "<Plug>(completion_trigger)", false)
-        map("i", "<c-j>", "<Plug>(completion_next_source)", false)
-        map("i", "<c-k>", "<Plug>(completion_prev_source)", false)
+        map("i", "<C-n>", "compe#complete()", true, true)
+        map("i", "<CR>", "compe#confirm(lexima#expand('<LT>CR>', 'i'))", true, true)
+        map("i", "<C-e>", "compe#close('<C-e>')", true, true)
     end
     if client.resolved_capabilities.hover then
         map("n", "<CR>", "<cmd>lua vim.lsp.buf.hover()<CR>")
