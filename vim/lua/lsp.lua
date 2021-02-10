@@ -35,7 +35,7 @@ vim.lsp.protocol.CompletionItemKind = {
     " [struct]",
     "⌘ [event]",
     " [operator]",
-    "⌂ [type]"
+    "♛ [type]"
 }
 
 require "compe".setup {
@@ -106,7 +106,7 @@ FormatToggle = function(value)
     vim.g[string.format("format_disabled_%s", vim.bo.filetype)] = value
 end
 vim.cmd [[command! FormatDisable lua FormatToggle(true)]]
-vim.cmd [[command! FormatEndable lua FormatToggle(false)]]
+vim.cmd [[command! FormatEnable lua FormatToggle(false)]]
 
 _G.formatting = function()
     if not vim.g[string.format("format_disabled_%s", vim.bo.filetype)] then
