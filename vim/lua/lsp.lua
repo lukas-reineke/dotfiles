@@ -1,4 +1,12 @@
 local lspconfig = require "lspconfig"
+local saga = require "lspsaga"
+
+saga.init_lsp_saga {
+    code_action_prompt = {
+        sign = false
+    },
+    code_action_keys = {quit = "<ESC>", exec = "<CR>"}
+}
 
 local map = function(mode, key, result, noremap, expr)
     if noremap == nil then
@@ -118,7 +126,7 @@ local on_attach = function(client)
     if client.resolved_capabilities.code_action then
         vim.cmd [[augroup CodeAction]]
         vim.cmd [[autocmd! * <buffer>]]
-        vim.cmd [[autocmd CursorHold * lua require'nvim-lightbulb'.update_lightbulb()]]
+        map("n", ",", "<cmd>Lspsaga code_action<CR>")
         vim.cmd [[augroup END]]
     end
     if client.resolved_capabilities.document_formatting then
@@ -142,8 +150,13 @@ local on_attach = function(client)
         map("n", "<Leader>*", ":call lists#ChangeActiveList('Quickfix')<CR>:lua vim.lsp.buf.references()<CR>")
     end
     if client.resolved_capabilities.rename then
-        map("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>")
+        map("n", "<leader>rn", "<cmd>lua require('lspsaga.rename').rename()<CR>")
     end
+
+    map("n", "<leader><CR>", "<cmd>lua require'lspsaga.diagnostic'.show_line_diagnostics()<CR>")
+    map("n", "<CR>", "<cmd>lua require('lspsaga.hover').render_hover_doc()<CR>")
+    map("n", "<C-f>", "<cmd>lua require('lspsaga.hover').smart_scroll_hover(1)<CR>")
+    map("n", "<C-g>", "<cmd>lua require('lspsaga.hover').smart_scroll_hover(-1)<CR>")
 end
 
 function _G.activeLSP()
@@ -151,14 +164,14 @@ function _G.activeLSP()
     for _, lsp in pairs(vim.lsp.get_active_clients()) do
         table.insert(servers, {name = lsp.name, id = lsp.id})
     end
-    _G.dump(servers)
+    _G.P(servers)
 end
 function _G.bufferActiveLSP()
     local servers = {}
     for _, lsp in pairs(vim.lsp.buf_get_clients()) do
         table.insert(servers, {name = lsp.name, id = lsp.id})
     end
-    _G.dump(servers)
+    _G.P(servers)
 end
 
 -- https://github.com/golang/tools/tree/master/gopls
@@ -170,21 +183,21 @@ lspconfig.gopls.setup {
 }
 
 -- https://github.com/palantir/python-language-server
-lspconfig.pyls.setup {
-    on_attach = on_attach,
-    settings = {
-        pyls = {
-            plugins = {
-                pycodestyle = {
-                    enabled = false,
-                    ignore = {
-                        "E501"
-                    }
-                }
-            }
-        }
-    }
-}
+-- lspconfig.pyls.setup {
+--     on_attach = on_attach,
+--     settings = {
+--         pyls = {
+--             plugins = {
+--                 pycodestyle = {
+--                     enabled = false,
+--                     ignore = {
+--                         "E501"
+--                     }
+--                 }
+--             }
+--         }
+--     }
+-- }
 
 lspconfig.pyright.setup {on_attach = on_attach}
 

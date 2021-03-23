@@ -99,7 +99,6 @@ set relativenumber
 set scrolloff=8
 set sidescrolloff=15
 set sidescroll=5
-" silent !mkdir ~/.config/nvim/backups > /dev/null 2>&1
 set undodir=~/.config/nvim/backups
 set undofile
 set virtualedit=onemore
@@ -116,8 +115,6 @@ set diffopt=internal,filler,closeoff,foldcolumn:0,hiddenoff
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Theme {{{
 
-" color onedark
-" let g:onedark_terminal_italics = 1
 let g:highlightedyank_highlight_duration = 100
 let g:markdown_fenced_languages = [
     \ 'vim',
@@ -165,17 +162,25 @@ set listchars+=space:⋅
 set showbreak=↳⋅
 set conceallevel=2
 set concealcursor=n
-let g:indentLine_char = '│'
-let g:indentLine_first_char = g:indentLine_char
-let g:indentLine_showFirstIndentLevel = 1
-let g:indentLine_color_gui = luaeval('require "onedark".colors.cursor_grey')
-" let g:indentLine_color_gui = onedark#GetColors().cursor_grey.gui
-let g:indentLine_bgcolor_gui = 'NONE'
-let g:indentLine_setConceal = 0
-let g:indentLine_fileTypeExclude = ['help', 'defx', 'vimwiki', 'prcomment']
-let g:indentLine_autoResetWidth = 0
-let g:indent_blankline_space_char = ' '
+
+let g:indent_blankline_char = '│'
+let g:indent_blankline_filetype_exclude = ['help', 'defx', 'vimwiki']
+let g:indent_blankline_space_char_blankline = ' '
+let g:indent_blankline_strict_tabs = v:true
 let g:indent_blankline_debug = v:true
+let g:indent_blankline_show_current_context = v:true
+let g:indent_blankline_context_highlight = 'TSIndentContext'
+let g:indent_blankline_context_patterns = [
+    \ 'class',
+    \ 'function',
+    \ 'method',
+    \ '^if',
+    \ 'while',
+    \ 'for',
+    \ 'with',
+    \ 'func_literal',
+    \ 'block',
+\ ]
 
 let g:Hexokinase_optInPatterns = 'full_hex,rgb,rgba,hsl,hsla'
 

@@ -19,7 +19,7 @@ _G.MarkdownHeadlines = function()
     local marker = "#"
 
     for i = 1, #lines do
-        _, level = lines[i]:find("^" .. marker .. "+")
+        local _, level = lines[i]:find("^" .. marker .. "+")
         if level == 1 then
             vim.fn.sign_place(0, markdown_sign_namespace, "firstHeadline", bufnr, {lnum = i + offset})
         end
@@ -30,7 +30,7 @@ _G.MarkdownHeadlines = function()
             vim.fn.sign_place(0, markdown_sign_namespace, "thirdHeadline", bufnr, {lnum = i + offset})
         end
 
-        _, dashes = lines[i]:find("^---+$")
+        local _, dashes = lines[i]:find("^---+$")
         if dashes then
             vim.api.nvim_buf_set_virtual_text(
                 bufnr,
@@ -40,8 +40,6 @@ _G.MarkdownHeadlines = function()
                 vim.empty_dict()
             )
         end
-
-        ::continue::
     end
 end
 

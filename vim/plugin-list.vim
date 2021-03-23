@@ -7,12 +7,14 @@ Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'nvim-treesitter/nvim-treesitter-refactor'
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'romgrk/nvim-treesitter-context'
-Plug 'tjdevries/nlua.nvim'
+Plug 'windwp/nvim-ts-autotag'
+" Plug 'tjdevries/nlua.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'hrsh7th/nvim-compe'
-Plug 'kosayoda/nvim-lightbulb'
+" Plug 'kosayoda/nvim-lightbulb'
+Plug 'glepnir/lspsaga.nvim'
 
 " tpope
 Plug 'tpope/vim-commentary'
@@ -61,7 +63,7 @@ Plug 'jparise/vim-graphql'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'wellle/tmux-complete.vim'
-Plug 'jpalardy/vim-slime'
+Plug 'jpalardy/vim-slime', { 'branch': 'main' }
 
 " Linter
 Plug 'retorillo/istanbul.vim'
@@ -84,7 +86,6 @@ Plug 'wellle/targets.vim'
 Plug 'wincent/terminus'
 
 " Indent Lines
-Plug 'Yggdroot/indentLine'
 Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua' }
 
 " inline colors
@@ -102,6 +103,8 @@ Plug 'vim-scripts/ReplaceWithSameIndentRegister'
 " FZF
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'vijaymarupudi/nvim-fzf'
+Plug 'ojroques/nvim-lspfuzzy'
 
 " Paste
 Plug 'vim-scripts/UnconditionalPaste'
@@ -160,6 +163,6 @@ Plug 'arthurxavierx/vim-caser'
 
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 " Plug 'tbabej/taskwiki'
-Plug 'powerman/vim-plugin-AnsiEsc'
+" Plug 'powerman/vim-plugin-AnsiEsc'
 " Plug 'mattn/calendar-vim'
 
