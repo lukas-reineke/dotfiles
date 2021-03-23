@@ -1,0 +1,15 @@
+session_name: qmk
+start_directory: '~'
+windows:
+    - window_name: qmk
+      focus: True
+      layout: main-horizontal
+      start_directory: ~/dev/qmk_firmware
+      shell_command_before:
+          - cd .
+      panes:
+          - focus: True
+            shell_command:
+                - tmux resize-pane -Z
+                - v
+          - cl
