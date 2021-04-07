@@ -165,11 +165,12 @@ set concealcursor=n
 
 let g:indent_blankline_char = '│'
 let g:indent_blankline_filetype_exclude = ['help', 'defx', 'vimwiki']
+let g:indent_blankline_buftype_exclude = ['terminal']
 let g:indent_blankline_space_char_blankline = ' '
 let g:indent_blankline_strict_tabs = v:true
 let g:indent_blankline_debug = v:true
 let g:indent_blankline_show_current_context = v:true
-let g:indent_blankline_context_highlight = 'TSIndentContext'
+
 let g:indent_blankline_context_patterns = [
     \ 'class',
     \ 'function',
@@ -180,6 +181,10 @@ let g:indent_blankline_context_patterns = [
     \ 'with',
     \ 'func_literal',
     \ 'block',
+    \ 'try',
+    \ 'except',
+    \ 'argument_list',
+    \ 'object',
 \ ]
 
 let g:Hexokinase_optInPatterns = 'full_hex,rgb,rgba,hsl,hsla'
