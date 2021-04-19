@@ -1,22 +1,8 @@
+require "lsp.handlers"
+require "lsp.formatting"
 local lspconfig = require "lspconfig"
-local saga = require "lspsaga"
-
-saga.init_lsp_saga {
-    code_action_prompt = {
-        sign = false
-    },
-    code_action_keys = {quit = "<ESC>", exec = "<CR>"}
-}
-
-local map = function(mode, key, result, noremap, expr)
-    if noremap == nil then
-        noremap = true
-    end
-    if expr == nil then
-        expr = false
-    end
-    vim.api.nvim_buf_set_keymap(0, mode, key, result, {noremap = noremap, silent = true, expr = expr})
-end
+local utils = require "utils"
+local M = {}
 
 vim.lsp.protocol.CompletionItemKind = {
     " [text]",
@@ -46,20 +32,30 @@ vim.lsp.protocol.CompletionItemKind = {
     "♛ [type]"
 }
 
-require "compe".setup {
-    enabled = true,
-    debug = false,
-    autocomplete = false,
-    min_length = 1,
-    preselect = "disable",
-    allow_prefix_unmatch = false,
-    source = {
-        path = true,
-        buffer = true,
-        nvim_lsp = true,
-        nvim_lua = true,
-        ultisnips = true
-    }
+M.symbol_kind_icons = {
+    Function = "",
+    Method = "",
+    Variable = "",
+    Constant = "",
+    Interface = "",
+    Field = "ﰠ",
+    Property = "",
+    Struct = "",
+    Enum = "",
+    Class = ""
+}
+
+M.symbol_kind_colors = {
+    Function = "green",
+    Method = "green",
+    Variable = "blue",
+    Constant = "red",
+    Interface = "cyan",
+    Field = "blue",
+    Property = "blue",
+    Struct = "cyan",
+    Enum = "yellow",
+    Class = "red"
 }
 
 vim.fn.sign_define("LspDiagnosticsSignError", {text = "", numhl = "LspDiagnosticsDefaultError"})
@@ -67,96 +63,27 @@ vim.fn.sign_define("LspDiagnosticsSignWarning", {text = "", numhl = "LspDiagnost
 vim.fn.sign_define("LspDiagnosticsSignInformation", {text = "", numhl = "LspDiagnosticsDefaultInformation"})
 vim.fn.sign_define("LspDiagnosticsSignHint", {text = "", numhl = "LspDiagnosticsDefaultHint"})
 
-vim.lsp.handlers["textDocument/formatting"] = function(err, _, result, _, bufnr)
-    if err ~= nil or result == nil then
-        return
-    end
-    if not vim.api.nvim_buf_get_option(bufnr, "modified") then
-        local view = vim.fn.winsaveview()
-        vim.lsp.util.apply_text_edits(result, bufnr)
-        vim.fn.winrestview(view)
-        if bufnr == vim.api.nvim_get_current_buf() then
-            vim.cmd [[noautocmd :update]]
-            vim.cmd [[GitGutter]]
-        end
-    end
-end
-
-vim.lsp.handlers["textDocument/publishDiagnostics"] = function(...)
-    vim.lsp.with(
-        vim.lsp.diagnostic.on_publish_diagnostics,
-        {
-            underline = true,
-            update_in_insert = false
-        }
-    )(...)
-    pcall(vim.lsp.diagnostic.set_loclist, {open_loclist = false})
-end
-
-local format_options_prettier = {
-    tabWidth = 4,
-    singleQuote = true,
-    trailingComma = "all",
-    configPrecedence = "prefer-file"
-}
-vim.g.format_options_typescript = format_options_prettier
-vim.g.format_options_javascript = format_options_prettier
-vim.g.format_options_typescriptreact = format_options_prettier
-vim.g.format_options_javascriptreact = format_options_prettier
-vim.g.format_options_json = format_options_prettier
-vim.g.format_options_css = format_options_prettier
-vim.g.format_options_scss = format_options_prettier
-vim.g.format_options_html = format_options_prettier
-vim.g.format_options_yaml = format_options_prettier
-vim.g.format_options_markdown = format_options_prettier
-
-FormatToggle = function(value)
-    vim.g[string.format("format_disabled_%s", vim.bo.filetype)] = value
-end
-vim.cmd [[command! FormatDisable lua FormatToggle(true)]]
-vim.cmd [[command! FormatEnable lua FormatToggle(false)]]
-
-_G.formatting = function()
-    if not vim.g[string.format("format_disabled_%s", vim.bo.filetype)] then
-        vim.lsp.buf.formatting(vim.g[string.format("format_options_%s", vim.bo.filetype)] or {})
-    end
-end
-
 local on_attach = function(client)
-    if client.resolved_capabilities.code_action then
-        vim.cmd [[augroup CodeAction]]
-        vim.cmd [[autocmd! * <buffer>]]
-        map("n", ",", "<cmd>Lspsaga code_action<CR>")
-        vim.cmd [[augroup END]]
-    end
     if client.resolved_capabilities.document_formatting then
         vim.cmd [[augroup Format]]
         vim.cmd [[autocmd! * <buffer>]]
-        vim.cmd [[autocmd BufWritePost <buffer> lua formatting()]]
+        vim.cmd [[autocmd BufWritePost <buffer> lua require'lsp.formatting'.format()]]
         vim.cmd [[augroup END]]
     end
     if client.resolved_capabilities.goto_definition then
-        map("n", "<C-]>", "<cmd>lua vim.lsp.buf.definition()<CR>")
-    end
-    if client.resolved_capabilities.completion then
-        map("i", "<C-n>", "compe#complete()", true, true)
-        map("i", "<CR>", "compe#confirm(lexima#expand('<LT>CR>', 'i'))", true, true)
-        map("i", "<C-e>", "compe#close('<C-e>')", true, true)
+        utils.map("n", "<C-]>", "<cmd>lua vim.lsp.buf.definition()<CR>")
     end
     if client.resolved_capabilities.hover then
-        map("n", "<CR>", "<cmd>lua vim.lsp.buf.hover()<CR>")
+        utils.map("n", "<CR>", "<cmd>lua vim.lsp.buf.hover()<CR>")
     end
     if client.resolved_capabilities.find_references then
-        map("n", "<Leader>*", ":call lists#ChangeActiveList('Quickfix')<CR>:lua vim.lsp.buf.references()<CR>")
+        utils.map("n", "<Space>*", ":call lists#ChangeActiveList('Quickfix')<CR>:lua vim.lsp.buf.references()<CR>")
     end
     if client.resolved_capabilities.rename then
-        map("n", "<leader>rn", "<cmd>lua require('lspsaga.rename').rename()<CR>")
+        utils.map("n", "<Space>rn", "<cmd>lua require'lsp.rename'.rename()<CR>", {silent = true})
     end
 
-    map("n", "<leader><CR>", "<cmd>lua require'lspsaga.diagnostic'.show_line_diagnostics()<CR>")
-    map("n", "<CR>", "<cmd>lua require('lspsaga.hover').render_hover_doc()<CR>")
-    map("n", "<C-f>", "<cmd>lua require('lspsaga.hover').smart_scroll_hover(1)<CR>")
-    map("n", "<C-g>", "<cmd>lua require('lspsaga.hover').smart_scroll_hover(-1)<CR>")
+    utils.map("n", "<Space><CR>", "<cmd>lua require'lsp.diagnostics'.line_diagnostics()<CR>")
 end
 
 function _G.activeLSP()
@@ -205,18 +132,10 @@ lspconfig.pyright.setup {on_attach = on_attach}
 lspconfig.tsserver.setup {
     on_attach = function(client)
         client.resolved_capabilities.document_formatting = false
+        require "nvim-lsp-ts-utils".setup {}
         on_attach(client)
     end
 }
-
--- https://github.com/sumneko/lua-language-server
--- require("nlua.lsp.nvim").setup(
---     lspconfig,
---     {
---         on_attach = on_attach,
---         cmd = {"lua-language-server"}
---     }
--- )
 
 local function get_lua_runtime()
     local result = {}
@@ -253,7 +172,9 @@ lspconfig.sumneko_lua.setup {
                     "before_each",
                     "after_each",
                     "teardown",
-                    "pending"
+                    "pending",
+                    -- packer
+                    "use"
                 },
                 workspace = {
                     library = get_lua_runtime(),
@@ -341,3 +262,5 @@ lspconfig.efm.setup {
 }
 
 lspconfig.clangd.setup {on_attach = on_attach}
+
+return M

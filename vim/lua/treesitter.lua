@@ -1,7 +1,8 @@
 require "nvim-treesitter.configs".setup {
     ensure_installed = "all",
     highlight = {
-        enable = true
+        enable = true,
+        language_tree = true
     },
     indent = {
         enable = false
@@ -14,6 +15,9 @@ require "nvim-treesitter.configs".setup {
     autotag = {
         enable = true
     },
+    context_commentstring = {
+        enable = true
+    },
     textobjects = {
         select = {
             enable = true,
@@ -24,12 +28,5 @@ require "nvim-treesitter.configs".setup {
                 ["ic"] = "@class.inner"
             }
         }
-        -- lsp_interop = {
-        --     enable = false,
-        --     peek_definition_code = {
-        --         ["df"] = "@function.outer",
-        --         ["dF"] = "@class.outer"
-        --     }
-        -- }
     }
 }

@@ -6,4 +6,3 @@ nnoremap <buffer> k k
 nnoremap <buffer> gk gk
 setlocal wrap
 setlocal colorcolumn=
-nnoremap <silent><buffer> dd :call quickfix#RemoveItem()<CR>

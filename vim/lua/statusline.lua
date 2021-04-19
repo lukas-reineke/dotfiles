@@ -30,14 +30,6 @@ galaxyline.section.left = {
                 end
             end
         }
-    },
-    {
-        VistaPlugin = {
-            provider = function()
-                return vim.b.vista_nearest_method_or_function
-            end,
-            highlight = {colors.dark_yellow, colors.dark_black}
-        }
     }
 }
 galaxyline.section.right = {

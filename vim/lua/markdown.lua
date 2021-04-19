@@ -1,10 +1,14 @@
-vim.fn.sign_define("firstHeadline", {linehl = "markdownFirstHeadline"})
-vim.fn.sign_define("secondHeadline", {linehl = "markdownSecondHeadline"})
-vim.fn.sign_define("thirdHeadline", {linehl = "markdownHeadline"})
+local M = {}
+
+M.setup = function()
+    vim.fn.sign_define("firstHeadline", {linehl = "markdownFirstHeadline"})
+    vim.fn.sign_define("secondHeadline", {linehl = "markdownSecondHeadline"})
+    vim.fn.sign_define("thirdHeadline", {linehl = "markdownHeadline"})
+end
 
 local markdown_dash_namespace = vim.api.nvim_create_namespace("markdown_dash")
 
-_G.MarkdownHeadlines = function()
+M.headlines = function()
     if vim.bo.filetype ~= "markdown" and vim.bo.filetype ~= "vimwiki" then
         return
     end
@@ -43,4 +47,4 @@ _G.MarkdownHeadlines = function()
     end
 end
 
-vim.cmd [[autocmd FileChangedShellPost,Syntax,TextChanged,InsertLeave,WinScrolled * lua MarkdownHeadlines()]]
+return M
