@@ -143,6 +143,13 @@ function gi {
     echo ''
 }
 
+function gfix {
+    is_in_git_repo || return
+    local commit=${1:-'HEAD'}
+
+    git commit --fixup=$commit
+}
+
 function gt {
     is_in_git_repo || return
 
