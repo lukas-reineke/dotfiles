@@ -23,11 +23,12 @@ M.line_diagnostics = function()
     local lines = {}
 
     for _, diagnostic in ipairs(diagnostics) do
-        table.insert(lines, "■ " .. diagnostic.message .. source_string(diagnostic.source))
+        table.insert(lines, " ■ " .. diagnostic.message:gsub("\n", " ") .. source_string(diagnostic.source))
     end
 
     local floating_bufnr = vim.api.nvim_create_buf(false, true)
     vim.api.nvim_buf_set_lines(floating_bufnr, 0, -1, false, lines)
+    vim.api.nvim_buf_set_option(floating_bufnr, "filetype", "diagnosticpopup")
 
     for i, diagnostic in ipairs(diagnostics) do
         local message_length = #lines[i] - #source_string(diagnostic.source)
