@@ -1,4 +1,4 @@
 return {
-    formatCommand = "black -",
+    formatCommand = "black --fast -",
     formatStdin = true
 }
