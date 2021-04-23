@@ -71,19 +71,24 @@ local on_attach = function(client)
         vim.cmd [[augroup END]]
     end
     if client.resolved_capabilities.goto_definition then
-        utils.map("n", "<C-]>", "<cmd>lua vim.lsp.buf.definition()<CR>")
+        utils.map("n", "<C-]>", "<cmd>lua vim.lsp.buf.definition()<CR>", {buffer = true})
     end
     if client.resolved_capabilities.hover then
-        utils.map("n", "<CR>", "<cmd>lua vim.lsp.buf.hover()<CR>")
+        utils.map("n", "<CR>", "<cmd>lua vim.lsp.buf.hover()<CR>", {buffer = true})
     end
     if client.resolved_capabilities.find_references then
-        utils.map("n", "<Space>*", ":call lists#ChangeActiveList('Quickfix')<CR>:lua vim.lsp.buf.references()<CR>")
+        utils.map(
+            "n",
+            "<Space>*",
+            ":lua require('lists').change_active('Quickfix')<CR>:lua vim.lsp.buf.references()<CR>",
+            {buffer = true}
+        )
     end
     if client.resolved_capabilities.rename then
-        utils.map("n", "<Space>rn", "<cmd>lua require'lsp.rename'.rename()<CR>", {silent = true})
+        utils.map("n", "<Space>rn", "<cmd>lua require'lsp.rename'.rename()<CR>", {silent = true, buffer = true})
     end
 
-    utils.map("n", "<Space><CR>", "<cmd>lua require'lsp.diagnostics'.line_diagnostics()<CR>")
+    utils.map("n", "<Space><CR>", "<cmd>lua require'lsp.diagnostics'.line_diagnostics()<CR>", {buffer = true})
 end
 
 function _G.activeLSP()

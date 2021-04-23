@@ -7,6 +7,10 @@ M.restore = function()
         end
     end
 
+    if vim.fn.argc() ~= 0 then
+        return
+    end
+
     local f = io.open("./Session.vim", "r")
     if f ~= nil then
         io.close(f)

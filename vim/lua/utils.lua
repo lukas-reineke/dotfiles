@@ -15,7 +15,7 @@ M._if = function(bool, a, b)
     end
 end
 
-M.map = function(modes, key, result, options, buffer)
+M.map = function(modes, key, result, options)
     options =
         M.merge(
         {
@@ -26,6 +26,8 @@ M.map = function(modes, key, result, options, buffer)
         },
         options or {}
     )
+    local buffer = options.buffer
+    options.buffer = nil
 
     if type(modes) ~= "table" then
         modes = {modes}

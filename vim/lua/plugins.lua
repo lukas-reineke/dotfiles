@@ -90,7 +90,14 @@ require("packer").startup(
             branch = "lua",
             config = function()
                 vim.g.indent_blankline_char = "│"
-                vim.g.indent_blankline_filetype_exclude = {"help", "defx", "vimwiki", "man"}
+                vim.g.indent_blankline_filetype_exclude = {
+                    "help",
+                    "defx",
+                    "vimwiki",
+                    "man",
+                    "gitmessengerpopup",
+                    "diagnosticpopup"
+                }
                 vim.g.indent_blankline_buftype_exclude = {"terminal"}
                 vim.g.indent_blankline_space_char_blankline = " "
                 vim.g.indent_blankline_strict_tabs = true
@@ -143,6 +150,7 @@ require("packer").startup(
         use "tpope/vim-repeat"
         use "tpope/vim-eunuch"
         use "tpope/vim-obsession"
+        use "tpope/vim-sleuth"
 
         use "krisajenkins/vim-projectlocal"
 
@@ -168,7 +176,12 @@ require("packer").startup(
                 {"nvim-telescope/telescope.nvim"}
             }
         }
-        use "rhysd/git-messenger.vim"
+        use {
+            "rhysd/git-messenger.vim",
+            config = function()
+                vim.g.git_messenger_floating_win_opts = {border = vim.g.floating_window_border_dark}
+            end
+        }
 
         use {
             "Shougo/defx.nvim",

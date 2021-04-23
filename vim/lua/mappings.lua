@@ -109,7 +109,7 @@ map("n", "gco", "m'yyp:Commentary<CR>`'")
 
 map("n", "gj", "<Plug>(GitGutterNextHunk)", {noremap = false})
 map("n", "gk", "<Plug>(GitGutterPrevHunk)", {noremap = false})
-map("n", leader .. "gd", ":execute 'Gvdiff ' .. g:gitHead<CR>")
+map("n", leader .. "gd", ":execute 'Gvdiff ' .. g:git_head<CR>")
 map("n", leader .. "gr", ":Gread<CR>")
 map("n", leader .. "gb", ":Gblame<CR>")
 map("n", leader .. "gs", ":Gstatus<CR><C-w>o")
