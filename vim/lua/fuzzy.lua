@@ -224,6 +224,7 @@ M.symbols = function()
             end
 
             local lnum, col = unpack(vim.split(vim.split(result[1], nbs)[2], ":"))
+            vim.cmd [[normal m']]
             vim.api.nvim_win_set_cursor(0, {tonumber(lnum), tonumber(col)})
         end
     )()
