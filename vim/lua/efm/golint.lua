@@ -1,5 +1,6 @@
 return {
     lintCommand = "golint",
     lintIgnoreExitCode = true,
-    lintFormats = {"%f:%l:%c: %m"}
+    lintFormats = {"%f:%l:%c: %m"},
+    lintSource = "golint"
 }
