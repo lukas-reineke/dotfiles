@@ -43,7 +43,7 @@ M.line_diagnostics = function()
         {
             relative = "cursor",
             width = width,
-            height = #utils.wrap_lines(lines, width),
+            height = #utils.wrap_lines(lines, width - 1),
             row = 1,
             col = 1,
             style = "minimal",

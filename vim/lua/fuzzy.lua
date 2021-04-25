@@ -22,7 +22,7 @@ local get_untracked_files = function()
     local untracked_files = {}
     local status = vim.fn.systemlist("git ls-files --exclude-standard --others")
     for i = 1, #status do
-        untracked_files[status[i]] = "??"
+        untracked_files[status[i]] = "?"
     end
 
     return untracked_files
@@ -46,7 +46,7 @@ local icon_color_map = {
     ["M"] = "yellow",
     ["D"] = "red",
     ["A"] = "green",
-    ["??"] = "blue"
+    ["?"] = "blue"
 }
 
 local get_color_icon = function(icon)
