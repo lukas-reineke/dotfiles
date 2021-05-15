@@ -1,6 +1,6 @@
 local M = {}
 local utils = require "utils"
-local rename_prompt = "Rename ⃗⃗⃗⃗⃗⃗-> "
+local rename_prompt = "Rename -> "
 
 M.rename = function()
     local current_name = vim.fn.expand("<cword>")

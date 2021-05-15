@@ -32,13 +32,13 @@ map(
     "n",
     leader .. "c",
     "<Plug>(qf_qf_toggle_stay):lua require('lists').change_active('Quickfix')<CR>",
-    {noremap = false}
+    {noremap = false, silent = true}
 )
 map(
     "n",
     leader .. "v",
     "<Plug>(qf_loc_toggle_stay):lua require('lists').change_active('Location')<CR>",
-    {noremap = false}
+    {noremap = false, silent = true}
 )
 map("n", leader .. "b", ":lua require('lists').toggle_active()<CR>")
 map("n", leader .. "a", ":lua require('lists').change_active('Quickfix')<CR>:Ack<space>")
@@ -121,7 +121,8 @@ map("n", leader .. "ga", "<Plug>(GitGutterStageHunk)", {noremap = false})
 map(
     "n",
     leader .. "gg",
-    ":lua require('lists').change_active('Quickfix')<CR>:execute 'VcsJump diff ' .. g:git_head<CR>"
+    ":lua require('lists').change_active('Quickfix')<CR>:execute 'VcsJump diff ' .. g:git_head<CR>",
+    {silent = true}
 )
 map("n", leader .. "gn", ":lua require('lists').change_active('Quickfix')<CR>:VcsJump merge<CR>")
 map("n", leader .. "gh", ":diffget //2<CR> :diffupdate<CR>")

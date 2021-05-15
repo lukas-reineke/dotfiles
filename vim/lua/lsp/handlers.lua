@@ -1,4 +1,3 @@
-
 vim.lsp.handlers["textDocument/formatting"] = function(err, _, result, _, bufnr)
     if err ~= nil or result == nil then
         return

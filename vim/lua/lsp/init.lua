@@ -5,7 +5,7 @@ local utils = require "utils"
 local M = {}
 
 vim.lsp.protocol.CompletionItemKind = {
-    " [text]",
+    " [text]",
     " [method]",
     " [function]",
     " [constructor]",
@@ -29,7 +29,7 @@ vim.lsp.protocol.CompletionItemKind = {
     " [struct]",
     "⌘ [event]",
     " [operator]",
-    "♛ [type]"
+    " [type]"
 }
 
 M.symbol_kind_icons = {
@@ -151,7 +151,7 @@ local function get_lua_runtime()
         end
     end
     result[vim.fn.expand("$VIMRUNTIME/lua")] = true
-    result[vim.fn.expand("~/build/neovim/src/nvim/lua")] = true
+    result[vim.fn.expand("~/dev/neovim/src/nvim/lua")] = true
 
     return result
 end
@@ -242,6 +242,7 @@ local misspell = require "efm/misspell"
 lspconfig.efm.setup {
     on_attach = on_attach,
     init_options = {documentFormatting = true},
+    root_dir = vim.loop.cwd,
     settings = {
         rootMarkers = {".git/"},
         languages = {
