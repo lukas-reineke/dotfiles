@@ -161,7 +161,8 @@ lspconfig.sumneko_lua.setup {
     settings = {
         Lua = {
             runtime = {
-                version = "LuaJIT"
+                version = "LuaJIT",
+                path = {"lua/?.lua", "lua/?/init.lua"}
             },
             completion = {
                 keywordSnippet = "Disable"
@@ -216,7 +217,12 @@ lspconfig.html.setup {on_attach = on_attach}
 lspconfig.bashls.setup {on_attach = on_attach}
 
 -- https://github.com/rcjsuen/dockerfile-language-server-nodejs
-lspconfig.dockerls.setup {on_attach = on_attach}
+lspconfig.dockerls.setup {
+    on_attach = function(client)
+        client.resolved_capabilities.document_formatting = false
+        on_attach(client)
+    end
+}
 
 -- https://github.com/hashicorp/terraform-ls
 lspconfig.terraformls.setup {
@@ -236,6 +242,7 @@ local mypy = require "efm/mypy"
 local prettier = require "efm/prettier"
 local eslint = require "efm/eslint"
 local shellcheck = require "efm/shellcheck"
+local shfmt = require "efm/shfmt"
 local terraform = require "efm/terraform"
 local misspell = require "efm/misspell"
 -- https://github.com/mattn/efm-langserver
@@ -261,7 +268,7 @@ lspconfig.efm.setup {
             scss = {prettier},
             css = {prettier},
             markdown = {prettier},
-            sh = {shellcheck},
+            sh = {shellcheck, shfmt},
             tf = {terraform}
         }
     }

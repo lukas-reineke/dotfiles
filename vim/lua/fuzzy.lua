@@ -9,7 +9,7 @@ local nbs = " "
 
 local get_diff_files = function()
     local diff_files = {}
-    local status = vim.fn.systemlist("git diff --name-status " .. vim.g.git_head)
+    local status = vim.fn.systemlist("git diff --name-status " .. vim.g.git_head .. " --")
     for i = 1, #status do
         local split = vim.split(status[i], "	")
         diff_files[split[2]] = split[1]
@@ -137,7 +137,7 @@ M.files = function(path)
 end
 
 M.git_files = function()
-    local diff_files = vim.fn.systemlist("git diff --name-only " .. vim.g.git_head)
+    local diff_files = vim.fn.systemlist("git diff --name-only " .. vim.g.git_head .. " --")
     local untracked_files = vim.fn.systemlist("git ls-files --exclude-standard --others")
     local files = vim.list_extend(diff_files, untracked_files)
     return M.fzf_files(files, "git", true)

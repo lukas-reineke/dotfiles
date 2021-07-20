@@ -24,6 +24,9 @@ vim.g.format_options_scss = format_options_prettier
 vim.g.format_options_html = format_options_prettier
 vim.g.format_options_yaml = format_options_prettier
 vim.g.format_options_markdown = format_options_prettier
+vim.g.format_options_sh = {
+    tabWidth = 4
+}
 
 M.formatToggle = function(value)
     local var = format_disabled_var()

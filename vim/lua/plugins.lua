@@ -27,7 +27,6 @@ require("packer").startup(
                         ultisnips = true,
                         calc = true,
                         tmux = true,
-                        emoji = true,
                         treesitter = true
                     }
                 }
@@ -96,7 +95,8 @@ require("packer").startup(
                     "vimwiki",
                     "man",
                     "gitmessengerpopup",
-                    "diagnosticpopup"
+                    "diagnosticpopup",
+                    "lspinfo"
                 }
                 vim.g.indent_blankline_buftype_exclude = {"terminal"}
                 vim.g.indent_blankline_space_char_blankline = " "
@@ -117,7 +117,8 @@ require("packer").startup(
                     "except",
                     "argument_list",
                     "object",
-                    "dictionary"
+                    "dictionary",
+                    "element"
                 }
             end
         }
