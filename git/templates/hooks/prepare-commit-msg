@@ -9,10 +9,12 @@ if [[ -n $CLEAN ]]; then
     exit 1
 fi
 
-if [[ $BRANCH =~ [A-Z]+-[0-9]+ ]] || [[ $BRANCHTYPE == 'feature' ]] || [[ $BRANCHTYPE == 'bugfix' ]] || [[ $BRANCHTYPE == 'hotfix' ]]; then
-    FIRSTLINE=$(sed -n "1p" $1)
-    if [[ -z $FIRSTLINE ]]; then
-        BRANCH=${BRANCH##*/}
-        echo "$BRANCH $FILE" > "$1"
+FIRSTLINE=$(sed -n "1p" $1)
+if [[ -z $FIRSTLINE ]]; then
+    IDS=$(~/dotfiles/scripts/product-board.sh)
+    if [[ -n $IDS ]]; then
+        echo -e "$BRANCHTYPE: \n\n$IDS $FILE" > "$1"
+    else
+        echo -e "$BRANCHTYPE: $FILE" > "$1"
     fi
 fi
