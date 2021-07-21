@@ -145,9 +145,21 @@ function gi {
 
 function gfix {
     is_in_git_repo || return
-    local commit=${1:-'HEAD'}
+    local COMMIT
 
-    git commit --fixup=$commit
+    if [[ -n $1 ]]; then
+        COMMIT="$1"
+    else
+        COUNTER=0
+        COMMIT_MESSAGE=$(git show -s --format=%B HEAD~$COUNTER)
+
+        while [[ $COMMIT_MESSAGE == "fixup!"* ]]; do
+            COUNTER=$((COUNTER + 1))
+            COMMIT_MESSAGE=$(git show -s --format=%B HEAD~$COUNTER)
+        done
+        COMMIT="HEAD~$COUNTER"
+    fi
+    git commit --fixup="$COMMIT"
 }
 
 function gt {
