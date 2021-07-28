@@ -8,4 +8,12 @@ M.close_all = function()
     end
 end
 
+_G.foldtext = function()
+    local line = vim.fn.getline(vim.v.foldstart)
+    local line_count = vim.v.foldend - vim.v.foldstart + 1
+    local _, whitespace_count = line:find("^%s+")
+
+    return line:sub(1, whitespace_count) .. "祉[" .. line_count .. "] " .. vim.trim(line) .. " "
+end
+
 return M
