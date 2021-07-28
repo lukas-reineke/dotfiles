@@ -32,6 +32,7 @@ require("packer").startup(
                 }
             end
         }
+        use "ray-x/lsp_signature.nvim"
         use "jose-elias-alvarez/nvim-lsp-ts-utils"
 
         use {

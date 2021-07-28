@@ -87,6 +87,19 @@ local on_attach = function(client)
     if client.resolved_capabilities.rename then
         utils.map("n", "<Space>rn", "<cmd>lua require'lsp.rename'.rename()<CR>", {silent = true, buffer = true})
     end
+    if client.resolved_capabilities.signature_help then
+        utils.map("n", "<Space>s", "<cmd>lua vim.lsp.buf.signature_help()<CR>", {silent = true, buffer = true})
+    end
+
+    require "lsp_signature".on_attach(
+        {
+            hint_enable = false,
+            hi_parameter = "QuickFixLine",
+            handler_opts = {
+                border = vim.g.floating_window_border
+            }
+        }
+    )
 
     utils.map("n", "<Space><CR>", "<cmd>lua require'lsp.diagnostics'.line_diagnostics()<CR>", {buffer = true})
 end
