@@ -88,37 +88,39 @@ require("packer").startup(
             "~/dev/indent-blankline.nvim",
             branch = "lua",
             config = function()
-                vim.g.indent_blankline_char = "│"
-                vim.g.indent_blankline_filetype_exclude = {
-                    "help",
-                    "defx",
-                    "vimwiki",
-                    "man",
-                    "gitmessengerpopup",
-                    "diagnosticpopup",
-                    "lspinfo"
-                }
-                vim.g.indent_blankline_buftype_exclude = {"terminal"}
-                vim.g.indent_blankline_space_char_blankline = " "
-                vim.g.indent_blankline_strict_tabs = true
-                vim.g.indent_blankline_debug = true
-                vim.g.indent_blankline_show_current_context = true
-                vim.g.indent_blankline_context_patterns = {
-                    "class",
-                    "function",
-                    "method",
-                    "^if",
-                    "while",
-                    "for",
-                    "with",
-                    "func_literal",
-                    "block",
-                    "try",
-                    "except",
-                    "argument_list",
-                    "object",
-                    "dictionary",
-                    "element"
+                require("indent_blankline").setup {
+                    filetype_exclude = {
+                        "help",
+                        "defx",
+                        "vimwiki",
+                        "man",
+                        "gitmessengerpopup",
+                        "diagnosticpopup",
+                        "lspinfo"
+                    },
+                    buftype_exclude = {"terminal"},
+                    space_char_blankline = " ",
+                    show_foldtext = false,
+                    strict_tabs = true,
+                    debug = true,
+                    show_current_context = true,
+                    context_patterns = {
+                        "class",
+                        "function",
+                        "method",
+                        "^if",
+                        "while",
+                        "for",
+                        "with",
+                        "func_literal",
+                        "block",
+                        "try",
+                        "except",
+                        "argument_list",
+                        "object",
+                        "dictionary",
+                        "element"
+                    }
                 }
             end
         }
