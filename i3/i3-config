@@ -137,7 +137,6 @@ bindsym $mod+o       exec --no-startup-id $rofipath/rofi.sh web
 bindsym $mod+shift+o exec --no-startup-id rofi -modi lpass:rofi-lpass -show lpass -theme onedark
 bindsym $mod+Shift+e exec --no-startup-id $rofipath/rofi-text.sh
 bindsym $mod+Shift+w exec --no-startup-id $rofipath/rofi-i3.sh
-exec --no-startup-id $rofipath/rofi-clipboard-manager/mclip.py daemon
 
 #""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 # => Mac like keybindings
