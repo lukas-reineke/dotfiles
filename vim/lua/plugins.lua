@@ -310,7 +310,16 @@ require("packer").startup(
                     vim.g.qf_max_height = 20
                 end
             }
-            use "kevinhwang91/nvim-bqf"
+            use {
+                "kevinhwang91/nvim-bqf",
+                config = function()
+                    require "bqf".setup {
+                        preview = {
+                            delay_syntax = 0
+                        }
+                    }
+                end
+            }
 
             use "machakann/vim-sandwich"
 
