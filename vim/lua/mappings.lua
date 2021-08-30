@@ -48,6 +48,11 @@ map("n", "x", '"_x')
 map("n", leader .. "o", "o<esc>k")
 map("n", leader .. "O", "O<esc>j")
 
+map("x", "iu", ':lua require"treesitter-unit".select()<CR>', {noremap = true})
+map("x", "au", ':lua require"treesitter-unit".select(true)<CR>', {noremap = true})
+map("o", "iu", ':<c-u>lua require"treesitter-unit".select()<CR>', {noremap = true})
+map("o", "au", ':<c-u>lua require"treesitter-unit".select(true)<CR>', {noremap = true})
+
 map("n", "<C-h>", "<CMD>lua require('Navigator').left()<CR>")
 map("n", "<C-j>", "<CMD>lua require('Navigator').down()<CR>")
 map("n", "<C-k>", "<CMD>lua require('Navigator').up()<CR>")
