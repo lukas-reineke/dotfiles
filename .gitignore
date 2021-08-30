@@ -3,4 +3,5 @@ vim/backups
 vim/spell
 vim/.netrwhist
 vim/plugin/packer_compiled.vim
+vim/plugin/packer_compiled.lua
 
