@@ -239,7 +239,10 @@ lspconfig.dockerls.setup {
 
 -- https://github.com/hashicorp/terraform-ls
 lspconfig.terraformls.setup {
-    on_attach = on_attach,
+    on_attach = function(client)
+        client.resolved_capabilities.document_formatting = false
+        on_attach(client)
+    end,
     cmd = {"terraform-ls", "serve"},
     filetypes = {"tf"}
 }
@@ -282,7 +285,7 @@ lspconfig.efm.setup {
             css = {prettier},
             markdown = {prettier},
             sh = {shellcheck, shfmt},
-            tf = {terraform}
+            terraform = {terraform}
         }
     }
 }
