@@ -1,5 +1,4 @@
 vim.cmd [[augroup Autogroup]]
-vim.cmd [[autocmd VimEnter * nested lua require("session").restore()]]
 
 vim.cmd [[autocmd CursorMoved * call PoppyInit()]]
 vim.cmd [[autocmd CursorMoved * lua require('fold').close_all()]]
@@ -16,5 +15,7 @@ vim.cmd [[autocmd BufWritePost plugins.lua PackerCompile]]
 vim.cmd [[autocmd User PackerComplete,PackerCompileDone lua require("indent_blankline.utils").reset_highlights()]]
 
 vim.cmd [[autocmd BufEnter * lua require("defx").hijak()]]
+
+vim.cmd [[autocmd User FugitiveBlob nnoremap <buffer> <space>gd :Gvdiff !~1<CR>]]
 
 vim.cmd [[augroup END]]

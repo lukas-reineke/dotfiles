@@ -1,16 +1,12 @@
 vim.cmd [[syntax enable]]
 vim.cmd [[filetype plugin indent on]]
 
-local opt =
-    setmetatable(
-    {},
-    {
-        __newindex = function(_, key, value)
-            vim.o[key] = value
-            vim.bo[key] = value
-        end
-    }
-)
+local opt = setmetatable({}, {
+    __newindex = function(_, key, value)
+        vim.o[key] = value
+        vim.bo[key] = value
+    end,
+})
 
 opt.dict = "~/dotfiles/lib/10k.txt"
 opt.expandtab = true
@@ -56,7 +52,7 @@ vim.o.splitbelow = true
 vim.o.splitright = true
 vim.o.termguicolors = true
 vim.o.timeoutlen = 500
-vim.o.undodir = vim.fn.expand("~/.config/nvim/backups")
+vim.o.undodir = vim.fn.expand "~/.config/nvim/backups"
 vim.o.updatetime = 0
 vim.o.viewoptions = ""
 vim.o.virtualedit = "onemore"
@@ -81,26 +77,35 @@ vim.wo.list = true
 vim.opt.listchars = {
     space = "⋅",
     eol = "↴",
-    tab = "│⋅",
+    tab = "__",
+    -- tab = "-->",
+    -- tab = "│⋅",
+    -- ⎵
+    -- ⎯
+    -- ˽
+    -- .->
+    -- 𝄖
+    -- _
+    -- ⥐
     trail = "•",
     extends = "❯",
     precedes = "❮",
-    nbsp = "_"
+    nbsp = "_",
 }
 vim.opt.fillchars = {
-    fold = " "
+    fold = " ",
 }
 
-vim.g.floating_window_border = {"╭", "─", "╮", "│", "╯", "─", "╰", "│"}
+vim.g.floating_window_border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
 vim.g.floating_window_border_dark = {
-    {"╭", "FloatBorderDark"},
-    {"─", "FloatBorderDark"},
-    {"╮", "FloatBorderDark"},
-    {"│", "FloatBorderDark"},
-    {"╯", "FloatBorderDark"},
-    {"─", "FloatBorderDark"},
-    {"╰", "FloatBorderDark"},
-    {"│", "FloatBorderDark"}
+    { "╭", "FloatBorderDark" },
+    { "─", "FloatBorderDark" },
+    { "╮", "FloatBorderDark" },
+    { "│", "FloatBorderDark" },
+    { "╯", "FloatBorderDark" },
+    { "─", "FloatBorderDark" },
+    { "╰", "FloatBorderDark" },
+    { "│", "FloatBorderDark" },
 }
 vim.g.markdown_fenced_languages = {
     "vim",
@@ -112,7 +117,7 @@ vim.g.markdown_fenced_languages = {
     "yaml",
     "json",
     "gql=graphql",
-    "graphql"
+    "graphql",
 }
 vim.g.no_man_maps = true
 vim.g.vim_json_syntax_conceal = false

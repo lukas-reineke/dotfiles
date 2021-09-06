@@ -1,7 +1,7 @@
 local M = {}
 
 M.hijak = function()
-    local path = vim.fn.expand("<amatch>")
+    local path = vim.fn.expand "<amatch>"
 
     if vim.fn.isdirectory(path) == 0 then
         return
@@ -11,7 +11,7 @@ M.hijak = function()
         return
     end
 
-    if string.format("%d", vim.fn.bufnr("%")) ~= vim.fn.expand("<abuf>") then
+    if string.format("%d", vim.fn.bufnr "%") ~= vim.fn.expand "<abuf>" then
         return
     end
 

@@ -4,7 +4,7 @@ return {
     lintStdin = true,
     lintFormats = {
         "%f(%l,%c): %tarning %m",
-        "%f(%l,%c): %rror %m"
+        "%f(%l,%c): %rror %m",
     },
-    lintSource = "eslint"
+    lintSource = "eslint",
 }

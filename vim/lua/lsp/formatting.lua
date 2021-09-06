@@ -12,7 +12,7 @@ local format_options_prettier = {
     tabWidth = 4,
     singleQuote = true,
     trailingComma = "all",
-    configPrecedence = "prefer-file"
+    configPrecedence = "prefer-file",
 }
 vim.g.format_options_typescript = format_options_prettier
 vim.g.format_options_javascript = format_options_prettier
@@ -25,7 +25,10 @@ vim.g.format_options_html = format_options_prettier
 vim.g.format_options_yaml = format_options_prettier
 vim.g.format_options_markdown = format_options_prettier
 vim.g.format_options_sh = {
-    tabWidth = 4
+    tabWidth = 4,
+}
+vim.g.format_options_lua = {
+    tabWidth = 4,
 }
 
 M.formatToggle = function(value)

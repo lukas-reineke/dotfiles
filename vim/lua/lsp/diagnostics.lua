@@ -5,7 +5,7 @@ local serverity_map = {
     "LspDiagnosticsDefaultError",
     "LspDiagnosticsDefaultWarning",
     "LspDiagnosticsDefaultInformation",
-    "LspDiagnosticsDefaultHint"
+    "LspDiagnosticsDefaultHint",
 }
 
 local function source_string(source)
@@ -36,22 +36,17 @@ M.line_diagnostics = function()
         vim.api.nvim_buf_add_highlight(floating_bufnr, -1, "DiagnosticSource", i - 1, message_length, -1)
     end
 
-    local winnr =
-        vim.api.nvim_open_win(
-        floating_bufnr,
-        false,
-        {
-            relative = "cursor",
-            width = width,
-            height = #utils.wrap_lines(lines, width - 1),
-            row = 1,
-            col = 1,
-            style = "minimal",
-            border = vim.g.floating_window_border_dark
-        }
-    )
+    local winnr = vim.api.nvim_open_win(floating_bufnr, false, {
+        relative = "cursor",
+        width = width,
+        height = #utils.wrap_lines(lines, width - 1),
+        row = 1,
+        col = 1,
+        style = "minimal",
+        border = vim.g.floating_window_border_dark,
+    })
 
-    vim.lsp.util.close_preview_autocmd({"CursorMoved", "CursorMovedI", "BufHidden", "BufLeave", "WinScrolled"}, winnr)
+    vim.lsp.util.close_preview_autocmd({ "CursorMoved", "CursorMovedI", "BufHidden", "BufLeave", "WinScrolled" }, winnr)
 end
 
 return M

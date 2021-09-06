@@ -1,3 +1,3 @@
 return {
-    formatCommand = "shfmt ${-i:tabWidth}"
+    formatCommand = "shfmt ${-i:tabWidth}",
 }

@@ -16,21 +16,17 @@ M._if = function(bool, a, b)
 end
 
 M.map = function(modes, key, result, options)
-    options =
-        M.merge(
-        {
-            noremap = true,
-            silent = false,
-            expr = false,
-            nowait = false
-        },
-        options or {}
-    )
+    options = M.merge({
+        noremap = true,
+        silent = false,
+        expr = false,
+        nowait = false,
+    }, options or {})
     local buffer = options.buffer
     options.buffer = nil
 
     if type(modes) ~= "table" then
-        modes = {modes}
+        modes = { modes }
     end
 
     for i = 1, #modes do
@@ -59,7 +55,7 @@ function _G.copy(obj, seen)
 end
 
 function _G.P(...)
-    local objects = vim.tbl_map(vim.inspect, {...})
+    local objects = vim.tbl_map(vim.inspect, { ... })
     print(unpack(objects))
 end
 
@@ -109,7 +105,7 @@ M.ansi_codes = {
     end,
     white = function(self, string)
         return self._white .. string .. self._clear
-    end
+    end,
 }
 
 M.shorten_string = function(string, length)
@@ -127,7 +123,7 @@ M.wrap_lines = function(input, width)
         line = line:gsub("\r", "")
         while #line > width + 2 do
             local trimmed_line = string.sub(line, 1, width)
-            local index = trimmed_line:reverse():find(" ")
+            local index = trimmed_line:reverse():find " "
             if index == nil or index > #trimmed_line / 2 then
                 break
             end

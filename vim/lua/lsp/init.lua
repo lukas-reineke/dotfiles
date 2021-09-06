@@ -91,15 +91,13 @@ local on_attach = function(client)
         utils.map("n", "<Space>s", "<cmd>lua vim.lsp.buf.signature_help()<CR>", {silent = true, buffer = true})
     end
 
-    require "lsp_signature".on_attach(
-        {
-            hint_enable = false,
-            hi_parameter = "QuickFixLine",
-            handler_opts = {
-                border = vim.g.floating_window_border
-            }
+    require("lsp_signature").on_attach {
+        hint_enable = false,
+        hi_parameter = "QuickFixLine",
+        handler_opts = {
+            border = vim.g.floating_window_border
         }
-    )
+    }
 
     utils.map("n", "<Space><CR>", "<cmd>lua require'lsp.diagnostics'.line_diagnostics()<CR>", {buffer = true})
 end
@@ -150,7 +148,7 @@ lspconfig.pyright.setup {on_attach = on_attach}
 lspconfig.tsserver.setup {
     on_attach = function(client)
         client.resolved_capabilities.document_formatting = false
-        require "nvim-lsp-ts-utils".setup {}
+        require("nvim-lsp-ts-utils").setup {}
         on_attach(client)
     end
 }
@@ -163,8 +161,8 @@ local function get_lua_runtime()
             result[lua_path] = true
         end
     end
-    result[vim.fn.expand("$VIMRUNTIME/lua")] = true
-    result[vim.fn.expand("~/dev/neovim/src/nvim/lua")] = true
+    result[vim.fn.expand "$VIMRUNTIME/lua"] = true
+    result[vim.fn.expand "~/dev/neovim/src/nvim/lua"] = true
 
     return result
 end
@@ -248,7 +246,7 @@ lspconfig.terraformls.setup {
 }
 
 local vint = require "efm/vint"
-local luafmt = require "efm/luafmt"
+local stylua = require "efm/stylua"
 local golint = require "efm/golint"
 local goimports = require "efm/goimports"
 local black = require "efm/black"
@@ -271,7 +269,7 @@ lspconfig.efm.setup {
         languages = {
             ["="] = {misspell},
             vim = {vint},
-            lua = {luafmt},
+            lua = {stylua},
             go = {golint, goimports},
             python = {black, isort, flake8, mypy},
             typescript = {prettier, eslint},

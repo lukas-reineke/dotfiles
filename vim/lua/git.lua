@@ -1,6 +1,11 @@
 local utils = require "utils"
 local M = {}
 
+M.is_repo = function()
+    vim.fn.system "git -C . rev-parse"
+    return vim.v.shell_error == 0
+end
+
 M.setup = function()
     vim.g.git_head = "HEAD"
 end

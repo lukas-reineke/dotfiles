@@ -3,7 +3,7 @@ local M = {}
 
 M.close_others = function()
     local bufnr = vim.api.nvim_get_current_buf()
-    local last_buffer = vim.fn.bufnr("$")
+    local last_buffer = vim.fn.bufnr "$"
     local deleted = 0
     local n = 1
     while n <= last_buffer do
@@ -28,7 +28,7 @@ end
 
 M.count = function()
     local count = 0
-    local last_buffer = vim.fn.bufnr("$")
+    local last_buffer = vim.fn.bufnr "$"
     local n = 1
     while n <= last_buffer do
         if vim.fn.buflisted(n) ~= 0 then
