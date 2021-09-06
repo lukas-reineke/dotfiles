@@ -142,7 +142,7 @@ null_string = '<null>'
 enable_pager = True
 
 # Use keyring to automatically save and load password in a secure manner
-keyring = True
+keyring = False
 
 # Custom colors for the completion menu, toolbar, etc.
 [colors]

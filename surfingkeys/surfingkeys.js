@@ -37,7 +37,7 @@ const unmaps = [
     // 'yp',
 ];
 
-unmaps.forEach(u => {
+unmaps.forEach((u) => {
     unmap(u);
 });
 
@@ -144,7 +144,7 @@ addSearchAliasX(
 
 settings.scrollStepSize = 100;
 // settings.blacklistPattern = /.*localhost.*/i;
-settings.blacklistPattern = /.*(youtube|trello|docs\.google).*/i;
+settings.blacklistPattern = /.*(youtube|trello|docs\.google|monkeytype).*/i;
 settings.focusAfterClosed = 'left';
 settings.historyMUOrder = false;
 // settings.richHintsForKeystroke = 0;

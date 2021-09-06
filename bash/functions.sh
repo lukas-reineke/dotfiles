@@ -1,38 +1,40 @@
+#!/bin/bash
+
 # mkdir and enter
 function mkcd {
-    if [ ! -n "$1" ]; then
+    if [ -z "$1" ]; then
         echo "Enter a directory name"
-    elif [ -d $1 ]; then
-        echo -e ${RED}"$* already exists"${NC}
-        cs $1
+    elif [ -d "$1" ]; then
+        echo -e "${RED}$* already exists${NC}"
+        cs "$1"
     else
-        mkdir -p $1 && cd $1
+        mkdir -p "$1" && cd "$1" || return
     fi
 }
 
 # cd git status
 function cs {
     if [[ $# -eq 0 ]]; then
-        builtin cd
+        builtin cd || return
     elif [[ -d "$*" ]]; then
-        builtin cd "$*"
+        builtin cd "$*" || return
         if [ -d ./.git ]; then
             git_status_shortcuts
         fi
         if [ -f ./.env.sh ]; then
             source .env.sh
-            echo -e ${RED}'➤ '${NC}'Added '${PWD##*/}' environment variables\n'
+            echo -e "${RED}➤ ${NC}Added ${PWD##*/} environment variables\n"
         fi
         if [ -f ./.nvmrc ]; then
-            nvm use &> /dev/null
-            echo -e ${GRN}'➤ '${NC}'Use local Node version '$(node --version)'\n'
+            nvm use &>/dev/null
+            echo -e "${GRN}➤ ${NC}Use local Node version $(node --version)\n"
         fi
     elif [[ -f "$*" ]]; then
-        echo -e ${RED}"$* is not a directory"${NC} 1>&2
+        echo -e "${RED}$* is not a directory${NC}" 1>&2
         local dir=$(dirname "$*")
-        builtin cd "$dir"
+        builtin cd "$dir" || return
     else
-        builtin cd "$*"
+        builtin cd "$*" || return
     fi
     # cd-history-save
 }
@@ -40,22 +42,21 @@ alias cd='exec_scmb_expand_args cs'
 
 # temp folder
 function temp {
-    if [ ! -n "$1" ]; then
-        pushd $HOME/temp
+    if [ -z "$1" ]; then
+        pushd "$HOME"/temp || return
     else
-        pushd $HOME/temp
-        if [ -d $1 ]; then
-            printf "${RED}\`$1' already exists${NC}\n"  && cs $1
+        pushd "$HOME"/temp || return
+        if [ -d "$1" ]; then
+            echo -e "${RED}\`$1' already exists${NC}\n" && cs "$1"
         else
-            mkdir $1 && cs $1
+            mkdir "$1" && cs "$1" || return
         fi
     fi
 }
 
 #setup terminal tab title
 function tt {
-    if [ "$1" ]
-    then
+    if [ "$1" ]; then
         unset PROMPT_COMMAND
         echo -ne "\033]0;${*}\007"
     else
@@ -69,32 +70,21 @@ tt
 
 # cd ..
 function ce {
-    DEEP=$1; [ -z "${DEEP}" ] && { DEEP=1; }; for i in $(seq 1 ${DEEP}); do cd ../; done;
+    DEEP=$1
+    [ -z "${DEEP}" ] && { DEEP=1; }
+    for i in $(seq 1 ${DEEP}); do cd ../; done
 }
 bind '"\C-e":"ce\n"'
 
-# yarn
-function yarn {
-    if [[ $1 == "i" ]]; then
-        if [[ ${@:2} ]]; then
-            command yarn add "${@:2}"
-        else
-            command yarn install
-        fi
-    else
-        command yarn "$@"
-    fi
-}
-
 # Make directories and files access rights sane.
 function sanitize {
-    chmod -R u=rwX,g=rX,o= "$@" ;
+    chmod -R u=rwX,g=rX,o= "$@"
 }
 
 # run ssh-agent and add key
 function addssh {
     if [ -z "$SSH_AUTH_SOCK" ]; then
-        eval `ssh-agent -s`
+        eval $(ssh-agent -s)
         ssh-add
     fi
 }
@@ -125,8 +115,8 @@ function hr {
     printf '%s%s%s\n' "$start" "${line:0:cols}" "$end"
 }
 
-is_in_git_repo() {
-    git rev-parse HEAD > /dev/null 2>&1
+function is_in_git_repo() {
+    git rev-parse HEAD >/dev/null 2>&1
 }
 
 # Git info
@@ -166,8 +156,8 @@ function gt {
     is_in_git_repo || return
 
     git tag --sort -version:refname |
-    fzf --reverse --multi --preview-window right:70% \
-    --preview 'git show --color=always {} | head -'$LINES
+        fzf --reverse --multi --preview-window right:70% \
+            --preview 'git show --color=always {} | head -'$LINES
 }
 
 function gll {
@@ -198,11 +188,11 @@ function prs() {
     is_in_git_repo || return
     local PRS BRANCH
 
-    PRS=$(\
-        hub pr list |\
-        sed "s/^\s*#//" |\
-        sed "s/\s\s\s/@/g" |\
-        column -t -s @\
+    PRS=$(
+        hub pr list |
+            sed "s/^\s*#//" |
+            sed "s/\s\s\s/@/g" |
+            column -t -s @
     )
 
     PR=$(echo "$PRS" | fzf --no-hscroll --height 40% --reverse --ansi | awk '{print $1}')
@@ -225,7 +215,7 @@ function ta() {
 }
 
 function yzy() {
-    yay -Slq | fzf -m --reverse --preview 'cat <(yay -Si {1}) <(yay -Fl {1} | awk "{print \$2}")' | xargs -ro  yay -S
+    yay -Slq | fzf -m --reverse --preview 'cat <(yay -Si {1}) <(yay -Fl {1} | awk "{print \$2}")' | xargs -ro yay -S
 }
 
 function b() {
@@ -234,10 +224,10 @@ function b() {
 
     BRANCHES=$(git for-each-ref --sort=-committerdate refs/heads/ --format="$GIT_REF_FORMAT" | awk '! a[$0]++')
 
-    BRANCH=$(echo "$BRANCHES" | column -t -s '@' | fzf --no-hscroll --height 20% --reverse --ansi | awk '{print $1}' )
+    BRANCH=$(echo "$BRANCHES" | column -t -s '@' | fzf --no-hscroll --height 20% --reverse --ansi | awk '{print $1}')
 
     if [[ -n $BRANCH ]]; then
-        git checkout $(echo "$BRANCH" | sed "s/.* //")
+        git checkout "${BRANCH//.* //}"
     fi
 }
 bind '"\C-b":" b\n"'
@@ -254,7 +244,7 @@ function fa() {
 
 function f {
     local DIR
-    DIR=$(~/dotfiles/lib/bfs/bfs -type d| fzf --height 20% --reverse +m)
+    DIR=$(~/dotfiles/lib/bfs/bfs -type d | fzf --height 20% --reverse +m)
     if [[ -n $DIR ]]; then
         cs "$DIR"
     fi
@@ -265,7 +255,7 @@ function urls {
     local URL
     URL=$(tmux capture-pane -pJ | xurls | fzf --height 20% --reverse)
     if [[ -n $URL ]]; then
-        opera-beta "$URL" &> /dev/null
+        opera-beta "$URL" &>/dev/null
     fi
 }
 bind '"\C-o":" urls\n"'
@@ -274,7 +264,7 @@ function pr {
     local URL
     URL=$(tmux capture-pane -pJ | xurls | grep --color=never 'pull/new')
     if [[ -n $URL ]]; then
-        opera-beta "$URL" &> /dev/null
+        opera-beta "$URL" &>/dev/null
     fi
 }
 bind '"\C-a":" pr\n"'
@@ -289,7 +279,7 @@ function vf {
 function db() {
     local ALL_BRANCHES BRANCHES BRANCH
     ALL_BRANCHES=$(git for-each-ref --sort=-committerdate refs/heads/ --format="$GIT_REF_FORMAT")
-    BRANCHES=$(echo "$ALL_BRANCHES" | column -t -s '@' | fzf --height 20% --reverse -m --ansi | awk '{print $1}' )
+    BRANCHES=$(echo "$ALL_BRANCHES" | column -t -s '@' | fzf --height 20% --reverse -m --ansi | awk '{print $1}')
 
     if [[ -n $BRANCHES ]]; then
         for BRANCH in $BRANCHES; do
@@ -301,7 +291,7 @@ function db() {
 function ss() {
     local ALL_STASHES STASH
     ALL_STASHES=$(git stash list)
-    STASH=$(echo "$ALL_STASHES" | fzf --reverse --ansi --bind "ctrl-n:preview-down,ctrl-p:preview-up" --preview "echo {1} | sed 's/://' | xargs -I % git show --color=always %" | awk '{print $1}' )
+    STASH=$(echo "$ALL_STASHES" | fzf --reverse --ansi --bind "ctrl-n:preview-down,ctrl-p:preview-up" --preview "echo {1} | sed 's/://' | xargs -I % git show --color=always %" | awk '{print $1}')
 
     if [[ -n $STASH ]]; then
         git stash pop $(echo "$STASH" | sed 's/://')
@@ -311,11 +301,11 @@ function ss() {
 function ssd() {
     local ALL_STASHES STASHES STASH
     ALL_STASHES=$(git stash list)
-    STASHES=$(echo "$ALL_STASHES" | fzf --reverse -m --ansi --bind "ctrl-n:preview-down,ctrl-p:preview-up" --preview "echo {1} | sed 's/://' | xargs -I % git show --color=always %" | awk '{print $1}' )
+    STASHES=$(echo "$ALL_STASHES" | fzf --reverse -m --ansi --bind "ctrl-n:preview-down,ctrl-p:preview-up" --preview "echo {1} | sed 's/://' | xargs -I % git show --color=always %" | awk '{print $1}')
 
     if [[ -n $STASHES ]]; then
         for STASH in $STASHES; do
-            git stash drop $(echo "$STASH" | sed 's/://')
+            git stash drop "$STASH//://"
         done
     fi
 }
@@ -323,18 +313,18 @@ function ssd() {
 function dbm() {
     local ALL_BRANCHES BRANCHES BRANCH
     ALL_BRANCHES=$(git branch --sort=-committerdate --format="$GIT_REF_FORMAT" --merged)
-    BRANCHES=$(echo "$ALL_BRANCHES" | column -t -s '@' | fzf --height 20% --reverse -m --ansi | awk '{print $1}' )
+    BRANCHES=$(echo "$ALL_BRANCHES" | column -t -s '@' | fzf --height 20% --reverse -m --ansi | awk '{print $1}')
 
     if [[ ! -z $BRANCHES ]]; then
         for BRANCH in $BRANCHES; do
-            git branch -D $(echo "$BRANCH" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+            git branch -D $(echo "$BRANCH//.* //" | sed "s#remotes/[^/]*/##")
         done
     fi
 }
 
 function gpsu() {
     local branch=$(git branch --no-color | grep \* | cut -d ' ' -f2)
-    git push --set-upstream origin $branch
+    git push --set-upstream origin "$branch"
 }
 
 # fcoc - checkout git commit
@@ -346,7 +336,7 @@ fcoc() {
 }
 
 function writecmd() {
-    perl -e 'ioctl STDOUT, 0x5412, $_ for split //, do{ chomp($_ = <>); $_ }';
+    perl -e 'ioctl STDOUT, 0x5412, $_ for split //, do{ chomp($_ = <>); $_ }'
 }
 
 # fh - repeat history
@@ -360,8 +350,8 @@ function kc() {
     local CONTEXT
     CONTEXT=$(
         kubectl config view -o jsonpath='{.contexts[*].name}' |
-        sed -e 's/ /\n/g' |
-        fzf --height 20% --reverse
+            sed -e 's/ /\n/g' |
+            fzf --height 20% --reverse
     )
     if [[ -n $CONTEXT ]]; then
         kubectl config use-context "$CONTEXT"
@@ -372,9 +362,9 @@ function klogs() {
     local PODS
     PODS=$(
         kubectl get pods |
-        tail -n +2 |
-        fzf --reverse -m |
-        cut -f 1 -d ' '
+            tail -n +2 |
+            fzf --reverse -m |
+            cut -f 1 -d ' '
     )
     if [[ -n $PODS ]]; then
         for pod in $PODS; do
@@ -393,8 +383,7 @@ fkill() {
     local pid
     pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
 
-    if [ "x$pid" != "x" ]
-    then
+    if [ "x$pid" != "x" ]; then
         echo $pid | xargs kill -${1:-9}
     fi
 }
@@ -402,14 +391,14 @@ fkill() {
 tm() {
     local sessions
     sessions=$(
-        find ~/dotfiles/tmux/tmuxinator/*.yml  -printf "%f\n" |
-        sed -s s/\.yml// |
-        fzf --reverse --height 20% --multi
+        find ~/dotfiles/tmux/tmuxinator/*.yml -printf "%f\n" |
+            sed -s s/\.yml// |
+            fzf --reverse --height 20% --multi
     )
     if [[ -n "$sessions" ]]; then
         clear
         for session in $sessions; do
-            $(cd && tmuxp load ./dotfiles/tmux/tmuxinator/"$session".yml  -y)
+            $(cd && tmuxp load ./dotfiles/tmux/tmuxinator/"$session".yml -y)
         done
     fi
 }
@@ -462,12 +451,12 @@ nb() {
 # Colored man pages
 function man {
     LESS_TERMCAP_md=$'\e[01;31m' \
-    LESS_TERMCAP_me=$'\e[0m' \
-    LESS_TERMCAP_se=$'\e[0m' \
-    LESS_TERMCAP_so=$'\e[01;44;33m' \
-    LESS_TERMCAP_ue=$'\e[0m' \
-    LESS_TERMCAP_us=$'\e[01;32m' \
-    command man "$@"
+        LESS_TERMCAP_me=$'\e[0m' \
+        LESS_TERMCAP_se=$'\e[0m' \
+        LESS_TERMCAP_so=$'\e[01;44;33m' \
+        LESS_TERMCAP_ue=$'\e[0m' \
+        LESS_TERMCAP_us=$'\e[01;32m' \
+        command man "$@"
 }
 
 # venv python 3
@@ -509,40 +498,39 @@ function ccrypt {
     if [[ $1 ]]; then
         cat $1 | gpg --trust-model always -ear adgo | xsel -b
     else
-        nvim /tmp/temp-text-file.txt \
-        && cat /tmp/temp-text-file.txt \
-        | gpg --trust-model always -ear adgo \
-        | xsel -b \
-        && rm /tmp/temp-text-file.txt
+        nvim /tmp/temp-text-file.txt &&
+            cat /tmp/temp-text-file.txt |
+            gpg --trust-model always -ear adgo |
+                xsel -b &&
+            rm /tmp/temp-text-file.txt
     fi
 }
 
 function exc {
     if [ -f "$1" ]; then
         case $1 in
-            *.tar.xz)   tar -xvf "$1"                         ;;
-            *.tar.bz2)  tar -jxvf "$1"                        ;;
-            *.tar.gz)   tar -zxvf "$1"                        ;;
-            *.bz2)      bunzip2 "$1"                          ;;
-            *.dmg)      hdiutil mount "$1"                    ;;
-            *.gz)       gunzip "$1"                           ;;
-            *.tar)      tar -xvf "$1"                         ;;
-            *.tbz2)     tar -jxvf "$1"                        ;;
-            *.tgz)      tar -zxvf "$1"                        ;;
-            *.zip)      unzip "$1"                            ;;
-            *.pax)      pax -r < "$1"                         ;;
-            *.pax.z)    uncompress "$1" --stdout | pax -r     ;;
-            *.rar)      7z x "$1"                             ;;
-            *.z)        uncompress "$1"                       ;;
-            *.7z)       7z x "$1"                             ;;
-            *)          echo "'$1' cannot be extracted/mounted via extract()" ;;
+        *.tar.xz) tar -xvf "$1" ;;
+        *.tar.bz2) tar -jxvf "$1" ;;
+        *.tar.gz) tar -zxvf "$1" ;;
+        *.bz2) bunzip2 "$1" ;;
+        *.dmg) hdiutil mount "$1" ;;
+        *.gz) gunzip "$1" ;;
+        *.tar) tar -xvf "$1" ;;
+        *.tbz2) tar -jxvf "$1" ;;
+        *.tgz) tar -zxvf "$1" ;;
+        *.zip) unzip "$1" ;;
+        *.pax) pax -r <"$1" ;;
+        *.pax.z) uncompress "$1" --stdout | pax -r ;;
+        *.rar) 7z x "$1" ;;
+        *.z) uncompress "$1" ;;
+        *.7z) 7z x "$1" ;;
+        *) echo "'$1' cannot be extracted/mounted via extract()" ;;
         esac
     fi
 }
 
-
 function clhistory {
-    tac "$HOME"/.bash_history | awk '!x[$0]++' | tac > /tmp/.bash_history
+    tac "$HOME"/.bash_history | awk '!x[$0]++' | tac >/tmp/.bash_history
     mv /tmp/.bash_history "$HOME"/.bash_history
 }
 

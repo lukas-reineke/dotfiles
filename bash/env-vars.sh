@@ -31,13 +31,13 @@ export PATH=${PATH}:$HOME/.local/bin
 # export PATH=${PATH}:$HOME/go/bin
 # export PATH=${PATH}:$HOME/.gem/ruby/2.5.0/bin
 # export PATH=${PATH}:$HOME/.gem/ruby/2.6.0/bin
-# export PATH=${PATH}:$HOME/.gem/ruby/2.7.0/bin
+export PATH=${PATH}:$HOME/.gem/ruby/2.7.0/bin
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 export GOOGLE_APPLICATION_CREDENTIALS=~/.config/gcloud/application_default_credentials.json
 # export TERMINFO="$HOME/.terminfo"
 
 export NVM_DIR="$HOME/.nvm"
-export BAT_THEME="ansi-dark"
+export BAT_THEME="ansi"
 
 export PROMPT_COMMAND=${PROMPT_COMMAND:+$PROMPT_COMMAND; }'printf "\033_%s\033\\" "${PWD##*/}"'
 export GIT_PROMPT_THEME=Custom
