@@ -1,5 +1,4 @@
 
-syntax match MarkdownDash /^---\+$/ conceal
 syntax match MarkdownDot /\\\./ conceal cchar=.
 syntax match MarkdownSlash /\\\-/ conceal cchar=-
 syntax match MarkdownSemicolon /\\\;/ conceal cchar=;

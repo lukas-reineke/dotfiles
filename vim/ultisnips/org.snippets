@@ -1,4 +1,21 @@
 
-snippet '\*+ todo' "todo" Ar
+snippet '\*+ todo' "todo" Abr
 `!p snip.rv = match[0].replace("todo", "TODO")` $1
+endsnippet
+
+snippet '\s+\*' "headline" Abr
+*$1
+endsnippet
+
+snippet '\s+\---' "spacer" Abr
+-----$1
+endsnippet
+
+snippet chk "[ ]" A
+[ ] $1
+endsnippet
+
+snippet source "BEGIN_SRC" A
+#+BEGIN_SRC $1
+#+END_SRC
 endsnippet

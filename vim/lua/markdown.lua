@@ -36,13 +36,11 @@ M.headlines = function()
 
         local _, dashes = lines[i]:find "^---+$"
         if dashes then
-            vim.api.nvim_buf_set_virtual_text(
-                bufnr,
-                markdown_dash_namespace,
-                i - 1 + offset,
-                { { ("-"):rep(500), "markdownBold" } },
-                vim.empty_dict()
-            )
+            vim.api.nvim_buf_set_extmark(bufnr, markdown_dash_namespace, i - 1 + offset, 0, {
+                virt_text = { { ("-"):rep(vim.api.nvim_win_get_width(0)), "markdownBold" } },
+                virt_text_pos = "overlay",
+                hl_mode = "combine",
+            })
         end
     end
 end

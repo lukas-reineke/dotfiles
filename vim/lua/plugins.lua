@@ -114,9 +114,7 @@ require("packer").startup {
         use {
             "akinsho/org-bullets.nvim",
             config = function()
-                require("org-bullets").setup {
-                    symbols = { "◉", "○", "✸", "✿" },
-                }
+                require("org-bullets").setup {}
             end,
         }
 

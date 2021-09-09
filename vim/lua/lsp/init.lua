@@ -29,7 +29,7 @@ vim.lsp.protocol.CompletionItemKind = {
     " [struct]",
     "⌘ [event]",
     " [operator]",
-    " [type]"
+    " [type]",
 }
 
 M.symbol_kind_icons = {
@@ -42,7 +42,7 @@ M.symbol_kind_icons = {
     Property = "",
     Struct = "",
     Enum = "",
-    Class = ""
+    Class = "",
 }
 
 M.symbol_kind_colors = {
@@ -55,13 +55,13 @@ M.symbol_kind_colors = {
     Property = "blue",
     Struct = "cyan",
     Enum = "yellow",
-    Class = "red"
+    Class = "red",
 }
 
-vim.fn.sign_define("LspDiagnosticsSignError", {text = "", numhl = "LspDiagnosticsDefaultError"})
-vim.fn.sign_define("LspDiagnosticsSignWarning", {text = "", numhl = "LspDiagnosticsDefaultWarning"})
-vim.fn.sign_define("LspDiagnosticsSignInformation", {text = "", numhl = "LspDiagnosticsDefaultInformation"})
-vim.fn.sign_define("LspDiagnosticsSignHint", {text = "", numhl = "LspDiagnosticsDefaultHint"})
+vim.fn.sign_define("LspDiagnosticsSignError", { text = "", numhl = "LspDiagnosticsDefaultError" })
+vim.fn.sign_define("LspDiagnosticsSignWarning", { text = "", numhl = "LspDiagnosticsDefaultWarning" })
+vim.fn.sign_define("LspDiagnosticsSignInformation", { text = "", numhl = "LspDiagnosticsDefaultInformation" })
+vim.fn.sign_define("LspDiagnosticsSignHint", { text = "", numhl = "LspDiagnosticsDefaultHint" })
 
 local on_attach = function(client)
     if client.resolved_capabilities.document_formatting then
@@ -71,48 +71,48 @@ local on_attach = function(client)
         vim.cmd [[augroup END]]
     end
     if client.resolved_capabilities.goto_definition then
-        utils.map("n", "<C-]>", "<cmd>lua vim.lsp.buf.definition()<CR>", {buffer = true})
+        utils.map("n", "<C-]>", "<cmd>lua vim.lsp.buf.definition()<CR>", { buffer = true })
     end
     if client.resolved_capabilities.hover then
-        utils.map("n", "<CR>", "<cmd>lua vim.lsp.buf.hover()<CR>", {buffer = true})
+        utils.map("n", "<CR>", "<cmd>lua vim.lsp.buf.hover()<CR>", { buffer = true })
     end
     if client.resolved_capabilities.find_references then
         utils.map(
             "n",
             "<Space>*",
             ":lua require('lists').change_active('Quickfix')<CR>:lua vim.lsp.buf.references()<CR>",
-            {buffer = true}
+            { buffer = true }
         )
     end
     if client.resolved_capabilities.rename then
-        utils.map("n", "<Space>rn", "<cmd>lua require'lsp.rename'.rename()<CR>", {silent = true, buffer = true})
+        utils.map("n", "<Space>rn", "<cmd>lua require'lsp.rename'.rename()<CR>", { silent = true, buffer = true })
     end
     if client.resolved_capabilities.signature_help then
-        utils.map("n", "<Space>s", "<cmd>lua vim.lsp.buf.signature_help()<CR>", {silent = true, buffer = true})
+        utils.map("n", "<Space>s", "<cmd>lua vim.lsp.buf.signature_help()<CR>", { silent = true, buffer = true })
     end
 
     require("lsp_signature").on_attach {
         hint_enable = false,
         hi_parameter = "QuickFixLine",
         handler_opts = {
-            border = vim.g.floating_window_border
-        }
+            border = vim.g.floating_window_border,
+        },
     }
 
-    utils.map("n", "<Space><CR>", "<cmd>lua require'lsp.diagnostics'.line_diagnostics()<CR>", {buffer = true})
+    utils.map("n", "<Space><CR>", "<cmd>lua require'lsp.diagnostics'.line_diagnostics()<CR>", { buffer = true })
 end
 
 function _G.activeLSP()
     local servers = {}
     for _, lsp in pairs(vim.lsp.get_active_clients()) do
-        table.insert(servers, {name = lsp.name, id = lsp.id})
+        table.insert(servers, { name = lsp.name, id = lsp.id })
     end
     _G.P(servers)
 end
 function _G.bufferActiveLSP()
     local servers = {}
     for _, lsp in pairs(vim.lsp.buf_get_clients()) do
-        table.insert(servers, {name = lsp.name, id = lsp.id})
+        table.insert(servers, { name = lsp.name, id = lsp.id })
     end
     _G.P(servers)
 end
@@ -122,7 +122,7 @@ lspconfig.gopls.setup {
     on_attach = function(client)
         client.resolved_capabilities.document_formatting = false
         on_attach(client)
-    end
+    end,
 }
 
 -- https://github.com/palantir/python-language-server
@@ -142,7 +142,7 @@ lspconfig.gopls.setup {
 --     }
 -- }
 
-lspconfig.pyright.setup {on_attach = on_attach}
+lspconfig.pyright.setup { on_attach = on_attach }
 
 -- https://github.com/theia-ide/typescript-language-server
 lspconfig.tsserver.setup {
@@ -150,7 +150,7 @@ lspconfig.tsserver.setup {
         client.resolved_capabilities.document_formatting = false
         require("nvim-lsp-ts-utils").setup {}
         on_attach(client)
-    end
+    end,
 }
 
 local function get_lua_runtime()
@@ -168,15 +168,15 @@ local function get_lua_runtime()
 end
 lspconfig.sumneko_lua.setup {
     on_attach = on_attach,
-    cmd = {"lua-language-server"},
+    cmd = { "lua-language-server" },
     settings = {
         Lua = {
             runtime = {
                 version = "LuaJIT",
-                path = {"lua/?.lua", "lua/?/init.lua"}
+                path = { "lua/?.lua", "lua/?/init.lua" },
             },
             completion = {
-                keywordSnippet = "Disable"
+                keywordSnippet = "Disable",
             },
             diagnostics = {
                 enable = true,
@@ -191,48 +191,48 @@ lspconfig.sumneko_lua.setup {
                     "teardown",
                     "pending",
                     -- packer
-                    "use"
+                    "use",
                 },
                 workspace = {
                     library = get_lua_runtime(),
                     maxPreload = 1000,
-                    preloadFileSize = 1000
-                }
-            }
-        }
-    }
+                    preloadFileSize = 1000,
+                },
+            },
+        },
+    },
 }
 
 -- https://github.com/iamcco/vim-language-server
-lspconfig.vimls.setup {on_attach = on_attach}
+lspconfig.vimls.setup { on_attach = on_attach }
 
 -- https://github.com/vscode-langservers/vscode-json-languageserver
 lspconfig.jsonls.setup {
     on_attach = on_attach,
-    cmd = {"json-languageserver", "--stdio"}
+    cmd = { "json-languageserver", "--stdio" },
 }
 
 -- https://github.com/redhat-developer/yaml-language-server
-lspconfig.yamlls.setup {on_attach = on_attach}
+lspconfig.yamlls.setup { on_attach = on_attach }
 
 -- https://github.com/joe-re/sql-language-server
-lspconfig.sqlls.setup {on_attach = on_attach}
+lspconfig.sqlls.setup { on_attach = on_attach }
 
 -- https://github.com/vscode-langservers/vscode-css-languageserver-bin
-lspconfig.cssls.setup {on_attach = on_attach}
+lspconfig.cssls.setup { on_attach = on_attach }
 
 -- https://github.com/vscode-langservers/vscode-html-languageserver-bin
-lspconfig.html.setup {on_attach = on_attach}
+lspconfig.html.setup { on_attach = on_attach }
 
 -- https://github.com/bash-lsp/bash-language-server
-lspconfig.bashls.setup {on_attach = on_attach}
+lspconfig.bashls.setup { on_attach = on_attach }
 
 -- https://github.com/rcjsuen/dockerfile-language-server-nodejs
 lspconfig.dockerls.setup {
     on_attach = function(client)
         client.resolved_capabilities.document_formatting = false
         on_attach(client)
-    end
+    end,
 }
 
 -- https://github.com/hashicorp/terraform-ls
@@ -241,8 +241,8 @@ lspconfig.terraformls.setup {
         client.resolved_capabilities.document_formatting = false
         on_attach(client)
     end,
-    cmd = {"terraform-ls", "serve"},
-    filetypes = {"tf"}
+    cmd = { "terraform-ls", "serve" },
+    filetypes = { "tf" },
 }
 
 local vint = require "efm/vint"
@@ -262,32 +262,32 @@ local misspell = require "efm/misspell"
 -- https://github.com/mattn/efm-langserver
 lspconfig.efm.setup {
     on_attach = on_attach,
-    init_options = {documentFormatting = true},
+    init_options = { documentFormatting = true },
     root_dir = vim.loop.cwd,
     settings = {
-        rootMarkers = {".git/"},
+        rootMarkers = { ".git/" },
         languages = {
-            ["="] = {misspell},
-            vim = {vint},
-            lua = {stylua},
-            go = {golint, goimports},
-            python = {black, isort, flake8, mypy},
-            typescript = {prettier, eslint},
-            javascript = {prettier, eslint},
-            typescriptreact = {prettier, eslint},
-            javascriptreact = {prettier, eslint},
-            yaml = {prettier},
-            json = {prettier},
-            html = {prettier},
-            scss = {prettier},
-            css = {prettier},
-            markdown = {prettier},
-            sh = {shellcheck, shfmt},
-            terraform = {terraform}
-        }
-    }
+            ["="] = { misspell },
+            vim = { vint },
+            lua = { stylua },
+            go = { golint, goimports },
+            python = { black, isort, flake8, mypy },
+            typescript = { prettier, eslint },
+            javascript = { prettier, eslint },
+            typescriptreact = { prettier, eslint },
+            javascriptreact = { prettier, eslint },
+            yaml = { prettier },
+            json = { prettier },
+            html = { prettier },
+            scss = { prettier },
+            css = { prettier },
+            markdown = { prettier },
+            sh = { shellcheck, shfmt },
+            terraform = { terraform },
+        },
+    },
 }
 
-lspconfig.clangd.setup {on_attach = on_attach}
+lspconfig.clangd.setup { on_attach = on_attach }
 
 return M
