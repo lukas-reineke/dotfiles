@@ -27,3 +27,11 @@ windows:
       panes:
           - shell_command:
                 - docker-compose up dev
+    - window_name: kumamushi-frontend
+      layout: main-horizontal
+      start_directory: ~/dev/kumamushi-frontend
+      shell_command_before:
+          - cd .
+      panes:
+          - shell_command:
+                - npm run dev

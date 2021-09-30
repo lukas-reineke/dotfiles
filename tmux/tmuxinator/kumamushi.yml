@@ -56,14 +56,15 @@ windows:
                 - v
           - shell_command:
                 - cl
-    - window_name: kumamushi-api-test
+    - window_name: kumamushi-frontend
       layout: main-horizontal
-      start_directory: ~/dev/kumamushi-api
+      start_directory: ~/dev/kumamushi-frontend
       shell_command_before:
           - cd .
       panes:
+          - focus: True
+            shell_command:
+                - tmux resize-pane -Z
+                - v
           - shell_command:
-                - cd app
-                - . $(poetry env info -p)/bin/activate
-                - cd ..
                 - cl
