@@ -8,8 +8,7 @@ require "lsp"
 require "statusline"
 require "mappings"
 
-require "git".setup()
-require "lists".setup()
-require "markdown".setup()
+require("git").setup()
+require("lists").setup()
 require "commands"
 require "autocmds"

@@ -15,6 +15,9 @@ map("x", leader .. "rr", ":s/\\v%V()")
 
 map("n", leader .. "n", ":e %:h/")
 
+map("n", leader .. "of", "<CMD>lua require('orgmode').action('capture.prompt')<CR>")
+map("n", leader .. "oa", "<CMD>lua require('orgmode').action('agenda.prompt')<CR>")
+
 map("n", "/", "<Plug>(incsearch-forward)", { noremap = false })
 map("n", "?", "<Plug>(incsearch-backward)", { noremap = false })
 map("n", "n", "<Plug>(incsearch-nohl-n)", { noremap = false })
@@ -45,7 +48,7 @@ map("n", leader .. "a", ":lua require('lists').change_active('Quickfix')<CR>:Ack
 
 map("n", "Y", "y$", { noremap = false })
 map("n", "x", '"_x')
-map("n", leader .. "o", "o<esc>k")
+map("n", leader .. "oo", "o<esc>k")
 map("n", leader .. "O", "O<esc>j")
 
 map("x", "iu", ':lua require"treesitter-unit".select()<CR>', { noremap = true })
@@ -114,7 +117,7 @@ map("n", "gco", "m'yyp:Commentary<CR>`'")
 
 map("n", "gj", "<Plug>(GitGutterNextHunk)", { noremap = false })
 map("n", "gk", "<Plug>(GitGutterPrevHunk)", { noremap = false })
-map("n", leader .. "gd", ":execute 'Gvdiff ' .. g:git_head<CR>")
+map("n", leader .. "gd", ":set nosplitright<CR>:execute 'Gvdiff ' .. g:git_head<CR>:set splitright<CR>")
 map("n", leader .. "gr", ":Gread<CR>")
 map("n", leader .. "gb", ":Git blame<CR>")
 map("n", leader .. "gs", ":Gstatus<CR><C-w>o")

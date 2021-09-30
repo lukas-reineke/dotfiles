@@ -91,6 +91,7 @@ require("packer").startup {
         use "JoosepAlviste/nvim-ts-context-commentstring"
         use "David-Kunz/treesitter-unit"
         use "windwp/nvim-ts-autotag"
+        use "spywhere/detect-language.nvim"
 
         use {
             "kristijanhusak/orgmode.nvim",
@@ -98,7 +99,15 @@ require("packer").startup {
             config = function()
                 local onedark = require "onedark"
                 require("orgmode").setup {
-                    org_todo_keywords = { "TODO", "|", "DONE", "CANCELED" },
+                    org_default_notes_file = "~/dev/org/notes.org",
+                    org_agenda_templates = {
+                        f = {
+                            description = "File notes",
+                            template = "* TODO %?\n  %u\n  %a",
+                            target = "~/dev/org/notes.org",
+                        },
+                    },
+                    org_todo_keywords = { "TODO(t)", "|", "DONE", "CANCELED" },
                     org_todo_keyword_faces = {
                         TODO = ":foreground " .. onedark.colors.purple .. " :weight bold",
                         DONE = ":foreground " .. onedark.colors.green .. " :weight bold",
@@ -129,6 +138,28 @@ require("packer").startup {
             "~/dev/onedark.nvim",
             config = function()
                 require("onedark").setup {}
+            end,
+        }
+        use {
+            "~/dev/headlines.nvim",
+            config = function()
+                require("headlines").setup {
+                    markdown = {
+                        headline_signs = { "HeadlineGreen", "HeadlineYellow", "HeadlineBlue" },
+                    },
+                    vimwiki = {
+                        headline_signs = { "HeadlineGreen", "HeadlineYellow", "HeadlineBlue" },
+                    },
+                    org = {
+                        headline_signs = {
+                            "HeadlineGreen",
+                            "HeadlineBlue",
+                            "HeadlineRed",
+                            "HeadlinePurple",
+                            "HeadlineYellow",
+                        },
+                    },
+                }
             end,
         }
         use {

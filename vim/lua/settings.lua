@@ -73,20 +73,11 @@ vim.wo.number = true
 vim.wo.relativenumber = true
 vim.wo.cursorline = true
 vim.wo.winhighlight = "NormalNC:WinNormalNC"
-vim.wo.list = true
+vim.opt.list = true
 vim.opt.listchars = {
     space = "⋅",
     eol = "↴",
     tab = "__",
-    -- tab = "-->",
-    -- tab = "│⋅",
-    -- ⎵
-    -- ⎯
-    -- ˽
-    -- .->
-    -- 𝄖
-    -- _
-    -- ⥐
     trail = "•",
     extends = "❯",
     precedes = "❮",
@@ -94,6 +85,7 @@ vim.opt.listchars = {
 }
 vim.opt.fillchars = {
     fold = " ",
+    diff = "╱",
 }
 
 vim.g.floating_window_border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }

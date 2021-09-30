@@ -58,10 +58,10 @@ M.symbol_kind_colors = {
     Class = "red",
 }
 
-vim.fn.sign_define("LspDiagnosticsSignError", { text = "", numhl = "LspDiagnosticsDefaultError" })
-vim.fn.sign_define("LspDiagnosticsSignWarning", { text = "", numhl = "LspDiagnosticsDefaultWarning" })
-vim.fn.sign_define("LspDiagnosticsSignInformation", { text = "", numhl = "LspDiagnosticsDefaultInformation" })
-vim.fn.sign_define("LspDiagnosticsSignHint", { text = "", numhl = "LspDiagnosticsDefaultHint" })
+vim.fn.sign_define("DiagnosticSignError", { text = "", numhl = "DiagnosticError" })
+vim.fn.sign_define("DiagnosticSignWarning", { text = "", numhl = "DiagnosticWarning" })
+vim.fn.sign_define("DiagnosticSignInformation", { text = "", numhl = "DiagnosticInformation" })
+vim.fn.sign_define("DiagnosticSignHint", { text = "", numhl = "DiagnosticHint" })
 
 local on_attach = function(client)
     if client.resolved_capabilities.document_formatting then
