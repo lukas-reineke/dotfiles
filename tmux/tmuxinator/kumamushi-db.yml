@@ -1,17 +1,17 @@
 session_name: kumamushi-db
 start_directory: '~'
 windows:
-    - window_name: kumamushi-db
-      focus: True
-      layout: main-horizontal
-      start_directory: ~/dev/kumamushi-api
-      shell_command_before:
-          - cd .
-      panes:
-          - focus: True
-            shell_command:
-                - cd app
-                - . $(poetry env info -p)/bin/activate
-                - cd ..
-                - cl
-                - pgcli
+  - window_name: kumamushi-db
+    focus: True
+    layout: main-horizontal
+    start_directory: ~/dev/kumamushi-api
+    shell_command_before:
+      - cd .
+    panes:
+      - focus: True
+        shell_command:
+          - cd app
+          - . $(poetry env info -p)/bin/activate
+          - cd ..
+          - cl
+          - pgcli

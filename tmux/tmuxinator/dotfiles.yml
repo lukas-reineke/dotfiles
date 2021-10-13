@@ -1,15 +1,15 @@
 session_name: dotfiles
 start_directory: '~'
 windows:
-    - window_name: dotfiles
-      focus: True
-      layout: main-horizontal
-      start_directory: ~/dotfiles/
-      shell_command_before:
-          - cd .
-      panes:
-          - focus: True
-            shell_command:
-                - tmux resize-pane -Z
-                - v
-          - cl
+  - window_name: dotfiles
+    focus: True
+    layout: main-horizontal
+    start_directory: ~/dotfiles/
+    shell_command_before:
+      - cd .
+    panes:
+      - focus: True
+        shell_command:
+          - tmux resize-pane -Z
+          - v
+      - cl

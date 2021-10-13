@@ -1,70 +1,70 @@
 session_name: kumamushi
 start_directory: '~'
 windows:
-    - window_name: kumamushi-api
-      focus: True
-      layout: main-horizontal
-      start_directory: ~/dev/kumamushi-api
-      shell_command_before:
-          - cd .
-      panes:
-          - focus: True
-            shell_command:
-                - cd app
-                - . $(poetry env info -p)/bin/activate
-                - cd ..
-                - tmux resize-pane -Z
-                - v
-          - shell_command:
-                - cd app
-                - . $(poetry env info -p)/bin/activate
-                - cd ..
-                - cl
-    - window_name: kumamushi-infra
-      layout: main-horizontal
-      start_directory: ~/dev/kumamushi-infra
-      shell_command_before:
-          - cd .
-      panes:
-          - focus: True
-            shell_command:
-                - tmux resize-pane -Z
-                - v
-          - shell_command:
-                - cl
-    - window_name: kumamushi-upload
-      layout: main-horizontal
-      start_directory: ~/dev/go/src/github.com/HENNGE/kumamushi-upload
-      shell_command_before:
-          - cd .
-      panes:
-          - focus: True
-            shell_command:
-                - tmux resize-pane -Z
-                - v
-          - shell_command:
-                - cl
-    - window_name: kumamushi-fe-download
-      layout: main-horizontal
-      start_directory: ~/dev/kumamushi-fe-download
-      shell_command_before:
-          - cd .
-      panes:
-          - focus: True
-            shell_command:
-                - tmux resize-pane -Z
-                - v
-          - shell_command:
-                - cl
-    - window_name: kumamushi-frontend
-      layout: main-horizontal
-      start_directory: ~/dev/kumamushi-frontend
-      shell_command_before:
-          - cd .
-      panes:
-          - focus: True
-            shell_command:
-                - tmux resize-pane -Z
-                - v
-          - shell_command:
-                - cl
+  - window_name: kumamushi-api
+    focus: True
+    layout: main-horizontal
+    start_directory: ~/dev/kumamushi-api
+    shell_command_before:
+      - cd .
+    panes:
+      - focus: True
+        shell_command:
+          - cd app
+          - . $(poetry env info -p)/bin/activate
+          - cd ..
+          - tmux resize-pane -Z
+          - v
+      - shell_command:
+          - cd app
+          - . $(poetry env info -p)/bin/activate
+          - cd ..
+          - cl
+  - window_name: kumamushi-infra
+    layout: main-horizontal
+    start_directory: ~/dev/kumamushi-infra
+    shell_command_before:
+      - cd .
+    panes:
+      - focus: True
+        shell_command:
+          - tmux resize-pane -Z
+          - v
+      - shell_command:
+          - cl
+  - window_name: kumamushi-upload
+    layout: main-horizontal
+    start_directory: ~/dev/go/src/github.com/HENNGE/kumamushi-upload
+    shell_command_before:
+      - cd .
+    panes:
+      - focus: True
+        shell_command:
+          - tmux resize-pane -Z
+          - v
+      - shell_command:
+          - cl
+  - window_name: kumamushi-fe-download
+    layout: main-horizontal
+    start_directory: ~/dev/kumamushi-fe-download
+    shell_command_before:
+      - cd .
+    panes:
+      - focus: True
+        shell_command:
+          - tmux resize-pane -Z
+          - v
+      - shell_command:
+          - cl
+  - window_name: kumamushi-frontend
+    layout: main-horizontal
+    start_directory: ~/dev/kumamushi-frontend
+    shell_command_before:
+      - cd .
+    panes:
+      - focus: True
+        shell_command:
+          - tmux resize-pane -Z
+          - v
+      - shell_command:
+          - cl
