@@ -59,8 +59,8 @@ M.symbol_kind_colors = {
 }
 
 vim.fn.sign_define("DiagnosticSignError", { text = "", numhl = "DiagnosticError" })
-vim.fn.sign_define("DiagnosticSignWarning", { text = "", numhl = "DiagnosticWarning" })
-vim.fn.sign_define("DiagnosticSignInformation", { text = "", numhl = "DiagnosticInformation" })
+vim.fn.sign_define("DiagnosticSignWarn", { text = "", numhl = "DiagnosticWarn" })
+vim.fn.sign_define("DiagnosticSignInfo", { text = "", numhl = "DiagnosticInfo" })
 vim.fn.sign_define("DiagnosticSignHint", { text = "", numhl = "DiagnosticHint" })
 
 local on_attach = function(client)
@@ -177,6 +177,9 @@ lspconfig.sumneko_lua.setup {
             },
             completion = {
                 keywordSnippet = "Disable",
+            },
+            workspace = {
+                ignoreDir = "~/.config/nvim/backups",
             },
             diagnostics = {
                 enable = true,

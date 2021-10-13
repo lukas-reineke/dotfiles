@@ -17,9 +17,4 @@ vim.cmd [[autocmd BufEnter * lua require("defx").hijak()]]
 vim.cmd [[autocmd User FugitiveBlob nnoremap <buffer> <space>gd :Gvdiff !~1<CR>]]
 vim.cmd [[autocmd User FugitiveBlob set winhighlight+=,DiffAdd:DiffDeleteOld]]
 
-vim.cmd [[autocmd BufEnter * set list]]
-vim.cmd [[autocmd BufEnter *.org set nolist]]
-vim.cmd [[autocmd BufEnter *.txt set nolist]]
-vim.cmd [[autocmd BufEnter *.md set nolist]]
-
 vim.cmd [[augroup END]]

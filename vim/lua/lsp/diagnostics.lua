@@ -2,10 +2,10 @@ local utils = require "utils"
 local M = {}
 
 local serverity_map = {
-    "LspDiagnosticsDefaultError",
-    "LspDiagnosticsDefaultWarning",
-    "LspDiagnosticsDefaultInformation",
-    "LspDiagnosticsDefaultHint",
+    "DiagnosticError",
+    "DiagnosticWarn",
+    "DiagnosticInfo",
+    "DiagnosticHint",
 }
 
 local function source_string(source)

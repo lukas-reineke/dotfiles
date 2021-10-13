@@ -23,6 +23,12 @@ vim.g.format_options_css = format_options_prettier
 vim.g.format_options_scss = format_options_prettier
 vim.g.format_options_html = format_options_prettier
 vim.g.format_options_yaml = format_options_prettier
+vim.g.format_options_yaml = {
+    tabWidth = 2,
+    singleQuote = true,
+    trailingComma = "all",
+    configPrecedence = "prefer-file",
+}
 vim.g.format_options_markdown = format_options_prettier
 vim.g.format_options_sh = {
     tabWidth = 4,

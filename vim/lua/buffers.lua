@@ -23,6 +23,8 @@ M.close_others = function()
         n = n + 1
     end
 
+    vim.cmd [[silent only]]
+
     print(utils._if(deleted == 1, "1 buffer deleted", string.format("%d buffers deleted", deleted)))
 end
 
