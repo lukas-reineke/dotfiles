@@ -1,84 +1,61 @@
-local galaxyline = require "galaxyline"
-local diagnostic = require "galaxyline.provider_diagnostic"
 local colors = require("onedark").colors
-DiagnosticError = diagnostic.get_diagnostic_error
 
-galaxyline.section.left = {
+local components = {
+    active = {},
+    inactive = {},
+}
+components.active[1] = {
     {
-        Space = {
-            provider = function()
-                return " "
-            end,
-            highlight = { colors.dark_black, colors.dark_black },
+        provider = {
+            name = "file_info",
+            opts = {
+                type = "relative",
+                file_readonly_icon = "",
+                file_modified_icon = "",
+            },
         },
-        FileName = {
-            provider = function()
-                local file = vim.fn.expand "%"
-                if vim.bo.readonly and vim.bo.filetype ~= "help" then
-                    file = file .. " "
-                end
-                if vim.bo.modified then
-                    file = file .. " "
-                end
-                return file
-            end,
-            separator = " ",
-            highlight = { colors.green, colors.dark_black },
-            highlight_modifier = function()
-                if vim.bo.modified then
-                    return "Dirty"
-                end
-            end,
+        icon = "",
+        hl = {
+            bg = colors.dark_black,
+            fg = colors.green,
         },
     },
 }
-galaxyline.section.right = {
+components.active[2] = {
     {
-        DiagnosticError = {
-            provider = "DiagnosticError",
-            icon = " ",
-            separator = " ",
-            highlight = { colors.dark_red, colors.dark_black },
+        provider = "lsp_client_names",
+        hl = {
+            bg = colors.dark_black,
+            fg = colors.cursor_grey,
         },
     },
     {
-        DiagnosticWarn = {
-            provider = "DiagnosticWarn",
-            icon = " ",
-            separator = " ",
-            highlight = { colors.purple, colors.dark_black },
-        },
+        provider = "diagnostic_errors",
+        icon = "  ",
+        hl = { fg = colors.red, bg = colors.dark_black },
     },
     {
-        DiagnosticInfo = {
-            provider = "DiagnosticInfo",
-            icon = " ",
-            separator = " ",
-            highlight = { colors.cyan, colors.dark_black },
-        },
+        provider = "diagnostic_warnings",
+        icon = "  ",
+        hl = { fg = colors.purple, bg = colors.dark_black },
     },
     {
-        DiagnosticHint = {
-            provider = "DiagnosticHint",
-            icon = " ",
-            separator = " ",
-            highlight = { colors.comment_grey, colors.dark_black },
-        },
+        provider = "diagnostic_info",
+        icon = "  ",
+        hl = { fg = colors.cyan, bg = colors.dark_black },
     },
     {
-        Space = {
-            provider = function()
-                return " "
-            end,
-            highlight = { colors.dark_black, colors.dark_black },
-        },
+        provider = "diagnostic_hints",
+        icon = "  ",
+        hl = { fg = colors.comment_grey, bg = colors.dark_black },
     },
 }
+components.inactive[1] = _G.copy(components.active[1])
+components.inactive[1][1].hl.fg = colors.comment_grey
+components.inactive[2] = components.active[2]
 
-galaxyline.section.short_line_left = _G.copy(galaxyline.section.left)
-galaxyline.section.short_line_left[1] = {
-    Space = galaxyline.section.short_line_left[1].Space,
-    NCFileName = galaxyline.section.short_line_left[1].FileName,
+require("feline").setup {
+    default_bg = colors.dark_black,
+    default_fg = colors.white,
+    components = components,
 }
-galaxyline.section.short_line_left[1].NCFileName.highlight = { colors.comment_grey, colors.dark_black }
-galaxyline.section.short_line_right = galaxyline.section.right

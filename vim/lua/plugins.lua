@@ -390,6 +390,19 @@ require("packer").startup {
                 }
             end,
         }
+        use {
+            "https://gitlab.com/yorickpeterse/nvim-pqf.git",
+            config = function()
+                require("pqf").setup {
+                    signs = {
+                        error = "",
+                        warning = "",
+                        info = "",
+                        hint = "",
+                    },
+                }
+            end,
+        }
 
         use "machakann/vim-sandwich"
 
@@ -470,7 +483,7 @@ require("packer").startup {
             end,
         }
 
-        use "glepnir/galaxyline.nvim"
+        use "famiu/feline.nvim"
 
         use "jparise/vim-graphql"
 
