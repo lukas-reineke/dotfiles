@@ -10,5 +10,5 @@ map("n", leader .. "oo", ":lua require 'orgmode'.action('org_mappings.open_at_po
 
 vim.fn["tablemode#Enable"]()
 
-vim.wo.list = false
-vim.wo.spell = true
+vim.opt_local.spell = true
+vim.opt_local.list = false
