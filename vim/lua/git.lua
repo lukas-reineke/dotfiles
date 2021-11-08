@@ -1,4 +1,3 @@
-local utils = require "utils"
 local M = {}
 
 M.is_repo = function()
@@ -7,21 +6,21 @@ M.is_repo = function()
 end
 
 M.setup = function()
-    vim.g.git_head = "HEAD"
+    vim.g.git_base = "HEAD"
 end
 
-M.set_head = function(head)
-    vim.g.git_head = utils._if(head, head, "HEAD")
+M.set_base = function(base)
+    vim.g.git_base = base or "HEAD"
 
-    vim.g.gitgutter_diff_base = vim.g.git_head
+    vim.g.gitgutter_diff_base = vim.g.git_base
 
     local win = vim.api.nvim_get_current_win()
     vim.cmd [[windo GitGutter]]
     vim.api.nvim_set_current_win(win)
 
-    vim.fn["defx#custom#column"]("git", "git_commit", vim.g.git_head)
+    vim.fn["defx#custom#column"]("git", "git_commit", vim.g.git_base)
 
-    print(string.format("Now diffing against %s", vim.g.git_head))
+    print(string.format("Now diffing against %s", vim.g.git_base))
 end
 
 return M

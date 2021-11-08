@@ -1,7 +1,12 @@
 local map = require("utils").map
 local leader = "<space>"
 
-map("n", leader .. leader, ":<C-u>exe v:count ? v:count . 'b' : 'b' . (bufloaded(0) ? '#' : 'n')<CR>")
+map(
+    "n",
+    leader .. leader,
+    ":<C-u>exe v:count ? v:count . 'b' : 'b' . (bufloaded(0) ? '#' : 'n')<CR>",
+    { silent = true }
+)
 
 map("n", leader .. "<C-o>", ":lua require 'buffers'.close_others()<CR>")
 
@@ -117,12 +122,10 @@ map("n", "gco", "m'yyp:Commentary<CR>`'")
 
 map("n", "gj", "<Plug>(GitGutterNextHunk)", { noremap = false })
 map("n", "gk", "<Plug>(GitGutterPrevHunk)", { noremap = false })
-map("n", leader .. "gd", ":set nosplitright<CR>:execute 'Gvdiff ' .. g:git_head<CR>:set splitright<CR>")
+map("n", leader .. "gd", ":set nosplitright<CR>:execute 'Gvdiff ' .. g:git_base<CR>:set splitright<CR>")
 map("n", leader .. "gr", ":Gread<CR>")
 map("n", leader .. "gb", ":Git blame<CR>")
-map("n", leader .. "gs", ":Gstatus<CR><C-w>o")
-map("n", leader .. "gc", ":BCommits<CR>")
-map("n", leader .. "gc", ":BCommits<CR>")
+map("n", leader .. "gs", ":Git<CR>")
 map("n", leader .. "gm", "<Plug>(git-messenger)", { noremap = false })
 map("n", leader .. "gu", "<Plug>(GitGutterUndoHunk)", { noremap = false })
 map("n", leader .. "ga", "<Plug>(GitGutterStageHunk)", { noremap = false })
@@ -130,7 +133,7 @@ map("n", leader .. "gc", ":0Gclog<CR>", { noremap = false })
 map(
     "n",
     leader .. "gg",
-    ":lua require('lists').change_active('Quickfix')<CR>:execute 'Git difftool ' .. g:git_head<CR>",
+    ":lua require('lists').change_active('Quickfix')<CR>:execute 'Git difftool ' .. g:git_base<CR>",
     { silent = true }
 )
 map("n", leader .. "gn", ":lua require('lists').change_active('Quickfix')<CR>:Git mergetool<CR>")
@@ -154,9 +157,8 @@ map("v", "A", "<Plug>(niceblock-A)", { noremap = false })
 
 map("x", "P", [['"_d"'.v:register.'P']], { expr = true })
 
-map("i", "<C-n>", "compe#complete()", { expr = true })
-map("i", "<CR>", "compe#confirm(lexima#expand('<LT>CR>', 'i'))", { expr = true })
-map("i", "<C-e>", "compe#close('<C-e>')", { expr = true })
+map({ "i", "s" }, "<C-j>", "<cmd>lua require'luasnip'.expand_or_jump()<Cr>")
+map({ "i", "s" }, "<C-k>", "<cmd>lua require'luasnip'.jump(-1)<Cr>")
 
 map("c", "<C-J>", "<DOWN>")
 map("c", "<C-K>", "<UP>")

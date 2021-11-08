@@ -23,7 +23,7 @@ opt.undofile = true
 opt.undolevels = 10000
 
 vim.o.clipboard = "unnamedplus"
-vim.o.completeopt = "menuone,noinsert,noselect"
+vim.o.completeopt = "menu,menuone,noinsert,noselect"
 vim.o.confirm = true
 vim.o.diffopt = "internal,filler,closeoff,foldcolumn:0,hiddenoff"
 vim.o.emoji = false

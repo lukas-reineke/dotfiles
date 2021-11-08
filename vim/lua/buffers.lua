@@ -50,4 +50,11 @@ M.close = function()
     end
 end
 
+M.write_pre = function()
+    local dir = vim.fn.expand "%:p:h"
+    if vim.fn.isdirectory(dir) == 0 then
+        vim.fn.mkdir(dir, "p")
+    end
+end
+
 return M

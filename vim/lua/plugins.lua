@@ -6,35 +6,135 @@ require("packer").startup {
         use "wbthomason/packer.nvim"
 
         use "neovim/nvim-lspconfig"
+        use "ray-x/lsp_signature.nvim"
+        use "jose-elias-alvarez/nvim-lsp-ts-utils"
+
         use {
-            "hrsh7th/nvim-compe",
+            "hrsh7th/nvim-cmp",
             requires = {
-                { "andersevenrud/compe-tmux" },
+                { "andersevenrud/compe-tmux", branch = "cmp" },
+                { "hrsh7th/cmp-buffer" },
+                { "hrsh7th/cmp-path" },
+                { "hrsh7th/cmp-nvim-lua" },
+                { "hrsh7th/cmp-nvim-lsp" },
+                { "saadparwaiz1/cmp_luasnip" },
+                { "hrsh7th/cmp-cmdline" },
+                { "~/dev/cmp-under-comparator" },
+                { "~/dev/cmp-rg" },
+                { "octaltree/cmp-look" },
             },
             config = function()
-                require("compe").setup {
-                    enabled = true,
-                    debug = false,
-                    autocomplete = false,
-                    min_length = 1,
-                    preselect = "disable",
-                    allow_prefix_unmatch = false,
-                    source = {
-                        path = true,
-                        buffer = true,
-                        nvim_lsp = true,
-                        nvim_lua = true,
-                        ultisnips = true,
-                        calc = true,
-                        tmux = true,
-                        treesitter = true,
-                        orgmode = true,
+                local cmp = require "cmp"
+                local cmp_compare = require "cmp_compare"
+                cmp.setup {
+                    completion = {
+                        autocomplete = false,
                     },
+
+                    mapping = {
+                        ["<C-d>"] = cmp.mapping.scroll_docs(-5),
+                        ["<C-f>"] = cmp.mapping.scroll_docs(5),
+                        ["<C-e>"] = cmp.mapping.close(),
+                        ["<CR>"] = function(fallback)
+                            if cmp.visible() then
+                                return cmp.mapping.confirm {
+                                    behavior = cmp.ConfirmBehavior.Insert,
+                                    select = true,
+                                }(fallback)
+                            else
+                                return fallback()
+                            end
+                        end,
+                        ["<c-n>"] = function(fallback)
+                            if cmp.visible() then
+                                return cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert }(fallback)
+                            else
+                                return cmp.mapping.complete()(fallback)
+                            end
+                        end,
+                        ["<C-p>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
+                    },
+
+                    snippet = {
+                        expand = function(args)
+                            require("luasnip").lsp_expand(args.body)
+                        end,
+                    },
+
+                    sorting = {
+                        comparators = {
+                            cmp.config.compare.offset,
+                            cmp.config.compare.exact,
+                            cmp.config.compare.score,
+                            require("cmp-under-comparator").under,
+                            cmp_compare.kind,
+                            cmp.config.compare.sort_text,
+                            cmp.config.compare.length,
+                            cmp.config.compare.order,
+                        },
+                    },
+
+                    sources = {
+                        { name = "path", priority_weight = 110 },
+                        { name = "nvim_lsp", max_item_count = 20, priority_weight = 100 },
+                        { name = "nvim_lua", priority_weight = 90 },
+                        { name = "luasnip", priority_weight = 80 },
+                        { name = "buffer", max_item_count = 5, priority_weight = 70 },
+                        { name = "rg", keyword_length = 5, max_item_count = 5, priority_weight = 60 },
+                        { name = "tmux", max_item_count = 5, opts = { all_panes = false }, priority_weight = 50 },
+                        {
+                            name = "look",
+                            keyword_length = 5,
+                            max_item_count = 5,
+                            opts = { convert_case = true, loud = true },
+                            priority_weight = 40,
+                        },
+                    },
+
+                    formatting = {
+                        format = function(entry, vim_item)
+                            local menu_map = {
+                                gh_issues = "[Issues]",
+                                buffer = "[Buf]",
+                                nvim_lsp = "[LSP]",
+                                nvim_lua = "[API]",
+                                path = "[Path]",
+                                luasnip = "[Snip]",
+                                tmux = "[Tmux]",
+                                look = "[Look]",
+                                rg = "[RG]",
+                            }
+                            vim_item.menu = menu_map[entry.source.name] or string.format("[%s]", entry.source.name)
+
+                            vim_item.kind = vim.lsp.protocol.CompletionItemKind[vim_item.kind]
+                            return vim_item
+                        end,
+                    },
+
+                    documentation = {
+                        border = vim.g.floating_window_border_dark,
+                    },
+
+                    experimental = {
+                        native_menu = false,
+                        ghost_text = true,
+                    },
+                }
+                cmp.setup.cmdline(":", {
+                    sources = {
+                        { name = "cmdline" },
+                    },
+                })
+            end,
+        }
+        use {
+            "L3MON4D3/LuaSnip",
+            config = function()
+                require("luasnip").config.set_config {
+                    enable_autosnippets = true,
                 }
             end,
         }
-        use "ray-x/lsp_signature.nvim"
-        use "jose-elias-alvarez/nvim-lsp-ts-utils"
 
         use {
             "nvim-treesitter/nvim-treesitter",
@@ -94,7 +194,7 @@ require("packer").startup {
         use "spywhere/detect-language.nvim"
 
         use {
-            "kristijanhusak/orgmode.nvim",
+            "~/dev/orgmode.nvim",
             branch = "tree-sitter",
             config = function()
                 local onedark = require "onedark"
@@ -185,16 +285,16 @@ require("packer").startup {
                     disable_with_nolist = true,
                     max_indent_increase = 1,
                     show_current_context = true,
+                    show_current_context_start = true,
                     context_patterns = {
                         "class",
                         "function",
+                        "func_literal",
                         "method",
                         "^if",
                         "while",
                         "for",
                         "with",
-                        "func_literal",
-                        "block",
                         "try",
                         "except",
                         "argument_list",

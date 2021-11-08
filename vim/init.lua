@@ -12,9 +12,3 @@ require("git").setup()
 require("lists").setup()
 require "commands"
 require "autocmds"
-
-vim.cmd [[
-packadd defx.nvim
-packadd defx-git
-packadd defx-icons
-]]

@@ -5,31 +5,31 @@ local utils = require "utils"
 local M = {}
 
 vim.lsp.protocol.CompletionItemKind = {
-    " [text]",
-    " [method]",
-    " [function]",
-    " [constructor]",
-    "ﰠ [field]",
-    " [variable]",
-    " [class]",
-    " [interface]",
-    " [module]",
-    " [property]",
-    " [unit]",
-    " [value]",
-    " [enum]",
-    " [key]",
-    "﬌ [snippet]",
-    " [color]",
-    " [file]",
-    " [reference]",
-    " [folder]",
-    " [enum member]",
-    " [constant]",
-    " [struct]",
-    "⌘ [event]",
-    " [operator]",
-    " [type]",
+    Text = " [text]",
+    Method = " [method]",
+    Function = " [function]",
+    Constructor = " [constructor]",
+    Field = "ﰠ [field]",
+    Variable = " [variable]",
+    Class = " [class]",
+    Interface = " [interface]",
+    Module = " [module]",
+    Property = " [property]",
+    Unit = " [unit]",
+    Value = " [value]",
+    Enum = " [enum]",
+    Keyword = " [key]",
+    Snippet = "﬌ [snippet]",
+    Color = " [color]",
+    File = " [file]",
+    Reference = " [reference]",
+    Folder = " [folder]",
+    EnumMember = " [enum member]",
+    Constant = " [constant]",
+    Struct = " [struct]",
+    Event = "⌘ [event]",
+    Operator = " [operator]",
+    TypeParameter = " [type]",
 }
 
 M.symbol_kind_icons = {
@@ -57,6 +57,8 @@ M.symbol_kind_colors = {
     Enum = "yellow",
     Class = "red",
 }
+
+local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 vim.fn.sign_define("DiagnosticSignError", { text = "", numhl = "DiagnosticError" })
 vim.fn.sign_define("DiagnosticSignWarn", { text = "", numhl = "DiagnosticWarn" })
@@ -119,6 +121,7 @@ end
 
 -- https://github.com/golang/tools/tree/master/gopls
 lspconfig.gopls.setup {
+    capabilities = capabilities,
     on_attach = function(client)
         client.resolved_capabilities.document_formatting = false
         on_attach(client)
@@ -126,26 +129,31 @@ lspconfig.gopls.setup {
 }
 
 -- https://github.com/palantir/python-language-server
--- lspconfig.pyls.setup {
+-- lspconfig.pylsp.setup {
+--     capabilities = capabilities,
 --     on_attach = on_attach,
 --     settings = {
---         pyls = {
+--         pylsp = {
 --             plugins = {
 --                 pycodestyle = {
 --                     enabled = false,
 --                     ignore = {
---                         "E501"
---                     }
---                 }
---             }
---         }
---     }
+--                         "E501",
+--                     },
+--                 },
+--                 jedi_completion = {
+--                     include_params = true,
+--                 },
+--             },
+--         },
+--     },
 -- }
 
-lspconfig.pyright.setup { on_attach = on_attach }
+lspconfig.pyright.setup { capabilities = capabilities, on_attach = on_attach }
 
 -- https://github.com/theia-ide/typescript-language-server
 lspconfig.tsserver.setup {
+    capabilities = capabilities,
     on_attach = function(client)
         client.resolved_capabilities.document_formatting = false
         require("nvim-lsp-ts-utils").setup {}
@@ -167,6 +175,7 @@ local function get_lua_runtime()
     return result
 end
 lspconfig.sumneko_lua.setup {
+    capabilities = capabilities,
     on_attach = on_attach,
     cmd = { "lua-language-server" },
     settings = {
@@ -180,6 +189,8 @@ lspconfig.sumneko_lua.setup {
             },
             workspace = {
                 ignoreDir = "~/.config/nvim/backups",
+                maxPreload = 10000,
+                preloadFileSize = 10000,
             },
             diagnostics = {
                 enable = true,
@@ -207,31 +218,76 @@ lspconfig.sumneko_lua.setup {
 }
 
 -- https://github.com/iamcco/vim-language-server
-lspconfig.vimls.setup { on_attach = on_attach }
+lspconfig.vimls.setup { capabilities = capabilities, on_attach = on_attach }
 
 -- https://github.com/vscode-langservers/vscode-json-languageserver
 lspconfig.jsonls.setup {
+    capabilities = capabilities,
     on_attach = on_attach,
     cmd = { "json-languageserver", "--stdio" },
+    settings = {
+        json = {
+            -- Schemas https://www.schemastore.org
+            schemas = {
+                {
+                    fileMatch = { "package.json" },
+                    url = "https://json.schemastore.org/package.json",
+                },
+                {
+                    fileMatch = { "tsconfig*.json" },
+                    url = "https://json.schemastore.org/tsconfig.json",
+                },
+                {
+                    fileMatch = {
+                        ".prettierrc",
+                        ".prettierrc.json",
+                        "prettier.config.json",
+                    },
+                    url = "https://json.schemastore.org/prettierrc.json",
+                },
+                {
+                    fileMatch = { ".eslintrc", ".eslintrc.json" },
+                    url = "https://json.schemastore.org/eslintrc.json",
+                },
+                {
+                    fileMatch = { ".babelrc", ".babelrc.json", "babel.config.json" },
+                    url = "https://json.schemastore.org/babelrc.json",
+                },
+                {
+                    fileMatch = { "lerna.json" },
+                    url = "https://json.schemastore.org/lerna.json",
+                },
+                {
+                    fileMatch = {
+                        ".stylelintrc",
+                        ".stylelintrc.json",
+                        "stylelint.config.json",
+                    },
+                    url = "http://json.schemastore.org/stylelintrc.json",
+                },
+            },
+        },
+    },
 }
 
 -- https://github.com/redhat-developer/yaml-language-server
-lspconfig.yamlls.setup { on_attach = on_attach }
+lspconfig.yamlls.setup { capabilities = capabilities, on_attach = on_attach }
 
 -- https://github.com/joe-re/sql-language-server
-lspconfig.sqlls.setup { on_attach = on_attach }
+lspconfig.sqlls.setup { capabilities = capabilities, on_attach = on_attach }
 
 -- https://github.com/vscode-langservers/vscode-css-languageserver-bin
-lspconfig.cssls.setup { on_attach = on_attach }
+lspconfig.cssls.setup { capabilities = capabilities, on_attach = on_attach }
 
 -- https://github.com/vscode-langservers/vscode-html-languageserver-bin
-lspconfig.html.setup { on_attach = on_attach }
+lspconfig.html.setup { capabilities = capabilities, on_attach = on_attach }
 
 -- https://github.com/bash-lsp/bash-language-server
-lspconfig.bashls.setup { on_attach = on_attach }
+lspconfig.bashls.setup { capabilities = capabilities, on_attach = on_attach }
 
 -- https://github.com/rcjsuen/dockerfile-language-server-nodejs
 lspconfig.dockerls.setup {
+    capabilities = capabilities,
     on_attach = function(client)
         client.resolved_capabilities.document_formatting = false
         on_attach(client)
@@ -240,6 +296,7 @@ lspconfig.dockerls.setup {
 
 -- https://github.com/hashicorp/terraform-ls
 lspconfig.terraformls.setup {
+    capabilities = capabilities,
     on_attach = function(client)
         client.resolved_capabilities.document_formatting = false
         on_attach(client)
@@ -264,11 +321,14 @@ local terraform = require "efm/terraform"
 local misspell = require "efm/misspell"
 -- https://github.com/mattn/efm-langserver
 lspconfig.efm.setup {
+    capabilities = capabilities,
+    cmd = { "/home/lukas/dev/golib/bin/efm-langserver" },
     on_attach = on_attach,
     init_options = { documentFormatting = true },
     root_dir = vim.loop.cwd,
     settings = {
         rootMarkers = { ".git/" },
+        lintDebounce = 100,
         languages = {
             ["="] = { misspell },
             vim = { vint },
@@ -291,6 +351,12 @@ lspconfig.efm.setup {
     },
 }
 
-lspconfig.clangd.setup { on_attach = on_attach }
+lspconfig.clangd.setup {
+    capabilities = capabilities,
+    on_attach = function(client)
+        client.resolved_capabilities.document_formatting = false
+        on_attach(client)
+    end,
+}
 
 return M
