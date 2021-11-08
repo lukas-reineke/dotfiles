@@ -1,2 +1,2 @@
 nnoremap <buffer> <C-]> <C-]>
-set nolist
+setlocal nolist
