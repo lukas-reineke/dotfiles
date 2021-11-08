@@ -13,3 +13,15 @@ windows:
           - tmux resize-pane -Z
           - v
       - cl
+  - window_name: onedark
+    focus: True
+    layout: main-horizontal
+    start_directory: ~/dev/onedark.nvim/
+    shell_command_before:
+      - cd .
+    panes:
+      - focus: True
+        shell_command:
+          - tmux resize-pane -Z
+          - v
+      - cl
