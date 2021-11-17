@@ -7,6 +7,12 @@ local serverity_map = {
     "DiagnosticInfo",
     "DiagnosticHint",
 }
+local icon_map = {
+    "  ",
+    "  ",
+    "  ",
+    "  ",
+}
 
 local function source_string(source)
     return string.format("  [%s]", source)
@@ -23,7 +29,7 @@ M.line_diagnostics = function()
     local lines = {}
 
     for _, diagnostic in ipairs(diagnostics) do
-        table.insert(lines, " ■ " .. diagnostic.message:gsub("\n", " ") .. source_string(diagnostic.source))
+        table.insert(lines, icon_map[diagnostic.severity] .. " " .. diagnostic.message:gsub("\n", " ") .. source_string(diagnostic.source))
     end
 
     local floating_bufnr = vim.api.nvim_create_buf(false, true)
