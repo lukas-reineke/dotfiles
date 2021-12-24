@@ -32,21 +32,9 @@ windows:
           - v
       - shell_command:
           - cl
-  - window_name: kumamushi-upload
+  - window_name: kumamushi-backend
     layout: main-horizontal
-    start_directory: ~/dev/go/src/github.com/HENNGE/kumamushi-upload
-    shell_command_before:
-      - cd .
-    panes:
-      - focus: True
-        shell_command:
-          - tmux resize-pane -Z
-          - v
-      - shell_command:
-          - cl
-  - window_name: kumamushi-fe-download
-    layout: main-horizontal
-    start_directory: ~/dev/kumamushi-fe-download
+    start_directory: ~/dev/go/src/github.com/HENNGE/kumamushi-backend
     shell_command_before:
       - cd .
     panes:

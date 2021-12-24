@@ -25,10 +25,34 @@ windows:
           - tmux resize-pane -Z
           - v
       - cl
-  - window_name: pr.nvim
+  - window_name: cmp-rg
     focus: True
     layout: main-horizontal
-    start_directory: ~/dev/pr.nvim
+    start_directory: ~/dev/cmp-rg
+    shell_command_before:
+      - cd .
+    panes:
+      - focus: True
+        shell_command:
+          - tmux resize-pane -Z
+          - v
+      - cl
+  - window_name: cmp-under-comparator
+    focus: True
+    layout: main-horizontal
+    start_directory: ~/dev/cmp-under-comparator
+    shell_command_before:
+      - cd .
+    panes:
+      - focus: True
+        shell_command:
+          - tmux resize-pane -Z
+          - v
+      - cl
+  - window_name: headlines.nvim
+    focus: True
+    layout: main-horizontal
+    start_directory: ~/dev/headlines.nvim
     shell_command_before:
       - cd .
     panes:
