@@ -15,11 +15,15 @@ snippet chk "[ ]" A
 [ ] $1
 endsnippet
 
-snippet source "BEGIN_SRC" A
+snippet '\s*src' "BEGIN_SRC" Abr
 #+BEGIN_SRC $1
 #+END_SRC
 endsnippet
 
 snippet tdy "today" A
 :today: $1
+endsnippet
+
+snippet '\s*title' "title" Abr
+#+TITLE: $1
 endsnippet

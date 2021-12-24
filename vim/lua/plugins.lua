@@ -195,7 +195,6 @@ require("packer").startup {
 
         use {
             "~/dev/orgmode.nvim",
-            branch = "tree-sitter",
             config = function()
                 local onedark = require "onedark"
                 require("orgmode").setup {
