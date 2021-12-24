@@ -1,2 +1,2 @@
-setlocal textwidth=160
+setlocal textwidth=120
 
