@@ -40,29 +40,29 @@ bindsym $alt+s layout toggle tabbed split
 #""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 # => Workspaces
 #""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set $python ~/.pyenv/shims/python
+#set $python ~/.pyenv/shims/python
 
-bindsym $mod+1 exec --no-startup-id "$python ~/dev/i3-workspace-switch/i3-workspace-switch.py 1"
-bindsym $mod+2 exec --no-startup-id "$python ~/dev/i3-workspace-switch/i3-workspace-switch.py 2"
-bindsym $mod+3 exec --no-startup-id "$python ~/dev/i3-workspace-switch/i3-workspace-switch.py 3"
-bindsym $mod+4 exec --no-startup-id "$python ~/dev/i3-workspace-switch/i3-workspace-switch.py 4"
-bindsym $mod+5 exec --no-startup-id "$python ~/dev/i3-workspace-switch/i3-workspace-switch.py 5"
-bindsym $mod+6 exec --no-startup-id "$python ~/dev/i3-workspace-switch/i3-workspace-switch.py 6"
-bindsym $mod+7 exec --no-startup-id "$python ~/dev/i3-workspace-switch/i3-workspace-switch.py 7"
-bindsym $mod+8 exec --no-startup-id "$python ~/dev/i3-workspace-switch/i3-workspace-switch.py 8"
-bindsym $mod+9 exec --no-startup-id "$python ~/dev/i3-workspace-switch/i3-workspace-switch.py 9"
-bindsym $mod+0 exec --no-startup-id "$python ~/dev/i3-workspace-switch/i3-workspace-switch.py 10"
+bindsym $mod+1 exec --no-startup-id "~/dev/i3-workspace-switch/i3-workspace-switch.py 1"
+bindsym $mod+2 exec --no-startup-id "~/dev/i3-workspace-switch/i3-workspace-switch.py 2"
+bindsym $mod+3 exec --no-startup-id "~/dev/i3-workspace-switch/i3-workspace-switch.py 3"
+bindsym $mod+4 exec --no-startup-id "~/dev/i3-workspace-switch/i3-workspace-switch.py 4"
+bindsym $mod+5 exec --no-startup-id "~/dev/i3-workspace-switch/i3-workspace-switch.py 5"
+bindsym $mod+6 exec --no-startup-id "~/dev/i3-workspace-switch/i3-workspace-switch.py 6"
+bindsym $mod+7 exec --no-startup-id "~/dev/i3-workspace-switch/i3-workspace-switch.py 7"
+bindsym $mod+8 exec --no-startup-id "~/dev/i3-workspace-switch/i3-workspace-switch.py 8"
+bindsym $mod+9 exec --no-startup-id "~/dev/i3-workspace-switch/i3-workspace-switch.py 9"
+bindsym $mod+0 exec --no-startup-id "~/dev/i3-workspace-switch/i3-workspace-switch.py 10"
 
-bindsym $mod+Shift+1 exec --no-startup-id "$python ~/dev/i3-workspace-switch/i3-workspace-switch.py -m 1"
-bindsym $mod+Shift+2 exec --no-startup-id "$python ~/dev/i3-workspace-switch/i3-workspace-switch.py -m 2"
-bindsym $mod+Shift+3 exec --no-startup-id "$python ~/dev/i3-workspace-switch/i3-workspace-switch.py -m 3"
-bindsym $mod+Shift+4 exec --no-startup-id "$python ~/dev/i3-workspace-switch/i3-workspace-switch.py -m 4"
-bindsym $mod+Shift+5 exec --no-startup-id "$python ~/dev/i3-workspace-switch/i3-workspace-switch.py -m 5"
-bindsym $mod+Shift+6 exec --no-startup-id "$python ~/dev/i3-workspace-switch/i3-workspace-switch.py -m 6"
-bindsym $mod+Shift+7 exec --no-startup-id "$python ~/dev/i3-workspace-switch/i3-workspace-switch.py -m 7"
-bindsym $mod+Shift+8 exec --no-startup-id "$python ~/dev/i3-workspace-switch/i3-workspace-switch.py -m 8"
-bindsym $mod+Shift+9 exec --no-startup-id "$python ~/dev/i3-workspace-switch/i3-workspace-switch.py -m 9"
-bindsym $mod+Shift+0 exec --no-startup-id "$python ~/dev/i3-workspace-switch/i3-workspace-switch.py -m 10"
+bindsym $mod+Shift+1 exec --no-startup-id "~/dev/i3-workspace-switch/i3-workspace-switch.py -m 1"
+bindsym $mod+Shift+2 exec --no-startup-id "~/dev/i3-workspace-switch/i3-workspace-switch.py -m 2"
+bindsym $mod+Shift+3 exec --no-startup-id "~/dev/i3-workspace-switch/i3-workspace-switch.py -m 3"
+bindsym $mod+Shift+4 exec --no-startup-id "~/dev/i3-workspace-switch/i3-workspace-switch.py -m 4"
+bindsym $mod+Shift+5 exec --no-startup-id "~/dev/i3-workspace-switch/i3-workspace-switch.py -m 5"
+bindsym $mod+Shift+6 exec --no-startup-id "~/dev/i3-workspace-switch/i3-workspace-switch.py -m 6"
+bindsym $mod+Shift+7 exec --no-startup-id "~/dev/i3-workspace-switch/i3-workspace-switch.py -m 7"
+bindsym $mod+Shift+8 exec --no-startup-id "~/dev/i3-workspace-switch/i3-workspace-switch.py -m 8"
+bindsym $mod+Shift+9 exec --no-startup-id "~/dev/i3-workspace-switch/i3-workspace-switch.py -m 9"
+bindsym $mod+Shift+0 exec --no-startup-id "~/dev/i3-workspace-switch/i3-workspace-switch.py -m 10"
 
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
@@ -173,6 +173,8 @@ bindsym XF86Launch8 exec pactl set-source-mute 7 toggle
 bindsym XF86Launch9 exec pactl set-source-mute 7 toggle
 bindsym --release XF86Launch9 exec pactl set-source-mute 7 toggle
 
+bindsym F6 exec pkill opera-beta
+
 # Sreen brightness controls ##
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10
@@ -209,6 +211,7 @@ focus_on_window_activation focus
 exec --no-startup-id ~/.screenlayout/default.sh
 exec --no-startup-id lead
 exec --no-startup-id nitrogen --restore
+exec --no-startup-id syncthing serve --no-browser
 exec_always --no-startup-id autotiling
 
 bindsym XF86Tools exec --no-startup-id pgrep oneko && pkill oneko || oneko -fg '#551609' -bg '#d58635'
