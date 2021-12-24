@@ -16,9 +16,9 @@ M._if = function(bool, a, b)
 end
 
 M.map = function(modes, key, result, options)
-    options = M.merge({
+    options = vim.tbl_deep_extend("force", {
         noremap = true,
-        silent = false,
+        silent = true,
         expr = false,
         nowait = false,
     }, options or {})

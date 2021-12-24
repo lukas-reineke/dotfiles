@@ -21,7 +21,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = function(...)
         underline = true,
         update_in_insert = false,
     })(...)
-    pcall(vim.lsp.diagnostic.set_loclist, { open = false })
+    pcall(vim.diagnostic.setloclist, { open = false })
 end
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {

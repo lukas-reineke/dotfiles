@@ -9,6 +9,8 @@ require("packer").startup {
         use "ray-x/lsp_signature.nvim"
         use "jose-elias-alvarez/nvim-lsp-ts-utils"
 
+        use { "edluffy/hologram.nvim" }
+
         use {
             "hrsh7th/nvim-cmp",
             requires = {
@@ -188,9 +190,16 @@ require("packer").startup {
                             keymaps = {
                                 ["af"] = "@function.outer",
                                 ["if"] = "@function.inner",
-                                ["ac"] = "@class.outer",
-                                ["ic"] = "@class.inner",
+                                ["ac"] = "@comment.outer",
+                                ["ic"] = "@comment.inner",
                             },
+                        },
+                    },
+                    textsubjects = {
+                        enable = true,
+                        keymaps = {
+                            ["<CR>"] = "textsubjects-smart",
+                            [";"] = "textsubjects-container-outer",
                         },
                     },
                 }
@@ -199,6 +208,7 @@ require("packer").startup {
         use "nvim-treesitter/playground"
         use "nvim-treesitter/nvim-treesitter-refactor"
         use "nvim-treesitter/nvim-treesitter-textobjects"
+        use "RRethy/nvim-treesitter-textsubjects"
         use "JoosepAlviste/nvim-ts-context-commentstring"
         use "David-Kunz/treesitter-unit"
         use "windwp/nvim-ts-autotag"
@@ -230,6 +240,7 @@ require("packer").startup {
                 }
             end,
         }
+        use "overcache/NeoSolarized"
         use {
             "akinsho/org-bullets.nvim",
             config = function()
@@ -255,7 +266,13 @@ require("packer").startup {
             config = function()
                 require("headlines").setup {
                     markdown = {
-                        headline_signs = { "HeadlineGreen", "HeadlineYellow", "HeadlineBlue" },
+                        headline_signs = {
+                            "HeadlineGreen",
+                            "HeadlineBlue",
+                            "HeadlineRed",
+                            "HeadlinePurple",
+                            "HeadlineYellow",
+                        },
                     },
                     vimwiki = {
                         headline_signs = { "HeadlineGreen", "HeadlineYellow", "HeadlineBlue" },
@@ -269,7 +286,17 @@ require("packer").startup {
                             "HeadlineYellow",
                         },
                     },
+                    git = {
+                        headline_pattern = "^@@",
+                        headline_signs = { "HeadlinePurple" },
+                    },
                 }
+            end,
+        }
+        use {
+            "~/dev/virt-column.nvim",
+            config = function()
+                require("virt-column").setup()
             end,
         }
         use {
@@ -311,6 +338,8 @@ require("packer").startup {
                         "object",
                         "dictionary",
                         "element",
+                        "table",
+                        "tuple",
                     },
                 }
             end,
@@ -338,13 +367,19 @@ require("packer").startup {
             end,
         }
 
-        use "tpope/vim-commentary"
         use "tpope/vim-fugitive"
         use "tpope/vim-rhubarb"
         use "tpope/vim-repeat"
         use "tpope/vim-eunuch"
         use "tpope/vim-obsession"
         use "tpope/vim-sleuth"
+
+        use {
+            "numToStr/Comment.nvim",
+            config = function()
+                require("Comment").setup()
+            end,
+        }
 
         use {
             "rmagatti/auto-session",
@@ -568,6 +603,7 @@ require("packer").startup {
             end,
         }
         use "kepbod/quick-scope"
+        use "ggandor/lightspeed.nvim"
 
         use {
             "AndrewRadev/splitjoin.vim",
@@ -598,6 +634,24 @@ require("packer").startup {
         use "jparise/vim-graphql"
 
         use "milisims/nvim-luaref"
+
+        use {
+            "karb94/neoscroll.nvim",
+            config = function()
+                require("neoscroll").setup {}
+                require("neoscroll.config").set_mappings {
+                    ["<C-u>"] = { "scroll", { "-vim.wo.scroll", "true", "49" } },
+                    ["<C-d>"] = { "scroll", { "vim.wo.scroll", "true", "50" } },
+                    ["<C-b>"] = { "scroll", { "-vim.api.nvim_win_get_height(0)", "true", "150" } },
+                    ["<C-f>"] = { "scroll", { "vim.api.nvim_win_get_height(0)", "true", "150" } },
+                    ["<C-y>"] = { "scroll", { "-0.10", "false", "20" } },
+                    ["<C-e>"] = { "scroll", { "0.10", "false", "20" } },
+                    ["zt"] = { "zt", { "50" } },
+                    ["zz"] = { "zz", { "50" } },
+                    ["zb"] = { "zb", { "50" } },
+                }
+            end,
+        }
     end,
     config = {
         display = {

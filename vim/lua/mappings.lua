@@ -1,12 +1,7 @@
 local map = require("utils").map
 local leader = "<space>"
 
-map(
-    "n",
-    leader .. leader,
-    ":<C-u>exe v:count ? v:count . 'b' : 'b' . (bufloaded(0) ? '#' : 'n')<CR>",
-    { silent = true }
-)
+map("n", leader .. leader, ":<C-u>exe v:count ? v:count . 'b' : 'b' . (bufloaded(0) ? '#' : 'n')<CR>")
 
 map("n", leader .. "<C-o>", ":lua require 'buffers'.close_others()<CR>")
 
@@ -15,13 +10,16 @@ map("n", leader .. "w", ":update<CR>")
 
 map("n", leader .. "z", "1z=")
 
-map("n", leader .. "rr", ":%s/\\v()")
-map("x", leader .. "rr", ":s/\\v%V()")
+map("n", leader .. "rr", ":%s/\\v()", { silent = false })
+map("x", leader .. "rr", ":s/\\v%V()", { silent = false })
 
-map("n", leader .. "n", ":e %:h/")
+map("n", leader .. "N", ":e %:h/", { silent = false })
 
 map("n", leader .. "of", "<CMD>lua require('orgmode').action('capture.prompt')<CR>")
 map("n", leader .. "oa", "<CMD>lua require('orgmode').action('agenda.prompt')<CR>")
+
+map({ "x", "n", "o" }, leader .. "j", "<Plug>Lightspeed_s", { noremap = false })
+map({ "x", "n", "o" }, leader .. "k", "<Plug>Lightspeed_S", { noremap = false })
 
 map("n", "/", "<Plug>(incsearch-forward)", { noremap = false })
 map("n", "?", "<Plug>(incsearch-backward)", { noremap = false })
@@ -32,29 +30,29 @@ map("n", "#", "<Plug>(incsearch-nohl-#)", { noremap = false })
 map("n", "g*", "<Plug>(incsearch-nohl-g*)N", { noremap = false })
 map("n", "g#", "<Plug>(incsearch-nohl-g#)", { noremap = false })
 
-map("n", "<UP>", ":lua require('lists').move('up')<CR>", { silent = true })
-map("n", "<DOWN>", ":lua require('lists').move('down')<CR>", { silent = true })
-map("n", "<LEFT>", ":lua require('lists').move('left')<CR>", { silent = true })
-map("n", "<RIGHT>", ":lua require('lists').move('right')<CR>", { silent = true })
+map("n", "<UP>", ":lua require('lists').move('up')<CR>")
+map("n", "<DOWN>", ":lua require('lists').move('down')<CR>")
+map("n", "<LEFT>", ":lua require('lists').move('left')<CR>")
+map("n", "<RIGHT>", ":lua require('lists').move('right')<CR>")
 map(
     "n",
     leader .. "c",
     "<Plug>(qf_qf_toggle_stay):lua require('lists').change_active('Quickfix')<CR>",
-    { noremap = false, silent = true }
+    { noremap = false }
 )
 map(
     "n",
     leader .. "v",
     "<Plug>(qf_loc_toggle_stay):lua require('lists').change_active('Location')<CR>",
-    { noremap = false, silent = true }
+    { noremap = false }
 )
 map("n", leader .. "b", ":lua require('lists').toggle_active()<CR>")
-map("n", leader .. "a", ":lua require('lists').change_active('Quickfix')<CR>:Ack<space>")
+map("n", leader .. "a", ":lua require('lists').change_active('Quickfix')<CR>:Ack<space>", { silent = false })
 
 map("n", "Y", "y$", { noremap = false })
 map("n", "x", '"_x')
-map("n", leader .. "oo", "o<esc>k")
-map("n", leader .. "O", "O<esc>j")
+-- map("n", leader .. "oo", "o<esc>k")
+-- map("n", leader .. "O", "O<esc>j")
 
 map("x", "iu", ':lua require"treesitter-unit".select()<CR>', { noremap = true })
 map("x", "au", ':lua require"treesitter-unit".select(true)<CR>', { noremap = true })
@@ -92,9 +90,9 @@ map("n", leader .. "p", ":Buffers<CR>")
 map("n", leader .. "<C-p>", ":Commands<CR>")
 map("n", leader .. "<C-h>", ":Helptags<CR>")
 map("n", leader .. "m", ":Marks<CR>")
-map("n", leader .. "f", ":lua require('fuzzy').symbols()<CR>", { silent = true })
+map("n", leader .. "f", ":lua require('fuzzy').symbols()<CR>")
 
-map("n", "-", ":Defx -show-ignored-files -search=`expand('%:p')`<CR>")
+map("n", "-", ":Defx -show-ignored-files -search-recursive=`expand('%:p')`<CR>")
 
 map(
     "i",
@@ -118,7 +116,7 @@ map("n", "<CLEAR-8>", "<Plug>VimwikiDecrementListItem", { noremap = false })
 map("n", "glp", "<Plug>UnconditionalPasteIndentedAfter", { noremap = false })
 map("n", "glP", "<Plug>UnconditionalPasteIndentedBefore", { noremap = false })
 
-map("n", "gco", "m'yyp:Commentary<CR>`'")
+map("n", "gck", "m'yypgcc`'", { noremap = false })
 
 map("n", "gj", "<Plug>(GitGutterNextHunk)", { noremap = false })
 map("n", "gk", "<Plug>(GitGutterPrevHunk)", { noremap = false })
@@ -133,8 +131,7 @@ map("n", leader .. "gc", ":0Gclog<CR>", { noremap = false })
 map(
     "n",
     leader .. "gg",
-    ":lua require('lists').change_active('Quickfix')<CR>:execute 'Git difftool ' .. g:git_base<CR>",
-    { silent = true }
+    ":lua require('lists').change_active('Quickfix')<CR>:execute 'Git difftool ' .. g:git_base<CR>"
 )
 map("n", leader .. "gn", ":lua require('lists').change_active('Quickfix')<CR>:Git mergetool<CR>")
 map("n", leader .. "gh", ":diffget //2<CR> :diffupdate<CR>")
@@ -143,8 +140,6 @@ map("n", leader .. "gl", ":diffget //3<CR> :diffupdate<CR>")
 map({ "n", "x" }, "s", "<Nope>", { noremap = false })
 
 map({ "n", "v" }, "gx", "<Plug>(openbrowser-smart-search)", { noremap = false })
-
-map("n", leader .. "N", ":e %:h/")
 
 map("v", "<", "<gv")
 map("v", ">", ">gv")

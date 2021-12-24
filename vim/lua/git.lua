@@ -15,7 +15,7 @@ M.set_base = function(base)
     vim.g.gitgutter_diff_base = vim.g.git_base
 
     local win = vim.api.nvim_get_current_win()
-    vim.cmd [[windo GitGutter]]
+    vim.cmd [[noautocmd windo GitGutter]]
     vim.api.nvim_set_current_win(win)
 
     vim.fn["defx#custom#column"]("git", "git_commit", vim.g.git_base)

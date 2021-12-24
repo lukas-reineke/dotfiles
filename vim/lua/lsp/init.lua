@@ -75,6 +75,9 @@ local on_attach = function(client)
     if client.resolved_capabilities.goto_definition then
         utils.map("n", "<C-]>", "<cmd>lua vim.lsp.buf.definition()<CR>", { buffer = true })
     end
+    if client.resolved_capabilities.implementation then
+        utils.map("n", "<space>&", "<cmd>lua vim.lsp.buf.implementation()<CR>", { buffer = true })
+    end
     if client.resolved_capabilities.hover then
         utils.map("n", "<CR>", "<cmd>lua vim.lsp.buf.hover()<CR>", { buffer = true })
     end
@@ -126,6 +129,17 @@ lspconfig.gopls.setup {
         client.resolved_capabilities.document_formatting = false
         on_attach(client)
     end,
+    settings = {
+        gopls = {
+            usePlaceholders = true,
+            analyses = {
+                nilness = true,
+                shadow = true,
+                unusedparams = true,
+                unusewrites = true,
+            },
+        },
+    },
 }
 
 -- https://github.com/palantir/python-language-server
@@ -264,6 +278,10 @@ lspconfig.jsonls.setup {
                         "stylelint.config.json",
                     },
                     url = "http://json.schemastore.org/stylelintrc.json",
+                },
+                {
+                    fileMatch = { "/.github/workflows/*" },
+                    url = "https://json.schemastore.org/github-workflow.json",
                 },
             },
         },

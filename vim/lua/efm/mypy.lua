@@ -1,5 +1,5 @@
 return {
-    lintCommand = "mypy --show-column-numbers --ignore-missing-imports",
+    lintCommand = "mypy --show-column-numbers --ignore-missing-imports --show-error-codes",
     lintFormats = {
         "%f:%l:%c: %trror: %m",
         "%f:%l:%c: %tarning: %m",
