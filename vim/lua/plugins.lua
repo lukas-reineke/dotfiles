@@ -27,7 +27,9 @@ require("packer").startup {
                 local cmp = require "cmp"
                 local cmp_compare = require "cmp_compare"
                 cmp.setup {
+                    preselect = cmp.PreselectMode.None,
                     completion = {
+                        keyword_length = 0,
                         autocomplete = false,
                     },
 
@@ -45,11 +47,11 @@ require("packer").startup {
                                 return fallback()
                             end
                         end,
-                        ["<c-n>"] = function(fallback)
+                        ["<C-n>"] = function(fallback)
                             if cmp.visible() then
                                 return cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert }(fallback)
                             else
-                                return cmp.mapping.complete()(fallback)
+                                return cmp.mapping.complete { reason = cmp.ContextReason.Auto }(fallback)
                             end
                         end,
                         ["<C-p>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
@@ -62,6 +64,7 @@ require("packer").startup {
                     },
 
                     sorting = {
+                        priority_weight = 100,
                         comparators = {
                             cmp.config.compare.offset,
                             cmp.config.compare.exact,
@@ -80,13 +83,21 @@ require("packer").startup {
                         { name = "nvim_lua", priority_weight = 90 },
                         { name = "luasnip", priority_weight = 80 },
                         { name = "buffer", max_item_count = 5, priority_weight = 70 },
-                        { name = "rg", keyword_length = 5, max_item_count = 5, priority_weight = 60 },
-                        { name = "tmux", max_item_count = 5, opts = { all_panes = false }, priority_weight = 50 },
+                        {
+                            name = "rg",
+                            keyword_length = 5,
+                            max_item_count = 5,
+                            priority_weight = 60,
+                            option = {
+                                additional_arguments = "--smart-case --hidden",
+                            },
+                        },
+                        { name = "tmux", max_item_count = 5, option = { all_panes = false }, priority_weight = 50 },
                         {
                             name = "look",
                             keyword_length = 5,
                             max_item_count = 5,
-                            opts = { convert_case = true, loud = true },
+                            option = { convert_case = true, loud = true },
                             priority_weight = 40,
                         },
                     },
