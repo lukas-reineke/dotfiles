@@ -12,7 +12,7 @@ vim.cmd [[autocmd BufWritePre * lua require('buffers').write_pre()]]
 
 vim.cmd [[autocmd User PackerComplete,PackerCompileDone lua require("indent_blankline.utils").reset_highlights()]]
 
-vim.cmd [[autocmd BufEnter * lua require("defx").hijak()]]
+-- vim.cmd [[autocmd BufEnter * lua require("defx").hijak()]]
 
 vim.cmd [[autocmd User FugitiveBlob nnoremap <buffer> <space>gd :Gvdiff !~1<CR>]]
 vim.cmd [[autocmd User FugitiveBlob set winhighlight+=,DiffAdd:DiffDeleteOld]]

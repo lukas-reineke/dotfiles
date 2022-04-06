@@ -11,11 +11,11 @@ syntax match VimwikiColorTagStart contained /<span class\="red">/ conceal
 syntax match VimwikiColorTagStart contained /<\/span>/ conceal
 
 
-syntax region VimwikiColorTagRed matchgroup=VimwikiColorTag start='<span class="red">' end='<\/span>' contains=@Spell concealends
-syntax region VimwikiColorTagGreen matchgroup=VimwikiColorTag start='<span class="green">' end='<\/span>' contains=@Spell concealends
-syntax region VimwikiColorTagBlue matchgroup=VimwikiColorTag start='<span class="blue">' end='<\/span>' contains=@Spell concealends
-syntax region VimwikiColorTagCyan matchgroup=VimwikiColorTag start='<span class="cyan">' end='<\/span>' contains=@Spell concealends
-syntax region VimwikiColorTagPurple matchgroup=VimwikiColorTag start='<span class="purple">' end='<\/span>' contains=@Spell concealends
+syntax region OrgColorTagRed matchgroup=OrgColorTag start='<span class="red">' end='<\/span>' contains=@Spell concealends
+syntax region OrgColorTagGreen matchgroup=OrgColorTag start='<span class="green">' end='<\/span>' contains=@Spell concealends
+syntax region OrgColorTagBlue matchgroup=OrgColorTag start='<span class="blue">' end='<\/span>' contains=@Spell concealends
+syntax region OrgColorTagCyan matchgroup=OrgColorTag start='<span class="cyan">' end='<\/span>' contains=@Spell concealends
+syntax region OrgColorTagPurple matchgroup=OrgColorTag start='<span class="purple">' end='<\/span>' contains=@Spell concealends
 
 syntax match VimwikiSuperScriptT /(\?[12]\d\{3}-\(0[1-9]\|1[0-2]\)-\(0[1-9]\|[12]\d\|3[01]\)\( \d\{2}:\d\{2}:\d\{2}\)\?)\?/
 

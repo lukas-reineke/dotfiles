@@ -25,7 +25,7 @@ opt.undolevels = 10000
 vim.o.clipboard = "unnamedplus"
 vim.o.completeopt = "menu,menuone,noinsert,noselect"
 vim.o.confirm = true
-vim.o.diffopt = "internal,filler,closeoff,foldcolumn:0,hiddenoff"
+vim.o.diffopt = "internal,filler,closeoff,foldcolumn:0,hiddenoff,algorithm:patience"
 vim.o.emoji = false
 vim.o.foldclose = "all"
 vim.o.foldopen = "all"
@@ -63,7 +63,6 @@ vim.o.wildoptions = "pum"
 vim.wo.foldenable = false
 vim.wo.foldlevel = 2
 vim.wo.foldmethod = "indent"
-vim.wo.colorcolumn = "+1"
 vim.wo.signcolumn = "yes:1"
 vim.wo.conceallevel = 2
 vim.wo.concealcursor = "n"
@@ -99,19 +98,19 @@ vim.g.floating_window_border_dark = {
     { "╰", "FloatBorderDark" },
     { "│", "FloatBorderDark" },
 }
-vim.g.markdown_fenced_languages = {
-    "vim",
-    "python",
-    "lua",
-    "bash=sh",
-    "javascript",
-    "typescript",
-    "yaml",
-    "json",
-    "gql=graphql",
-    "graphql",
-}
-vim.g.no_man_maps = true
-vim.g.vim_json_syntax_conceal = false
-vim.g.vim_json_conceal = false
-vim.g.mapleader = "\\<Space>"
+-- vim.g.markdown_fenced_languages = {
+--     "vim",
+--     "python",
+--     "lua",
+--     "bash=sh",
+--     "javascript",
+--     "typescript",
+--     "yaml",
+--     "json",
+--     "gql=graphql",
+--     "graphql",
+-- }
+-- vim.g.no_man_maps = true
+-- vim.g.vim_json_syntax_conceal = false
+-- vim.g.vim_json_conceal = false
+-- vim.g.mapleader = "\\<Space>"

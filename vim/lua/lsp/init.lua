@@ -66,12 +66,7 @@ vim.fn.sign_define("DiagnosticSignInfo", { text = "", numhl = "DiagnosticInfo" }
 vim.fn.sign_define("DiagnosticSignHint", { text = "", numhl = "DiagnosticHint" })
 
 local on_attach = function(client)
-    if client.resolved_capabilities.document_formatting then
-        vim.cmd [[augroup Format]]
-        vim.cmd [[autocmd! * <buffer>]]
-        vim.cmd [[autocmd BufWritePost <buffer> lua require'lsp.formatting'.format()]]
-        vim.cmd [[augroup END]]
-    end
+    require("lsp-format").on_attach(client)
     if client.resolved_capabilities.goto_definition then
         utils.map("n", "<C-]>", "<cmd>lua vim.lsp.buf.definition()<CR>", { buffer = true })
     end
@@ -298,7 +293,7 @@ lspconfig.sqlls.setup { capabilities = capabilities, on_attach = on_attach }
 lspconfig.cssls.setup { capabilities = capabilities, on_attach = on_attach }
 
 -- https://github.com/vscode-langservers/vscode-html-languageserver-bin
-lspconfig.html.setup { capabilities = capabilities, on_attach = on_attach }
+lspconfig.html.setup { cmd = { "vscode-html-languageserver" }, capabilities = capabilities, on_attach = on_attach }
 
 -- https://github.com/bash-lsp/bash-language-server
 lspconfig.bashls.setup { capabilities = capabilities, on_attach = on_attach }
@@ -325,7 +320,9 @@ lspconfig.terraformls.setup {
 
 local vint = require "efm/vint"
 local stylua = require "efm/stylua"
-local golint = require "efm/golint"
+local luacheck = require "efm/luacheck"
+local staticcheck = require "efm/staticcheck"
+local go_vet = require "efm/go_vet"
 local goimports = require "efm/goimports"
 local black = require "efm/black"
 local isort = require "efm/isort"
@@ -347,11 +344,12 @@ lspconfig.efm.setup {
     settings = {
         rootMarkers = { ".git/" },
         lintDebounce = 100,
+        -- logLevel = 5,
         languages = {
             ["="] = { misspell },
             vim = { vint },
-            lua = { stylua },
-            go = { golint, goimports },
+            lua = { stylua, luacheck },
+            go = { staticcheck, goimports, go_vet },
             python = { black, isort, flake8, mypy },
             typescript = { prettier, eslint },
             javascript = { prettier, eslint },

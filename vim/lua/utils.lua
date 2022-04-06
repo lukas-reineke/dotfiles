@@ -91,7 +91,7 @@ M.ansi_codes = {
     blue = function(self, string)
         return self._blue .. string .. self._clear
     end,
-    magent = function(self, string)
+    magenta = function(self, string)
         return self._magenta .. string .. self._clear
     end,
     cyan = function(self, string)

@@ -12,6 +12,119 @@ require("packer").startup {
         use { "edluffy/hologram.nvim" }
 
         use {
+            "stevearc/dressing.nvim",
+            config = function()
+                require("dressing").setup {
+                    select = {
+                        backend = { "fzf_lua", "fzf" },
+                    },
+                }
+            end,
+        }
+
+        use {
+            "~/dev/neo-tree.nvim",
+            branch = "v2.x",
+            requires = {
+                "nvim-lua/plenary.nvim",
+                "kyazdani42/nvim-web-devicons",
+                "MunifTanjim/nui.nvim",
+            },
+            after = { "nvim-web-devicons" },
+            config = function()
+                vim.g.neo_tree_remove_legacy_commands = true
+                require("neo-tree.sources.common.components").diagnostics = function(config, node, state)
+                    local diag = state.diagnostics_lookup or {}
+                    local diag_state = diag[node:get_id()]
+                    if not diag_state then
+                        return {}
+                    end
+                    return {
+                        text = ({
+                            Error = " ",
+                            Warn = " ",
+                            Info = " ",
+                            Hint = " ",
+                        })[diag_state.severity_string],
+                        highlight = "Diagnostic" .. diag_state.severity_string,
+                    }
+                end
+
+                require("neo-tree").setup {
+                    close_if_last_window = true,
+                    default_component_configs = {
+                        indent = {
+                            indent_size = 4,
+                            last_indent_marker = "└──",
+                        },
+                        name = {
+                            trailing_slash = true,
+                        },
+                        git_status = {
+                            symbols = {
+                                -- Change type
+                                added = "✚",
+                                deleted = "✖",
+                                modified = "",
+                                renamed = "",
+                                -- Status type
+                                untracked = "",
+                                ignored = "",
+                                unstaged = "",
+                                staged = "",
+                                conflict = "",
+                            },
+                        },
+                    },
+                    window = {
+                        position = "current",
+                        mappings = {
+                            ["o"] = "open",
+                            ["m"] = "cut_to_clipboard",
+                            ["p"] = "paste_from_clipboard",
+                            ["q"] = "close_window",
+                            ["<ESC>"] = "close_window",
+                        },
+                    },
+                    nesting_rules = {},
+                    filesystem = {
+                        filtered_items = {
+                            visible = true,
+                            hide_dotfiles = false,
+                            hide_gitignored = true,
+                        },
+                        follow_current_file = true,
+                        hijack_netrw_behavior = "open_current",
+                        use_libuv_file_watcher = true,
+                        renderers = {
+                            directory = {
+                                { "indent" },
+                                { "icon" },
+                                { "current_filter" },
+                                { "name" },
+                                { "clipboard" },
+                                { "diagnostics" },
+                            },
+                            file = {
+                                { "indent" },
+                                { "icon" },
+                                { "name" },
+                                { "clipboard" },
+                                { "diagnostics" },
+                                { "git_status" },
+                            },
+                        },
+                    },
+                    git_status = {
+                        window = {
+                            position = "float",
+                        },
+                    },
+                }
+            end,
+        }
+
+        use {
             "hrsh7th/nvim-cmp",
             requires = {
                 { "andersevenrud/compe-tmux", branch = "cmp" },
@@ -215,6 +328,38 @@ require("packer").startup {
         use "spywhere/detect-language.nvim"
 
         use {
+            "~/dev/lsp-format.nvim",
+            config = function()
+                local prettier = {
+                    tabWidth = 4,
+                    singleQuote = true,
+                    trailingComma = "all",
+                    configPrecedence = "prefer-file",
+                }
+                require("lsp-format").setup {
+                    typescript = prettier,
+                    javascript = prettier,
+                    typescriptreact = prettier,
+                    javascriptreact = prettier,
+                    json = prettier,
+                    css = prettier,
+                    scss = prettier,
+                    html = prettier,
+                    yaml = {
+                        tabWidth = 2,
+                        singleQuote = true,
+                        trailingComma = "all",
+                        configPrecedence = "prefer-file",
+                    },
+                    markdown = prettier,
+                    sh = {
+                        tabWidth = 4,
+                    },
+                }
+            end,
+        }
+
+        use {
             "~/dev/orgmode.nvim",
             config = function()
                 local onedark = require "onedark"
@@ -266,7 +411,7 @@ require("packer").startup {
             config = function()
                 require("headlines").setup {
                     markdown = {
-                        headline_signs = {
+                        headline_highlights = {
                             "HeadlineGreen",
                             "HeadlineBlue",
                             "HeadlineRed",
@@ -275,10 +420,10 @@ require("packer").startup {
                         },
                     },
                     vimwiki = {
-                        headline_signs = { "HeadlineGreen", "HeadlineYellow", "HeadlineBlue" },
+                        headline_highlights = { "HeadlineGreen", "HeadlineYellow", "HeadlineBlue" },
                     },
                     org = {
-                        headline_signs = {
+                        headline_highlights = {
                             "HeadlineGreen",
                             "HeadlineBlue",
                             "HeadlineRed",
@@ -288,7 +433,7 @@ require("packer").startup {
                     },
                     git = {
                         headline_pattern = "^@@",
-                        headline_signs = { "HeadlinePurple" },
+                        headline_highlights = { "HeadlinePurple" },
                     },
                 }
             end,
@@ -296,7 +441,7 @@ require("packer").startup {
         use {
             "~/dev/virt-column.nvim",
             config = function()
-                require("virt-column").setup()
+                require("virt-column").setup { virtcolumn = "+1" }
             end,
         }
         use {
@@ -310,6 +455,7 @@ require("packer").startup {
                         "diagnosticpopup",
                         "lspinfo",
                         "packer",
+                        "checkhealth",
                         "TelescopePrompt",
                         "TelescopeResults",
                         "",
@@ -323,24 +469,6 @@ require("packer").startup {
                     max_indent_increase = 1,
                     show_current_context = true,
                     show_current_context_start = true,
-                    context_patterns = {
-                        "class",
-                        "function",
-                        "func_literal",
-                        "method",
-                        "^if",
-                        "while",
-                        "for",
-                        "with",
-                        "try",
-                        "except",
-                        "argument_list",
-                        "object",
-                        "dictionary",
-                        "element",
-                        "table",
-                        "tuple",
-                    },
                 }
             end,
         }
@@ -424,46 +552,6 @@ require("packer").startup {
         }
 
         use {
-            "Shougo/defx.nvim",
-            run = ":UpdateRemotePlugins",
-            requires = {
-                { "kristijanhusak/defx-git" },
-                { "kristijanhusak/defx-icons" },
-            },
-            config = function()
-                vim.g.defx_icons_root_opened_tree_icon = "├"
-                vim.g.defx_icons_nested_opened_tree_icon = "├"
-                vim.g.defx_icons_nested_closed_tree_icon = "│"
-                vim.g.defx_icons_directory_icon = "│"
-                vim.g.defx_icons_parent_icon = "├"
-
-                vim.fn["defx#custom#column"]("mark", {
-                    ["readonly_icon"] = "◆",
-                    ["selected_icon"] = "■",
-                })
-
-                vim.fn["defx#custom#column"]("indent", {
-                    ["indent"] = "    ",
-                })
-
-                vim.fn["defx#custom#option"]("_", {
-                    ["columns"] = "indent:mark:icons:git:filename",
-                })
-
-                vim.fn["defx#custom#column"]("git", "indicators", {
-                    ["Modified"] = "◉",
-                    ["Staged"] = "✚",
-                    ["Untracked"] = "◈",
-                    ["Renamed"] = "➜",
-                    ["Unmerged"] = "═",
-                    ["Ignored"] = "▨",
-                    ["Deleted"] = "✖",
-                    ["Unknown"] = "?",
-                })
-            end,
-        }
-
-        use {
             "numToStr/Navigator.nvim",
             config = function()
                 require("Navigator").setup()
@@ -475,6 +563,7 @@ require("packer").startup {
             config = function()
                 vim.g.UltiSnipsSnippetsDir = "~/dotfiles/vim/ultisnips"
                 vim.g.UltiSnipsSnippetDirectories = { "ultisnips" }
+                vim.g.UltiSnipsExpandTrigger = "<joifjioejfio>"
             end,
         }
 

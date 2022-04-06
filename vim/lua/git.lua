@@ -10,15 +10,16 @@ M.setup = function()
 end
 
 M.set_base = function(base)
-    vim.g.git_base = base or "HEAD"
+    if not base or base == "" then
+        base = "HEAD"
+    end
+    vim.g.git_base = base
 
     vim.g.gitgutter_diff_base = vim.g.git_base
 
     local win = vim.api.nvim_get_current_win()
     vim.cmd [[noautocmd windo GitGutter]]
     vim.api.nvim_set_current_win(win)
-
-    vim.fn["defx#custom#column"]("git", "git_commit", vim.g.git_base)
 
     print(string.format("Now diffing against %s", vim.g.git_base))
 end

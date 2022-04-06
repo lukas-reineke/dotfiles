@@ -92,7 +92,8 @@ map("n", leader .. "<C-h>", ":Helptags<CR>")
 map("n", leader .. "m", ":Marks<CR>")
 map("n", leader .. "f", ":lua require('fuzzy').symbols()<CR>")
 
-map("n", "-", ":Defx -show-ignored-files -search-recursive=`expand('%:p')`<CR>")
+map("n", "-", ":execute 'Neotree reveal git_base=' .. g:git_base<CR>")
+map("n", "g-", ":execute 'Neotree current git_status git_base=' .. g:git_base<CR>")
 
 map(
     "i",
@@ -113,6 +114,8 @@ map("n", "<CLEAR-5>", "<Plug>UnconditionalPasteCommaSingleQuoteAfter", { noremap
 map("n", "<CLEAR-6>", "<Plug>UnconditionalPasteCommaSingleQuoteBefore", { noremap = false })
 map("n", "<CLEAR-7>", "<Plug>VimwikiIncrementListItem", { noremap = false })
 map("n", "<CLEAR-8>", "<Plug>VimwikiDecrementListItem", { noremap = false })
+map("n", "<CLEAR-9>", "<Plug>UnconditionalPasteUnjoinBefore", { noremap = false })
+map("n", "<CLEAR-10>", "<Plug>UnconditionalPasteUnjoinAfter", { noremap = false })
 map("n", "glp", "<Plug>UnconditionalPasteIndentedAfter", { noremap = false })
 map("n", "glP", "<Plug>UnconditionalPasteIndentedBefore", { noremap = false })
 

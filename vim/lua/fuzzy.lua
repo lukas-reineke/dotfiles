@@ -230,4 +230,52 @@ M.symbols = function()
     end)()
 end
 
+M.headlines = function(pattern, symbol)
+    local headline_colors = {
+        "green",
+        "blue",
+        "red",
+        "magenta",
+        "yellow",
+        "green",
+        "blue",
+        "red",
+    }
+
+    coroutine.wrap(function()
+        local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+        local headlines = {}
+
+        local name_length = math.floor(vim.o.columns * 0.5)
+
+        for i, line in ipairs(lines) do
+            local _, num = line:find(pattern)
+            if num then
+                local short_name = utils.shorten_string(line:sub(num + 1, #line), name_length - 1)
+                table.insert(
+                    headlines,
+                    string.format(
+                        "%s%s%s%s",
+                        utils.ansi_codes[headline_colors[num]](utils.ansi_codes, symbol:rep(num) .. (" "):rep(6 - num)),
+                        short_name .. (" "):rep(name_length - #short_name),
+                        nbs,
+                        utils.ansi_codes:red(i .. ":0")
+                    )
+                )
+            end
+        end
+
+        local result = fzf.fzf(headlines, "--ansi --multi --prompt 'Headlines '", get_window_options())
+
+        if not result then
+            return
+        end
+
+        local lnum, col = unpack(vim.split(vim.split(result[1], nbs)[2], ":"))
+        vim.cmd [[normal m']]
+        vim.api.nvim_win_set_cursor(0, { tonumber(lnum), tonumber(col) })
+        vim.cmd [[normal zt]]
+    end)()
+end
+
 return M

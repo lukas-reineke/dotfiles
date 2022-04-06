@@ -173,7 +173,7 @@ bindsym XF86Launch8 exec pactl set-source-mute 7 toggle
 bindsym XF86Launch9 exec pactl set-source-mute 7 toggle
 bindsym --release XF86Launch9 exec pactl set-source-mute 7 toggle
 
-bindsym F6 exec pkill opera-beta
+bindsym F9 exec pkill opera-beta
 
 # Sreen brightness controls ##
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10

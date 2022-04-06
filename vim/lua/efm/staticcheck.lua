@@ -1,6 +1,6 @@
 return {
-    lintCommand = "golint",
+    lintCommand = "staticcheck",
     lintIgnoreExitCode = true,
     lintFormats = { "%f:%l:%c: %m" },
-    lintSource = "golint",
+    lintSource = "staticcheck",
 }

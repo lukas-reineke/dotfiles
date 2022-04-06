@@ -13,9 +13,11 @@ map(
     ":lua require 'orgmode'.action('org_mappings.toggle_checkbox')<CR>",
     { buffer = true, silent = true }
 )
+map("n", leader .. "f", ":lua require('fuzzy').headlines('^%*+', '*')<CR>", { buffer = true })
 
 vim.fn["tablemode#Enable"]()
 
+require("virt-column").setup_buffer { virtcolumn = "" }
 vim.opt_local.spell = true
 vim.opt_local.list = false
-vim.opt_local.colorcolumn = ""
+vim.opt_local.wrap = false
