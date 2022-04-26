@@ -98,19 +98,16 @@ vim.g.floating_window_border_dark = {
     { "╰", "FloatBorderDark" },
     { "│", "FloatBorderDark" },
 }
--- vim.g.markdown_fenced_languages = {
---     "vim",
---     "python",
---     "lua",
---     "bash=sh",
---     "javascript",
---     "typescript",
---     "yaml",
---     "json",
---     "gql=graphql",
---     "graphql",
--- }
--- vim.g.no_man_maps = true
--- vim.g.vim_json_syntax_conceal = false
--- vim.g.vim_json_conceal = false
--- vim.g.mapleader = "\\<Space>"
+vim.g.no_man_maps = true
+vim.g.vim_json_syntax_conceal = false
+vim.g.vim_json_conceal = false
+vim.g.mapleader = "\\<Space>"
+
+vim.diagnostic.config {
+    virtual_text = {
+        spacing = 3,
+        prefix = " ",
+        severity_sort = true,
+        source = "if_many",
+    },
+}

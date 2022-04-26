@@ -21,15 +21,6 @@ map("n", leader .. "oa", "<CMD>lua require('orgmode').action('agenda.prompt')<CR
 map({ "x", "n", "o" }, leader .. "j", "<Plug>Lightspeed_s", { noremap = false })
 map({ "x", "n", "o" }, leader .. "k", "<Plug>Lightspeed_S", { noremap = false })
 
-map("n", "/", "<Plug>(incsearch-forward)", { noremap = false })
-map("n", "?", "<Plug>(incsearch-backward)", { noremap = false })
-map("n", "n", "<Plug>(incsearch-nohl-n)", { noremap = false })
-map("n", "N", "<Plug>(incsearch-nohl-N)", { noremap = false })
-map("n", "*", "<Plug>(incsearch-nohl-*)N", { noremap = false })
-map("n", "#", "<Plug>(incsearch-nohl-#)", { noremap = false })
-map("n", "g*", "<Plug>(incsearch-nohl-g*)N", { noremap = false })
-map("n", "g#", "<Plug>(incsearch-nohl-g#)", { noremap = false })
-
 map("n", "<UP>", ":lua require('lists').move('up')<CR>")
 map("n", "<DOWN>", ":lua require('lists').move('down')<CR>")
 map("n", "<LEFT>", ":lua require('lists').move('left')<CR>")
@@ -51,8 +42,6 @@ map("n", leader .. "a", ":lua require('lists').change_active('Quickfix')<CR>:Ack
 
 map("n", "Y", "y$", { noremap = false })
 map("n", "x", '"_x')
--- map("n", leader .. "oo", "o<esc>k")
--- map("n", leader .. "O", "O<esc>j")
 
 map("x", "iu", ':lua require"treesitter-unit".select()<CR>', { noremap = true })
 map("x", "au", ':lua require"treesitter-unit".select(true)<CR>', { noremap = true })
@@ -139,8 +128,6 @@ map(
 map("n", leader .. "gn", ":lua require('lists').change_active('Quickfix')<CR>:Git mergetool<CR>")
 map("n", leader .. "gh", ":diffget //2<CR> :diffupdate<CR>")
 map("n", leader .. "gl", ":diffget //3<CR> :diffupdate<CR>")
-
-map({ "n", "x" }, "s", "<Nope>", { noremap = false })
 
 map({ "n", "v" }, "gx", "<Plug>(openbrowser-smart-search)", { noremap = false })
 

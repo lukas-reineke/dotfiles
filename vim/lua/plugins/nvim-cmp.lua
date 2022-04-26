@@ -96,17 +96,58 @@ cmp.setup {
         end,
     },
 
-    documentation = {
-        border = vim.g.floating_window_border_dark,
+    window = {
+        documentation = {
+            border = vim.g.floating_window_border_dark,
+        },
+        completion = {
+            border = vim.g.floating_window_border_dark,
+        },
     },
 
     experimental = {
-        native_menu = false,
         ghost_text = true,
     },
 }
 cmp.setup.cmdline(":", {
-    sources = {
+    mapping = {
+        ["<C-n>"] = {
+            c = function(fallback)
+                if cmp.visible() then
+                    return cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert }(fallback)
+                else
+                    return cmp.mapping.complete { reason = cmp.ContextReason.Auto }(fallback)
+                end
+            end,
+        },
+        ["<C-p>"] = {
+            c = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
+        },
+    },
+    sources = cmp.config.sources({
+        { name = "path" },
+    }, {
         { name = "cmdline" },
+    }, {
+        { name = "buffer" },
+    }),
+})
+cmp.setup.cmdline("/", {
+    mapping = {
+        ["<C-n>"] = {
+            c = function(fallback)
+                if cmp.visible() then
+                    return cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert }(fallback)
+                else
+                    return cmp.mapping.complete { reason = cmp.ContextReason.Auto }(fallback)
+                end
+            end,
+        },
+        ["<C-p>"] = {
+            c = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
+        },
+    },
+    sources = cmp.config.sources {
+        { name = "buffer" },
     },
 })

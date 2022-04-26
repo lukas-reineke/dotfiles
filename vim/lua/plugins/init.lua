@@ -172,10 +172,8 @@ require("packer").startup {
         use "vim-scripts/UnconditionalPaste"
 
         use {
-            "haya14busa/incsearch.vim",
-            config = "require 'plugins.incsearch'",
+            "haya14busa/is.vim",
         }
-        use "vim-scripts/CmdlineComplete"
 
         use {
             "mileszs/ack.vim",

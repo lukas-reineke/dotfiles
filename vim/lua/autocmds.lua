@@ -1,20 +1,44 @@
-vim.cmd [[augroup Autogroup]]
+local group = vim.api.nvim_create_augroup("MyAutogroup", {})
 
-vim.cmd [[autocmd CursorMoved * call PoppyInit()]]
-vim.cmd [[autocmd CursorMoved * lua require('fold').close_all()]]
-
-vim.cmd [[au TextYankPost * silent! lua vim.highlight.on_yank {higroup="HighlightedyankRegion", timeout=150}]]
-
-vim.cmd [[autocmd VimEnter * highlight QuickScopePrimary gui=bold guifg=NONE guibg=NONE]]
-vim.cmd [[autocmd VimEnter * highlight QuickScopeSecondary gui=bold guifg=NONE guibg=NONE]]
-
-vim.cmd [[autocmd BufWritePre * lua require('buffers').write_pre()]]
-
-vim.cmd [[autocmd User PackerComplete,PackerCompileDone lua require("indent_blankline.utils").reset_highlights()]]
-
-vim.cmd [[autocmd User FugitiveBlob nnoremap <buffer> <space>gd :Gvdiff !~1<CR>]]
-vim.cmd [[autocmd User FugitiveBlob set winhighlight+=,DiffAdd:DiffDeleteOld]]
-
-vim.cmd [[autocmd User BQFPreview setlocal list | lua require("indent_blankline.commands").refresh(false)]]
-
-vim.cmd [[augroup END]]
+vim.api.nvim_create_autocmd("CursorMoved", {
+    group = group,
+    pattern = "*",
+    callback = "PoppyInit",
+})
+vim.api.nvim_create_autocmd("CursorMoved", {
+    group = group,
+    pattern = "*",
+    callback = require("fold").close_all,
+})
+vim.api.nvim_create_autocmd("TextYankPost", {
+    group = group,
+    pattern = "*",
+    callback = function()
+        vim.highlight.on_yank { higroup = "HighlightedyankRegion", timeout = 150 }
+    end,
+})
+vim.api.nvim_create_autocmd("VimEnter", {
+    group = group,
+    pattern = "*",
+    callback = function()
+        vim.cmd [[highlight QuickScopePrimary gui=bold guifg=NONE guibg=NONE]]
+        vim.cmd [[highlight QuickScopeSecondary gui=bold guifg=NONE guibg=NONE]]
+    end,
+})
+vim.api.nvim_create_autocmd("BufWritePre", {
+    group = group,
+    pattern = "*",
+    callback = require("buffers").write_pre,
+})
+vim.api.nvim_create_autocmd("BufWritePost", {
+    group = group,
+    pattern = "*",
+    command = "GitGutter",
+})
+vim.api.nvim_create_autocmd("User", {
+    group = group,
+    pattern = "FugitiveBlob",
+    callback = function()
+        vim.opt.winhighlight:append "DiffAdd:DiffDeleteOld"
+    end,
+})
