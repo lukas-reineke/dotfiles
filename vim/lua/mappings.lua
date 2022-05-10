@@ -18,9 +18,6 @@ map("n", leader .. "N", ":e %:h/", { silent = false })
 map("n", leader .. "of", "<CMD>lua require('orgmode').action('capture.prompt')<CR>")
 map("n", leader .. "oa", "<CMD>lua require('orgmode').action('agenda.prompt')<CR>")
 
-map({ "x", "n", "o" }, leader .. "j", "<Plug>Lightspeed_s", { noremap = false })
-map({ "x", "n", "o" }, leader .. "k", "<Plug>Lightspeed_S", { noremap = false })
-
 map("n", "<UP>", ":lua require('lists').move('up')<CR>")
 map("n", "<DOWN>", ":lua require('lists').move('down')<CR>")
 map("n", "<LEFT>", ":lua require('lists').move('left')<CR>")
@@ -110,6 +107,9 @@ map("n", "glP", "<Plug>UnconditionalPasteIndentedBefore", { noremap = false })
 
 map("n", "gck", "m'yypgcc`'", { noremap = false })
 
+map({ "n", "o" }, "*", "<Plug>(is-*)N", { noremap = false })
+map({ "n", "o" }, "g*", "<Plug>(is-g*)N", { noremap = false })
+
 map("n", "gj", "<Plug>(GitGutterNextHunk)", { noremap = false })
 map("n", "gk", "<Plug>(GitGutterPrevHunk)", { noremap = false })
 map("n", leader .. "gd", ":set nosplitright<CR>:execute 'Gvdiff ' .. g:git_base<CR>:set splitright<CR>")
@@ -133,8 +133,6 @@ map({ "n", "v" }, "gx", "<Plug>(openbrowser-smart-search)", { noremap = false })
 
 map("v", "<", "<gv")
 map("v", ">", ">gv")
-map("v", "*", '"vygv:<C-U>/\\<<C-R>v\\><CR>')
-map("v", "#", '"vygv:<C-U>?\\<<C-R>v\\><CR>')
 
 map("v", "I", "<Plug>(niceblock-I)", { noremap = false })
 map("v", "gI", "<Plug>(niceblock-gI)", { noremap = false })
@@ -142,8 +140,13 @@ map("v", "A", "<Plug>(niceblock-A)", { noremap = false })
 
 map("x", "P", [['"_d"'.v:register.'P']], { expr = true })
 
-map({ "i", "s" }, "<C-j>", "<cmd>lua require'luasnip'.expand_or_jump()<Cr>")
-map({ "i", "s" }, "<C-k>", "<cmd>lua require'luasnip'.jump(-1)<Cr>")
+map("n", leader .. "j", "<cmd>lua require'luasnip'.jump(1)<Cr>")
+map("n", leader .. "k", "<cmd>lua require'luasnip'.jump(-1)<Cr>")
+
+map({ "i", "s" }, "<Tab>", "luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>'", { expr = true })
+map({ "i", "s" }, "<S-Tab>", "<cmd>lua require'luasnip'.jump(-1)<Cr>")
+
+map({ "i", "s" }, "<C-e>", "<Plug>luasnip-next-choice", { noremap = false })
 
 map("c", "<C-J>", "<DOWN>")
 map("c", "<C-K>", "<UP>")

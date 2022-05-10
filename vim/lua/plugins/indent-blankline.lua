@@ -1,4 +1,5 @@
 require("indent_blankline").setup {
+    viewport_buffer = 50,
     filetype_exclude = {
         "vimwiki",
         "man",
@@ -20,4 +21,5 @@ require("indent_blankline").setup {
     max_indent_increase = 1,
     show_current_context = true,
     show_current_context_start = true,
+    use_treesitter_scope = true,
 }

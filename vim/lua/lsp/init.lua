@@ -67,29 +67,17 @@ vim.fn.sign_define("DiagnosticSignHint", { text = "", numhl = "DiagnosticHint" }
 
 local on_attach = function(client)
     require("lsp-format").on_attach(client)
-    if client.resolved_capabilities.goto_definition then
-        utils.map("n", "<C-]>", "<cmd>lua vim.lsp.buf.definition()<CR>", { buffer = true })
-    end
-    if client.resolved_capabilities.implementation then
-        utils.map("n", "<space>&", "<cmd>lua vim.lsp.buf.implementation()<CR>", { buffer = true })
-    end
-    if client.resolved_capabilities.hover then
-        utils.map("n", "<CR>", "<cmd>lua vim.lsp.buf.hover()<CR>", { buffer = true })
-    end
-    if client.resolved_capabilities.find_references then
-        utils.map(
-            "n",
-            "<Space>*",
-            ":lua require('lists').change_active('Quickfix')<CR>:lua vim.lsp.buf.references()<CR>",
-            { buffer = true }
-        )
-    end
-    if client.resolved_capabilities.rename then
-        utils.map("n", "<Space>rn", "<cmd>lua require'lsp.rename'.rename()<CR>", { silent = true, buffer = true })
-    end
-    if client.resolved_capabilities.signature_help then
-        utils.map("n", "<Space>s", "<cmd>lua vim.lsp.buf.signature_help()<CR>", { silent = true, buffer = true })
-    end
+    utils.map("n", "<C-]>", "<cmd>lua vim.lsp.buf.definition()<CR>", { buffer = true })
+    utils.map("n", "<space>&", "<cmd>lua vim.lsp.buf.implementation()<CR>", { buffer = true })
+    utils.map("n", "<CR>", "<cmd>lua vim.lsp.buf.hover()<CR>", { buffer = true })
+    utils.map(
+        "n",
+        "<Space>*",
+        ":lua require('lists').change_active('Quickfix')<CR>:lua vim.lsp.buf.references()<CR>",
+        { buffer = true }
+    )
+    utils.map("n", "<Space>rn", "<cmd>lua require'lsp.rename'.rename()<CR>", { silent = true, buffer = true })
+    utils.map("n", "<Space>s", "<cmd>lua vim.lsp.buf.signature_help()<CR>", { silent = true, buffer = true })
 
     require("lsp_signature").on_attach {
         hint_enable = false,
@@ -120,10 +108,7 @@ end
 -- https://github.com/golang/tools/tree/master/gopls
 lspconfig.gopls.setup {
     capabilities = capabilities,
-    on_attach = function(client)
-        client.resolved_capabilities.document_formatting = false
-        on_attach(client)
-    end,
+    on_attach = on_attach,
     settings = {
         gopls = {
             usePlaceholders = true,
@@ -164,7 +149,6 @@ lspconfig.pyright.setup { capabilities = capabilities, on_attach = on_attach }
 lspconfig.tsserver.setup {
     capabilities = capabilities,
     on_attach = function(client)
-        client.resolved_capabilities.document_formatting = false
         require("nvim-lsp-ts-utils").setup {}
         on_attach(client)
     end,
@@ -215,6 +199,15 @@ lspconfig.sumneko_lua.setup {
                     "pending",
                     -- packer
                     "use",
+                    -- luasnip
+                    "s",
+                    "i",
+                    "fmt",
+                    "rep",
+                    "conds",
+                    "f",
+                    "c",
+                    "t",
                 },
                 workspace = {
                     library = get_lua_runtime(),
@@ -301,19 +294,13 @@ lspconfig.bashls.setup { capabilities = capabilities, on_attach = on_attach }
 -- https://github.com/rcjsuen/dockerfile-language-server-nodejs
 lspconfig.dockerls.setup {
     capabilities = capabilities,
-    on_attach = function(client)
-        client.resolved_capabilities.document_formatting = false
-        on_attach(client)
-    end,
+    on_attach = on_attach,
 }
 
 -- https://github.com/hashicorp/terraform-ls
 lspconfig.terraformls.setup {
     capabilities = capabilities,
-    on_attach = function(client)
-        client.resolved_capabilities.document_formatting = false
-        on_attach(client)
-    end,
+    on_attach = on_attach,
     cmd = { "terraform-ls", "serve" },
     filetypes = { "tf" },
 }
@@ -369,10 +356,7 @@ lspconfig.efm.setup {
 
 lspconfig.clangd.setup {
     capabilities = capabilities,
-    on_attach = function(client)
-        client.resolved_capabilities.document_formatting = false
-        on_attach(client)
-    end,
+    on_attach = on_attach,
 }
 
 return M

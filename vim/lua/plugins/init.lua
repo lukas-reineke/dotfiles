@@ -25,6 +25,7 @@ require("packer").startup {
             requires = {
                 "nvim-lua/plenary.nvim",
                 "MunifTanjim/nui.nvim",
+                "kyazdani42/nvim-web-devicons",
             },
             after = { "nvim-web-devicons" },
             config = "require 'plugins.neo-tree'",
@@ -49,6 +50,10 @@ require("packer").startup {
         use {
             "L3MON4D3/LuaSnip",
             config = "require 'plugins.lua-snip'",
+        }
+
+        use {
+            "ThePrimeagen/refactoring.nvim",
         }
 
         use {
@@ -151,11 +156,6 @@ require("packer").startup {
         }
 
         use {
-            "SirVer/ultisnips",
-            config = "require 'plugins.ultisnips'",
-        }
-
-        use {
             "cohama/lexima.vim",
             config = "require 'plugins.lexima'",
         }
@@ -211,7 +211,6 @@ require("packer").startup {
             config = "require 'plugins.clever-f'",
         }
         use "kepbod/quick-scope"
-        use "ggandor/lightspeed.nvim"
 
         use {
             "AndrewRadev/splitjoin.vim",

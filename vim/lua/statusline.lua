@@ -1,3 +1,4 @@
+local utils = require "utils"
 local colors = require("onedark").colors
 
 local components = {
@@ -50,7 +51,7 @@ components.active[2] = {
         hl = { fg = colors.comment_grey, bg = colors.dark_black },
     },
 }
-components.inactive[1] = _G.copy(components.active[1])
+components.inactive[1] = vim.deepcopy(components.active[1])
 components.inactive[1][1].hl.fg = colors.comment_grey
 components.inactive[2] = components.active[2]
 
