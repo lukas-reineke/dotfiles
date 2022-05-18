@@ -1,5 +1,5 @@
 require("indent_blankline").setup {
-    viewport_buffer = 50,
+    viewport_buffer = 100,
     filetype_exclude = {
         "vimwiki",
         "man",

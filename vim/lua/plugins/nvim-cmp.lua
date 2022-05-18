@@ -109,20 +109,28 @@ cmp.setup {
         ghost_text = true,
     },
 }
+
+local cmdline_mappings = {
+    select_next_item = {
+        c = function(fallback)
+            if cmp.visible() then
+                return cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert }(fallback)
+            else
+                return cmp.mapping.complete { reason = cmp.ContextReason.Auto }(fallback)
+            end
+        end,
+    },
+    select_prev_item = {
+        c = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
+    },
+}
+
 cmp.setup.cmdline(":", {
     mapping = {
-        ["<C-n>"] = {
-            c = function(fallback)
-                if cmp.visible() then
-                    return cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert }(fallback)
-                else
-                    return cmp.mapping.complete { reason = cmp.ContextReason.Auto }(fallback)
-                end
-            end,
-        },
-        ["<C-p>"] = {
-            c = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
-        },
+        ["<C-n>"] = cmdline_mappings.select_next_item,
+        ["<Tab>"] = cmdline_mappings.select_next_item,
+        ["<C-p>"] = cmdline_mappings.select_prev_item,
+        ["<S-Tab>"] = cmdline_mappings.select_prev_item,
     },
     sources = cmp.config.sources({
         { name = "path" },
@@ -130,24 +138,20 @@ cmp.setup.cmdline(":", {
         { name = "cmdline" },
     }, {
         { name = "buffer" },
+    }, {
+        { name = "cmdline_history" },
     }),
 })
 cmp.setup.cmdline("/", {
     mapping = {
-        ["<C-n>"] = {
-            c = function(fallback)
-                if cmp.visible() then
-                    return cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert }(fallback)
-                else
-                    return cmp.mapping.complete { reason = cmp.ContextReason.Auto }(fallback)
-                end
-            end,
-        },
-        ["<C-p>"] = {
-            c = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
-        },
+        ["<C-n>"] = cmdline_mappings.select_next_item,
+        ["<Tab>"] = cmdline_mappings.select_next_item,
+        ["<C-p>"] = cmdline_mappings.select_prev_item,
+        ["<S-Tab>"] = cmdline_mappings.select_prev_item,
     },
-    sources = cmp.config.sources {
+    sources = cmp.config.sources({
         { name = "buffer" },
-    },
+    }, {
+        { name = "cmdline_history" },
+    }),
 })

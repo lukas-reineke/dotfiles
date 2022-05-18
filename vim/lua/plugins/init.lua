@@ -41,6 +41,7 @@ require("packer").startup {
                 { "hrsh7th/cmp-nvim-lsp" },
                 { "saadparwaiz1/cmp_luasnip" },
                 { "hrsh7th/cmp-cmdline" },
+                { "dmitmel/cmp-cmdline-history" },
                 { "~/dev/cmp-under-comparator" },
                 { "~/dev/cmp-rg" },
                 { "octaltree/cmp-look" },
@@ -68,7 +69,10 @@ require("packer").startup {
         use "JoosepAlviste/nvim-ts-context-commentstring"
         use "David-Kunz/treesitter-unit"
         use "windwp/nvim-ts-autotag"
-        use "spywhere/detect-language.nvim"
+        use {
+            "spywhere/detect-language.nvim",
+            config = "require 'plugins.dectect-language'",
+        }
 
         use {
             "~/dev/lsp-format.nvim",

@@ -67,16 +67,26 @@ vim.fn.sign_define("DiagnosticSignHint", { text = "", numhl = "DiagnosticHint" }
 
 local on_attach = function(client)
     require("lsp-format").on_attach(client)
-    utils.map("n", "<C-]>", "<cmd>lua vim.lsp.buf.definition()<CR>", { buffer = true })
-    utils.map("n", "<space>&", "<cmd>lua vim.lsp.buf.implementation()<CR>", { buffer = true })
-    utils.map("n", "<CR>", "<cmd>lua vim.lsp.buf.hover()<CR>", { buffer = true })
-    utils.map(
-        "n",
-        "<Space>*",
-        ":lua require('lists').change_active('Quickfix')<CR>:lua vim.lsp.buf.references()<CR>",
-        { buffer = true }
-    )
-    utils.map("n", "<Space>rn", "<cmd>lua require'lsp.rename'.rename()<CR>", { silent = true, buffer = true })
+    if client.supports_method "textDocument/definition" then
+        utils.map("n", "<C-]>", "<cmd>lua vim.lsp.buf.definition()<CR>", { buffer = true })
+    end
+    if client.supports_method "textDocument/implementation" then
+        utils.map("n", "<space>&", "<cmd>lua vim.lsp.buf.implementation()<CR>", { buffer = true })
+    end
+    if client.supports_method "textDocument/hover" then
+        utils.map("n", "<CR>", "<cmd>lua vim.lsp.buf.hover()<CR>", { buffer = true })
+    end
+    if client.supports_method "textDocument/definition" then
+        utils.map(
+            "n",
+            "<Space>*",
+            ":lua require('lists').change_active('Quickfix')<CR>:lua vim.lsp.buf.references()<CR>",
+            { buffer = true }
+        )
+    end
+    if client.supports_method "textDocument/rename" then
+        utils.map("n", "<Space>rn", "<cmd>lua require'lsp.rename'.rename()<CR>", { silent = true, buffer = true })
+    end
     utils.map("n", "<Space>s", "<cmd>lua vim.lsp.buf.signature_help()<CR>", { silent = true, buffer = true })
 
     require("lsp_signature").on_attach {

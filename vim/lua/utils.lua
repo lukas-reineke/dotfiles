@@ -39,8 +39,7 @@ M.map = function(modes, key, result, options)
 end
 
 function _G.P(...)
-    local objects = vim.tbl_map(vim.inspect, { ... })
-    print(unpack(objects))
+    print(unpack(vim.tbl_map(vim.inspect, { ... })))
 end
 
 function _G.R(package)
