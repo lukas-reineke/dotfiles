@@ -45,6 +45,8 @@ require("nvim-treesitter.configs").setup {
                 ["if"] = "@function.inner",
                 ["ac"] = "@comment.outer",
                 ["ic"] = "@comment.inner",
+                ["aa"] = "@parameter.outer",
+                ["ia"] = "@parameter.inner",
             },
         },
     },
