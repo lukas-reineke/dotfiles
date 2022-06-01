@@ -7,7 +7,7 @@ override_git_prompt_colors() {
     if [ -e ~/.rvm/bin/rvm-prompt ]; then
         RUBY_PROMPT='{$(~/.rvm/bin/rvm-prompt i v)}'
     else
-        if command -v rbenv > /dev/null; then
+        if command -v rbenv >/dev/null; then
             RUBY_PROMPT='{$(rbenv version | sed -e "s/ (set.*$//")}'
         fi
     fi
@@ -15,7 +15,7 @@ override_git_prompt_colors() {
 
     function getKubeCluster {
         context=$(kubectl config current-context)
-        if [[ $context == *dev* ]]; then
+        if [[ $context == *stg* ]]; then
             printf " \033[0;34m●"
         elif [[ $context == *prod* ]]; then
             printf " \033[0;31m●"
