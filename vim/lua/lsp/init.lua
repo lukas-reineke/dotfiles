@@ -1,5 +1,4 @@
 require "lsp.handlers"
-require "lsp.formatting"
 local lspconfig = require "lspconfig"
 local utils = require "utils"
 local M = {}
