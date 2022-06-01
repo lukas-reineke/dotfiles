@@ -30,6 +30,10 @@ require("packer").startup {
             after = { "nvim-web-devicons" },
             config = "require 'plugins.neo-tree'",
         }
+        use {
+            "rcarriga/nvim-notify",
+            config = "require 'plugins.nvim_notify'",
+        }
 
         use {
             "hrsh7th/nvim-cmp",
