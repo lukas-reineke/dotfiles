@@ -8,6 +8,10 @@ require("packer").startup {
         use "neovim/nvim-lspconfig"
         use "ray-x/lsp_signature.nvim"
         use "jose-elias-alvarez/nvim-lsp-ts-utils"
+        use {
+            "Kasama/nvim-custom-diagnostic-highlight",
+            config = "require 'plugins.nvim_custom_diagnostic_highlight'",
+        }
 
         use {
             "stevearc/dressing.nvim",

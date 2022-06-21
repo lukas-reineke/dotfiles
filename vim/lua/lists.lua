@@ -8,13 +8,22 @@ M.setup = function()
     vim.g.active_list = quickfix
 end
 
+M.notify_list = function()
+    vim.notify_once(string.format("Switched to %s list", vim.g.active_list), vim.log.levels.INFO, {
+        title = "Lists",
+    })
+end
+
 M.change_active = function(list)
-    vim.g.active_list = list
+    if vim.g.active_list ~= list then
+        vim.g.active_list = list
+        M.notify_list()
+    end
 end
 
 M.toggle_active = function()
     vim.g.active_list = utils._if(vim.g.active_list == quickfix, location, quickfix)
-    print(string.format("%s list", vim.g.active_list))
+    M.notify_list()
 end
 
 M.move = function(direction)

@@ -1,0 +1,3 @@
+return {
+    formatCommand = "opa fmt",
+}

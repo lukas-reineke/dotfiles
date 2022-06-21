@@ -36,12 +36,28 @@ M.symbol_kind_icons = {
     Method = "",
     Variable = "",
     Constant = "",
-    Interface = "",
+    Interface = "練",
     Field = "ﰠ",
     Property = "",
     Struct = "",
     Enum = "",
     Class = "",
+    File = "",
+    Module = "",
+    Namespace = "",
+    Package = "",
+    Constructor = "",
+    String = "",
+    Number = "",
+    Boolean = "◩",
+    Array = "",
+    Object = "",
+    Key = "",
+    Null = "ﳠ",
+    EnumMember = "",
+    Event = "",
+    Operator = "",
+    TypeParameter = "",
 }
 
 M.symbol_kind_colors = {
@@ -54,7 +70,7 @@ M.symbol_kind_colors = {
     Property = "blue",
     Struct = "cyan",
     Enum = "yellow",
-    Class = "red",
+    Class = "magenta",
 }
 
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -161,6 +177,18 @@ lspconfig.tsserver.setup {
         require("nvim-lsp-ts-utils").setup {}
         on_attach(client)
     end,
+    single_file_support = true,
+    init_options = {
+        preferences = {
+            includeCompletionsWithSnippetText = true,
+            includeCompletionsWithInsertText = true,
+        },
+    },
+    settings = {
+        completions = {
+            completeFunctionCalls = true,
+        },
+    },
 }
 
 local function get_lua_runtime()
@@ -188,6 +216,7 @@ lspconfig.sumneko_lua.setup {
             },
             completion = {
                 keywordSnippet = "Disable",
+                callSnippet = "Replace",
             },
             workspace = {
                 ignoreDir = "~/.config/nvim/backups",
@@ -330,6 +359,7 @@ local shellcheck = require "efm/shellcheck"
 local shfmt = require "efm/shfmt"
 local terraform = require "efm/terraform"
 local misspell = require "efm/misspell"
+local opa = require "efm/opa"
 -- https://github.com/mattn/efm-langserver
 lspconfig.efm.setup {
     capabilities = capabilities,
@@ -359,6 +389,7 @@ lspconfig.efm.setup {
             markdown = { prettier },
             sh = { shellcheck, shfmt },
             terraform = { terraform },
+            rego = { opa },
         },
     },
 }
