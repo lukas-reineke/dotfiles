@@ -1,1 +1,3 @@
-require('detect-language').setup {}
+require("detect-language").setup {
+    events = {},
+}

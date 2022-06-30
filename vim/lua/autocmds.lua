@@ -25,6 +25,13 @@ vim.api.nvim_create_autocmd("VimEnter", {
         vim.cmd [[highlight QuickScopeSecondary gui=bold guifg=NONE guibg=NONE]]
     end,
 })
+vim.api.nvim_create_autocmd("FileType", {
+    group = group,
+    pattern = "*",
+    callback = function()
+        vim.opt_local.formatoptions:remove "o"
+    end,
+})
 vim.api.nvim_create_autocmd("BufWritePre", {
     group = group,
     pattern = "*",

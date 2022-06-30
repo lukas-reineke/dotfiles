@@ -24,7 +24,7 @@ require("packer").startup {
         }
 
         use {
-            "~/dev/neo-tree.nvim",
+            "nvim-neo-tree/neo-tree.nvim",
             branch = "v2.x",
             requires = {
                 "nvim-lua/plenary.nvim",
@@ -42,7 +42,7 @@ require("packer").startup {
         use {
             "hrsh7th/nvim-cmp",
             requires = {
-                { "andersevenrud/compe-tmux" },
+                { "andersevenrud/cmp-tmux" },
                 { "hrsh7th/cmp-buffer" },
                 { "hrsh7th/cmp-path" },
                 { "hrsh7th/cmp-nvim-lua" },
