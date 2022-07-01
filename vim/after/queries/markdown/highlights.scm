@@ -21,4 +21,3 @@
     (atx_heading (atx_h5_marker) @MDTSHeadlineMarker) @OrgTSHeadlineLevel5
     (set! "priority" 2050)
 )
-(inline_link (link_text) @MDTSLinkText) @MDTSLink

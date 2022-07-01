@@ -8,7 +8,7 @@ local auto = {
         "ssp",
         fmt(
             [[
-                {logger}("{spacer} ┃ {file}:{line} -> {path} -> {input_rep}")
+                {logger}("{spacer} ┃ {file}:{line} > {path} > {input_rep}")
                 {logger_rep}({input}) // NO_COMMIT
                 {logger_rep}("{spacer}")
             ]],
@@ -19,7 +19,9 @@ local auto = {
                 }),
                 logger_rep = rep(2),
                 input = i(1),
-                input_rep = rep(1),
+                input_rep = f(function(args)
+                    return args[1][1]:gsub('"', '\\"'):gsub("\n", " ")
+                end, 1),
                 spacer = f(function(args)
                     return args[1][1]:gsub(".", "-")
                 end, 1),
@@ -39,7 +41,7 @@ local auto = {
         "ssc",
         fmt(
             [[
-                {logger}("{file}:{line} -> {path} [{counter}]") // NO_COMMIT
+                {logger}("{file}:{line} > {path} [{counter}]") // NO_COMMIT
             ]],
             {
                 logger = c(1, {

@@ -32,6 +32,11 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.opt_local.formatoptions:remove "o"
     end,
 })
+vim.api.nvim_create_autocmd("VimResized", {
+    group = group,
+    pattern = "*",
+    command = "wincmd =",
+})
 vim.api.nvim_create_autocmd("BufWritePre", {
     group = group,
     pattern = "*",

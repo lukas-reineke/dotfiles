@@ -242,6 +242,10 @@ require("packer").startup {
         }
 
         use "famiu/feline.nvim"
+        use {
+            "SmiteshP/nvim-navic",
+            config = "require 'plugins.nvim_navic'",
+        }
 
         use "jparise/vim-graphql"
 

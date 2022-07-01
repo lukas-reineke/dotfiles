@@ -80,8 +80,13 @@ vim.fn.sign_define("DiagnosticSignWarn", { text = "", numhl = "DiagnosticWarn" }
 vim.fn.sign_define("DiagnosticSignInfo", { text = "", numhl = "DiagnosticInfo" })
 vim.fn.sign_define("DiagnosticSignHint", { text = "", numhl = "DiagnosticHint" })
 
-local on_attach = function(client)
+local on_attach = function(client, bufnr)
     require("lsp-format").on_attach(client)
+
+    if client.supports_method "textDocument/documentSymbol" then
+        require("nvim-navic").attach(client, bufnr)
+    end
+
     if client.supports_method "textDocument/definition" then
         utils.map("n", "<C-]>", "<cmd>lua vim.lsp.buf.definition()<CR>", { buffer = true })
     end
