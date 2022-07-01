@@ -13,3 +13,6 @@
 [submodule "lib/vimv"]
 	path = lib/vimv
 	url = https://github.com/thameera/vimv.git
+[submodule "awesome/lain"]
+	path = awesome/lain
+	url = git@github.com:lcpz/lain.git
