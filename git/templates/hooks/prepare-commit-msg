@@ -11,10 +11,5 @@ fi
 
 FIRSTLINE=$(sed -n "1p" "$1")
 if [[ -z $FIRSTLINE ]]; then
-    IDS=$(~/dotfiles/scripts/product-board.sh)
-    if [[ -n $IDS ]]; then
-        echo -e "$BRANCHTYPE: \n\n$IDS $FILE" >"$1"
-    else
-        echo -e "$BRANCHTYPE: $FILE" >"$1"
-    fi
+    echo -e "$BRANCHTYPE: $FILE" >"$1"
 fi
