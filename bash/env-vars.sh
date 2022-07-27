@@ -26,6 +26,7 @@ export EDITOR="$VISUAL"
 export PATH=${PATH}:$HOME/dotfiles/lib/vimv
 export PATH=${PATH}:$HOME/dev/golib/bin
 export PATH=${PATH}:$HOME/dev/go/bin
+export PATH=${PATH}:$HOME/.cargo/bin
 export PATH=${PATH}:$HOME/.local/bin
 # export PATH=${PATH}:$HOME/.local/bin
 # export PATH=${PATH}:$HOME/go/bin
