@@ -1,5 +1,6 @@
 pcall(require, "luarocks.loader")
 local lain = require "lain"
+local utils = require "utils"
 -- local inspect = require "inspect"
 
 local gears = require "gears"
@@ -9,6 +10,23 @@ local beautiful = require "beautiful"
 local naughty = require "naughty"
 
 local home = os.getenv "HOME"
+
+local screens = {
+    top_left = 6,
+    top_middle = 1,
+    top_right = 5,
+    bottom_left = 2,
+    bottom_middle = 3,
+    bottom_right = 4,
+}
+local screen_map = {
+    screens.bottom_middle,
+    screens.bottom_left,
+    screens.bottom_right,
+    screens.top_middle,
+    screens.top_left,
+    screens.top_right,
+}
 
 awful.screen.set_auto_dpi_enabled(true)
 
@@ -50,24 +68,26 @@ awful.layout.layouts = {
 }
 
 awful.screen.connect_for_each_screen(function(s)
-    if s.index == 2 or s.index == 4 then
-        awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.suit.tile.bottom)
-    else
-        awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+    for i = 1, 9 do
+        local layout = awful.layout.layouts[1]
+        if s.index == screens.bottom_left or s.index == screens.bottom_right then
+            layout = awful.layout.suit.tile.bottom
+        end
+        local master_width_factor = 0.5
+        if s.index == screens.bottom_middle then
+            master_width_factor = 0.7
+        end
+        awful.tag.add(tostring(i), {
+            layout = layout,
+            master_width_factor = master_width_factor,
+            screen = s,
+            selected = i == 1,
+        })
     end
 end)
 
-local function next_non_empty_tag()
-    for _ = 1, 9 do
-        awful.tag.viewnext()
-        if #awful.screen.focused().selected_tag:clients() > 0 then
-            break
-        end
-    end
-end
-
 local globalkeys = gears.table.join(
-    awful.key({ modkey }, "Tab", next_non_empty_tag),
+    awful.key({ modkey }, "Tab", lain.util.tag_view_nonempty),
 
     awful.key({}, "XF86AudioPlay", function()
         awful.spawn "playerctl -p spotify play-pause"
@@ -142,7 +162,7 @@ local globalkeys = gears.table.join(
     awful.key({ modkey }, "u", awful.client.urgent.jumpto),
 
     awful.key({ modkey }, "Return", function()
-        awful.spawn "kitty --title kitty -e tmuxp load ~/dotfiles/tmux/tmuxinator/dotfiles.yml -y"
+        awful.spawn(home .. "/.local/bin/kitty --title kitty -e tmux new -A -s empty")
     end),
     awful.key({ modkey }, "d", function()
         awful.spawn "rofi -show drun -show-icons"
@@ -153,7 +173,7 @@ local globalkeys = gears.table.join(
     awful.key({ modkey }, "i", function()
         local layouts = ""
         for i, layout in ipairs(awful.layout.layouts) do
-            layouts = layouts .. layout.name
+            layouts = layouts .. utils.titlecase(layout.name)
             if i ~= #awful.layout.layouts then
                 layouts = layouts .. "\n"
             end
@@ -162,7 +182,7 @@ local globalkeys = gears.table.join(
             string.format([[echo -e '%s' | rofi -dmenu -i -p "Layout:"]], layouts),
             function(name)
                 for _, layout in ipairs(awful.layout.layouts) do
-                    if layout.name == name:gsub("\n", "") then
+                    if layout.name == name:gsub("\n", ""):lower() then
                         awful.layout.set(layout)
                         break
                     end
@@ -187,7 +207,16 @@ local globalkeys = gears.table.join(
 
 local clientkeys = gears.table.join(
     awful.key({ modkey }, "f", function(c)
-        c.fullscreen = not c.fullscreen
+        local scr = awful.screen.focused()
+        local tag = scr.selected_tag
+        if tag._old_layout then
+            tag.layout = tag._old_layout
+            tag._old_layout = nil
+        else
+            tag._old_layout = tag.layout
+            tag.layout = awful.layout.suit.max.fullscreen
+        end
+
         c:raise()
     end),
     awful.key({ modkey, shift }, "q", function(c)
@@ -210,6 +239,16 @@ local clientkeys = gears.table.join(
         local scr = awful.screen.focused()
         local tag = scr.selected_tag
         tag.gap_single_client = not tag.gap_single_client
+        awful.layout.arrange(scr)
+    end),
+    awful.key({ modkey }, "p", function()
+        local scr = awful.screen.focused()
+        local tag = scr.selected_tag
+        if tag.useless_gap == 0 then
+            tag.useless_gap = beautiful.useless_gap
+        else
+            tag.useless_gap = 0
+        end
         awful.layout.arrange(scr)
     end),
 
@@ -294,8 +333,6 @@ for i = 1, 9 do
     )
 end
 
-local screen_map = { 3, 2, 4, 1, 6, 5 }
-
 for i = 1, 6 do
     globalkeys = gears.table.join(
         globalkeys,
@@ -347,12 +384,17 @@ awful.rules.rules = {
             },
             name = {
                 "Event Tester", -- xev.
+                "Save File",
+                "Open Files",
             },
             role = {
                 "pop-up", -- e.g. Google Chrome's (detached) Developer Tools.
             },
         },
         properties = { floating = true },
+        callback = function(c)
+            awful.placement.centered(c, {})
+        end,
     },
 
     { rule_any = { type = { "normal", "dialog" } }, properties = { titlebars_enabled = true } },
@@ -387,6 +429,19 @@ awful.rules.rules = {
             tag = "2",
             switchtotag = true,
         },
+    },
+
+    {
+        rule = {
+            class = "Sxiv",
+        },
+        properties = {
+            floating = true,
+        },
+        callback = function(c)
+            awful.placement.scale(c, { to_percent = 0.7 })
+            awful.placement.centered(c, {})
+        end,
     },
 }
 
