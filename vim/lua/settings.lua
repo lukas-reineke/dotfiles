@@ -25,7 +25,7 @@ opt.undolevels = 10000
 vim.o.clipboard = "unnamedplus"
 vim.o.completeopt = "menu,menuone,noinsert,noselect"
 vim.o.confirm = true
-vim.o.diffopt = "internal,filler,closeoff,foldcolumn:0,hiddenoff,algorithm:patience"
+vim.o.diffopt = "internal,filler,closeoff,foldcolumn:1,hiddenoff,algorithm:patience"
 vim.o.emoji = false
 vim.o.foldclose = "all"
 vim.o.foldopen = "all"
@@ -72,6 +72,7 @@ vim.wo.number = true
 vim.wo.relativenumber = true
 vim.wo.cursorline = true
 vim.wo.winhighlight = "NormalNC:WinNormalNC"
+vim.wo.spell = true
 vim.opt.list = true
 vim.opt.listchars = {
     space = "⋅",
@@ -80,10 +81,13 @@ vim.opt.listchars = {
     trail = "•",
     extends = "❯",
     precedes = "❮",
-    nbsp = "_",
+    nbsp = "ﰸ",
 }
 vim.opt.fillchars = {
     fold = " ",
+    foldsep = " ",
+    foldopen = "",
+    foldclose = "",
     diff = "╱",
 }
 
@@ -104,6 +108,7 @@ vim.g.vim_json_conceal = false
 vim.g.mapleader = "\\<Space>"
 
 vim.diagnostic.config {
+    virtual_lines = false,
     virtual_text = {
         spacing = 3,
         prefix = " ",

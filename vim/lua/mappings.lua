@@ -18,6 +18,20 @@ map("n", leader .. "N", ":e %:h/", { silent = false })
 map("n", leader .. "of", "<CMD>lua require('orgmode').action('capture.prompt')<CR>")
 map("n", leader .. "oa", "<CMD>lua require('orgmode').action('agenda.prompt')<CR>")
 
+local virtual_lines_enabled = false
+vim.keymap.set("n", leader .. "dl", function()
+    virtual_lines_enabled = not virtual_lines_enabled
+    vim.diagnostic.config {
+        virtual_lines = virtual_lines_enabled,
+        virtual_text = not virtual_lines_enabled and {
+            spacing = 3,
+            prefix = " ",
+            severity_sort = true,
+            source = "if_many",
+        },
+    }
+end)
+
 map("n", "<UP>", ":lua require('lists').move('up')<CR>")
 map("n", "<DOWN>", ":lua require('lists').move('down')<CR>")
 map("n", "<LEFT>", ":lua require('lists').move('left')<CR>")

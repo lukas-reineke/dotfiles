@@ -1,5 +1,6 @@
 require("indent_blankline").setup {
     viewport_buffer = 100,
+    char = "▎",
     filetype_exclude = {
         "vimwiki",
         "man",

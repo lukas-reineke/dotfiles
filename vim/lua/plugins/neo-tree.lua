@@ -10,13 +10,19 @@ require("neo-tree.sources.common.components").diagnostics = function(config, nod
             Error = " ",
             Warn = " ",
             Info = " ",
-            Hint = " ",
+            Hint = " ",
         })[diag_state.severity_string],
         highlight = "Diagnostic" .. diag_state.severity_string,
     }
 end
 
 require("neo-tree").setup {
+    sources = {
+        "filesystem",
+        "buffers",
+        "git_status",
+        "diagnostics",
+    },
     close_if_last_window = true,
     default_component_configs = {
         indent = {

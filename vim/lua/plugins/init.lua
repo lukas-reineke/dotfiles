@@ -7,10 +7,19 @@ require("packer").startup {
 
         use "neovim/nvim-lspconfig"
         use "ray-x/lsp_signature.nvim"
-        use "jose-elias-alvarez/nvim-lsp-ts-utils"
         use {
             "Kasama/nvim-custom-diagnostic-highlight",
             config = "require 'plugins.nvim_custom_diagnostic_highlight'",
+        }
+        use {
+            "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+            config = "require 'plugins.lsp_lines'",
+        }
+
+        use {
+            "kevinhwang91/nvim-ufo",
+            requires = "kevinhwang91/promise-async",
+            config = "require 'plugins.nvim_ufo'",
         }
 
         use {
@@ -30,6 +39,7 @@ require("packer").startup {
                 "nvim-lua/plenary.nvim",
                 "MunifTanjim/nui.nvim",
                 "kyazdani42/nvim-web-devicons",
+                "mrbjarksen/neo-tree-diagnostics.nvim",
             },
             after = { "nvim-web-devicons" },
             config = "require 'plugins.neo-tree'",
@@ -76,6 +86,10 @@ require("packer").startup {
         use "RRethy/nvim-treesitter-textsubjects"
         use "JoosepAlviste/nvim-ts-context-commentstring"
         use "David-Kunz/treesitter-unit"
+        use {
+            "lewis6991/spellsitter.nvim",
+            config = "require 'plugins.spellsitter'",
+        }
         use "windwp/nvim-ts-autotag"
         use {
             "spywhere/detect-language.nvim",

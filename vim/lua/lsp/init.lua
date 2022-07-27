@@ -152,36 +152,17 @@ lspconfig.gopls.setup {
     },
 }
 
--- https://github.com/palantir/python-language-server
--- lspconfig.pylsp.setup {
---     capabilities = capabilities,
---     on_attach = on_attach,
---     settings = {
---         pylsp = {
---             plugins = {
---                 pycodestyle = {
---                     enabled = false,
---                     ignore = {
---                         "E501",
---                     },
---                 },
---                 jedi_completion = {
---                     include_params = true,
---                 },
---             },
---         },
---     },
--- }
+lspconfig.rust_analyzer.setup {
+    capabilities = capabilities,
+    on_attach = on_attach,
+}
 
 lspconfig.pyright.setup { capabilities = capabilities, on_attach = on_attach }
 
 -- https://github.com/theia-ide/typescript-language-server
 lspconfig.tsserver.setup {
     capabilities = capabilities,
-    on_attach = function(client)
-        require("nvim-lsp-ts-utils").setup {}
-        on_attach(client)
-    end,
+    on_attach = on_attach,
     single_file_support = true,
     init_options = {
         preferences = {

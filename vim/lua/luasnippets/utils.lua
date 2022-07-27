@@ -11,7 +11,7 @@ M.path = function(ts)
             return navic.get_location { highlight = false }
         end
         local cursor_node = ts_utils.get_node_at_cursor()
-        local debug_path = ts:get_debug_path(cursor_node)
+        local debug_path = ts and ts:get_debug_path(cursor_node)
         local path = {}
         for i = #debug_path, 1, -1 do
             table.insert(path, tostring(debug_path[i]))

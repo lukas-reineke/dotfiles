@@ -67,7 +67,7 @@ components.active[2] = {
     },
     {
         provider = "diagnostic_hints",
-        icon = "  ",
+        icon = "  ",
         hl = { fg = colors.comment_grey, bg = colors.dark_black },
     },
 }

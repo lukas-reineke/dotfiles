@@ -2,8 +2,8 @@ require("org-bullets").setup {
     concealcursor = true,
     symbols = {
         checkboxes = {
-            cancelled = { "◢", "OrgCancelled" },
-            done = { "■", "OrgDone" },
+            half = { "", "OrgCancelled" },
+            done = { "", "OrgDone" },
             todo = { " ", "OrgTODO" },
         },
     },
