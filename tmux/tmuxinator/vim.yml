@@ -61,10 +61,22 @@ windows:
           - tmux resize-pane -Z
           - v
       - cl
-  - window_name: formatter.nvim
+  - window_name: lsp-format.nvim
     focus: True
     layout: main-horizontal
-    start_directory: ~/dev/formatter.nvim
+    start_directory: ~/dev/lsp-format.nvim
+    shell_command_before:
+      - cd .
+    panes:
+      - focus: True
+        shell_command:
+          - tmux resize-pane -Z
+          - v
+      - cl
+  - window_name: virt-column.nvim
+    focus: True
+    layout: main-horizontal
+    start_directory: ~/dev/virt-column.nvim
     shell_command_before:
       - cd .
     panes:
