@@ -8,4 +8,6 @@
 *.gif
 *.zip
 *.rar
+*.lock
+*.svg
 package-lock.json

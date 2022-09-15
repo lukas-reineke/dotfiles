@@ -29,7 +29,6 @@ shopt -s globstar
 #     color_prompt=
 # fi
 
-
 # # enable programmable completion features
 # if ! shopt -oq posix; then
 #     if [ -f /usr/share/bash-completion/bash_completion ]; then
@@ -38,7 +37,6 @@ shopt -s globstar
 #         . /etc/bash_completion
 #     fi
 # fi
-
 
 ## external
 # git completion
@@ -54,7 +52,6 @@ fi
 # if [ -f ~/dotfiles/lib/npm-completion.bash ]; then
 #     source ~/dotfiles/lib/npm-completion.bash
 # fi
-
 
 # pip bash completion
 # _pip_completion()
@@ -78,8 +75,8 @@ if [ -f ~/dotfiles/lib/bash-git-prompt/gitprompt.sh ]; then
 fi
 
 # ssh
-if ! pgrep -u "$USER" ssh-agent > /dev/null; then
-    ssh-agent > ~/.ssh-agent-thing
+if ! pgrep -u "$USER" ssh-agent >/dev/null; then
+    ssh-agent >~/.ssh-agent-thing
 fi
 if [[ "$SSH_AGENT_PID" == "" ]]; then
     eval "$(<~/.ssh-agent-thing)"
@@ -138,8 +135,8 @@ fi
 #     source ~/dotfiles/lib/cd-history.bash
 # fi
 
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"

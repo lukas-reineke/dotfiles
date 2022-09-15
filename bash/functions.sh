@@ -25,10 +25,10 @@ function cs {
             source .env.sh
             echo -e "${RED}➤ ${NC}Added ${PWD##*/} environment variables\n"
         fi
-        if [ -f ./.nvmrc ]; then
-            nvm use &>/dev/null
-            echo -e "${GRN}➤ ${NC}Use local Node version $(node --version)\n"
-        fi
+        # if [ -f ./.nvmrc ]; then
+        #     nvm use &>/dev/null
+        #     echo -e "${GRN}➤ ${NC}Use local Node version $(node --version)\n"
+        # fi
     elif [[ -f "$*" ]]; then
         echo -e "${RED}$* is not a directory${NC}" 1>&2
         local dir=$(dirname "$*")
@@ -359,20 +359,27 @@ function kc() {
 }
 
 function klogs() {
+    local NAMESPACE
+    NAMESPACE=$(
+        kubectl get namespaces |
+            tail -n +2 |
+            fzf --reverse -m |
+            cut -f 1 -d ' '
+    )
     local PODS
     PODS=$(
-        kubectl get pods |
+        kubectl get pods --namespace "$NAMESPACE" |
             tail -n +2 |
             fzf --reverse -m |
             cut -f 1 -d ' '
     )
     if [[ -n $PODS ]]; then
         for pod in $PODS; do
-            echo -e "\n\n"${MGT}""${BOLD}"$pod"${NC}"\n"
+            echo -e "\n\n$MGT$BOLD$pod$NC [$BLU$BOLD$NAMESPACE$NC]\n"
             if [[ -n $1 ]]; then
-                kubectl logs "$pod" | tail -n"$1"
+                kubectl logs --namespace "$NAMESPACE" "$pod" | tail -n"$1"
             else
-                kubectl logs "$pod"
+                kubectl logs --namespace "$NAMESPACE" "$pod"
             fi
         done
     fi
