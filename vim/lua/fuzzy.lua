@@ -43,7 +43,9 @@ local icon_color_map = {
     [""] = "cyan",
     [""] = "dark_grey",
     [""] = "dark_grey",
+    [""] = "white",
     [""] = "white",
+    [""] = "yellow",
     [""] = "cyan",
     [""] = "blue",
     [""] = "yellow",
@@ -52,11 +54,13 @@ local icon_color_map = {
     [""] = "green",
     [""] = "blue",
     [""] = "cyan",
+    [""] = "yellow",
+    [""] = "blue",
     [""] = "yellow",
-    ["M"] = "yellow",
-    ["D"] = "red",
-    ["A"] = "green",
-    ["?"] = "blue",
+    [""] = "yellow",
+    ["✖"] = "red",
+    ["✚"] = "green",
+    [""] = "blue",
 }
 
 local get_color_icon = function(icon)
@@ -64,13 +68,20 @@ local get_color_icon = function(icon)
 end
 
 local get_git_icon = function(file, diff_files, untracked_files)
-    if diff_files[file] then
-        return diff_files[file]
-    end
+    local git_icon_map = {
+        ["M"] = "",
+        ["D"] = "✖",
+        ["A"] = "✚",
+        ["?"] = "",
+    }
+    local icon = nbs
     if untracked_files[file] then
-        return untracked_files[file]
+        icon = untracked_files[file]
     end
-    return nbs
+    if diff_files[file] then
+        icon = diff_files[file]
+    end
+    return git_icon_map[icon] or icon
 end
 
 local get_window_options = function()
@@ -93,17 +104,14 @@ M.fzf_files = function(files, prompt, show_git)
             files[i] = get_color_icon(git_icon) .. nbs .. get_color_icon(icon) .. " " .. files[i]
         end
 
-        local preview = ""
+        local preview = "--preview 'bat --italic-text=always --style=numbers --color always {2..-1}'"
         if show_git then
             preview =
                 "--preview 'bat --italic-text=always --style=numbers,changes --color always {2..-1} | grep -A5 -B5 --color=never -P \"^..\\d+.{0,7}[+|_|~]\"'"
         end
 
-        local result = fzf.fzf(
-            files,
-            string.format("--ansi --multi %s --prompt %s/", preview, prompt),
-            get_window_options()
-        )
+        local result =
+            fzf.fzf(files, string.format("--ansi --multi %s --prompt %s/", preview, prompt), get_window_options())
 
         if not result then
             return

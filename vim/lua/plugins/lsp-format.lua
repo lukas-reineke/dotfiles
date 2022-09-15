@@ -1,8 +1,11 @@
 local prettier = {
-    tabWidth = 4,
+    tabWidth = function()
+        return vim.opt.shiftwidth:get()
+    end,
     singleQuote = true,
     trailingComma = "all",
     configPrecedence = "prefer-file",
+    exclude = { "tsserver", "jsonls" },
 }
 require("lsp-format").setup {
     typescript = prettier,
@@ -14,10 +17,15 @@ require("lsp-format").setup {
     scss = prettier,
     html = prettier,
     yaml = {
-        tabWidth = 2,
+        tabWidth = function()
+            return vim.opt.shiftwidth:get()
+        end,
         singleQuote = true,
         trailingComma = "all",
         configPrecedence = "prefer-file",
+    },
+    python = {
+        lineLength = 120,
     },
     markdown = prettier,
     sh = {

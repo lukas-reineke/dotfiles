@@ -15,6 +15,54 @@ require("packer").startup {
             "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
             config = "require 'plugins.lsp_lines'",
         }
+        use {
+            "lvimuser/lsp-inlayhints.nvim",
+            config = "require 'plugins.lsp_inlayhints'",
+        }
+
+        use {
+            "smjonas/inc-rename.nvim",
+            config = "require 'plugins.inc_rename'",
+        }
+
+        use {
+            "Saecki/crates.nvim",
+            requires = { "nvim-lua/plenary.nvim" },
+            config = "require 'plugins.crates'",
+        }
+
+        use {
+            "mfussenegger/nvim-dap",
+            config = "require 'plugins.nvim_dap'",
+        }
+        use {
+            "rcarriga/nvim-dap-ui",
+            config = "require 'plugins.nvim_dap_ui'",
+        }
+        use {
+            "theHamsta/nvim-dap-virtual-text",
+            config = "require 'plugins.nvim_dap_virtual_text'",
+        }
+        use {
+            "leoluz/nvim-dap-go",
+            config = "require 'plugins.nvim_dap_go'",
+        }
+        use {
+            "mfussenegger/nvim-dap-python",
+            config = "require 'plugins.nvim_dap_python'",
+        }
+        use "jbyuki/one-small-step-for-vimkind"
+
+        use {
+            "nvim-neotest/neotest",
+            requires = {
+                "nvim-lua/plenary.nvim",
+                "nvim-treesitter/nvim-treesitter",
+                "antoinemadec/FixCursorHold.nvim",
+                "haydenmeade/neotest-jest",
+            },
+            config = "require 'plugins.neotest'",
+        }
 
         use {
             "kevinhwang91/nvim-ufo",
@@ -63,6 +111,8 @@ require("packer").startup {
                 { "~/dev/cmp-under-comparator" },
                 { "~/dev/cmp-rg" },
                 { "octaltree/cmp-look" },
+                { "rcarriga/cmp-dap" },
+                { "petertriho/cmp-git" },
             },
             config = "require 'plugins.nvim-cmp'",
         }
@@ -70,6 +120,8 @@ require("packer").startup {
             "L3MON4D3/LuaSnip",
             config = "require 'plugins.lua-snip'",
         }
+
+        use "folke/lua-dev.nvim"
 
         use {
             "ThePrimeagen/refactoring.nvim",
@@ -94,6 +146,10 @@ require("packer").startup {
         use {
             "spywhere/detect-language.nvim",
             config = "require 'plugins.dectect-language'",
+        }
+        use {
+            "m-demare/hlargs.nvim",
+            config = "require 'plugins.hlargs-nvim'",
         }
 
         use {
@@ -124,6 +180,7 @@ require("packer").startup {
             "~/dev/headlines.nvim",
             config = "require 'plugins.headlines'",
         }
+        use "jghauser/follow-md-links.nvim"
         use {
             "~/dev/virt-column.nvim",
             config = "require 'plugins.virt-column'",
@@ -153,6 +210,8 @@ require("packer").startup {
             "numToStr/Comment.nvim",
             config = "require 'plugins.comment'",
         }
+
+        use { "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" }
 
         use {
             "rmagatti/auto-session",
@@ -202,8 +261,8 @@ require("packer").startup {
         }
 
         use {
-            "mileszs/ack.vim",
-            config = "require 'plugins.ack'",
+            "andythigpen/nvim-coverage",
+            config = "require 'plugins.nvim_coverage'",
         }
 
         use {

@@ -32,6 +32,19 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.opt_local.formatoptions:remove "o"
     end,
 })
+vim.api.nvim_create_autocmd("FileType", {
+    group = group,
+    pattern = "dapui_*",
+    callback = function()
+        vim.opt_local.spell = false
+    end,
+})
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "dap-repl",
+    callback = function(args)
+        vim.api.nvim_buf_set_option(args.buf, "buflisted", false)
+    end,
+})
 vim.api.nvim_create_autocmd("VimResized", {
     group = group,
     pattern = "*",
@@ -51,6 +64,17 @@ vim.api.nvim_create_autocmd("User", {
     group = group,
     pattern = "FugitiveBlob",
     callback = function()
-        vim.opt.winhighlight:append "DiffAdd:DiffDeleteOld"
+        vim.opt.winhighlight = "DiffAdd:DiffDeleteOld"
+    end,
+})
+vim.api.nvim_create_autocmd("BufEnter", {
+    group = group,
+    pattern = "Cargo.toml",
+    callback = function()
+        vim.keymap.set("n", "<CR>", require("crates").show_popup, {
+            noremap = true,
+            silent = true,
+            buffer = true,
+        })
     end,
 })

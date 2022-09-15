@@ -1,5 +1,7 @@
 local cmp = require "cmp"
 local cmp_compare = require "cmp_compare"
+local dev_icons = require "nvim-web-devicons"
+require("cmp_git").setup()
 cmp.setup {
     preselect = cmp.PreselectMode.None,
     completion = {
@@ -54,6 +56,9 @@ cmp.setup {
     sources = {
         { name = "path", priority_weight = 110 },
         { name = "orgmode", priority_weight = 110 },
+        { name = "crates", priority_weight = 110 },
+        { name = "dap", priority_weight = 110 },
+        { name = "git", priority_weight = 110 },
         { name = "nvim_lsp", max_item_count = 20, priority_weight = 100 },
         { name = "nvim_lua", priority_weight = 90 },
         { name = "luasnip", priority_weight = 80 },
@@ -89,10 +94,18 @@ cmp.setup {
                 tmux = "[Tmux]",
                 look = "[Look]",
                 rg = "[RG]",
+                crates = "[Crates]",
+                orgmode = "[ORG]",
+                dap = "[DAP]",
             }
             vim_item.menu = menu_map[entry.source.name] or string.format("[%s]", entry.source.name)
 
-            vim_item.kind = vim.lsp.protocol.CompletionItemKind[vim_item.kind]
+            if vim_item.kind == "File" then
+                vim_item.kind = dev_icons.get_icon(vim_item.word, nil, { default = true }) .. " [file]"
+            else
+                vim_item.kind = vim.lsp.protocol.CompletionItemKind[vim_item.kind]
+            end
+
             return vim_item
         end,
     },

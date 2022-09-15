@@ -5,7 +5,7 @@ local quickfix = "Quickfix"
 local location = "Location"
 
 M.setup = function()
-    vim.g.active_list = quickfix
+    vim.g.active_list = location
 end
 
 M.notify_list = function()

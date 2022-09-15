@@ -21,3 +21,6 @@ require("virt-column").setup_buffer { virtcolumn = "" }
 vim.opt_local.spell = true
 vim.opt_local.list = false
 vim.opt_local.wrap = false
+vim.opt_local.number = false
+vim.opt_local.relativenumber = false
+vim.opt_local.signcolumn = "no"

@@ -80,10 +80,16 @@ vim.fn.sign_define("DiagnosticSignWarn", { text = "", numhl = "DiagnosticWarn" }
 vim.fn.sign_define("DiagnosticSignInfo", { text = "", numhl = "DiagnosticInfo" })
 vim.fn.sign_define("DiagnosticSignHint", { text = "", numhl = "DiagnosticHint" })
 
+local group = vim.api.nvim_create_augroup("MyLSPAutogroup", {})
+
 local on_attach = function(client, bufnr)
     require("lsp-format").on_attach(client)
 
-    if client.supports_method "textDocument/documentSymbol" then
+    if client.supports_method "textDocument/inlayHint" then
+        require("lsp-inlayhints").on_attach(client, bufnr)
+    end
+
+    if client.supports_method "textDocument/documentSymbol" and client.name ~= "bashls" then
         require("nvim-navic").attach(client, bufnr)
     end
 
@@ -105,8 +111,30 @@ local on_attach = function(client, bufnr)
         )
     end
     if client.supports_method "textDocument/rename" then
-        utils.map("n", "<Space>rn", "<cmd>lua require'lsp.rename'.rename()<CR>", { silent = true, buffer = true })
+        -- utils.map("n", "<Space>rn", "<cmd>lua require'lsp.rename'.rename()<CR>", { silent = true, buffer = true })
+        vim.keymap.set("n", "<Space>rn", function()
+            return ":IncRename " .. vim.fn.expand "<cword>"
+        end, { expr = true })
     end
+
+    if client.supports_method "textDocument/codeLens" then
+        vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
+            group = group,
+            pattern = "<buffer>",
+            callback = function()
+                vim.lsp.codelens.refresh()
+            end,
+        })
+        -- dirty hack
+        local timer = vim.loop.new_timer()
+        timer:start(300, 0, function()
+            timer:close()
+            vim.schedule_wrap(function()
+                vim.lsp.codelens.refresh()
+            end)()
+        end)
+    end
+
     utils.map("n", "<Space>s", "<cmd>lua vim.lsp.buf.signature_help()<CR>", { silent = true, buffer = true })
 
     require("lsp_signature").on_attach {
@@ -148,11 +176,34 @@ lspconfig.gopls.setup {
                 unusedparams = true,
                 unusewrites = true,
             },
+            hints = {
+                assignVariableTypes = true,
+                compositeLiteralFields = true,
+                constantValues = true,
+                functionTypeParameters = true,
+                parameterNames = true,
+                rangeVariableTypes = true,
+            },
         },
     },
 }
 
 lspconfig.rust_analyzer.setup {
+    capabilities = capabilities,
+    on_attach = on_attach,
+    settings = {
+        ["rust-analyzer"] = {
+            lens = {
+                enabled = true,
+            },
+            checkOnSave = {
+                command = "clippy",
+            },
+        },
+    },
+}
+
+lspconfig.taplo.setup {
     capabilities = capabilities,
     on_attach = on_attach,
 }
@@ -174,6 +225,28 @@ lspconfig.tsserver.setup {
         completions = {
             completeFunctionCalls = true,
         },
+        typescript = {
+            inlayHints = {
+                includeInlayParameterNameHints = "all",
+                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                includeInlayFunctionParameterTypeHints = true,
+                includeInlayVariableTypeHints = true,
+                includeInlayPropertyDeclarationTypeHints = true,
+                includeInlayFunctionLikeReturnTypeHints = true,
+                includeInlayEnumMemberValueHints = true,
+            },
+        },
+        javascript = {
+            inlayHints = {
+                includeInlayParameterNameHints = "all",
+                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                includeInlayFunctionParameterTypeHints = true,
+                includeInlayVariableTypeHints = true,
+                includeInlayPropertyDeclarationTypeHints = true,
+                includeInlayFunctionLikeReturnTypeHints = true,
+                includeInlayEnumMemberValueHints = true,
+            },
+        },
     },
 }
 
@@ -190,6 +263,7 @@ local function get_lua_runtime()
 
     return result
 end
+
 lspconfig.sumneko_lua.setup {
     capabilities = capabilities,
     on_attach = on_attach,
@@ -198,17 +272,20 @@ lspconfig.sumneko_lua.setup {
         Lua = {
             runtime = {
                 version = "LuaJIT",
-                path = { "lua/?.lua", "lua/?/init.lua" },
+                path = { "?.lua", "?/init.lua" },
+            },
+            telemetry = {
+                enable = false,
             },
             completion = {
                 keywordSnippet = "Disable",
                 callSnippet = "Replace",
             },
-            workspace = {
+            workspace = vim.tbl_deep_extend("force", require("lua-dev").setup().settings.Lua.workspace, {
                 ignoreDir = "~/.config/nvim/backups",
                 maxPreload = 10000,
                 preloadFileSize = 10000,
-            },
+            }),
             diagnostics = {
                 enable = true,
                 globals = {
@@ -250,7 +327,7 @@ lspconfig.vimls.setup { capabilities = capabilities, on_attach = on_attach }
 lspconfig.jsonls.setup {
     capabilities = capabilities,
     on_attach = on_attach,
-    cmd = { "json-languageserver", "--stdio" },
+    cmd = { "vscode-json-languageserver", "--stdio" },
     settings = {
         json = {
             -- Schemas https://www.schemastore.org
@@ -346,41 +423,51 @@ local shfmt = require "efm/shfmt"
 local terraform = require "efm/terraform"
 local misspell = require "efm/misspell"
 local opa = require "efm/opa"
+local cbfmt = require "efm/cbfmt"
 -- https://github.com/mattn/efm-langserver
+
+local languages = {
+    ["="] = { misspell },
+    vim = { vint },
+    lua = { stylua, luacheck },
+    go = { staticcheck, goimports, go_vet },
+    python = { black, isort, flake8, mypy },
+    typescript = { prettier, eslint },
+    javascript = { prettier, eslint },
+    typescriptreact = { prettier, eslint },
+    javascriptreact = { prettier, eslint },
+    yaml = { prettier },
+    json = { prettier },
+    html = { prettier },
+    scss = { prettier },
+    css = { prettier },
+    markdown = { prettier, cbfmt },
+    org = { cbfmt },
+    sh = { shellcheck, shfmt },
+    terraform = { terraform },
+    rego = { opa },
+}
 lspconfig.efm.setup {
     capabilities = capabilities,
     cmd = { "/home/lukas/dev/golib/bin/efm-langserver" },
     on_attach = on_attach,
     init_options = { documentFormatting = true },
     root_dir = vim.loop.cwd,
+    filetypes = vim.tbl_keys(languages),
     settings = {
         rootMarkers = { ".git/" },
         lintDebounce = 100,
         -- logLevel = 5,
-        languages = {
-            ["="] = { misspell },
-            vim = { vint },
-            lua = { stylua, luacheck },
-            go = { staticcheck, goimports, go_vet },
-            python = { black, isort, flake8, mypy },
-            typescript = { prettier, eslint },
-            javascript = { prettier, eslint },
-            typescriptreact = { prettier, eslint },
-            javascriptreact = { prettier, eslint },
-            yaml = { prettier },
-            json = { prettier },
-            html = { prettier },
-            scss = { prettier },
-            css = { prettier },
-            markdown = { prettier },
-            sh = { shellcheck, shfmt },
-            terraform = { terraform },
-            rego = { opa },
-        },
+        languages = languages,
     },
 }
 
 lspconfig.clangd.setup {
+    capabilities = capabilities,
+    on_attach = on_attach,
+}
+
+lspconfig.marksman.setup {
     capabilities = capabilities,
     on_attach = on_attach,
 }

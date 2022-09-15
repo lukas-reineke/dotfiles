@@ -25,6 +25,9 @@ components.active[1] = {
         left_sep = {
             str = " ",
             always_visible = false,
+            hl = {
+                bg = colors.dark_black,
+            },
         },
         provider = function()
             local location = navic.get_location()
@@ -67,7 +70,7 @@ components.active[2] = {
     },
     {
         provider = "diagnostic_hints",
-        icon = "  ",
+        icon = " ﴞ ",
         hl = { fg = colors.comment_grey, bg = colors.dark_black },
     },
 }

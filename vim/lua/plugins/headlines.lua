@@ -8,9 +8,6 @@ require("headlines").setup {
             "HeadlineYellow",
         },
     },
-    vimwiki = {
-        headline_highlights = { "HeadlineGreen", "HeadlineYellow", "HeadlineBlue" },
-    },
     org = {
         headline_highlights = {
             "HeadlineGreen",
@@ -19,9 +16,5 @@ require("headlines").setup {
             "HeadlinePurple",
             "HeadlineYellow",
         },
-    },
-    git = {
-        headline_pattern = "^@@",
-        headline_highlights = { "HeadlinePurple" },
     },
 }

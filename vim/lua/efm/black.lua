@@ -1,4 +1,4 @@
 return {
-    formatCommand = "black --fast -",
+    formatCommand = "black --fast ${-l:lineLength} -",
     formatStdin = true,
 }

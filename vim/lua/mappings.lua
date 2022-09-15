@@ -1,4 +1,5 @@
 local map = require("utils").map
+local git = require "git"
 local leader = "<space>"
 
 map("n", leader .. leader, ":<C-u>exe v:count ? v:count . 'b' : 'b' . (bufloaded(0) ? '#' : 'n')<CR>")
@@ -19,7 +20,7 @@ map("n", leader .. "of", "<CMD>lua require('orgmode').action('capture.prompt')<C
 map("n", leader .. "oa", "<CMD>lua require('orgmode').action('agenda.prompt')<CR>")
 
 local virtual_lines_enabled = false
-vim.keymap.set("n", leader .. "dl", function()
+vim.keymap.set("n", leader .. "ll", function()
     virtual_lines_enabled = not virtual_lines_enabled
     vim.diagnostic.config {
         virtual_lines = virtual_lines_enabled,
@@ -31,6 +32,23 @@ vim.keymap.set("n", leader .. "dl", function()
         },
     }
 end)
+
+vim.keymap.set("n", leader .. "dc", require("dap").continue)
+vim.keymap.set("n", leader .. "db", require("dap").toggle_breakpoint)
+vim.keymap.set("n", leader .. "dB", function()
+    require("dap").toggle_breakpoint(vim.fn.input "Breakpoint condition: ")
+end)
+vim.keymap.set("n", leader .. "do", function()
+    require("lists").change_active "Quickfix"
+    require("dap").list_breakpoints()
+    vim.cmd [[copen]]
+end)
+vim.keymap.set("n", leader .. "dp", require("dap").clear_breakpoints)
+vim.keymap.set("n", leader .. "d<CR>", require("dapui").eval)
+vim.keymap.set("n", leader .. "dh", require("dap").step_out)
+vim.keymap.set("n", leader .. "dj", require("dap").step_over)
+vim.keymap.set("n", leader .. "dk", require("dap").step_back)
+vim.keymap.set("n", leader .. "dl", require("dap").step_into)
 
 map("n", "<UP>", ":lua require('lists').move('up')<CR>")
 map("n", "<DOWN>", ":lua require('lists').move('down')<CR>")
@@ -49,7 +67,7 @@ map(
     { noremap = false }
 )
 map("n", leader .. "b", ":lua require('lists').toggle_active()<CR>")
-map("n", leader .. "a", ":lua require('lists').change_active('Quickfix')<CR>:Ack<space>", { silent = false })
+map("n", leader .. "a", ":lua require('lists').change_active('Quickfix')<CR>:silent grep ", { silent = false })
 
 map("n", "Y", "y$", { noremap = false })
 map("n", "x", '"_x')
@@ -92,8 +110,20 @@ map("n", leader .. "<C-h>", ":Helptags<CR>")
 map("n", leader .. "m", ":Marks<CR>")
 map("n", leader .. "f", ":lua require('fuzzy').symbols()<CR>")
 
-map("n", "-", ":execute 'Neotree reveal git_base=' .. g:git_base<CR>")
-map("n", "g-", ":execute 'Neotree current git_status git_base=' .. g:git_base<CR>")
+vim.keymap.set("n", "-", function()
+    if git.is_repo() then
+        vim.cmd(string.format("Neotree reveal git_base=%s", vim.g.git_base))
+    else
+        vim.cmd [[Neotree reveal]]
+    end
+end)
+vim.keymap.set("n", "g-", function()
+    if git.is_repo() then
+        vim.cmd(string.format("Neotree current git_status git_base=%s", vim.g.git_base))
+    else
+        vim.notify("Not a git repo", vim.log.levels.ERROR)
+    end
+end)
 
 map(
     "i",
@@ -157,8 +187,8 @@ map("x", "P", [['"_d"'.v:register.'P']], { expr = true })
 map("n", leader .. "j", "<cmd>lua require'luasnip'.jump(1)<Cr>")
 map("n", leader .. "k", "<cmd>lua require'luasnip'.jump(-1)<Cr>")
 
-map({ "i", "s" }, "<Tab>", "luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>'", { expr = true })
-map({ "i", "s" }, "<S-Tab>", "<cmd>lua require'luasnip'.jump(-1)<Cr>")
+-- map({ "i", "s" }, "<Tab>", "luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>'", { expr = true })
+-- map({ "i", "s" }, "<S-Tab>", "<cmd>lua require'luasnip'.jump(-1)<Cr>")
 
 map({ "i", "s" }, "<C-e>", "<Plug>luasnip-next-choice", { noremap = false })
 

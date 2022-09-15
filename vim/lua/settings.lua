@@ -11,7 +11,8 @@ local opt = setmetatable({}, {
 opt.dict = "~/dotfiles/lib/10k.txt"
 opt.expandtab = true
 opt.formatoptions = "crqnbj"
-opt.grepprg = "rg --vimgrep --no-heading --hidden"
+vim.opt.grepprg = "rg --vimgrep --no-heading --hidden --smart-case --ignore-file ~/dotfiles/fzf-ignore"
+vim.opt.grepformat = "%f:%l:%c:%m"
 opt.shiftwidth = 4
 opt.smartindent = true
 opt.softtabstop = 4
@@ -86,10 +87,13 @@ vim.opt.listchars = {
 vim.opt.fillchars = {
     fold = " ",
     foldsep = " ",
-    foldopen = "",
-    foldclose = "",
+    foldopen = "",
+    foldclose = "",
     diff = "╱",
 }
+vim.opt.shortmess:append "W"
+vim.opt.shortmess:append "A"
+vim.opt.shortmess:append "F"
 
 vim.g.floating_window_border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
 vim.g.floating_window_border_dark = {
@@ -111,7 +115,7 @@ vim.diagnostic.config {
     virtual_lines = false,
     virtual_text = {
         spacing = 3,
-        prefix = " ",
+        prefix = " ",
         severity_sort = true,
         source = "if_many",
     },
