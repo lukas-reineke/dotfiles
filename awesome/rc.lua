@@ -164,6 +164,20 @@ local globalkeys = gears.table.join(
     awful.key({ modkey }, "Return", function()
         awful.spawn(home .. "/.local/bin/kitty --title kitty -e tmux new -A -s empty")
     end),
+    awful.key({ modkey }, "a", function()
+        for _, c in ipairs(client.get()) do
+            if c.name == "Twilio Authy" then
+                c.minimized = not c.minimized
+                if not c.minimized then
+                    c:raise()
+                    client.focus = c
+                end
+                return
+            end
+        end
+
+        awful.spawn "authy"
+    end),
     awful.key({ modkey }, "d", function()
         awful.spawn "rofi -show drun -show-icons"
     end),
@@ -202,6 +216,9 @@ local globalkeys = gears.table.join(
     end),
     awful.key({ modkey, shift }, "g", function()
         awful.layout.inc(-1)
+    end),
+    awful.key({ modkey }, "q", function()
+        awful.spawn [[dunstctl close-all]]
     end)
 )
 
@@ -430,7 +447,14 @@ awful.rules.rules = {
             switchtotag = true,
         },
     },
-
+    {
+        rule = {
+            name = "Twilio Authy",
+        },
+        properties = {
+            sticky = true,
+        },
+    },
     {
         rule = {
             class = "Sxiv",
