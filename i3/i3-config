@@ -216,5 +216,3 @@ exec_always --no-startup-id autotiling
 
 bindsym XF86Tools exec --no-startup-id pgrep oneko && pkill oneko || oneko -fg '#551609' -bg '#d58635'
 
-# vim:filetype=i3
-
