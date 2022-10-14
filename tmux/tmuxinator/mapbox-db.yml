@@ -1,0 +1,13 @@
+session_name: mapbox-db
+start_directory: '~'
+windows:
+  - window_name: ads-admin-api
+    focus: True
+    layout: main-horizontal
+    start_directory: ~/dev/ads-admin-api
+    shell_command_before:
+      - cd .
+    panes:
+      - focus: True
+        shell_command:
+          - mysql -u root -h 127.0.0.1 -p

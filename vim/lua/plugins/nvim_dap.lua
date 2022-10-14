@@ -79,6 +79,28 @@ dap.configurations.typescript = {
             ["./*"] = "${workspaceFolder}/src/*",
         },
     },
+    {
+        name = "Attach",
+        type = "node2",
+        request = "attach",
+        port = 9229,
+        host = "localhost",
+        sourceMaps = true,
+        sourceMapPathOverrides = {
+            ["./*"] = "${workspaceFolder}/src/*",
+        },
+    },
+    {
+        name = "Attach to Jest",
+        type = "node2",
+        request = "attach",
+        port = 9228,
+        host = "localhost",
+        sourceMaps = true,
+        sourceMapPathOverrides = {
+            ["./*"] = "${workspaceFolder}/src/*",
+        },
+    },
 }
 
 dap.listeners.after.event_initialized["dapui_config"] = function()

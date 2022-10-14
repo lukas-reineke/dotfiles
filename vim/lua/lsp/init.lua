@@ -378,7 +378,20 @@ lspconfig.jsonls.setup {
 }
 
 -- https://github.com/redhat-developer/yaml-language-server
-lspconfig.yamlls.setup { capabilities = capabilities, on_attach = on_attach }
+lspconfig.yamlls.setup {
+    capabilities = capabilities,
+    on_attach = on_attach,
+    settings = {
+        yaml = {
+            schemas = {
+                ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+                ["https://kubernetesjsonschema.dev/v1.10.3-standalone/service-v1.json"] = "*service.yaml",
+                ["https://kubernetesjsonschema.dev/v1.14.0/deployment-apps-v1.json"] = "*deployment.yaml",
+                ["http://json.schemastore.org/kustomization"] = "kustomization.yaml",
+            },
+        },
+    },
+}
 
 -- https://github.com/joe-re/sql-language-server
 lspconfig.sqlls.setup { capabilities = capabilities, on_attach = on_attach }

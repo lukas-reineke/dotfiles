@@ -30,6 +30,10 @@ require("packer").startup {
             requires = { "nvim-lua/plenary.nvim" },
             config = "require 'plugins.crates'",
         }
+        use {
+            "vuki656/package-info.nvim",
+            config = "require 'plugins.package_info'",
+        }
 
         use {
             "mfussenegger/nvim-dap",
@@ -122,6 +126,7 @@ require("packer").startup {
         }
 
         use "folke/lua-dev.nvim"
+        use "milisims/nvim-luaref"
 
         use {
             "ThePrimeagen/refactoring.nvim",
@@ -161,7 +166,6 @@ require("packer").startup {
             "~/dev/orgmode.nvim",
             config = "require 'plugins.orgmode'",
         }
-        use "overcache/NeoSolarized"
         use {
             "akinsho/org-bullets.nvim",
             config = "require 'plugins.org-bullets'",
@@ -298,11 +302,6 @@ require("packer").startup {
         use "kepbod/quick-scope"
 
         use {
-            "AndrewRadev/splitjoin.vim",
-            config = "require 'plugins.splitjoin'",
-        }
-
-        use {
             "kshenoy/vim-signature",
             config = "require 'plugins.vim-signature'",
         }
@@ -319,10 +318,6 @@ require("packer").startup {
             "SmiteshP/nvim-navic",
             config = "require 'plugins.nvim_navic'",
         }
-
-        use "jparise/vim-graphql"
-
-        use "milisims/nvim-luaref"
     end,
     config = {
         display = {

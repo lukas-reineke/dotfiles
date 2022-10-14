@@ -15,5 +15,6 @@ require("spellsitter").setup {
         "bash",
         "sh",
         "markdown",
+        "prisma",
     },
 }
