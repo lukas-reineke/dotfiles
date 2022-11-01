@@ -6,6 +6,10 @@ vim.fn.sign_define("DapBreakpointCondition", { text = "ﱣ", texthl = "Function"
 vim.fn.sign_define("DapBreakpointRejected", { text = "", texthl = "Comment", linehl = "", numhl = "" })
 vim.fn.sign_define("DapStopped", { text = "🠶", texthl = "String", linehl = "DiffAdd", numhl = "" })
 
+require("dap-vscode-js").setup {
+    adapters = { "pwa-node", "pwa-chrome", "pwa-msedge", "node-terminal", "pwa-extensionHost" },
+}
+
 dap.adapters.lldb = {
     type = "executable",
     command = "/usr/bin/lldb-vscode",
@@ -96,6 +100,28 @@ dap.configurations.typescript = {
         request = "attach",
         port = 9228,
         host = "localhost",
+        sourceMaps = true,
+        sourceMapPathOverrides = {
+            ["./*"] = "${workspaceFolder}/src/*",
+        },
+    },
+    {
+        name = "Jest Neotest",
+        type = "pwa-node",
+        request = "launch",
+        runtimeExecutable = "node",
+        runtimeArgs = {
+            "-r",
+            "tsconfig-paths/register",
+            "-r",
+            "ts-node/register node_modules/.bin/jest",
+            "--runInBand",
+            "--no-coverage",
+        },
+        rootPath = "${workspaceFolder}",
+        cwd = "${workspaceFolder}",
+        console = "integratedTerminal",
+        internalConsoleOptions = "neverOpen",
         sourceMaps = true,
         sourceMapPathOverrides = {
             ["./*"] = "${workspaceFolder}/src/*",

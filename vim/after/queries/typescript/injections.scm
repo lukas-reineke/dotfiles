@@ -1,3 +1,5 @@
+; extends
+
 (call_expression
   (member_expression
     (member_expression

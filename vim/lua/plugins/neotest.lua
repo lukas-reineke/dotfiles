@@ -1,16 +1,23 @@
 require("neotest").setup {
     icons = {
-        failed = "",
+        failed = "",
+        passed = "",
+        running = "",
+        skipped = "○",
+        unknown = "",
+    },
+    output = {
+        open_on_run = false,
     },
     adapters = {
+        require "neotest-rust",
+        require "neotest-go",
+        require "neotest-plenary",
         require "neotest-jest" {
             jestCommand = "npm run test:run --",
-            jestConfigFile = "",
-            -- jestConfigFile = "custom.jest.config.ts",
-            -- env = { CI = true },
-            -- cwd = function(path)
-            --     return vim.fn.getcwd()
-            -- end,
+        },
+        require "neotest-python" {
+            runner = "pytest",
         },
     },
 }

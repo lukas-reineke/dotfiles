@@ -73,7 +73,7 @@ M.symbol_kind_colors = {
     Class = "magenta",
 }
 
-local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 vim.fn.sign_define("DiagnosticSignError", { text = "", numhl = "DiagnosticError" })
 vim.fn.sign_define("DiagnosticSignWarn", { text = "", numhl = "DiagnosticWarn" })
@@ -264,6 +264,8 @@ local function get_lua_runtime()
     return result
 end
 
+require("neodev").setup()
+
 lspconfig.sumneko_lua.setup {
     capabilities = capabilities,
     on_attach = on_attach,
@@ -281,11 +283,11 @@ lspconfig.sumneko_lua.setup {
                 keywordSnippet = "Disable",
                 callSnippet = "Replace",
             },
-            workspace = vim.tbl_deep_extend("force", require("lua-dev").setup().settings.Lua.workspace, {
+            workspace = {
                 ignoreDir = "~/.config/nvim/backups",
                 maxPreload = 10000,
                 preloadFileSize = 10000,
-            }),
+            },
             diagnostics = {
                 enable = true,
                 globals = {

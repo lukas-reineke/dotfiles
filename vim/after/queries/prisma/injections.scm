@@ -1,3 +1,4 @@
+; extends
 
 ((comment) @typescript
 (#match? @typescript "^/// \\@")

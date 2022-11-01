@@ -55,6 +55,7 @@ require("packer").startup {
             "mfussenegger/nvim-dap-python",
             config = "require 'plugins.nvim_dap_python'",
         }
+
         use "jbyuki/one-small-step-for-vimkind"
 
         use {
@@ -63,9 +64,19 @@ require("packer").startup {
                 "nvim-lua/plenary.nvim",
                 "nvim-treesitter/nvim-treesitter",
                 "antoinemadec/FixCursorHold.nvim",
+                "rouge8/neotest-rust",
+                "nvim-neotest/neotest-go",
+                "nvim-neotest/neotest-plenary",
+                "mxsdev/nvim-dap-vscode-js",
                 "haydenmeade/neotest-jest",
+                "nvim-neotest/neotest-python",
             },
             config = "require 'plugins.neotest'",
+        }
+        use {
+            "microsoft/vscode-js-debug",
+            opt = true,
+            run = "npm install --legacy-peer-deps && npm run compile",
         }
 
         use {
@@ -125,7 +136,7 @@ require("packer").startup {
             config = "require 'plugins.lua-snip'",
         }
 
-        use "folke/lua-dev.nvim"
+        use "folke/neodev.nvim"
         use "milisims/nvim-luaref"
 
         use {

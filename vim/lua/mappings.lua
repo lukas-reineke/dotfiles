@@ -33,12 +33,45 @@ vim.keymap.set("n", leader .. "ll", function()
     }
 end)
 
+vim.keymap.set("n", leader .. "tt", function()
+    require("neotest").run.run()
+end)
+vim.keymap.set("n", leader .. "to", function()
+    require("neotest").output.open {
+        enter = true,
+        open_win = function(settings)
+            local height = math.min(settings.height, vim.o.lines - 2)
+            local width = math.min(settings.width, vim.o.columns - 2)
+            return vim.api.nvim_open_win(0, true, {
+                relative = "editor",
+                row = 7,
+                col = (vim.o.columns - width) / 2,
+                width = width,
+                height = height,
+                style = "minimal",
+                border = vim.g.floating_window_border,
+                noautocmd = true,
+            })
+        end,
+    }
+end)
+vim.keymap.set("n", leader .. "ts", function()
+    require("neotest").summary.toggle()
+end)
+vim.keymap.set("n", leader .. "tf", function()
+    require("neotest").run.run(vim.fn.expand "%")
+end)
+vim.keymap.set("n", leader .. "td", function()
+    require("neotest").run.run { strategy = "dap" }
+end)
+
 vim.keymap.set("n", leader .. "dc", require("dap").continue)
 vim.keymap.set("n", leader .. "db", require("dap").toggle_breakpoint)
 vim.keymap.set("n", leader .. "dB", function()
     require("dap").toggle_breakpoint(vim.fn.input "Breakpoint condition: ")
 end)
-vim.keymap.set("n", leader .. "do", function()
+vim.keymap.set("n", leader .. "do", require("dapui").toggle)
+vim.keymap.set("n", leader .. "di", function()
     require("lists").change_active "Quickfix"
     require("dap").list_breakpoints()
     vim.cmd [[copen]]

@@ -1,3 +1,4 @@
+; extends
 
 (jsx_attribute
   (property_identifier) @_name
