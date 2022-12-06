@@ -80,12 +80,6 @@ require("packer").startup {
         }
 
         use {
-            "kevinhwang91/nvim-ufo",
-            requires = "kevinhwang91/promise-async",
-            config = "require 'plugins.nvim_ufo'",
-        }
-
-        use {
             "stevearc/dressing.nvim",
             config = "require 'plugins.dressing'",
         }
@@ -128,6 +122,7 @@ require("packer").startup {
                 { "octaltree/cmp-look" },
                 { "rcarriga/cmp-dap" },
                 { "petertriho/cmp-git" },
+                { "lttr/cmp-jira" },
             },
             config = "require 'plugins.nvim-cmp'",
         }
@@ -273,6 +268,11 @@ require("packer").startup {
 
         use {
             "haya14busa/is.vim",
+        }
+
+        use {
+            "Wansmer/treesj",
+            config = "require 'plugins.treesj'",
         }
 
         use {

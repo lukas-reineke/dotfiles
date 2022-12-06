@@ -207,6 +207,9 @@ local globalkeys = gears.table.join(
     awful.key({ modkey }, "b", function()
         awful.spawn "bwmenu -c 20"
     end),
+    awful.key({ modkey }, ".", function()
+        awful.spawn "flameshot gui"
+    end),
 
     awful.key({ modkey, ctrl }, "r", awesome.restart),
     awful.key({ modkey, ctrl, shift }, "q", awesome.quit),

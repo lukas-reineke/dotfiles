@@ -358,17 +358,22 @@ function kc() {
     fi
 }
 
-function klogs() {
+function kn() {
     local NAMESPACE
     NAMESPACE=$(
-        kubectl get namespaces |
-            tail -n +2 |
-            fzf --reverse -m |
-            cut -f 1 -d ' '
+        kubectl get ns --no-headers |
+            fzf --height 20% --reverse |
+            cut -f1 -d ' '
     )
+    if [[ -n $NAMESPACE ]]; then
+        kubectl config set-context --current --namespace="$NAMESPACE"
+    fi
+}
+
+function klogs() {
     local PODS
     PODS=$(
-        kubectl get pods --namespace "$NAMESPACE" |
+        kubectl get pods |
             tail -n +2 |
             fzf --reverse -m |
             cut -f 1 -d ' '
@@ -377,9 +382,9 @@ function klogs() {
         for pod in $PODS; do
             echo -e "\n\n$MGT$BOLD$pod$NC [$BLU$BOLD$NAMESPACE$NC]\n"
             if [[ -n $1 ]]; then
-                kubectl logs --namespace "$NAMESPACE" "$pod" | tail -n"$1"
+                kubectl logs "$pod" | tail -n"$1"
             else
-                kubectl logs --namespace "$NAMESPACE" "$pod"
+                kubectl logs "$pod"
             fi
         done
     fi

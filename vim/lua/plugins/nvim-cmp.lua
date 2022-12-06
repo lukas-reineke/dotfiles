@@ -2,6 +2,8 @@ local cmp = require "cmp"
 local cmp_compare = require "cmp_compare"
 local dev_icons = require "nvim-web-devicons"
 require("cmp_git").setup()
+require("cmp_jira").setup()
+
 cmp.setup {
     preselect = cmp.PreselectMode.None,
     completion = {
@@ -55,6 +57,7 @@ cmp.setup {
 
     sources = {
         { name = "path", priority_weight = 110 },
+        { name = "cmp_jira", priority_weight = 110 },
         { name = "orgmode", priority_weight = 110 },
         { name = "crates", priority_weight = 110 },
         { name = "dap", priority_weight = 110 },
@@ -97,6 +100,7 @@ cmp.setup {
                 crates = "[Crates]",
                 orgmode = "[ORG]",
                 dap = "[DAP]",
+                cmp_jira = "[JIRA]",
             }
             vim_item.menu = menu_map[entry.source.name] or string.format("[%s]", entry.source.name)
 

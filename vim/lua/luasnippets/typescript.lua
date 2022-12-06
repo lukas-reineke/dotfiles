@@ -1,7 +1,22 @@
 local typescript = require "refactoring.treesitter.langs.typescript"
 local utils = require "luasnippets.utils"
 
-local regular = {}
+local regular = {
+    s(
+        "describe",
+        fmt([[
+            describe('{input}', () => {{
+            }});
+        ]], { input = i(1) })
+    ),
+    s(
+        "it",
+        fmt([[
+            it('should {input}', async () => {{
+            }});
+        ]], { input = i(1) })
+    ),
+}
 
 local auto = {
     s(

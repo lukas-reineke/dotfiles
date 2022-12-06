@@ -19,6 +19,8 @@ map("n", leader .. "N", ":e %:h/", { silent = false })
 map("n", leader .. "of", "<CMD>lua require('orgmode').action('capture.prompt')<CR>")
 map("n", leader .. "oa", "<CMD>lua require('orgmode').action('agenda.prompt')<CR>")
 
+vim.keymap.set("n", leader .. "e", require("treesj").toggle)
+
 local virtual_lines_enabled = false
 vim.keymap.set("n", leader .. "ll", function()
     virtual_lines_enabled = not virtual_lines_enabled

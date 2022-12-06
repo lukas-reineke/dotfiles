@@ -43,6 +43,7 @@ alias gca='git commit --amend --no-edit'
 alias gcae='git commit --amend'
 alias gpsn='git push --no-verify'
 alias gpsfn='git push --force --no-verify'
+alias gj='~/dotfiles/scripts/jira-branch.sh'
 
 # python
 alias da='. deactivate'
@@ -55,12 +56,10 @@ alias installvm='sudo vmware-modconfig --console --install-all'
 alias cal='gcalcli calm'
 alias fakesmtp='sudo java -jar ~/dotfiles/fakeSMTP-1.13.jar'
 
-
 # docker
 
 alias dmongo='docker run --rm --name mogno-docker -v mongodbdata:/data/db -p 27017:27017 mongo:3.2-jessie'
 alias dpostgres='docker run --rm --name pg-docker -e POSTGRES_PASSWORD=$POSTGRES_PASSWORD -e POSTGRES_DB=$POSTGRES_DB -p 5432:5432 -v postgresdbdata:/var/lib/postgresql/data postgres:9.5.16-alpine'
-
 
 # taskwarrior
 alias t='task'
