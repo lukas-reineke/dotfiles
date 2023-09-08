@@ -1,8 +1,8 @@
 local dap = require "dap"
 local dapui = require "dapui"
 
-vim.fn.sign_define("DapBreakpoint", { text = "ﱣ", texthl = "Error", linehl = "", numhl = "" })
-vim.fn.sign_define("DapBreakpointCondition", { text = "ﱣ", texthl = "Function", linehl = "", numhl = "" })
+vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "Error", linehl = "", numhl = "" })
+vim.fn.sign_define("DapBreakpointCondition", { text = "", texthl = "Function", linehl = "", numhl = "" })
 vim.fn.sign_define("DapBreakpointRejected", { text = "", texthl = "Comment", linehl = "", numhl = "" })
 vim.fn.sign_define("DapStopped", { text = "🠶", texthl = "String", linehl = "DiffAdd", numhl = "" })
 
@@ -16,17 +16,33 @@ dap.adapters.lldb = {
     name = "lldb",
 }
 
+function foo()
+    vim.lsp.buf_request(0, "experimental/runnables", {
+        textDocument = vim.lsp.util.make_text_document_params(),
+        position = nil, -- get em all
+    }, function(_, result)
+        for _, r in ipairs(result) do
+            P(r)
+        end
+    end)
+end
+
 dap.configurations.rust = {
     {
         name = "Launch",
         type = "lldb",
         request = "launch",
         program = function()
-            return vim.fn.getcwd() .. "/target/debug/${workspaceFolderBasename}"
+            local binary = vim.fn.environ()["RUST_DEBUG_BINARY"] or "/target/debug/${workspaceFolderBasename}"
+            return vim.fn.getcwd() .. binary
         end,
         cwd = "${workspaceFolder}",
         stopOnEntry = false,
         args = function()
+            local args = vim.fn.environ()["RUST_DEBUG_ARGS"]
+            if args ~= nil then
+                return vim.split(args, " ")
+            end
             local co = coroutine.running()
             vim.ui.input({
                 prompt = "Args: ",
@@ -36,6 +52,32 @@ dap.configurations.rust = {
             end)
 
             return coroutine.yield()
+        end,
+        env = function()
+            local variables = {}
+            for k, v in pairs(vim.fn.environ()) do
+                table.insert(variables, string.format("%s=%s", k, v))
+            end
+            return variables
+        end,
+        initCommands = function()
+            -- Find out where to look for the pretty printer Python module
+            local rustc_sysroot = vim.fn.trim(vim.fn.system "rustc --print sysroot")
+
+            local script_import = 'command script import "' .. rustc_sysroot .. '/lib/rustlib/etc/lldb_lookup.py"'
+            local commands_file = rustc_sysroot .. "/lib/rustlib/etc/lldb_commands"
+
+            local commands = {}
+            local file = io.open(commands_file, "r")
+            if file then
+                for line in file:lines() do
+                    table.insert(commands, line)
+                end
+                file:close()
+            end
+            table.insert(commands, 1, script_import)
+
+            return commands
         end,
     },
 }

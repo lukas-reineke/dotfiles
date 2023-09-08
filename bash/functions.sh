@@ -152,7 +152,7 @@ function gfix {
     git commit --fixup="$COMMIT"
 }
 
-function gt {
+function gtag {
     is_in_git_repo || return
 
     git tag --sort -version:refname |
@@ -189,7 +189,7 @@ function prs() {
     local PRS BRANCH
 
     PRS=$(
-        hub pr list |
+        gh pr list |
             sed "s/^\s*#//" |
             sed "s/\s\s\s/@/g" |
             column -t -s @
@@ -198,7 +198,7 @@ function prs() {
     PR=$(echo "$PRS" | fzf --no-hscroll --height 40% --reverse --ansi | awk '{print $1}')
 
     if [[ -n $PR ]]; then
-        hub pr checkout $PR
+        gh pr checkout $PR
     fi
 }
 
@@ -410,7 +410,7 @@ tm() {
     if [[ -n "$sessions" ]]; then
         clear
         for session in $sessions; do
-            $(cd && tmuxp load ./dotfiles/tmux/tmuxinator/"$session".yml -y)
+            cd && tmuxp load ./dotfiles/tmux/tmuxinator/"$session".yml -y
         done
     fi
 }

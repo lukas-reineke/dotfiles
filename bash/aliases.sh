@@ -31,6 +31,7 @@ alias secrets='gpg -er lukas.reineke@protonmail.com .secrets'
 
 # git
 alias gl='~/dotfiles/scripts/fzf-git-log.sh'
+alias gtl='gt log'
 alias log='git log --graph --all --oneline --decorate'
 alias logs='git log --graph --all --decorate --relative-date'
 alias gsmu='git submodule update --remote --merge'
@@ -71,3 +72,7 @@ alias td='task done'
 
 # kubernetes
 alias kcg='kubectl get pods | grep'
+
+# vpn
+alias md='nmcli connection down mapbox'
+alias mu='nmcli connection up mapbox'

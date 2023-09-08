@@ -8,5 +8,6 @@ require("lsp-inlayhints").setup {
             prefix = " ",
             remove_colon_start = true,
         },
+        priority = 5
     },
 }

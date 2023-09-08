@@ -138,6 +138,8 @@ fi
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
+eval "$(fnm env --use-on-cd)"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 eval "$(dircolors -b ~/dotfiles/bash/dir_colors)"
+eval "$(gt completion)"

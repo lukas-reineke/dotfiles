@@ -1,4 +1,4 @@
-local navic = require "nvim-navic"
+-- local navic = require "nvim-navic"
 local colors = require("onedark").colors
 
 local components = {
@@ -30,14 +30,15 @@ components.active[1] = {
             },
         },
         provider = function()
-            local location = navic.get_location()
-            if location == "" then
-                return ""
-            end
-            return "> " .. location
+            -- local location = navic.get_location()
+            -- if location == "" then
+            --     return ""
+            -- end
+            -- return "> " .. location
         end,
         enabled = function()
-            return navic.is_available()
+            return false
+            -- return navic.is_available()
         end,
         hl = {
             bg = colors.dark_black,
@@ -70,7 +71,7 @@ components.active[2] = {
     },
     {
         provider = "diagnostic_hints",
-        icon = " ﴞ ",
+        icon = "  ",
         hl = { fg = colors.comment_grey, bg = colors.dark_black },
     },
 }

@@ -1,4 +1,5 @@
-vim.g.loaded_netrwPlugin = false
+vim.g.loaded_netrwPlugin = true
+vim.g.loaded_matchparen = true
 vim.cmd [[packadd cfilter]]
 
 require("packer").startup {
@@ -63,7 +64,6 @@ require("packer").startup {
             requires = {
                 "nvim-lua/plenary.nvim",
                 "nvim-treesitter/nvim-treesitter",
-                "antoinemadec/FixCursorHold.nvim",
                 "rouge8/neotest-rust",
                 "nvim-neotest/neotest-go",
                 "nvim-neotest/neotest-plenary",
@@ -78,6 +78,11 @@ require("packer").startup {
             opt = true,
             run = "npm install --legacy-peer-deps && npm run compile",
         }
+
+        -- use {
+        --     "https://gitlab.com/HiPhish/rainbow-delimiters.nvim",
+        --     config = "require 'plugins.rainbow-delimiters'",
+        -- }
 
         use {
             "stevearc/dressing.nvim",
@@ -131,6 +136,11 @@ require("packer").startup {
             config = "require 'plugins.lua-snip'",
         }
 
+        use {
+            "folke/flash.nvim",
+            config = "require 'plugins.flash'",
+        }
+
         use "folke/neodev.nvim"
         use "milisims/nvim-luaref"
 
@@ -143,21 +153,20 @@ require("packer").startup {
             run = ":TSUpdate",
             config = "require 'plugins.nvim-treesitter'",
         }
-        use "nvim-treesitter/playground"
         use "nvim-treesitter/nvim-treesitter-refactor"
         use "nvim-treesitter/nvim-treesitter-textobjects"
         use "RRethy/nvim-treesitter-textsubjects"
         use "JoosepAlviste/nvim-ts-context-commentstring"
         use "David-Kunz/treesitter-unit"
-        use {
-            "lewis6991/spellsitter.nvim",
-            config = "require 'plugins.spellsitter'",
-        }
+        -- use {
+        --     "lewis6991/spellsitter.nvim",
+        --     config = "require 'plugins.spellsitter'",
+        -- }
         use "windwp/nvim-ts-autotag"
-        use {
-            "spywhere/detect-language.nvim",
-            config = "require 'plugins.dectect-language'",
-        }
+        -- use {
+        --     "spywhere/detect-language.nvim",
+        --     config = "require 'plugins.dectect-language'",
+        -- }
         use {
             "m-demare/hlargs.nvim",
             config = "require 'plugins.hlargs-nvim'",
@@ -233,6 +242,7 @@ require("packer").startup {
         use {
             "airblade/vim-gitgutter",
             config = "require 'plugins.vim-gitgutter'",
+            branch = "main",
         }
 
         use {
@@ -295,9 +305,17 @@ require("packer").startup {
 
         use "machakann/vim-sandwich"
 
-        use "bounceme/poppy.vim"
+        use "chrisgrieser/nvim-spider"
 
-        use "bkad/camelcasemotion"
+        -- use {
+        --     "jackMort/ChatGPT.nvim",
+        --     config = "require 'plugins.chatgpt'",
+        --     requires = {
+        --         "MunifTanjim/nui.nvim",
+        --         "nvim-lua/plenary.nvim",
+        --         "nvim-telescope/telescope.nvim",
+        --     },
+        -- }
 
         use "vim-scripts/ReplaceWithRegister"
         use "vim-scripts/ReplaceWithSameIndentRegister"
@@ -310,7 +328,7 @@ require("packer").startup {
             "rhysd/clever-f.vim",
             config = "require 'plugins.clever-f'",
         }
-        use "kepbod/quick-scope"
+        -- use "kepbod/quick-scope"
 
         use {
             "kshenoy/vim-signature",
@@ -325,10 +343,10 @@ require("packer").startup {
         }
 
         use "famiu/feline.nvim"
-        use {
-            "SmiteshP/nvim-navic",
-            config = "require 'plugins.nvim_navic'",
-        }
+        -- use {
+        --     "SmiteshP/nvim-navic",
+        --     config = "require 'plugins.nvim_navic'",
+        -- }
     end,
     config = {
         display = {

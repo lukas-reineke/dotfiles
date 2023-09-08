@@ -7,6 +7,7 @@ map("n", leader .. leader, ":<C-u>exe v:count ? v:count . 'b' : 'b' . (bufloaded
 map("n", leader .. "<C-o>", ":lua require 'buffers'.close_others()<CR>")
 
 map("n", leader .. "q", ":lua require 'buffers'.close()<CR>")
+map("n", leader .. "Q", ":lua require 'notify'.dismiss()<CR>")
 map("n", leader .. "w", ":update<CR>")
 
 map("n", leader .. "z", "1z=")
@@ -36,6 +37,9 @@ vim.keymap.set("n", leader .. "ll", function()
 end)
 
 vim.keymap.set("n", leader .. "tt", function()
+    vim.notify_once("Running single test", vim.log.levels.INFO, {
+        title = "Neotest",
+    })
     require("neotest").run.run()
 end)
 vim.keymap.set("n", leader .. "to", function()
@@ -61,9 +65,15 @@ vim.keymap.set("n", leader .. "ts", function()
     require("neotest").summary.toggle()
 end)
 vim.keymap.set("n", leader .. "tf", function()
+    vim.notify_once("Running tests", vim.log.levels.INFO, {
+        title = "Neotest",
+    })
     require("neotest").run.run(vim.fn.expand "%")
 end)
 vim.keymap.set("n", leader .. "td", function()
+    vim.notify_once("Start debugging test", vim.log.levels.INFO, {
+        title = "Neotest",
+    })
     require("neotest").run.run { strategy = "dap" }
 end)
 
@@ -84,6 +94,16 @@ vim.keymap.set("n", leader .. "dh", require("dap").step_out)
 vim.keymap.set("n", leader .. "dj", require("dap").step_over)
 vim.keymap.set("n", leader .. "dk", require("dap").step_back)
 vim.keymap.set("n", leader .. "dl", require("dap").step_into)
+
+vim.keymap.set("o", "r", function()
+    require("flash").remote {
+        search = {
+            mode = function(str)
+                return "\\<" .. str
+            end,
+        },
+    }
+end)
 
 map("n", "<UP>", ":lua require('lists').move('up')<CR>")
 map("n", "<DOWN>", ":lua require('lists').move('down')<CR>")
@@ -131,10 +151,20 @@ map({ "n", "v" }, "K", "5k")
 map({ "n", "v" }, "j", "v:count ? (v:count > 5 ? \"m'\" . v:count : '') . 'j' : 'gj'", { expr = true })
 map({ "n", "v" }, "k", "v:count ? (v:count > 5 ? \"m'\" . v:count : '') . 'k' : 'gk'", { expr = true })
 
-map("", "w", "<Plug>CamelCaseMotion_w", { noremap = false })
-map("", "b", "<Plug>CamelCaseMotion_b", { noremap = false })
-map("", "e", "<Plug>CamelCaseMotion_e", { noremap = false })
-map("", "ge", "<Plug>CamelCaseMotion_ge", { noremap = false })
+vim.keymap.set("n", "'", "`")
+
+vim.keymap.set({ "n", "o", "x" }, "w", function()
+    require("spider").motion "w"
+end)
+vim.keymap.set({ "n", "o", "x" }, "e", function()
+    require("spider").motion "e"
+end)
+vim.keymap.set({ "n", "o", "x" }, "b", function()
+    require("spider").motion "b"
+end)
+vim.keymap.set({ "n", "o", "x" }, "ge", function()
+    require("spider").motion "ge"
+end)
 
 map("n", "<C-p>", ":lua require('fuzzy').files('')<CR>")
 map("n", leader .. "gf", ":lua require('fuzzy').git_files()<CR>")
@@ -147,7 +177,7 @@ map("n", leader .. "f", ":lua require('fuzzy').symbols()<CR>")
 
 vim.keymap.set("n", "-", function()
     if git.is_repo() then
-        vim.cmd(string.format("Neotree reveal git_base=%s", vim.g.git_base))
+        vim.cmd(string.format("Neotree current reveal git_base=%s", vim.g.git_base))
     else
         vim.cmd [[Neotree reveal]]
     end
@@ -207,6 +237,7 @@ map(
 map("n", leader .. "gn", ":lua require('lists').change_active('Quickfix')<CR>:Git mergetool<CR>")
 map("n", leader .. "gh", ":diffget //2<CR> :diffupdate<CR>")
 map("n", leader .. "gl", ":diffget //3<CR> :diffupdate<CR>")
+map("n", leader .. "gpt", ":ChatGPT<CR>", { noremap = false })
 
 map({ "n", "v" }, "gx", "<Plug>(openbrowser-smart-search)", { noremap = false })
 
@@ -219,8 +250,14 @@ map("v", "A", "<Plug>(niceblock-A)", { noremap = false })
 
 map("x", "P", [['"_d"'.v:register.'P']], { expr = true })
 
-map("n", leader .. "j", "<cmd>lua require'luasnip'.jump(1)<Cr>")
-map("n", leader .. "k", "<cmd>lua require'luasnip'.jump(-1)<Cr>")
+-- map("n", leader .. "j", "<cmd>lua require'luasnip'.jump(1)<Cr>")
+-- map("n", leader .. "k", "<cmd>lua require'luasnip'.jump(-1)<Cr>")
+vim.keymap.set("n", leader .. "j", function()
+    vim.diagnostic.goto_next { float = false }
+end)
+vim.keymap.set("n", leader .. "k", function()
+    vim.diagnostic.goto_prev { float = false }
+end)
 
 -- map({ "i", "s" }, "<Tab>", "luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>'", { expr = true })
 -- map({ "i", "s" }, "<S-Tab>", "<cmd>lua require'luasnip'.jump(-1)<Cr>")

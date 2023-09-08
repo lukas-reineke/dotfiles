@@ -4,65 +4,66 @@ local utils = require "utils"
 local M = {}
 
 vim.lsp.protocol.CompletionItemKind = {
-    Text = " [text]",
+    Text = " [text]",
     Method = " [method]",
-    Function = " [function]",
+    Function = "󰊕 [function]",
     Constructor = " [constructor]",
-    Field = "ﰠ [field]",
+    Field = " [field]",
     Variable = " [variable]",
     Class = " [class]",
-    Interface = " [interface]",
-    Module = " [module]",
+    Interface = "i [interface]",
+    Module = "󰌗 [module]",
     Property = " [property]",
     Unit = " [unit]",
-    Value = " [value]",
+    Value = "󰕘 [value]",
     Enum = " [enum]",
-    Keyword = " [key]",
-    Snippet = "﬌ [snippet]",
+    Keyword = "󰌆 [key]",
+    Snippet = " [snippet]",
     Color = " [color]",
     File = " [file]",
-    Reference = " [reference]",
+    Reference = " [reference]",
     Folder = " [folder]",
     EnumMember = " [enum member]",
     Constant = " [constant]",
     Struct = " [struct]",
     Event = "⌘ [event]",
-    Operator = " [operator]",
-    TypeParameter = " [type]",
+    Operator = "󰆕 [operator]",
+    TypeParameter = "󰊄 [type]",
 }
 
 M.symbol_kind_icons = {
-    Function = "",
+    Function = "󰊕",
     Method = "",
     Variable = "",
     Constant = "",
-    Interface = "練",
-    Field = "ﰠ",
+    Interface = "i",
+    Field = "",
     Property = "",
     Struct = "",
     Enum = "",
     Class = "",
-    File = "",
-    Module = "",
-    Namespace = "",
+    File = "",
+    Module = "󰌗",
+    Namespace = "󰌗",
     Package = "",
-    Constructor = "",
-    String = "",
-    Number = "",
+    Constructor = "",
+    String = "",
+    Number = "󰎠",
     Boolean = "◩",
-    Array = "",
-    Object = "",
-    Key = "",
-    Null = "ﳠ",
+    Array = "󰅪",
+    Object = "",
+    Key = "󰌆",
+    Null = "󰟢",
     EnumMember = "",
     Event = "",
-    Operator = "",
-    TypeParameter = "",
+    Operator = "󰆕",
+    TypeParameter = "󰊄",
 }
 
 M.symbol_kind_colors = {
     Function = "green",
     Method = "green",
+    Module = "blue",
     Variable = "blue",
     Constant = "red",
     Interface = "cyan",
@@ -70,10 +71,28 @@ M.symbol_kind_colors = {
     Property = "blue",
     Struct = "cyan",
     Enum = "yellow",
+    EnumMember = "yellow",
     Class = "magenta",
 }
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
+capabilities.experimental = {
+    hoverActions = true,
+    hoverRange = true,
+    serverStatusNotification = true,
+    snippetTextEdit = true,
+    codeActionGroup = true,
+    ssr = true,
+    commands = {
+        commands = {
+            "rust-analyzer.runSingle",
+            "rust-analyzer.debugSingle",
+            "rust-analyzer.showReferences",
+            "rust-analyzer.gotoLocation",
+            "editor.action.triggerParameterHints",
+        },
+    },
+}
 
 vim.fn.sign_define("DiagnosticSignError", { text = "", numhl = "DiagnosticError" })
 vim.fn.sign_define("DiagnosticSignWarn", { text = "", numhl = "DiagnosticWarn" })
@@ -86,12 +105,13 @@ local on_attach = function(client, bufnr)
     require("lsp-format").on_attach(client)
 
     if client.supports_method "textDocument/inlayHint" then
-        require("lsp-inlayhints").on_attach(client, bufnr)
+        -- require("lsp-inlayhints").on_attach(client, bufnr)
+        vim.lsp.inlay_hint(bufnr, true)
     end
 
-    if client.supports_method "textDocument/documentSymbol" and client.name ~= "bashls" then
-        require("nvim-navic").attach(client, bufnr)
-    end
+    -- if client.supports_method "textDocument/documentSymbol" and client.name ~= "bashls" then
+    -- require("nvim-navic").attach(client, bufnr)
+    -- end
 
     if client.supports_method "textDocument/definition" then
         utils.map("n", "<C-]>", "<cmd>lua vim.lsp.buf.definition()<CR>", { buffer = true })
@@ -155,9 +175,10 @@ function _G.activeLSP()
     end
     _G.P(servers)
 end
+
 function _G.bufferActiveLSP()
     local servers = {}
-    for _, lsp in pairs(vim.lsp.buf_get_clients()) do
+    for _, lsp in pairs(vim.lsp.get_active_clients()) do
         table.insert(servers, { name = lsp.name, id = lsp.id })
     end
     _G.P(servers)
@@ -209,6 +230,8 @@ lspconfig.taplo.setup {
 }
 
 lspconfig.pyright.setup { capabilities = capabilities, on_attach = on_attach }
+
+lspconfig.ruff_lsp.setup { capabilities = capabilities, on_attach = on_attach }
 
 -- https://github.com/theia-ide/typescript-language-server
 lspconfig.tsserver.setup {
@@ -266,7 +289,7 @@ end
 
 require("neodev").setup()
 
-lspconfig.sumneko_lua.setup {
+lspconfig.lua_ls.setup {
     capabilities = capabilities,
     on_attach = on_attach,
     cmd = { "lua-language-server" },
@@ -279,11 +302,15 @@ lspconfig.sumneko_lua.setup {
             telemetry = {
                 enable = false,
             },
+            format = {
+                enable = false,
+            },
             completion = {
                 keywordSnippet = "Disable",
                 callSnippet = "Replace",
             },
             workspace = {
+                library = get_lua_runtime(),
                 ignoreDir = "~/.config/nvim/backups",
                 maxPreload = 10000,
                 preloadFileSize = 10000,
@@ -311,11 +338,6 @@ lspconfig.sumneko_lua.setup {
                     "f",
                     "c",
                     "t",
-                },
-                workspace = {
-                    library = get_lua_runtime(),
-                    maxPreload = 1000,
-                    preloadFileSize = 1000,
                 },
             },
         },
@@ -471,7 +493,7 @@ lspconfig.efm.setup {
     filetypes = vim.tbl_keys(languages),
     settings = {
         rootMarkers = { ".git/" },
-        lintDebounce = 100,
+        lintDebounce = "500ms",
         -- logLevel = 5,
         languages = languages,
     },

@@ -5,12 +5,13 @@ require("nvim-treesitter.configs").setup {
         language_tree = true,
         additional_vim_regex_highlighting = { "org" },
     },
-    indent = {
-        enable = true,
-    },
+    -- indent = {
+    --     enable = true,
+    -- },
     refactor = {
         highlight_definitions = {
             enable = true,
+            clear_on_cursor_move = false,
         },
     },
     autotag = {

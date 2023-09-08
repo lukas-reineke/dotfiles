@@ -1,5 +1,5 @@
 local ts_utils = require "nvim-treesitter.ts_utils"
-local navic = require "nvim-navic"
+-- local navic = require "nvim-navic"
 local ls = require "luasnip"
 local f = ls.function_node
 

@@ -4,17 +4,23 @@ local utils = require "luasnippets.utils"
 local regular = {
     s(
         "describe",
-        fmt([[
+        fmt(
+            [[
             describe('{input}', () => {{
             }});
-        ]], { input = i(1) })
+        ]],
+            { input = i(1) }
+        )
     ),
     s(
         "it",
-        fmt([[
+        fmt(
+            [[
             it('should {input}', async () => {{
             }});
-        ]], { input = i(1) })
+        ]],
+            { input = i(1) }
+        )
     ),
 }
 
@@ -22,6 +28,13 @@ local auto = {
     s(
         "cns",
         fmt([[console.log({input}) // NO_COMMIT]], {
+            input = i(1),
+        })
+    ),
+
+    s(
+        "stringy",
+        fmt([[console.log(JSON.stringify({input}, null, 2)) // NO_COMMIT]], {
             input = i(1),
         })
     ),

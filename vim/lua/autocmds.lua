@@ -1,15 +1,10 @@
 local group = vim.api.nvim_create_augroup("MyAutogroup", {})
 
-vim.api.nvim_create_autocmd("CursorMoved", {
-    group = group,
-    pattern = "*",
-    callback = "PoppyInit",
-})
-vim.api.nvim_create_autocmd("CursorMoved", {
-    group = group,
-    pattern = "*",
-    callback = require("fold").close_all,
-})
+-- vim.api.nvim_create_autocmd("CursorMoved", {
+--     group = group,
+--     pattern = "*",
+--     callback = require("fold").close_all,
+-- })
 vim.api.nvim_create_autocmd("TextYankPost", {
     group = group,
     pattern = "*",

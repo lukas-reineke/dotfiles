@@ -15,6 +15,9 @@ local get_diff_files = function()
     end
 
     local status = vim.fn.systemlist("git diff --name-status " .. vim.g.git_base .. " --")
+    if vim.v.shell_error ~= 0 then
+        return diff_files
+    end
     for i = 1, #status do
         local split = vim.split(status[i], "	")
         diff_files[split[2]] = split[1]
@@ -45,7 +48,7 @@ local icon_color_map = {
     [""] = "dark_grey",
     [""] = "white",
     [""] = "white",
-    [""] = "yellow",
+    [""] = "white",
     [""] = "cyan",
     [""] = "blue",
     [""] = "yellow",
@@ -57,7 +60,7 @@ local icon_color_map = {
     [""] = "yellow",
     [""] = "blue",
     [""] = "yellow",
-    [""] = "yellow",
+    [""] = "yellow",
     ["✖"] = "red",
     ["✚"] = "green",
     [""] = "blue",
@@ -69,7 +72,7 @@ end
 
 local get_git_icon = function(file, diff_files, untracked_files)
     local git_icon_map = {
-        ["M"] = "",
+        ["M"] = "",
         ["D"] = "✖",
         ["A"] = "✚",
         ["?"] = "",

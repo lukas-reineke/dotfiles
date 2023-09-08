@@ -5,6 +5,22 @@ local regular = {}
 
 local auto = {
     s(
+        "cns",
+        fmt([[println!("{{:?}}", {input}); // NO_COMMIT]], {
+            input = i(1),
+        })
+    ),
+
+    s(
+        "dbg",
+        fmt([[dbg!({input}); /* NO_COMMIT */]], {
+            input = i(1),
+        })
+    ),
+
+    s("slp", t [[std::thread::sleep(std::time::Duration::from_secs(10));]], { condition = conds.line_begin }),
+
+    s(
         "ssp",
         fmt(
             [[

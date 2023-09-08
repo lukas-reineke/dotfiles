@@ -10,7 +10,7 @@ local icon_map = {
     "  ",
     "  ",
     "  ",
-    "  ",
+    "  ",
 }
 
 local function source_string(source)

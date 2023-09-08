@@ -10,7 +10,7 @@ require("neo-tree.sources.common.components").diagnostics = function(config, nod
             Error = " ",
             Warn = " ",
             Info = " ",
-            Hint = "ﴞ ",
+            Hint = "",
         })[diag_state.severity_string],
         highlight = "Diagnostic" .. diag_state.severity_string,
     }
@@ -37,13 +37,13 @@ require("neo-tree").setup {
                 -- Change type
                 added = "✚",
                 deleted = "✖",
-                modified = "",
-                renamed = "",
+                modified = "",
+                renamed = "",
                 -- Status type
                 untracked = "",
-                ignored = "",
-                unstaged = "",
-                staged = "",
+                ignored = "󰊠",
+                unstaged = "",
+                staged = "",
                 conflict = "",
             },
         },

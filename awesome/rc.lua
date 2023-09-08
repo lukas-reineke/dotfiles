@@ -1,7 +1,7 @@
 pcall(require, "luarocks.loader")
 local lain = require "lain"
 local utils = require "utils"
--- local inspect = require "inspect"
+local inspect = require "inspect"
 
 local gears = require "gears"
 local awful = require "awful"
@@ -162,27 +162,37 @@ local globalkeys = gears.table.join(
     awful.key({ modkey }, "u", awful.client.urgent.jumpto),
 
     awful.key({ modkey }, "Return", function()
-        awful.spawn(home .. "/.local/bin/kitty --title kitty -e tmux new -A -s empty")
+        -- awful.spawn(home .. "/.local/bin/kitty --title kitty -e tmux new -A -s empty")
+        awful.spawn "kitty --title kitty -e tmux new -A -s empty"
     end),
+    -- awful.key({ modkey }, "a", function()
+    --     for _, c in ipairs(client.get()) do
+    --         if c.name == "Twilio Authy" then
+    --             c.minimized = not c.minimized
+    --             if not c.minimized then
+    --                 c:raise()
+    --                 client.focus = c
+    --             end
+    --             return
+    --         end
+    --     end
+    --
+    --     awful.spawn "authy"
+    -- end),
     awful.key({ modkey }, "a", function()
-        for _, c in ipairs(client.get()) do
-            if c.name == "Twilio Authy" then
-                c.minimized = not c.minimized
-                if not c.minimized then
-                    c:raise()
-                    client.focus = c
-                end
-                return
-            end
-        end
-
-        awful.spawn "authy"
+        awful.spawn.with_shell "/home/lukas/scripts/rofi/rofi-authy.sh"
     end),
     awful.key({ modkey }, "d", function()
         awful.spawn "rofi -show drun -show-icons"
     end),
     awful.key({ modkey, shift }, "d", function()
         awful.spawn "rofi -show window -show-icons"
+    end),
+    awful.key({ modkey }, "b", function()
+        awful.spawn "rofi-rbw -t password -r Password:"
+    end),
+    awful.key({ modkey, shift }, "b", function()
+        awful.spawn "rofi-rbw -t username -r Username:"
     end),
     awful.key({ modkey }, "i", function()
         local layouts = ""
@@ -203,9 +213,6 @@ local globalkeys = gears.table.join(
                 end
             end
         )
-    end),
-    awful.key({ modkey }, "b", function()
-        awful.spawn "bwmenu -c 20"
     end),
     awful.key({ modkey }, ".", function()
         awful.spawn "flameshot gui"
@@ -452,9 +459,11 @@ awful.rules.rules = {
     },
     {
         rule = {
-            name = "Twilio Authy",
+            class = "Authy Desktop",
         },
         properties = {
+            focus = true,
+            ontop = true,
             sticky = true,
         },
     },

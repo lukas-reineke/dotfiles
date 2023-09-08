@@ -10,7 +10,10 @@ require("neotest").setup {
         open_on_run = false,
     },
     adapters = {
-        require "neotest-rust",
+        require "neotest-rust" {
+            args = { "--no-capture" },
+            dap_adapter = "lldb",
+        },
         require "neotest-go",
         require "neotest-plenary",
         require "neotest-jest" {

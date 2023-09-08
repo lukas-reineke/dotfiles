@@ -14,10 +14,10 @@ windows:
           - v
       - shell_command:
           - cl
-  - window_name: ads-admin-api
+  - window_name: ev-route-planner
     focus: True
     layout: main-horizontal
-    start_directory: ~/dev/ads-admin-api
+    start_directory: ~/dev/ev-route-planner
     shell_command_before:
       - cd .
     panes:
@@ -27,54 +27,35 @@ windows:
           - v
       - shell_command:
           - cl
-  - window_name: mapbox-data
-    focus: True
-    layout: main-horizontal
-    start_directory: ~/dev/mapbox-data
-    shell_command_before:
-      - cd .
-    panes:
-      - focus: True
-        shell_command:
-          - cd cdk
-          - . $(poetry env info -p)/bin/activate
-          - cd ..
-          - tmux resize-pane -Z
-          - v
-      - shell_command:
-          - cd cdk
-          - . $(poetry env info -p)/bin/activate
-          - cd ..
-          - cl
-  - window_name: mapbox-infra
-    focus: True
-    layout: main-horizontal
-    start_directory: ~/dev/mapbox-infra
-    shell_command_before:
-      - cd .
-    panes:
-      - focus: True
-        shell_command:
-          - cd cdk
-          - . $(poetry env info -p)/bin/activate
-          - cd ..
-          - tmux resize-pane -Z
-          - v
-      - shell_command:
-          - cd cdk
-          - . $(poetry env info -p)/bin/activate
-          - cd ..
-          - cl
-  - window_name: mapbox-k8s-manifests
-    focus: True
-    layout: main-horizontal
-    start_directory: ~/dev/mapbox-k8s-manifests
-    shell_command_before:
-      - cd .
-    panes:
-      - focus: True
-        shell_command:
-          - tmux resize-pane -Z
-          - v
-      - shell_command:
-          - cl
+  # - window_name: mapbox-infra
+  #   focus: True
+  #   layout: main-horizontal
+  #   start_directory: ~/dev/mapbox-infra
+  #   shell_command_before:
+  #     - cd .
+  #   panes:
+  #     - focus: True
+  #       shell_command:
+  #         - cd cdk
+  #         - . $(poetry env info -p)/bin/activate
+  #         - cd ..
+  #         - tmux resize-pane -Z
+  #         - v
+  #     - shell_command:
+  #         - cd cdk
+  #         - . $(poetry env info -p)/bin/activate
+  #         - cd ..
+  #         - cl
+  # - window_name: mapbox-k8s-manifests
+  #   focus: True
+  #   layout: main-horizontal
+  #   start_directory: ~/dev/mapbox-k8s-manifests
+  #   shell_command_before:
+  #     - cd .
+  #   panes:
+  #     - focus: True
+  #       shell_command:
+  #         - tmux resize-pane -Z
+  #         - v
+  #     - shell_command:
+  #         - cl
