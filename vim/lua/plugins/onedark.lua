@@ -1,1 +1,6 @@
-require("onedark").setup {}
+return {
+    dir = "~/dev/onedark.nvim",
+    config = function()
+        require("onedark").setup()
+    end,
+}

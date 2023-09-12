@@ -110,7 +110,6 @@ vim.g.floating_window_border_dark = {
 vim.g.no_man_maps = true
 vim.g.vim_json_syntax_conceal = false
 vim.g.vim_json_conceal = false
-vim.g.mapleader = "\\<Space>"
 
 vim.diagnostic.config {
     virtual_lines = false,

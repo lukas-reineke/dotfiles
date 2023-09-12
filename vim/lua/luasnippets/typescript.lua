@@ -1,4 +1,4 @@
-local typescript = require "refactoring.treesitter.langs.typescript"
+-- local typescript = require "refactoring.treesitter.langs.typescript"
 local utils = require "luasnippets.utils"
 
 local regular = {
@@ -59,7 +59,8 @@ local auto = {
                 file = f(function()
                     return vim.fn.expand "%:t"
                 end),
-                path = utils.path(typescript.new()),
+                -- path = utils.path(typescript.new()),
+                path = "",
                 line = f(function()
                     return tostring(vim.fn.line "." - 2)
                 end),
@@ -79,7 +80,8 @@ local auto = {
                 file = f(function()
                     return vim.fn.expand "%:t"
                 end),
-                path = utils.path(typescript.new()),
+                -- path = utils.path(typescript.new()),
+                path = "",
                 counter = utils.counter "NO_COMMIT",
                 line = f(function()
                     return tostring(vim.fn.line "." - 2)

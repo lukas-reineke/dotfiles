@@ -1,1 +1,1 @@
-require("virt-column").setup_buffer { virtcolumn = "" }
+-- require("virt-column").setup_buffer { virtcolumn = "" }

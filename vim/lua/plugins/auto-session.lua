@@ -1,3 +1,9 @@
-require("auto-session").setup {
-    log_level = "error",
+return {
+    --dependencies = {
+    --    "tpope/vim-obsession",
+    --},
+    "rmagatti/auto-session",
+    config = function()
+        require("auto-session").setup {}
+    end,
 }

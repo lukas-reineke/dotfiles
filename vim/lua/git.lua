@@ -1,3 +1,5 @@
+local gitsigns = require "gitsigns"
+
 local M = {}
 
 M.is_repo = function()
@@ -15,11 +17,7 @@ M.set_base = function(base)
     end
     vim.g.git_base = base
 
-    vim.g.gitgutter_diff_base = vim.g.git_base
-
-    local win = vim.api.nvim_get_current_win()
-    vim.cmd [[noautocmd windo GitGutter]]
-    vim.api.nvim_set_current_win(win)
+    gitsigns.change_base(base, true)
 
     print(string.format("Now diffing against %s", vim.g.git_base))
 end

@@ -1,6 +1,5 @@
 require "lsp.handlers"
 local lspconfig = require "lspconfig"
-local utils = require "utils"
 local M = {}
 
 vim.lsp.protocol.CompletionItemKind = {
@@ -102,10 +101,9 @@ vim.fn.sign_define("DiagnosticSignHint", { text = "", numhl = "DiagnosticHint" }
 local group = vim.api.nvim_create_augroup("MyLSPAutogroup", {})
 
 local on_attach = function(client, bufnr)
-    require("lsp-format").on_attach(client)
+    require("lsp-format").on_attach(client, bufnr)
 
     if client.supports_method "textDocument/inlayHint" then
-        -- require("lsp-inlayhints").on_attach(client, bufnr)
         vim.lsp.inlay_hint(bufnr, true)
     end
 
@@ -114,27 +112,22 @@ local on_attach = function(client, bufnr)
     -- end
 
     if client.supports_method "textDocument/definition" then
-        utils.map("n", "<C-]>", "<cmd>lua vim.lsp.buf.definition()<CR>", { buffer = true })
+        vim.keymap.set("n", "<C-]>", vim.lsp.buf.definition, { buffer = bufnr })
     end
     if client.supports_method "textDocument/implementation" then
-        utils.map("n", "<space>&", "<cmd>lua vim.lsp.buf.implementation()<CR>", { buffer = true })
+        vim.keymap.set("n", "<space>&", vim.lsp.buf.implementation, { buffer = bufnr })
     end
     if client.supports_method "textDocument/hover" then
-        utils.map("n", "<CR>", "<cmd>lua vim.lsp.buf.hover()<CR>", { buffer = true })
+        vim.keymap.set("n", "<CR>", vim.lsp.buf.hover, { buffer = bufnr })
     end
     if client.supports_method "textDocument/definition" then
-        utils.map(
-            "n",
-            "<Space>*",
-            ":lua require('lists').change_active('Quickfix')<CR>:lua vim.lsp.buf.references()<CR>",
-            { buffer = true }
-        )
+        vim.keymap.set("n", "<Space>*", function()
+            require("lists").change_active "Quickfix"
+            vim.lsp.buf.references()
+        end, { buffer = bufnr })
     end
     if client.supports_method "textDocument/rename" then
-        -- utils.map("n", "<Space>rn", "<cmd>lua require'lsp.rename'.rename()<CR>", { silent = true, buffer = true })
-        vim.keymap.set("n", "<Space>rn", function()
-            return ":IncRename " .. vim.fn.expand "<cword>"
-        end, { expr = true })
+        vim.keymap.set("n", "<Space>rn", require("lsp.rename").rename, { buffer = bufnr })
     end
 
     if client.supports_method "textDocument/codeLens" then
@@ -145,17 +138,15 @@ local on_attach = function(client, bufnr)
                 vim.lsp.codelens.refresh()
             end,
         })
-        -- dirty hack
-        local timer = vim.loop.new_timer()
-        timer:start(300, 0, function()
-            timer:close()
-            vim.schedule_wrap(function()
-                vim.lsp.codelens.refresh()
-            end)()
-        end)
+        -- -- dirty hack
+        -- local timer = vim.uv.new_timer()
+        -- timer:start(300, 0, function()
+        --     timer:close()
+        --     vim.schedule_wrap(function()
+        --         vim.lsp.codelens.refresh()
+        --     end)()
+        -- end)
     end
-
-    utils.map("n", "<Space>s", "<cmd>lua vim.lsp.buf.signature_help()<CR>", { silent = true, buffer = true })
 
     require("lsp_signature").on_attach {
         hint_enable = false,
@@ -165,23 +156,7 @@ local on_attach = function(client, bufnr)
         },
     }
 
-    utils.map("n", "<Space><CR>", "<cmd>lua require'lsp.diagnostics'.line_diagnostics()<CR>", { buffer = true })
-end
-
-function _G.activeLSP()
-    local servers = {}
-    for _, lsp in pairs(vim.lsp.get_active_clients()) do
-        table.insert(servers, { name = lsp.name, id = lsp.id })
-    end
-    _G.P(servers)
-end
-
-function _G.bufferActiveLSP()
-    local servers = {}
-    for _, lsp in pairs(vim.lsp.get_active_clients()) do
-        table.insert(servers, { name = lsp.name, id = lsp.id })
-    end
-    _G.P(servers)
+    vim.keymap.set("n", "<Space><CR>", require("lsp.diagnostics").line_diagnostics, { buffer = bufnr })
 end
 
 -- https://github.com/golang/tools/tree/master/gopls
@@ -299,17 +274,20 @@ lspconfig.lua_ls.setup {
                 version = "LuaJIT",
                 path = { "?.lua", "?/init.lua" },
             },
-            telemetry = {
-                enable = false,
-            },
             format = {
                 enable = false,
+            },
+            hint = {
+                enable = true,
+                arrayIndex = "Disable",
+                setType = true,
             },
             completion = {
                 keywordSnippet = "Disable",
                 callSnippet = "Replace",
             },
             workspace = {
+                checkThirdParty = false,
                 library = get_lua_runtime(),
                 ignoreDir = "~/.config/nvim/backups",
                 maxPreload = 10000,

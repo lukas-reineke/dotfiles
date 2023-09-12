@@ -1,6 +1,3 @@
--- local rust = require "refactoring.treesitter.langs.rust"
-local utils = require "luasnippets.utils"
-
 local regular = {}
 
 local auto = {
@@ -24,7 +21,7 @@ local auto = {
         "ssp",
         fmt(
             [[
-                println!("{spacer} ┃ {file}:{line} > {path} > {input_rep}");
+                println!("{spacer} ┃ {file}:{line} > {input_rep}");
                 println!("{{:?}}", {input}); // NO_COMMIT
                 println!("{spacer}");
             ]],
@@ -39,7 +36,6 @@ local auto = {
                 file = f(function()
                     return vim.fn.expand "%:t"
                 end),
-                path = utils.path(),
                 line = f(function()
                     return tostring(vim.fn.line "." - 2)
                 end),
@@ -47,30 +43,6 @@ local auto = {
         ),
         { condition = conds.line_begin }
     ),
-
-    -- s(
-    --     "ssc",
-    --     fmt(
-    --         [[
-    --             {logger}("{file}:{line} > {path} [{counter}]") // NO_COMMIT
-    --         ]],
-    --         {
-    --             logger = c(1, {
-    --                 t "fmt.Println",
-    --                 t "log.Info().Msg",
-    --             }),
-    --             file = f(function()
-    --                 return vim.fn.expand "%:t"
-    --             end),
-    --             path = utils.path(rust.new()),
-    --             counter = utils.counter "NO_COMMIT",
-    --             line = f(function()
-    --                 return tostring(vim.fn.line "." - 2)
-    --             end),
-    --         }
-    --     ),
-    --     { condition = conds.line_begin }
-    -- ),
 }
 
 return regular, auto

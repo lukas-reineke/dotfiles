@@ -12,14 +12,14 @@ vim.api.nvim_create_autocmd("TextYankPost", {
         vim.highlight.on_yank { higroup = "HighlightedyankRegion", timeout = 150 }
     end,
 })
-vim.api.nvim_create_autocmd("VimEnter", {
-    group = group,
-    pattern = "*",
-    callback = function()
-        vim.cmd [[highlight QuickScopePrimary gui=bold guifg=NONE guibg=NONE]]
-        vim.cmd [[highlight QuickScopeSecondary gui=bold guifg=NONE guibg=NONE]]
-    end,
-})
+-- vim.api.nvim_create_autocmd("VimEnter", {
+--     group = group,
+--     pattern = "*",
+--     callback = function()
+--         vim.cmd [[highlight QuickScopePrimary gui=bold guifg=NONE guibg=NONE]]
+--         vim.cmd [[highlight QuickScopeSecondary gui=bold guifg=NONE guibg=NONE]]
+--     end,
+-- })
 vim.api.nvim_create_autocmd("FileType", {
     group = group,
     pattern = "*",
@@ -45,16 +45,16 @@ vim.api.nvim_create_autocmd("VimResized", {
     pattern = "*",
     command = "wincmd =",
 })
-vim.api.nvim_create_autocmd("BufWritePre", {
-    group = group,
-    pattern = "*",
-    callback = require("buffers").write_pre,
-})
-vim.api.nvim_create_autocmd("BufWritePost", {
-    group = group,
-    pattern = "*",
-    command = "GitGutter",
-})
+-- vim.api.nvim_create_autocmd("BufWritePre", {
+--     group = group,
+--     pattern = "*",
+--     callback = require("buffers").write_pre,
+-- })
+-- vim.api.nvim_create_autocmd("BufWritePost", {
+--     group = group,
+--     pattern = "*",
+--     command = "GitGutter",
+-- })
 vim.api.nvim_create_autocmd("User", {
     group = group,
     pattern = "FugitiveBlob",
@@ -62,14 +62,14 @@ vim.api.nvim_create_autocmd("User", {
         vim.opt.winhighlight = "DiffAdd:DiffDeleteOld"
     end,
 })
-vim.api.nvim_create_autocmd("BufEnter", {
-    group = group,
-    pattern = "Cargo.toml",
-    callback = function()
-        vim.keymap.set("n", "<CR>", require("crates").show_popup, {
-            noremap = true,
-            silent = true,
-            buffer = true,
-        })
-    end,
-})
+-- vim.api.nvim_create_autocmd("BufEnter", {
+--     group = group,
+--     pattern = "Cargo.toml",
+--     callback = function()
+--         vim.keymap.set("n", "<CR>", require("crates").show_popup, {
+--             noremap = true,
+--             silent = true,
+--             buffer = true,
+--         })
+--     end,
+-- })

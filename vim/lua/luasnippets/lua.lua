@@ -1,4 +1,4 @@
-local lua = require "refactoring.treesitter.langs.lua"
+-- local lua = require "refactoring.treesitter.langs.lua"
 local utils = require "luasnippets.utils"
 
 local regular = {
@@ -57,7 +57,8 @@ local auto = {
                 file = f(function()
                     return vim.fn.expand "%:t"
                 end),
-                path = utils.path(lua.new()),
+                -- path = utils.path(lua.new()),
+                path = "",
                 counter = utils.counter "NO_COMMIT",
                 line = f(function()
                     return tostring(vim.fn.line "." - 2)

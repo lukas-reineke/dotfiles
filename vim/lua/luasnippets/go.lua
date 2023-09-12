@@ -1,4 +1,4 @@
-local go = require "refactoring.treesitter.langs.go"
+-- local go = require "refactoring.treesitter.langs.go"
 local utils = require "luasnippets.utils"
 
 local regular = {}
@@ -28,7 +28,8 @@ local auto = {
                 file = f(function()
                     return vim.fn.expand "%:t"
                 end),
-                path = utils.path(go.new()),
+                -- path = utils.path(go.new()),
+                path = "",
                 line = f(function()
                     return tostring(vim.fn.line "." - 2)
                 end),
@@ -51,7 +52,8 @@ local auto = {
                 file = f(function()
                     return vim.fn.expand "%:t"
                 end),
-                path = utils.path(go.new()),
+                -- path = utils.path(go.new()),
+                path = "",
                 counter = utils.counter "NO_COMMIT",
                 line = f(function()
                     return tostring(vim.fn.line "." - 2)

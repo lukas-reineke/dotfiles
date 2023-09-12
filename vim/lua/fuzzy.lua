@@ -134,7 +134,7 @@ M.fzf_files = function(files, prompt, show_git)
                     timer:close()
                     vim.schedule_wrap(function()
                         vim.cmd [[normal gg]]
-                        vim.cmd [[GitGutterNextHunk]]
+                        require("gitsigns").next_hunk()
                     end)()
                 end)
             end

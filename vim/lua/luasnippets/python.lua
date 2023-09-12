@@ -1,4 +1,4 @@
-local python = require "refactoring.treesitter.langs.python"
+-- local python = require "refactoring.treesitter.langs.python"
 local utils = require "luasnippets.utils"
 
 local regular = {
@@ -47,7 +47,8 @@ local auto = {
                 file = f(function()
                     return vim.fn.expand "%:t"
                 end, {}),
-                path = utils.path(python.new()),
+                path = "",
+                -- path = utils.path(python.new()),
                 line = f(function()
                     return tostring(vim.fn.line "." - 2)
                 end, {}),
@@ -70,7 +71,8 @@ local auto = {
                 file = f(function()
                     return vim.fn.expand "%:t"
                 end),
-                path = utils.path(python.new()),
+                -- path = utils.path(python.new()),
+                path = "",
                 counter = utils.counter "NO_COMMIT",
                 line = f(function()
                     return tostring(vim.fn.line "." - 2)

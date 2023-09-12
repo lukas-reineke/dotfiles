@@ -7,9 +7,9 @@ local M = {}
 
 M.path = function(ts)
     return f(function()
-        if navic.is_available() then
-            return navic.get_location { highlight = false }
-        end
+        -- if navic.is_available() then
+        --     return navic.get_location { highlight = false }
+        -- end
         local cursor_node = ts_utils.get_node_at_cursor()
         local debug_path = ts and ts:get_debug_path(cursor_node)
         local path = {}
