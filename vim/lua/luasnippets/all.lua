@@ -10,7 +10,15 @@ local auto = {
     s(
         "todo ",
         f(function()
-            return string.format(vim.opt.commentstring:get(), " @TODO [Lukas]: ")
+            return string.format(vim.opt.commentstring:get(), " TODO [Lukas]: ")
+        end, {}),
+        i(1),
+        { condition = conds.line_begin }
+    ),
+    s(
+        "fixme ",
+        f(function()
+            return string.format(vim.opt.commentstring:get(), " FIXME [Lukas]: ")
         end, {}),
         i(1),
         { condition = conds.line_begin }

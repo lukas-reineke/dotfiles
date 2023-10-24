@@ -9,6 +9,13 @@ return {
         "haydenmeade/neotest-jest",
         "nvim-neotest/neotest-python",
     },
+    keys = {
+        "<Space>tt",
+        "<Space>to",
+        "<Space>ts",
+        "<Space>tf",
+        "<Space>td",
+    },
     config = function()
         local neotest = require "neotest"
         neotest.setup {

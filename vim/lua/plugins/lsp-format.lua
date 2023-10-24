@@ -34,7 +34,9 @@ return {
             },
             markdown = prettier,
             sh = {
-                tabWidth = 4,
+                tabWidth = function()
+                    return vim.opt.shiftwidth:get()
+                end,
             },
         }
     end,

@@ -3,7 +3,7 @@ return {
     dependencies = {
         "nvim-lua/plenary.nvim",
     },
-    event = "VeryLazy",
+    ft = "toml",
     config = function()
         require("crates").setup {
             popup = {

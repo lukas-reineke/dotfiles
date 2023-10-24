@@ -57,10 +57,10 @@ local function location_handler(_, result, ctx, config)
     end
 end
 
-vim.lsp.handlers["textDocument/declaration"] = location_handler
-vim.lsp.handlers["textDocument/definition"] = location_handler
-vim.lsp.handlers["textDocument/typeDefinition"] = location_handler
-vim.lsp.handlers["textDocument/implementation"] = location_handler
+-- vim.lsp.handlers["textDocument/declaration"] = location_handler
+-- vim.lsp.handlers["textDocument/definition"] = location_handler
+-- vim.lsp.handlers["textDocument/typeDefinition"] = location_handler
+-- vim.lsp.handlers["textDocument/implementation"] = location_handler
 
 -- local client_notifs = {}
 

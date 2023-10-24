@@ -12,14 +12,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
         vim.highlight.on_yank { higroup = "HighlightedyankRegion", timeout = 150 }
     end,
 })
--- vim.api.nvim_create_autocmd("VimEnter", {
---     group = group,
---     pattern = "*",
---     callback = function()
---         vim.cmd [[highlight QuickScopePrimary gui=bold guifg=NONE guibg=NONE]]
---         vim.cmd [[highlight QuickScopeSecondary gui=bold guifg=NONE guibg=NONE]]
---     end,
--- })
 vim.api.nvim_create_autocmd("FileType", {
     group = group,
     pattern = "*",

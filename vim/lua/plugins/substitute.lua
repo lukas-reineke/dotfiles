@@ -1,5 +1,6 @@
 return {
     "gbprod/substitute.nvim",
+    keys = { "gr", "grr" },
     config = function()
         require("substitute").setup {
             highlight_substituted_text = { timer = 150 },

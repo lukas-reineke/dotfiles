@@ -1,5 +1,6 @@
 return {
     "folke/flash.nvim",
+    event = "VeryLazy",
     config = function()
         local flash = require "flash"
         flash.setup {
@@ -16,6 +17,8 @@ return {
                 },
                 char = {
                     enabled = true,
+                    highlight = { backdrop = false },
+                    multi_line = false,
                 },
                 remote = {
                     highlight = { backdrop = false },

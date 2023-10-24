@@ -32,6 +32,8 @@ vim.keymap.set("x", "P", [['"_d"'.v:register.'P']], { expr = true })
 vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
 
+vim.keymap.set("n", "x", '"_x')
+
 vim.keymap.set("n", "<UP>", function()
     lists.move "up"
 end)

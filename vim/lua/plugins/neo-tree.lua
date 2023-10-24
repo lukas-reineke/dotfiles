@@ -6,6 +6,7 @@ return {
         "kyazdani42/nvim-web-devicons",
         "mrbjarksen/neo-tree-diagnostics.nvim",
     },
+    keys = { "-", "g-" },
     config = function()
         require("neo-tree.sources.common.components").diagnostics = function(_config, node, state)
             local diag = state.diagnostics_lookup or {}

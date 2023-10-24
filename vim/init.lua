@@ -10,15 +10,17 @@ require "settings"
 require("lazy").setup("plugins", {
     dev = {
         path = "~/dev",
+        patterns = { "lukas-reineke" },
+    },
+    change_detection = {
+        notify = false,
+    },
+    ui = {
+        border = vim.g.floating_window_border,
     },
 })
 require "keymaps"
-
--- require "plugins"
 require "lsp"
--- require "statusline"
--- require "mappings"
---
 require("git").setup()
 require("lists").setup()
 require "commands"

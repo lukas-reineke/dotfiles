@@ -1,5 +1,6 @@
 return {
     "yorickpeterse/nvim-pqf",
+    ft = { "qf" },
     config = function()
         require("pqf").setup {
             signs = {

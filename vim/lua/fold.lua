@@ -1,5 +1,4 @@
 local M = {}
-local utils = require "utils"
 
 M.close_all = function()
     if vim.wo.diff and #vim.api.nvim_list_wins() > 1 and vim.fn.foldlevel(vim.fn.getcurpos()[2]) == 0 then

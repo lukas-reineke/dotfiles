@@ -19,10 +19,56 @@ return {
     event = { "InsertEnter", "CmdlineEnter" },
     config = function()
         local cmp = require "cmp"
-        local cmp_compare = require "cmp_compare"
+        local types = require "cmp.types"
         local dev_icons = require "nvim-web-devicons"
         require("cmp_git").setup()
         require("cmp_jira").setup()
+
+        local confirm_key = nil
+        cmp.event:on("confirm_done", function()
+            if confirm_key ~= nil then
+                vim.fn.feedkeys(confirm_key)
+            end
+        end)
+
+        local confirm = function(fallback, key)
+            if cmp.visible() then
+                confirm_key = key
+                return cmp.mapping.confirm {
+                    behavior = cmp.ConfirmBehavior.Insert,
+                    select = true,
+                }(fallback)
+            else
+                return fallback()
+            end
+        end
+
+        local priority_map = {
+            [types.lsp.CompletionItemKind.EnumMember] = 1,
+            [types.lsp.CompletionItemKind.Variable] = 2,
+            [types.lsp.CompletionItemKind.Text] = 100,
+        }
+
+        local kind = function(entry1, entry2)
+            local kind1 = entry1:get_kind()
+            local kind2 = entry2:get_kind()
+            kind1 = priority_map[kind1] or kind1
+            kind2 = priority_map[kind2] or kind2
+            if kind1 ~= kind2 then
+                if kind1 == types.lsp.CompletionItemKind.Snippet then
+                    return true
+                end
+                if kind2 == types.lsp.CompletionItemKind.Snippet then
+                    return false
+                end
+                local diff = kind1 - kind2
+                if diff < 0 then
+                    return true
+                elseif diff > 0 then
+                    return false
+                end
+            end
+        end
 
         cmp.setup {
             preselect = cmp.PreselectMode.None,
@@ -36,23 +82,33 @@ return {
                 ["<C-f>"] = cmp.mapping.scroll_docs(5),
                 ["<C-e>"] = cmp.mapping.close(),
                 ["<CR>"] = function(fallback)
-                    if cmp.visible() then
-                        return cmp.mapping.confirm {
-                            behavior = cmp.ConfirmBehavior.Insert,
-                            select = true,
-                        }(fallback)
-                    else
-                        return fallback()
-                    end
+                    return confirm(fallback, nil)
+                end,
+                ["."] = function(fallback)
+                    return confirm(fallback, ".")
+                end,
+                [":"] = function(fallback)
+                    return confirm(fallback, ":")
+                end,
+                [" "] = function(fallback)
+                    return confirm(fallback, " ")
                 end,
                 ["<C-n>"] = function(fallback)
+                    confirm_key = nil
                     if cmp.visible() then
-                        return cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert }(fallback)
+                        return cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Select }(fallback)
                     else
                         return cmp.mapping.complete { reason = cmp.ContextReason.Auto }(fallback)
                     end
                 end,
-                ["<C-p>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
+                ["<C-p>"] = function(fallback)
+                    confirm_key = nil
+                    if cmp.visible() then
+                        return cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select }
+                    else
+                        return fallback()
+                    end
+                end,
             },
 
             snippet = {
@@ -68,7 +124,7 @@ return {
                     cmp.config.compare.exact,
                     cmp.config.compare.score,
                     require("cmp-under-comparator").under,
-                    cmp_compare.kind,
+                    kind,
                     cmp.config.compare.sort_text,
                     cmp.config.compare.length,
                     cmp.config.compare.order,
@@ -85,7 +141,14 @@ return {
                 { name = "nvim_lsp", max_item_count = 20, priority_weight = 100 },
                 { name = "nvim_lua", priority_weight = 90 },
                 { name = "luasnip", priority_weight = 80 },
-                { name = "buffer", max_item_count = 5, priority_weight = 70 },
+                {
+                    name = "buffer",
+                    max_item_count = 5,
+                    priority_weight = 50,
+                    entry_filter = function(entry)
+                        return not entry.exact
+                    end,
+                },
                 {
                     name = "rg",
                     keyword_length = 5,
@@ -94,6 +157,9 @@ return {
                     option = {
                         additional_arguments = "--smart-case --hidden",
                     },
+                    entry_filter = function(entry)
+                        return not entry.exact
+                    end,
                 },
                 { name = "tmux", max_item_count = 5, option = { all_panes = false }, priority_weight = 50 },
                 {
@@ -102,6 +168,9 @@ return {
                     max_item_count = 5,
                     option = { convert_case = true, loud = true },
                     priority_weight = 40,
+                    entry_filter = function(entry)
+                        return not entry.exact
+                    end,
                 },
             },
 

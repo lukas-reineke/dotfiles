@@ -2,6 +2,7 @@ return {
     "nvim-orgmode/orgmode",
     dependencies = {
         "akinsho/org-bullets.nvim",
+        "dhruvasagar/vim-table-mode",
     },
     config = function()
         local onedark = require "onedark"
@@ -36,5 +37,12 @@ return {
                 },
             },
         }
+
+        vim.keymap.set("n", "<Space>of", function()
+            require("orgmode").action "capture.prompt"
+        end)
+        vim.keymap.set("n", "<Space>oa", function()
+            require("orgmode").action "agenda.prompt"
+        end)
     end,
 }

@@ -1,5 +1,9 @@
 return {
     "vim-scripts/UnconditionalPaste",
+    keys = {
+        "glp",
+        "glP",
+    },
     config = function()
         vim.keymap.set("n", "<CLEAR-1>", "<Plug>UnconditionalPasteLineAfter")
         vim.keymap.set("n", "<CLEAR-2>", "<Plug>UnconditionalPasteLineBefore")

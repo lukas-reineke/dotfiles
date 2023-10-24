@@ -1,5 +1,6 @@
 return {
-    dir = "~/dev/onedark.nvim",
+    "lukas-reineke/onedark.nvim",
+    dev = true,
     config = function()
         require("onedark").setup()
     end,

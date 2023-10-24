@@ -1,6 +1,10 @@
 return {
     "lukas-reineke/headlines.nvim",
     dev = true,
+    ft = {
+        "markdown",
+        "org",
+    },
     config = function()
         local headline_highlights = {
             "HeadlineGreen",

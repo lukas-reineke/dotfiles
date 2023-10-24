@@ -22,6 +22,7 @@ opt.tabstop = 4
 opt.textwidth = 80
 opt.undofile = true
 opt.undolevels = 10000
+vim.opt.jumpoptions = "stack"
 
 vim.o.clipboard = "unnamedplus"
 vim.o.completeopt = "menu,menuone,noinsert,noselect"
@@ -31,6 +32,7 @@ vim.o.emoji = false
 -- vim.o.foldclose = "all"
 -- vim.o.foldopen = "all"
 vim.opt.foldtext = "v:lua.foldtext()"
+vim.opt.sessionoptions:remove "folds"
 vim.o.hidden = true
 vim.o.history = 10000
 vim.o.ignorecase = true

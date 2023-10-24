@@ -8,7 +8,11 @@ return {
         "jbyuki/one-small-step-for-vimkind",
         "mxsdev/nvim-dap-vscode-js",
     },
-    event = "VeryLazy",
+    keys = {
+        "<Space>dc",
+        "<Space>db",
+        "<Space>dB",
+    },
     config = function()
         require("dap-go").setup()
         require("dap-python").setup()
