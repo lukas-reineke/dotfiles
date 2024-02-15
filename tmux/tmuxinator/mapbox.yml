@@ -1,19 +1,6 @@
 session_name: mapbox
 start_directory: '~'
 windows:
-  - window_name: ads-admin-api-v2
-    focus: True
-    layout: main-horizontal
-    start_directory: ~/dev/ads-admin-api-v2
-    shell_command_before:
-      - cd .
-    panes:
-      - focus: True
-        shell_command:
-          - tmux resize-pane -Z
-          - v
-      - shell_command:
-          - cl
   - window_name: ev-route-planner
     focus: True
     layout: main-horizontal

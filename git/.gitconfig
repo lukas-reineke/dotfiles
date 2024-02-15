@@ -1,6 +1,6 @@
 [user]
     name = Lukas Reineke
-    email = lukas.reineke@protonmail.com
+    email = lukas@reineke.jp
     signingkey = C03A5FC76BD42CC0F1CFE39BA1C64B976A2BE9E5
 
 [advice]
@@ -39,6 +39,7 @@
 
 [commit]
     verbose = true
+    gpgsign = true
 
 [pull]
     rebase = true
@@ -46,6 +47,7 @@
 [branch]
     autosetupmerge = always
     autosetuprebase = always
+    sort = -committerdate
 
 [rebase]
     autosquash = true

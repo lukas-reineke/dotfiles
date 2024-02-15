@@ -1,5 +1,6 @@
 ; extends
 
-((comment) @typescript
-(#match? @typescript "^/// \\@")
-(#offset! @typescript 0 3 0 0))
+((comment) @injection.content
+(#match? @injection.content "^/// \\@")
+(#offset! @injection.content 0 3 0 0)
+(#set! injection.language "typescript"))

@@ -105,7 +105,7 @@ local on_attach = function(client, bufnr)
     require("lsp-format").on_attach(client, bufnr)
 
     if client.supports_method "textDocument/inlayHint" then
-        vim.lsp.inlay_hint(bufnr, true)
+        vim.lsp.inlay_hint.enable(bufnr, true)
     end
 
     -- if client.supports_method "textDocument/documentSymbol" and client.name ~= "bashls" then
@@ -371,15 +371,6 @@ lspconfig.lua_ls.setup {
             diagnostics = {
                 enable = true,
                 globals = {
-                    -- Neovim
-                    "vim",
-                    -- Busted
-                    "describe",
-                    "it",
-                    "before_each",
-                    "after_each",
-                    "teardown",
-                    "pending",
                     -- luasnip
                     "s",
                     "i",
@@ -550,10 +541,10 @@ lspconfig.efm.setup {
     },
 }
 
-lspconfig.clangd.setup {
-    capabilities = capabilities,
-    on_attach = on_attach,
-}
+-- lspconfig.clangd.setup {
+--     capabilities = capabilities,
+--     on_attach = on_attach,
+-- }
 
 lspconfig.marksman.setup {
     capabilities = capabilities,

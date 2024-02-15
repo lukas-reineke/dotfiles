@@ -19,9 +19,9 @@ M.rename = function()
         border = vim.g.floating_window_border,
     })
     vim.api.nvim_win_set_option(winnr, "winhl", "Normal:Floating")
-    utils.map("n", "<ESC>", "<cmd>bd!<CR>", { silent = true, buffer = true })
-    utils.map({ "n", "i" }, "<CR>", "<cmd>lua require('lsp.rename').callback()<CR>", { silent = true, buffer = true })
-    utils.map("i", "<BS>", "<ESC>xi", { silent = true, buffer = true })
+    vim.keymap.set("n", "<ESC>", "<cmd>bd!<CR>", { silent = true, buffer = true })
+    vim.keymap.set({ "n", "i" }, "<CR>", require("lsp.rename").callback, { silent = true, buffer = true })
+    vim.keymap.set("i", "<BS>", "<ESC>xi", { silent = true, buffer = true })
     vim.cmd(string.format("normal i%s", current_name))
 end
 

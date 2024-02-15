@@ -41,9 +41,10 @@ alias grpo='git remote prune origin'
 alias gds='git diff --staged'
 alias gwap='git diff -w --no-color | git apply --cached --ignore-whitespace && git checkout -- . && git reset && git add -p'
 alias gca='git commit --amend --no-edit'
+alias gpsf='git push --force-with-lease'
 alias gcae='git commit --amend'
 alias gpsn='git push --no-verify'
-alias gpsfn='git push --force --no-verify'
+alias gpsfn='git push --force-with-lease --no-verify'
 alias gj='~/dotfiles/scripts/jira-branch.sh'
 
 # python

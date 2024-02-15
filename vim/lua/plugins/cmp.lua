@@ -104,7 +104,7 @@ return {
                 ["<C-p>"] = function(fallback)
                     confirm_key = nil
                     if cmp.visible() then
-                        return cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select }
+                        return cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select }(fallback)
                     else
                         return fallback()
                     end
@@ -156,6 +156,8 @@ return {
                     priority_weight = 60,
                     option = {
                         additional_arguments = "--smart-case --hidden",
+                        set_filetype = true,
+                        marker = " ❰❰❰",
                     },
                     entry_filter = function(entry)
                         return not entry.exact

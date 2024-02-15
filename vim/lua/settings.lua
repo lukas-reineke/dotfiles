@@ -31,7 +31,7 @@ vim.o.diffopt = "internal,filler,closeoff,foldcolumn:1,hiddenoff,algorithm:patie
 vim.o.emoji = false
 -- vim.o.foldclose = "all"
 -- vim.o.foldopen = "all"
-vim.opt.foldtext = "v:lua.foldtext()"
+vim.wo.foldtext = "v:lua.foldtext()"
 vim.opt.sessionoptions:remove "folds"
 vim.o.hidden = true
 vim.o.history = 10000
@@ -81,7 +81,7 @@ vim.opt.listchars = {
     space = "⋅",
     eol = "↴",
     tab = "▎_",
-    -- tab = "|_>",
+    -- tab = ">.",
     trail = "•",
     extends = "❯",
     precedes = "❮",

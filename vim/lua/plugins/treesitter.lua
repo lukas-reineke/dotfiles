@@ -6,6 +6,18 @@ return {
     },
     build = ":TSUpdate",
     config = function()
+        vim.filetype.add {
+            pattern = { [".*/hyprland%.conf"] = "hyprlang" },
+        }
+        local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+        parser_config.hyprlang = {
+            install_info = {
+                url = "~/dev/tree-sitter-hyprlang",
+                files = { "src/parser.c" },
+            },
+            filetype = "hyprlang",
+        }
+
         require("nvim-treesitter.configs").setup {
             ensure_installed = "all",
             highlight = {

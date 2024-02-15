@@ -11,12 +11,29 @@ M.close_all = function()
 end
 
 _G.foldtext = function()
-    local line = vim.fn.getline(vim.v.foldstart)
     local line_count = vim.v.foldend - vim.v.foldstart + 1
-    local whitespace = string.match(line, "^%s+")
-    local whitespace_width = vim.fn.strdisplaywidth(whitespace)
+    local foldtext = vim.treesitter.foldtext()
 
-    return string.rep(" ", whitespace_width) .. " [" .. line_count .. "] " .. vim.trim(line) .. " "
+    if type(foldtext) == "table" then
+        local pos = 1
+        local whitespace = string.match(foldtext[1][1], "^%s+") or ""
+        if #foldtext[1][1] == #whitespace then
+            -- First part of the text is just whitespace, insert line count after
+            pos = 2
+        elseif #whitespace > 0 then
+            -- First part of the text has leading whitespace, split it into two parts and insert line count in
+            -- between
+            foldtext[1][1] = string.gsub(foldtext[1][1], "^%s*", "")
+            table.insert(foldtext, 1, { whitespace, {} })
+            pos = 2
+        end
+        table.insert(foldtext, pos, { "] ", "Comment" })
+        table.insert(foldtext, pos, { string.format("%d", line_count), "Number" })
+        table.insert(foldtext, pos, { "[", "Comment" })
+        table.insert(foldtext, pos, { " ", "LspCodeLens" })
+    end
+
+    return foldtext
 end
 
 return M

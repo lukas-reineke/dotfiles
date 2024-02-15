@@ -27,17 +27,17 @@ return {
                 disable_all = true,
             },
         }
-        require("org-bullets").setup {
-            concealcursor = true,
-            symbols = {
-                checkboxes = {
-                    half = { "", "OrgCancelled" },
-                    done = { "", "OrgDone" },
-                    todo = { " ", "OrgTODO" },
-                },
-            },
-        }
-
+        -- require("org-bullets").setup {
+        --     concealcursor = true,
+        --     symbols = {
+        --         checkboxes = {
+        --             half = { "", "OrgCancelled" },
+        --             done = { "", "OrgDone" },
+        --             todo = { " ", "OrgTODO" },
+        --         },
+        --     },
+        -- }
+        --
         vim.keymap.set("n", "<Space>of", function()
             require("orgmode").action "capture.prompt"
         end)

@@ -1,30 +1,10 @@
 session_name: mapbox-runtime
 start_directory: '~'
 windows:
-  - window_name: ads-admin-api-v2-docker
+  - window_name: ev-route-planner
     focus: True
     layout: main-horizontal
-    start_directory: ~/dev/ads-admin-api-v2
-    shell_command_before:
-      - cd .
-    panes:
-      - focus: True
-        shell_command:
-          - docker compose up
-  - window_name: ads-admin-api-v2
-    focus: True
-    layout: main-horizontal
-    start_directory: ~/dev/ads-admin-api-v2
-    shell_command_before:
-      - cd .
-    panes:
-      - focus: True
-        shell_command:
-          - npm run dev:local
-  - window_name: ads-admin-api-v2-test
-    focus: True
-    layout: main-horizontal
-    start_directory: ~/dev/ads-admin-api-v2
+    start_directory: ~/dev/ev-route-planner
     shell_command_before:
       - cd .
     panes:

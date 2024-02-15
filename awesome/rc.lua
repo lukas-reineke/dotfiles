@@ -90,13 +90,13 @@ local globalkeys = gears.table.join(
     awful.key({ modkey }, "Tab", lain.util.tag_view_nonempty),
 
     awful.key({}, "XF86AudioPlay", function()
-        awful.spawn "playerctl -p spotify play-pause"
+        awful.spawn "playerctl -p cider play-pause"
     end),
     awful.key({}, "XF86AudioNext", function()
-        awful.spawn "playerctl -p spotify next"
+        awful.spawn "playerctl -p cider next"
     end),
     awful.key({}, "XF86AudioPrev", function()
-        awful.spawn "playerctl -p spotify previous"
+        awful.spawn "playerctl -p cider previous"
     end),
 
     awful.key({ modkey }, "v", function()
