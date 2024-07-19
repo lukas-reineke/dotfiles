@@ -43,6 +43,14 @@ local auto = {
         ),
         { condition = conds.line_begin }
     ),
+
+    s(
+        "derive",
+        fmt("#[derive({input})]", {
+            input = i(1),
+        }),
+        { condition = conds.line_begin }
+    ),
 }
 
 return regular, auto

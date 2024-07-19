@@ -93,6 +93,9 @@ return {
                 [" "] = function(fallback)
                     return confirm(fallback, " ")
                 end,
+                ["("] = function(fallback)
+                    return confirm(fallback, " ")
+                end,
                 ["<C-n>"] = function(fallback)
                     confirm_key = nil
                     if cmp.visible() then
@@ -124,6 +127,8 @@ return {
                     cmp.config.compare.exact,
                     cmp.config.compare.score,
                     require("cmp-under-comparator").under,
+                    cmp.config.compare.recently_used,
+                    cmp.config.compare.locality,
                     kind,
                     cmp.config.compare.sort_text,
                     cmp.config.compare.length,

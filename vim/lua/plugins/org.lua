@@ -6,7 +6,7 @@ return {
     },
     config = function()
         local onedark = require "onedark"
-        require("orgmode").setup_ts_grammar()
+        -- require("orgmode").setup_ts_grammar()
         require("orgmode").setup {
             org_default_notes_file = "~/dev/org/notes.org",
             org_agenda_templates = {
@@ -23,6 +23,8 @@ return {
                 CANCELED = ":foreground " .. onedark.colors.red .. " :weight bold",
             },
             org_hide_emphasis_markers = true,
+            org_startup_indented = true,
+            org_adapt_indentation = false,
             mappings = {
                 disable_all = true,
             },

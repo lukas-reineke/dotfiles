@@ -1,0 +1,8 @@
+#!/bin/bash
+NO_COMMIT=$(git diff --cached | grep '^+.*NO_COMMIT')
+
+if [ -n "$NO_COMMIT" ]; then
+    printf "[0;31mno cake for you[0m\n"
+    echo "$NO_COMMIT"
+    exit 1
+fi

@@ -4,7 +4,7 @@ windows:
   - window_name: ev-route-planner
     focus: True
     layout: main-horizontal
-    start_directory: ~/dev/ev-route-planner
+    start_directory: ~/dev/ev-data-api
     shell_command_before:
       - cd .
     panes:

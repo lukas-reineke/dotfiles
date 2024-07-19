@@ -99,13 +99,13 @@ vim.fn.sign_define("DiagnosticSignWarn", { text = "", numhl = "DiagnosticWarn" }
 vim.fn.sign_define("DiagnosticSignInfo", { text = "", numhl = "DiagnosticInfo" })
 vim.fn.sign_define("DiagnosticSignHint", { text = "", numhl = "DiagnosticHint" })
 
-local group = vim.api.nvim_create_augroup("MyLSPAutogroup", {})
+-- local group = vim.api.nvim_create_augroup("MyLSPAutogroup", {})
 
 local on_attach = function(client, bufnr)
     require("lsp-format").on_attach(client, bufnr)
 
     if client.supports_method "textDocument/inlayHint" then
-        vim.lsp.inlay_hint.enable(bufnr, true)
+        vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
     end
 
     -- if client.supports_method "textDocument/documentSymbol" and client.name ~= "bashls" then
@@ -131,23 +131,23 @@ local on_attach = function(client, bufnr)
         vim.keymap.set("n", "<Space>rn", require("lsp.rename").rename, { buffer = bufnr })
     end
 
-    if client.supports_method "textDocument/codeLens" then
-        vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
-            group = group,
-            pattern = "<buffer>",
-            callback = function()
-                vim.lsp.codelens.refresh()
-            end,
-        })
-        -- -- dirty hack
-        -- local timer = vim.uv.new_timer()
-        -- timer:start(300, 0, function()
-        --     timer:close()
-        --     vim.schedule_wrap(function()
-        --         vim.lsp.codelens.refresh()
-        --     end)()
-        -- end)
-    end
+    -- if client.supports_method "textDocument/codeLens" then
+    --     vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
+    --         group = group,
+    --         pattern = "<buffer>",
+    --         callback = function()
+    --             vim.lsp.codelens.refresh()
+    --         end,
+    --     })
+    --     -- -- dirty hack
+    --     -- local timer = vim.uv.new_timer()
+    --     -- timer:start(300, 0, function()
+    --     --     timer:close()
+    --     --     vim.schedule_wrap(function()
+    --     --         vim.lsp.codelens.refresh()
+    --     --     end)()
+    --     -- end)
+    -- end
 
     require("lsp_signature").on_attach {
         hint_enable = false,
@@ -283,7 +283,7 @@ lspconfig.taplo.setup {
 
 lspconfig.pyright.setup { capabilities = capabilities, on_attach = on_attach }
 
-lspconfig.ruff_lsp.setup { capabilities = capabilities, on_attach = on_attach }
+-- lspconfig.ruff_lsp.setup { capabilities = capabilities, on_attach = on_attach }
 
 -- https://github.com/theia-ide/typescript-language-server
 lspconfig.tsserver.setup {
@@ -547,6 +547,11 @@ lspconfig.efm.setup {
 -- }
 
 lspconfig.marksman.setup {
+    capabilities = capabilities,
+    on_attach = on_attach,
+}
+
+lspconfig.hyprls.setup {
     capabilities = capabilities,
     on_attach = on_attach,
 }

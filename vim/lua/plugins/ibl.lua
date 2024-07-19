@@ -14,6 +14,13 @@ return {
         exclude = {
             filetypes = { "org" },
         },
+
+        -- indent = {
+        --     char = "",
+        -- },
+        -- whitespace = {
+        --     remove_blankline_trail = false,
+        -- },
     },
     -- config = function()
     --     local highlight = {

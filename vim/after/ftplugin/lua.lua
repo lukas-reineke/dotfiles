@@ -1,1 +1,1 @@
-vim.opt.commentstring = "--%s"
+vim.opt_local.commentstring = "--%s"

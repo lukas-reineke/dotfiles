@@ -2,12 +2,6 @@
 BRANCH=$(git branch | grep '^\*' | cut -b3- | cut -f1,2 -d'-')
 BRANCHTYPE=${BRANCH%/*}
 FILE=$(cat "$1")
-CLEAN=$(grep NO_COMMIT <"$1")
-
-if [[ -n $CLEAN ]]; then
-    printf "[0;31mno cake for you[0m\n"
-    exit 1
-fi
 
 FIRSTLINE=$(sed -n "1p" "$1")
 if [[ -z $FIRSTLINE ]]; then

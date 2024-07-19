@@ -264,7 +264,7 @@ function pr {
     local URL
     URL=$(tmux capture-pane -pJ | xurls | grep --color=never 'pull/new')
     if [[ -n $URL ]]; then
-        opera-beta "$URL" &>/dev/null
+        firefox "$URL" &>/dev/null
     fi
 }
 bind '"\C-a":" pr\n"'

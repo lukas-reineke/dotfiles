@@ -30,4 +30,4 @@ ids = [workspace["id"] for workspace in workspaces]
 next_id = find_next_id_in_group(active_worspace["id"], ids)
 
 if next_id:
-    run(f"hyprctl dispatch workspace {next_id} -j")
+    run(f"hyprctl dispatch workspace {next_id}")

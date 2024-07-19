@@ -32,6 +32,8 @@ vim.keymap.set("x", "P", [['"_d"'.v:register.'P']], { expr = true })
 vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
 
+vim.keymap.set("v", "p", '"_dP')
+
 vim.keymap.set("n", "x", '"_x')
 
 vim.keymap.set("n", "<UP>", function()
@@ -51,5 +53,15 @@ vim.keymap.set("n", "<Space>a", function()
     lists.change_active "Quickfix"
     vim.api.nvim_feedkeys(":silent grep ", "c", false)
 end, { silent = false })
+
+vim.keymap.set("n", "<space>i", function()
+    local bufnr = vim.api.nvim_get_current_buf()
+    local config = require("ibl.config").get_config(bufnr)
+    local scope = require("ibl.scope").get(bufnr, config)
+    if scope then
+        local row, column = scope:start()
+        vim.api.nvim_win_set_cursor(vim.api.nvim_get_current_win(), { row + 1, column })
+    end
+end)
 
 vim.cmd [[cabbrev nw noautocmd write]]

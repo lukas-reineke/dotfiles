@@ -121,6 +121,10 @@ local globalkeys = gears.table.join(
         awful.spawn(home .. "/scripts/keymaps/redo.sh")
     end),
 
+    awful.key({ modkey }, "t", function()
+        awful.spawn(home .. "/scripts/rofi/rofi-todoist.sh")
+    end),
+
     awful.key({ modkey }, "h", function()
         awful.client.focus.global_bydirection "left"
         if client.focus then

@@ -26,6 +26,18 @@ M.toggle_active = function()
     M.notify_list()
 end
 
+vim.api.nvim_create_user_command("Filter", function(opts)
+    local bang = ""
+    if opts.bang then
+        bang = "!"
+    end
+    if vim.g.active_list == quickfix then
+        vim.cmd(string.format("Cfilter%s %s", bang, opts.args))
+    else
+        vim.cmd(string.format("Lfilter%s %s", bang, opts.args))
+    end
+end, { bang = true })
+
 M.move = function(direction)
     local wrap
     wrap = function(cmd, backup)
