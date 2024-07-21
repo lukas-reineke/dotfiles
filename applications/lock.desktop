@@ -1,5 +1,5 @@
 [Desktop Entry]
-Exec=systemctl suspend
+Exec=systemctl suspend -i
 Icon=lock
 Name=Lock
 Type=Application
