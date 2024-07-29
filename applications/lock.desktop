@@ -1,5 +1,5 @@
 [Desktop Entry]
-Exec=systemctl suspend -i
+Exec=/home/lukas/dotfiles/scripts/lock.sh
 Icon=lock
 Name=Lock
 Type=Application

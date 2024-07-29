@@ -5,8 +5,6 @@ windows:
     focus: True
     layout: main-horizontal
     start_directory: ~/dotfiles/
-    shell_command_before:
-      - cd .
     panes:
       - focus: True
         shell_command:
@@ -17,8 +15,6 @@ windows:
     focus: True
     layout: main-horizontal
     start_directory: ~/dev/onedark.nvim/
-    shell_command_before:
-      - cd .
     panes:
       - focus: True
         shell_command:

@@ -1,6 +1,7 @@
 *~
 *.DS_Store
 .env.sh
+.env.gpg
 .tern-project
 venv-*
 tags
@@ -20,6 +21,5 @@ Session.vim
 .apdisk
 .htmlhintrc
 .projections.json
-stuff.md
 .git
 .luarc.json

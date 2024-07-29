@@ -5,8 +5,6 @@ windows:
     focus: True
     layout: main-horizontal
     start_directory: ~/dev/indent-blankline.nvim
-    shell_command_before:
-      - cd .
     panes:
       - focus: True
         shell_command:
@@ -17,8 +15,6 @@ windows:
     focus: True
     layout: main-horizontal
     start_directory: ~/dev/neovim
-    shell_command_before:
-      - cd .
     panes:
       - focus: True
         shell_command:
@@ -29,8 +25,6 @@ windows:
     focus: True
     layout: main-horizontal
     start_directory: ~/dev/cmp-rg
-    shell_command_before:
-      - cd .
     panes:
       - focus: True
         shell_command:
@@ -41,8 +35,6 @@ windows:
     focus: True
     layout: main-horizontal
     start_directory: ~/dev/cmp-under-comparator
-    shell_command_before:
-      - cd .
     panes:
       - focus: True
         shell_command:
@@ -53,8 +45,6 @@ windows:
     focus: True
     layout: main-horizontal
     start_directory: ~/dev/headlines.nvim
-    shell_command_before:
-      - cd .
     panes:
       - focus: True
         shell_command:
@@ -65,8 +55,6 @@ windows:
     focus: True
     layout: main-horizontal
     start_directory: ~/dev/lsp-format.nvim
-    shell_command_before:
-      - cd .
     panes:
       - focus: True
         shell_command:
@@ -77,8 +65,6 @@ windows:
     focus: True
     layout: main-horizontal
     start_directory: ~/dev/virt-column.nvim
-    shell_command_before:
-      - cd .
     panes:
       - focus: True
         shell_command:

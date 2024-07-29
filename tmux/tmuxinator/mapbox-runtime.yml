@@ -6,6 +6,6 @@ windows:
     layout: main-horizontal
     start_directory: ~/dev/ev-data-api
     shell_command_before:
-      - cd .
+      - envsource
     panes:
       - focus: True

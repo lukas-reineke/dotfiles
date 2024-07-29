@@ -5,8 +5,6 @@ windows:
     focus: True
     layout: main-horizontal
     start_directory: ~/dev/qmk_firmware
-    shell_command_before:
-      - cd .
     panes:
       - focus: True
         shell_command:

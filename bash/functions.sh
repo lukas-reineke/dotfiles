@@ -21,10 +21,6 @@ function cs {
         if [ -d ./.git ]; then
             git_status_shortcuts
         fi
-        if [ -f ./.env.sh ]; then
-            source .env.sh
-            echo -e "${RED}➤ ${NC}Added ${PWD##*/} environment variables\n"
-        fi
         # if [ -f ./.nvmrc ]; then
         #     nvm use &>/dev/null
         #     echo -e "${GRN}➤ ${NC}Use local Node version $(node --version)\n"
@@ -39,6 +35,70 @@ function cs {
     # cd-history-save
 }
 alias cd='exec_scmb_expand_args cs'
+
+envsource() {
+    local env_file=".env.gpg"
+    local tmp_file="/tmp/.env.$$.tmp"
+
+    if [[ ! -f "$env_file" ]]; then
+        echo -e "${RED}➤ $env_file not found!\n"
+        return 1
+    fi
+
+    touch "$tmp_file"
+    chmod 600 "$tmp_file"
+
+    echo -e "${RED}➤ ${NC}Adding ${PWD##*/} environment variables, you may need to touch your key\n"
+
+    stderr=$(gpg --decrypt "$env_file" 2>&1 >"$tmp_file")
+
+    if echo "$stderr" | grep -q "gpg: decryption failed: Operation cancelled"; then
+        echo -e "${RED}➤ $env_file could not be decrypted\n"
+        rm -f "$tmp_file"
+        return 1
+    fi
+
+    if ! echo "$stderr" | grep -q "gpg: Good signature from \"lukas.reineke <lukas@reineke.jp>\" \[ultimate\]"; then
+        echo -e "${RED}➤ $env_file was not signed!\n"
+        rm -f "$tmp_file"
+        return 1
+    fi
+
+    source "$tmp_file"
+    rm -f "$tmp_file"
+}
+
+envedit() {
+    local env_file=".env.gpg"
+    local tmp_file="/tmp/.env.$$.tmp"
+
+    touch "$tmp_file"
+    chmod 600 "$tmp_file"
+
+    if [[ -f "$env_file" ]]; then
+        echo -e "${RED}➤ ${NC}Decrypting existing ${PWD##*/} environment variables, you may need to touch your key\n"
+
+        stderr=$(gpg --decrypt "$env_file" 2>&1 >"$tmp_file")
+
+        if echo "$stderr" | grep -q "gpg: decryption failed: Operation cancelled"; then
+            echo -e "${RED}➤ $env_file could not be decrypted\n"
+            rm -f "$tmp_file"
+            return 1
+        fi
+
+        if ! echo "$stderr" | grep -q "gpg: Good signature from \"lukas.reineke <lukas@reineke.jp>\" \[ultimate\]"; then
+            echo -e "${RED}➤ $env_file was not signed!\n"
+            rm -f "$tmp_file"
+            return 1
+        fi
+    else
+        printf "#!/bin/bash\n\n" >"$tmp_file"
+    fi
+
+    nvim "$tmp_file"
+    gpg --recipient lukas@reineke.jp --encrypt --sign "$tmp_file" && mv "$tmp_file.gpg" "$env_file"
+    rm -f "$tmp_file"
+}
 
 # temp folder
 function temp {
@@ -556,4 +616,17 @@ function sx {
     else
         sxiv -abtq . &>/dev/null
     fi
+}
+
+function oshiri {
+    echo "      ____"
+    echo " /  /      \\  \\"
+    echo " \ (   )(   ) /"
+    echo "  \{~~~~~~~~}/"
+    echo "   {   /\   }"
+    echo "   {  }  {  }"
+    echo "  {  }    {  }"
+    echo " {- }      { -}"
+    echo "_| |        | |_"
+    echo "\[ ]        [ ]/"
 }
