@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
@@ -18,60 +20,15 @@ shopt -s checkwinsize
 
 shopt -s globstar
 
-# # make less more friendly for non-text input files
-# [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
-# set color with Ecma-48 (ISO/IEC-6429)
-# if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-#     force_color_promt=yes
-#     color_prompt=yes
-# else
-#     color_prompt=
-# fi
-
-# # enable programmable completion features
-# if ! shopt -oq posix; then
-#     if [ -f /usr/share/bash-completion/bash_completion ]; then
-#         . /usr/share/bash-completion/bash_completion
-#     elif [ -f /etc/bash_completion ]; then
-#         . /etc/bash_completion
-#     fi
-# fi
-
 ## external
 # git completion
 if [ -f ~/dotfiles/lib/git-completion.bash ]; then
     source ~/dotfiles/lib/git-completion.bash
 fi
 
-# if [ -f ~/dotfiles/lib/git-flow-completion.bash ]; then
-#     source ~/dotfiles/lib/git-flow-completion.bash
-# fi
-
-# npm completion
-# if [ -f ~/dotfiles/lib/npm-completion.bash ]; then
-#     source ~/dotfiles/lib/npm-completion.bash
-# fi
-
-# pip bash completion
-# _pip_completion()
-# {
-#     COMPREPLY=( $(
-#         COMP_WORDS="${COMP_WORDS[*]}" \
-#         COMP_CWORD=$COMP_CWORD \
-#         PIP_AUTO_COMPLETE=1 $1
-#     ) )
-# }
-# complete -o default -F _pip_completion pip
-
 # scm breeze
 if [ -f ~/dotfiles/lib/scm_breeze/scm_breeze.sh ]; then
     source ~/dotfiles/lib/scm_breeze/scm_breeze.sh
-fi
-
-# git prompt
-if [ -f ~/dotfiles/lib/bash-git-prompt/gitprompt.sh ]; then
-    source ~/dotfiles/lib/bash-git-prompt/gitprompt.sh
 fi
 
 # ssh
@@ -102,21 +59,6 @@ if [ -f ~/dotfiles/bash/input.sh ]; then
     source ~/dotfiles/bash/input.sh
 fi
 
-### secrets ###
-if [ -f ~/dotfiles/.secrets ]; then
-    source ~/dotfiles/.secrets
-fi
-
-# ### pm2 completion ###
-# if [ -f ~/dotfiles/lib/pm2-completion.bash ]; then
-#     source ~/dotfiles/lib/pm2-completion.bash
-# fi
-
-# ### minikube completion ###
-# if [ -f ~/dotfiles/lib/minikube-completion.bash ]; then
-#     source ~/dotfiles/lib/minikube-completion.bash
-# fi
-
 if [ -f ~/dotfiles/lib/kubectl-completion.bash ]; then
     source ~/dotfiles/lib/kubectl-completion.bash
 fi
@@ -131,15 +73,14 @@ if [ -f ~/dotfiles/lib/fzf-marks/fzf-marks.plugin.bash ]; then
     source ~/dotfiles/lib/fzf-marks/fzf-marks.plugin.bash
 fi
 
-# if [ -f ~/dotfiles/lib/cd-history.bash ]; then
-#     source ~/dotfiles/lib/cd-history.bash
-# fi
+if [ -f usr/share/bash-preexec/bash-preexec.sh ]; then
+    source /usr/share/bash-preexec/bash-preexec.sh
+fi
 
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-
-eval "$(fnm env)"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-eval "$(dircolors -b ~/dotfiles/bash/dir_colors)"
+# eval "$(fnm env)"
+# eval "$(pyenv init -)"
+# eval "$(pyenv virtualenv-init -)"
+# eval "$(dircolors -b ~/dotfiles/bash/dir_colors)"
 eval "$(gt completion)"
+eval "$(starship init bash)"
+eval "$(atuin init bash --disable-up-arrow)"

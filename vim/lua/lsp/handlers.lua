@@ -17,6 +17,27 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.s
     border = vim.g.floating_window_border_dark,
 })
 
+local inlay_hint_init = {}
+vim.lsp.handlers["experimental/serverStatus"] = function(_, result, ctx, _)
+    if not result.quiescent then
+        return
+    end
+    if inlay_hint_init[ctx.client_id] then
+        return
+    end
+    local client = vim.lsp.get_client_by_id(ctx.client_id)
+    if client == nil then
+        return
+    end
+    if not client.supports_method "textDocument/inlayHint" then
+        inlay_hint_init[ctx.client_id] = true
+        return
+    end
+    vim.lsp.inlay_hint.enable(false, nil)
+    vim.lsp.inlay_hint.enable(true, nil)
+    inlay_hint_init[ctx.client_id] = true
+end
+
 local function location_handler(_, result, ctx, config)
     if result == nil or vim.tbl_isempty(result) then
         local _ = log.info() and log.info(ctx.method, "No location found")

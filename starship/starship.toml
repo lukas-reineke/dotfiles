@@ -1,0 +1,44 @@
+add_newline = false
+
+format = """
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$git_metrics\
+$python\
+$line_break\
+$character"""
+
+[character]
+success_symbol = ''
+error_symbol = ''
+format = '$symbol '
+
+[git_branch]
+format = '[$branch(:$remote_branch)]($style) '
+
+[git_status]
+format = '$ahead_behind(| $conflicted$deleted$renamed$modified$staged$untracked$stashed)'
+ahead = '[${count}↑](bold) '
+diverged = '[${behind_count}↓ ${ahead_count}↑](bold) '
+behind = '[${count}↓](bold) '
+conflicted = '[${count}](red) '
+modified = '[${count}✚](green) '
+staged = '[${count}●](yellow) '
+renamed = '[${count}](yellow) '
+deleted = '[${count}✖](red) '
+stashed = '[${count}⚑](purple) '
+untracked = '[${count}?](cyan) '
+
+[git_metrics]
+format = '(| ([+$added]($added_style) )([-$deleted]($deleted_style)) )'
+disabled = false
+
+[directory]
+truncation_length = 10
+style = 'yellow'
+
+[python]
+format = '[(\( $virtualenv\))](green bold)'

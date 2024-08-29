@@ -1,22 +1,26 @@
+#!/bin/bash
+
 # list
 # alias la='~/dotfiles/scripts/git-ll-mac.sh'
 # alias cll='clear && ~/dotfiles/scripts/git-ll-mac.sh'
-alias ls='ls -lshHFGX --color=always --group-directories-first'
-alias lg='ls -AlshHFGX --group-directories-first | grep'
-alias ll='ls -AlshHFGX --color=always --group-directories-first'
-alias lll='ls -AlshHFGX --color=always --group-directories-first | less -R'
+# alias ls='ls -lshHFGX --color=always --group-directories-first'
+alias lg='\ls -AlshHFGX --group-directories-first | grep'
+# alias ll='ls -AlshHFGX --color=always --group-directories-first'
+# alias lll='ls -AlshHFGX --color=always --group-directories-first | less -R'
+
+alias ls='eza --all'
+alias ll='eza -al --icons=always'
+alias tree='eza -alT --icons=always'
 
 # move
 alias cl='clear'
 alias lc='clear'
 alias mkdir='mkdir -p'
-alias cls='clear && gs'
 alias gg='cd $(git rev-parse --show-toplevel)'
 
 # vim
 alias sv='sudoedit'
 alias v='ge nvim'
-alias vim='ge nvim'
 alias gv='ge nvim -c "Gdiff"'
 
 # system
@@ -25,9 +29,6 @@ alias grep='grep --color=always'
 alias reload='source ~/dotfiles/bash/bashrc'
 alias sudo='sudo env PATH=$PATH'
 alias cat='ge ccat'
-# alias crypt='gpg --trust-model always -ear adgo'
-# alias ucrypt='xsel -b | gpg'
-# alias secrets='gpg -er lukas.reineke@protonmail.com .secrets'
 
 # git
 alias gl='~/dotfiles/scripts/fzf-git-log.sh'

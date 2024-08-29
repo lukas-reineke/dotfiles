@@ -96,7 +96,10 @@ envedit() {
     fi
 
     nvim "$tmp_file"
-    gpg --recipient lukas@reineke.jp --encrypt --sign "$tmp_file" && mv "$tmp_file.gpg" "$env_file"
+    if [ $? -eq 0 ]; then
+        source "$tmp_file"
+        gpg --recipient lukas@reineke.jp --encrypt --sign "$tmp_file" && mv "$tmp_file.gpg" "$env_file"
+    fi
     rm -f "$tmp_file"
 }
 
@@ -395,16 +398,16 @@ fcoc() {
         git checkout $(echo "$commit" | sed "s/ .*//")
 }
 
-function writecmd() {
-    perl -e 'ioctl STDOUT, 0x5412, $_ for split //, do{ chomp($_ = <>); $_ }'
-}
-
-# fh - repeat history
-function fzf_history() {
-    local command=$(history | sed 's/ *[0-9]* *//' | fzf --height 20% --reverse +s --tac --tiebreak=index)
-    echo "$command" | writecmd
-}
-bind '"\C-r":" fzf_history\n"'
+# function writecmd() {
+#     perl -e 'ioctl STDOUT, 0x5412, $_ for split //, do{ chomp($_ = <>); $_ }'
+# }
+#
+# # fh - repeat history
+# function fzf_history() {
+#     local command=$(history | sed 's/ *[0-9]* *//' | fzf --height 20% --reverse +s --tac --tiebreak=index)
+#     echo "$command" | writecmd
+# }
+# bind '"\C-r":" fzf_history\n"'
 
 function kc() {
     local CONTEXT
@@ -495,30 +498,30 @@ m() {
     [ -n "$script" ] && eval python manage.py "$script"
 }
 
-nb() {
-    local branch
-    branch=$(python3 ~/dotfiles/scripts/trello-tickets.py | fzf --height 20% --reverse)
-    [ -z "$branch" ] && return
-
-    ID="$(cut -d' ' -f1 <<<"$branch")"
-    DESC="$(cut -d' ' -f2 <<<"$branch")"
-
-    echo "$DESC"
-    echo -n "Keep Description? [y/n]: "
-
-    read KEEP
-
-    if [[ $KEEP =~ ^(n|N)$ ]]; then
-        echo ""
-        echo -n "Description: "
-        read DESC
-        DESC="$DESC"
-    fi
-
-    if [[ -n $DESC ]] && [[ -n $ID ]]; then
-        git checkout -b $ID-$DESC
-    fi
-}
+# nb() {
+#     local branch
+#     branch=$(python3 ~/dotfiles/scripts/trello-tickets.py | fzf --height 20% --reverse)
+#     [ -z "$branch" ] && return
+#
+#     ID="$(cut -d' ' -f1 <<<"$branch")"
+#     DESC="$(cut -d' ' -f2 <<<"$branch")"
+#
+#     echo "$DESC"
+#     echo -n "Keep Description? [y/n]: "
+#
+#     read KEEP
+#
+#     if [[ $KEEP =~ ^(n|N)$ ]]; then
+#         echo ""
+#         echo -n "Description: "
+#         read DESC
+#         DESC="$DESC"
+#     fi
+#
+#     if [[ -n $DESC ]] && [[ -n $ID ]]; then
+#         git checkout -b $ID-$DESC
+#     fi
+# }
 
 # Colored man pages
 function man {
@@ -539,94 +542,10 @@ function venv {
     source ./venv-${PWD##*/}/bin/activate
 }
 
-function venv36 {
-    if ! [[ -d ./venv-${PWD##*/} ]]; then
-        virtualenv -p python3.6 ./venv-${PWD##*/}
-    fi
-    source ./venv-${PWD##*/}/bin/activate
-}
-
-# venv python 2
-function venv2 {
-    if ! [[ -d ./venv-${PWD##*/} ]]; then
-        virtualenv -p python2 ./venv-${PWD##*/}
-    fi
-    source ./venv-${PWD##*/}/bin/activate
-}
-
-function markd {
-    mark ${PWD##*/}
-}
-
 function vman {
     vim -c "SuperMan $*"
 
     if [ "$?" != "0" ]; then
         echo "No manual entry for $*"
     fi
-}
-
-function ccrypt {
-    if [[ $1 ]]; then
-        cat $1 | gpg --trust-model always -ear adgo | xsel -b
-    else
-        nvim /tmp/temp-text-file.txt &&
-            cat /tmp/temp-text-file.txt |
-            gpg --trust-model always -ear adgo |
-                xsel -b &&
-            rm /tmp/temp-text-file.txt
-    fi
-}
-
-function exc {
-    if [ -f "$1" ]; then
-        case $1 in
-        *.tar.xz) tar -xvf "$1" ;;
-        *.tar.bz2) tar -jxvf "$1" ;;
-        *.tar.gz) tar -zxvf "$1" ;;
-        *.bz2) bunzip2 "$1" ;;
-        *.dmg) hdiutil mount "$1" ;;
-        *.gz) gunzip "$1" ;;
-        *.tar) tar -xvf "$1" ;;
-        *.tbz2) tar -jxvf "$1" ;;
-        *.tgz) tar -zxvf "$1" ;;
-        *.zip) unzip "$1" ;;
-        *.pax) pax -r <"$1" ;;
-        *.pax.z) uncompress "$1" --stdout | pax -r ;;
-        *.rar) 7z x "$1" ;;
-        *.z) uncompress "$1" ;;
-        *.7z) 7z x "$1" ;;
-        *) echo "'$1' cannot be extracted/mounted via extract()" ;;
-        esac
-    fi
-}
-
-function clhistory {
-    tac "$HOME"/.bash_history | awk '!x[$0]++' | tac >/tmp/.bash_history
-    mv /tmp/.bash_history "$HOME"/.bash_history
-}
-
-# bind '"\C-n":"$(fzf)\n"'
-
-function sx {
-    if [ -d "${*: -1}" ] || [ -h "${*: -1}" ]; then
-        sxiv -abtq "$@" &>/dev/null
-    elif [[ $1 ]]; then
-        sxiv -abq "$@" &>/dev/null
-    else
-        sxiv -abtq . &>/dev/null
-    fi
-}
-
-function oshiri {
-    echo "      ____"
-    echo " /  /      \\  \\"
-    echo " \ (   )(   ) /"
-    echo "  \{~~~~~~~~}/"
-    echo "   {   /\   }"
-    echo "   {  }  {  }"
-    echo "  {  }    {  }"
-    echo " {- }      { -}"
-    echo "_| |        | |_"
-    echo "\[ ]        [ ]/"
 }
