@@ -81,7 +81,7 @@ fi
 # eval "$(pyenv init -)"
 # eval "$(pyenv virtualenv-init -)"
 # eval "$(dircolors -b ~/dotfiles/bash/dir_colors)"
-eval "$(gt completion)"
+# eval "$(gt completion)"
 eval "$(starship init bash)"
 eval "$(atuin init bash --disable-up-arrow)"
 source "$(npm root -g)/@mapbox/mbxcli/bin/mapbox.sh"
