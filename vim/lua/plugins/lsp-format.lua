@@ -9,7 +9,7 @@ return {
             singleQuote = true,
             trailingComma = "all",
             configPrecedence = "prefer-file",
-            exclude = { "tsserver", "jsonls" },
+            exclude = { "tsserver", "jsonls", "ts_ls" },
         }
 
         require("lsp-format").setup {

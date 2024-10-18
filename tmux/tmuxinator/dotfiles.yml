@@ -12,7 +12,6 @@ windows:
           - v
       - cl
   - window_name: onedark
-    focus: True
     layout: main-horizontal
     start_directory: ~/dev/onedark.nvim/
     panes:

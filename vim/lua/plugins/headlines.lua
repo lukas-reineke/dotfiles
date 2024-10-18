@@ -1,6 +1,7 @@
 return {
     "lukas-reineke/headlines.nvim",
     dev = true,
+    enabled = false,
     ft = {
         "markdown",
         "org",

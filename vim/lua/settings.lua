@@ -34,6 +34,8 @@ vim.o.emoji = false
 vim.wo.foldtext = ""
 -- vim.wo.foldtext = "v:lua.foldtext()"
 vim.opt.sessionoptions:remove "folds"
+vim.o.foldmethod = "expr"
+vim.o.foldexpr = "nvim_treesitter#foldexpr()"
 vim.o.hidden = true
 vim.o.history = 10000
 vim.o.ignorecase = true
@@ -66,7 +68,6 @@ vim.o.wildoptions = "pum"
 
 vim.wo.foldenable = false
 vim.wo.foldlevel = 2
-vim.wo.foldmethod = "indent"
 vim.wo.signcolumn = "yes:1"
 vim.wo.conceallevel = 2
 vim.wo.concealcursor = "n"

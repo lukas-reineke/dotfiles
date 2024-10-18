@@ -27,6 +27,7 @@ export PATH=${PATH}:$HOME/dev/golib/bin
 export PATH=${PATH}:$HOME/dev/go/bin
 export PATH=${PATH}:$HOME/.cargo/bin
 export PATH=${PATH}:$HOME/.local/bin
+export PATH=${PATH}:$HOME/.npm-global/bin
 export PATH=${PATH}:$HOME/.gem/ruby/2.7.0/bin
 # export GOOGLE_APPLICATION_CREDENTIALS=~/.config/gcloud/application_default_credentials.json
 
@@ -39,3 +40,7 @@ export PROMPT_COMMAND=${PROMPT_COMMAND:+$PROMPT_COMMAND; }'printf "\033_%s\033\\
 # export GIT_PROMPT_ONLY_IN_REPO=0
 
 export GOPATH="$HOME/dev/golib:$HOME/dev/go"
+
+export npm_config_prefix="$HOME/.npm-global"
+export NODE_PATH=$(npm root -g)
+export NODE_OPTIONS=--no-deprecation

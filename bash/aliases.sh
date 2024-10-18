@@ -4,7 +4,7 @@
 # alias la='~/dotfiles/scripts/git-ll-mac.sh'
 # alias cll='clear && ~/dotfiles/scripts/git-ll-mac.sh'
 # alias ls='ls -lshHFGX --color=always --group-directories-first'
-alias lg='\ls -AlshHFGX --group-directories-first | grep'
+alias lg='eza -al --icons=always --color=always | grep'
 # alias ll='ls -AlshHFGX --color=always --group-directories-first'
 # alias lll='ls -AlshHFGX --color=always --group-directories-first | less -R'
 

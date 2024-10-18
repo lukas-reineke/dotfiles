@@ -286,44 +286,44 @@ lspconfig.pyright.setup { capabilities = capabilities, on_attach = on_attach }
 -- lspconfig.ruff_lsp.setup { capabilities = capabilities, on_attach = on_attach }
 
 -- https://github.com/theia-ide/typescript-language-server
-lspconfig.tsserver.setup {
-    capabilities = capabilities,
-    on_attach = on_attach,
-    single_file_support = true,
-    init_options = {
-        preferences = {
-            includeCompletionsWithSnippetText = true,
-            includeCompletionsWithInsertText = true,
-        },
-    },
-    settings = {
-        completions = {
-            completeFunctionCalls = true,
-        },
-        typescript = {
-            inlayHints = {
-                includeInlayParameterNameHints = "all",
-                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-                includeInlayFunctionParameterTypeHints = true,
-                includeInlayVariableTypeHints = true,
-                includeInlayPropertyDeclarationTypeHints = true,
-                includeInlayFunctionLikeReturnTypeHints = true,
-                includeInlayEnumMemberValueHints = true,
-            },
-        },
-        javascript = {
-            inlayHints = {
-                includeInlayParameterNameHints = "all",
-                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-                includeInlayFunctionParameterTypeHints = true,
-                includeInlayVariableTypeHints = true,
-                includeInlayPropertyDeclarationTypeHints = true,
-                includeInlayFunctionLikeReturnTypeHints = true,
-                includeInlayEnumMemberValueHints = true,
-            },
-        },
-    },
-}
+-- lspconfig.tsserver.setup {
+--     capabilities = capabilities,
+--     on_attach = on_attach,
+--     single_file_support = true,
+--     init_options = {
+--         preferences = {
+--             includeCompletionsWithSnippetText = true,
+--             includeCompletionsWithInsertText = true,
+--         },
+--     },
+--     settings = {
+--         completions = {
+--             completeFunctionCalls = true,
+--         },
+--         typescript = {
+--             inlayHints = {
+--                 includeInlayParameterNameHints = "all",
+--                 includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+--                 includeInlayFunctionParameterTypeHints = true,
+--                 includeInlayVariableTypeHints = true,
+--                 includeInlayPropertyDeclarationTypeHints = true,
+--                 includeInlayFunctionLikeReturnTypeHints = true,
+--                 includeInlayEnumMemberValueHints = true,
+--             },
+--         },
+--         javascript = {
+--             inlayHints = {
+--                 includeInlayParameterNameHints = "all",
+--                 includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+--                 includeInlayFunctionParameterTypeHints = true,
+--                 includeInlayVariableTypeHints = true,
+--                 includeInlayPropertyDeclarationTypeHints = true,
+--                 includeInlayFunctionLikeReturnTypeHints = true,
+--                 includeInlayEnumMemberValueHints = true,
+--             },
+--         },
+--     },
+-- }
 
 local function get_lua_runtime()
     local result = {}
@@ -498,6 +498,7 @@ local mypy = require "efm/mypy"
 local prettier = require "efm/prettier"
 local eslint = require "efm/eslint"
 local shellcheck = require "efm/shellcheck"
+local cspell = require "efm/cspell"
 local shfmt = require "efm/shfmt"
 local terraform = require "efm/terraform"
 local misspell = require "efm/misspell"
@@ -506,7 +507,8 @@ local cbfmt = require "efm/cbfmt"
 -- https://github.com/mattn/efm-langserver
 
 local languages = {
-    ["="] = { misspell },
+    ["="] = { misspell, cspell },
+    rust = {},
     vim = { vint },
     lua = { stylua, luacheck },
     go = { staticcheck, goimports, go_vet },

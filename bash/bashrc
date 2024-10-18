@@ -84,3 +84,4 @@ fi
 eval "$(gt completion)"
 eval "$(starship init bash)"
 eval "$(atuin init bash --disable-up-arrow)"
+source "$(npm root -g)/@mapbox/mbxcli/bin/mapbox.sh"
