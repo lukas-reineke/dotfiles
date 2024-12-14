@@ -23,3 +23,5 @@ Session.vim
 .projections.json
 .git
 .luarc.json
+.fzf-ignore
+.nvim.lua

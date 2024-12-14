@@ -8,6 +8,7 @@ return {
         "mfussenegger/nvim-dap-python",
         "jbyuki/one-small-step-for-vimkind",
         "mxsdev/nvim-dap-vscode-js",
+        "LiadOz/nvim-dap-repl-highlights",
     },
     keys = {
         "<Space>dc",
@@ -17,6 +18,7 @@ return {
     config = function()
         require("dap-go").setup()
         require("dap-python").setup()
+        require("nvim-dap-repl-highlights").setup()
         local lists = require "lists"
         local dap = require "dap"
         local dapui = require "dapui"
@@ -40,11 +42,11 @@ return {
                 },
                 {
                     elements = {
-                        "repl",
+                        -- "repl",
                         "console",
                     },
-                    size = 0.25,
-                    position = "bottom",
+                    size = 0.35,
+                    position = "right",
                 },
             },
             floating = {
@@ -61,27 +63,210 @@ return {
             adapters = { "pwa-node", "pwa-chrome", "pwa-msedge", "node-terminal", "pwa-extensionHost" },
         }
 
-        dap.adapters.lldb = {
-            type = "executable",
-            command = "/usr/bin/lldb-vscode",
-            name = "lldb",
+        local cargo_compiled_changedtick = -1
+        local cargo_config = nil
+
+        local function parse_cargo_metadata(cargo_metadata)
+            for i = 1, #cargo_metadata do
+                local json_table = cargo_metadata[#cargo_metadata + 1 - i]
+                if string.len(json_table) ~= 0 then
+                    json_table = vim.json.decode(json_table)
+                    if json_table["reason"] == "compiler-artifact" and json_table["executable"] ~= vim.NIL then
+                        return json_table["executable"]
+                    end
+                end
+            end
+
+            return nil
+        end
+
+        -- Largely based on https://github.com/mfussenegger/nvim-dap/discussions/671#discussioncomment-4286738
+        local function cargo_inspector(config)
+            if cargo_compiled_changedtick == vim.g.rust_changedtick and cargo_config ~= nil then
+                return cargo_config
+            end
+
+            local final_config = vim.deepcopy(config)
+            local compiler_msg_buf = vim.api.nvim_create_buf(false, true)
+            vim.api.nvim_set_option_value("buftype", "nofile", { buf = compiler_msg_buf })
+            local window_width = 100
+            local window_height = 12
+            local compiler_msg_window = vim.api.nvim_open_win(compiler_msg_buf, false, {
+                relative = "editor",
+                width = window_width,
+                height = window_height,
+                col = vim.api.nvim_get_option_value("columns", {}) - window_width - 1,
+                row = vim.api.nvim_get_option_value("lines", {}) - window_height - 1,
+                border = vim.g.floating_window_border_dark,
+                style = "minimal",
+                title = "Cargo build",
+            })
+
+            local message_format = "--message-format=json"
+            if final_config.cargo.args ~= nil then
+                table.insert(final_config.cargo.args, message_format)
+            else
+                final_config.cargo.args = { message_format }
+            end
+            table.insert(final_config.cargo.args, 1, "cargo")
+
+            local compiler_metadata = {}
+            local cargo_job = vim.fn.jobstart(final_config.cargo.args, {
+                clear_env = false,
+                env = final_config.cargo.env,
+                cwd = final_config.cwd,
+
+                stdout_buffered = true,
+                on_stdout = function(_, data)
+                    compiler_metadata = data
+                end,
+
+                on_stderr = function(_, data)
+                    local complete_line = ""
+
+                    for _, partial_line in ipairs(data) do
+                        if string.len(partial_line) ~= 0 then
+                            complete_line = complete_line .. partial_line
+                        end
+                    end
+
+                    if vim.api.nvim_buf_is_valid(compiler_msg_buf) then
+                        vim.fn.appendbufline(compiler_msg_buf, "$", complete_line)
+                        vim.api.nvim_win_set_cursor(
+                            compiler_msg_window,
+                            { vim.api.nvim_buf_line_count(compiler_msg_buf), 1 }
+                        )
+                        vim.cmd "redraw"
+                    end
+                end,
+
+                on_exit = function(_, exit_code)
+                    if vim.api.nvim_win_is_valid(compiler_msg_window) then
+                        vim.api.nvim_win_close(compiler_msg_window, true)
+                    end
+
+                    if vim.api.nvim_buf_is_valid(compiler_msg_buf) then
+                        vim.api.nvim_buf_delete(compiler_msg_buf, { force = true })
+                    end
+
+                    if exit_code == 0 then
+                        local executable_name = parse_cargo_metadata(compiler_metadata)
+                        if executable_name ~= nil then
+                            final_config.program = executable_name
+                            cargo_compiled_changedtick = vim.g.rust_changedtick
+                        else
+                            vim.notify(
+                                "Cargo could not find an executable for debug configuration:\n\n\t" .. final_config.name,
+                                vim.log.levels.ERROR
+                            )
+                        end
+                    else
+                        vim.notify(
+                            "Cargo failed to compile debug configuration:\n\n\t" .. final_config.name,
+                            vim.log.levels.ERROR
+                        )
+                    end
+                end,
+            })
+
+            -- rustup
+            -- local rust_hash = ""
+            -- local rust_hash_stdout = {}
+            -- local rust_hash_job = vim.fn.jobstart({ "rustc", "--version", "--verbose" }, {
+            --     clear_env = false,
+            --     stdout_buffered = true,
+            --     on_stdout = function(_, data)
+            --         rust_hash_stdout = data
+            --     end,
+            --     on_exit = function()
+            --         for _, line in pairs(rust_hash_stdout) do
+            --             local start, finish = string.find(line, "commit-hash: ", 1, true)
+            --
+            --             if start ~= nil then
+            --                 rust_hash = string.sub(line, finish + 1)
+            --             end
+            --         end
+            --     end,
+            -- })
+
+            -- system install
+            local rust_version = ""
+            local rust_version_stdout = {}
+            local rust_version_job = vim.fn.jobstart({ "rustc", "--version" }, {
+                clear_env = false,
+                stdout_buffered = true,
+                on_stdout = function(_, data)
+                    rust_version_stdout = data
+                end,
+                on_exit = function()
+                    rust_version = vim.split(rust_version_stdout[1], " ")[2]
+                end,
+            })
+
+            local rust_source_path = ""
+            local rust_source_job = vim.fn.jobstart({ "rustc", "--print", "sysroot" }, {
+                clear_env = false,
+                stdout_buffered = true,
+                on_stdout = function(_, data)
+                    rust_source_path = data[1]
+                end,
+            })
+
+            vim.fn.jobwait {
+                cargo_job,
+                rust_version_job,
+                -- rust_hash_job,
+                rust_source_job,
+            }
+
+            local src_path
+            for _, src_dir in pairs { "src", "rustc-src" } do
+                src_path = vim.fs.joinpath(rust_source_path, "lib", "rustlib", src_dir, "rust")
+                if vim.uv.fs_stat(src_path) then
+                    break
+                end
+                src_path = nil
+            end
+
+            final_config.sourceLanguages = { "rust" }
+            if src_path ~= nil then
+                if final_config.sourceMap == nil then
+                    final_config["sourceMap"] = {}
+                end
+                -- rustup
+                -- final_config.sourceMap["/rustc/" .. rust_hash] = src_path
+                -- system install
+                final_config.sourceMap["/usr/src/debug/rust/rustc-" .. rust_version .. "-src/"] = src_path
+            end
+            final_config.cargo = nil
+            cargo_config = final_config
+
+            return final_config
+        end
+
+        dap.adapters.codelldb = {
+            type = "server",
+            port = "${port}",
+            executable = {
+                command = "codelldb",
+                args = { "--port", "${port}" },
+            },
+            enrich_config = function(config, on_config)
+                if config["cargo"] ~= nil then
+                    on_config(cargo_inspector(config))
+                end
+            end,
         }
 
         dap.configurations.rust = {
             {
                 name = "Launch",
-                type = "lldb",
+                type = "codelldb",
                 request = "launch",
-                program = function()
-                    local binary = vim.fn.environ()["RUST_DEBUG_BINARY"] or "/target/debug/${workspaceFolderBasename}"
-                    return vim.fn.getcwd() .. binary
-                end,
-                cwd = "${workspaceFolder}",
-                stopOnEntry = false,
                 args = function()
-                    local args = vim.fn.environ()["RUST_DEBUG_ARGS"]
+                    local args = vim.g.dap_args or os.getenv "RUST_DEBUG_ARGS"
                     if args ~= nil then
-                        return vim.split(args, " ")
+                        return vim.split(args:gsub("\n", ""), " ")
                     end
                     local co = coroutine.running()
                     vim.ui.input({
@@ -93,34 +278,12 @@ return {
 
                     return coroutine.yield()
                 end,
-                env = function()
-                    local variables = {}
-                    for k, v in pairs(vim.fn.environ()) do
-                        table.insert(variables, string.format("%s=%s", k, v))
-                    end
-                    return variables
-                end,
-                initCommands = function()
-                    -- Find out where to look for the pretty printer Python module
-                    local rustc_sysroot = vim.fn.trim(vim.fn.system "rustc --print sysroot")
-
-                    local script_import = 'command script import "'
-                        .. rustc_sysroot
-                        .. '/lib/rustlib/etc/lldb_lookup.py"'
-                    local commands_file = rustc_sysroot .. "/lib/rustlib/etc/lldb_commands"
-
-                    local commands = {}
-                    local file = io.open(commands_file, "r")
-                    if file then
-                        for line in file:lines() do
-                            table.insert(commands, line)
-                        end
-                        file:close()
-                    end
-                    table.insert(commands, 1, script_import)
-
-                    return commands
-                end,
+                cwd = "${workspaceFolder}",
+                externalConsole = false,
+                stopOnEntry = false,
+                cargo = {
+                    args = { "build" },
+                },
             },
         }
 
@@ -234,11 +397,15 @@ return {
             dap.list_breakpoints()
             vim.cmd [[copen]]
         end)
-        vim.keymap.set("n", "<Space>dp", dap.clear_breakpoints)
+        vim.keymap.set("n", "<Space>dp", function()
+            dap.terminate()
+            dap.clear_breakpoints()
+        end)
         vim.keymap.set("n", "<Space>d<CR>", dapui.eval)
         vim.keymap.set("n", "<Space>dh", dap.step_out)
         vim.keymap.set("n", "<Space>dj", dap.step_over)
         vim.keymap.set("n", "<Space>dk", dap.step_back)
         vim.keymap.set("n", "<Space>dl", dap.step_into)
+        vim.keymap.set("n", "<Space>dy", dap.terminate)
     end,
 }

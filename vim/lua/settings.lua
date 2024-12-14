@@ -23,6 +23,7 @@ opt.textwidth = 80
 opt.undofile = true
 opt.undolevels = 10000
 vim.opt.jumpoptions = "stack"
+vim.opt.exrc = true
 
 vim.o.clipboard = "unnamedplus"
 vim.o.completeopt = "menu,menuone,noinsert,noselect"

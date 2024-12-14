@@ -1,4 +1,5 @@
 local group = vim.api.nvim_create_augroup("MyAutogroup", {})
+vim.g.rust_changedtick = 0
 
 -- vim.api.nvim_create_autocmd("CursorMoved", {
 --     group = group,
@@ -65,3 +66,11 @@ vim.api.nvim_create_autocmd("User", {
 --         })
 --     end,
 -- })
+
+vim.api.nvim_create_autocmd({ "TextChanged", "TextChangedI", "TextChangedP", "TextChangedT" }, {
+    group = group,
+    pattern = "*.rs",
+    callback = function()
+        vim.g.rust_changedtick = vim.g.rust_changedtick + 1
+    end,
+})

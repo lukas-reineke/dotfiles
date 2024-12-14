@@ -17,7 +17,7 @@ export NC='\e[0m' # No Color
 # export LC_ALL=en_US.UTF-8
 # export LANG=en_US.UTF-8
 # export LANGUAGE=en_US.UTF-8
-export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --follow --glob "!.git/*" --ignore-file ~/dotfiles/fzf-ignore'
+export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --follow --glob "!.git/*" --ignore-file ~/dotfiles/fzf-ignore --ignore-file .fzf-ignore'
 export FZF_DEFAULT_OPTS="--bind \"ctrl-n:preview-down,ctrl-p:preview-up,ctrl-h:select-all,ctrl-l:deselect-all\" --color=dark --color=fg:-1,bg:-1,hl:#98c379,fg+:#ffffff,bg+:#1a1a1a,hl+:#98c379 --color=info:#c678dd,prompt:#61afef,pointer:#be5046,marker:#e5c07b,spinner:#61afef,header:#61afef"
 export GIT_REPO_DIR="$HOME/dev"
 export VISUAL=nvim
@@ -44,3 +44,4 @@ export GOPATH="$HOME/dev/golib:$HOME/dev/go"
 export npm_config_prefix="$HOME/.npm-global"
 export NODE_PATH=$(npm root -g)
 export NODE_OPTIONS=--no-deprecation
+export JSII_SILENCE_WARNING_UNTESTED_NODE_VERSION=true

@@ -103,6 +103,7 @@ vim.fn.sign_define("DiagnosticSignHint", { text = "", numhl = "DiagnosticHint" }
 
 local on_attach = function(client, bufnr)
     require("lsp-format").on_attach(client, bufnr)
+    -- require("workspace-diagnostics").populate_workspace_diagnostics(client, bufnr)
 
     if client.supports_method "textDocument/inlayHint" then
         vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
@@ -119,7 +120,9 @@ local on_attach = function(client, bufnr)
         vim.keymap.set("n", "<space>&", vim.lsp.buf.implementation, { buffer = bufnr })
     end
     if client.supports_method "textDocument/hover" then
-        vim.keymap.set("n", "<CR>", vim.lsp.buf.hover, { buffer = bufnr })
+        vim.keymap.set("n", "<CR>", function()
+            vim.lsp.buf.hover { border = vim.g.floating_window_border_dark }
+        end, { buffer = bufnr })
     end
     if client.supports_method "textDocument/definition" then
         vim.keymap.set("n", "<Space>*", function()
@@ -128,7 +131,7 @@ local on_attach = function(client, bufnr)
         end, { buffer = bufnr })
     end
     if client.supports_method "textDocument/rename" then
-        vim.keymap.set("n", "<Space>rn", require("lsp.rename").rename, { buffer = bufnr })
+        vim.keymap.set("n", "<Space>rn", vim.lsp.buf.rename, { buffer = bufnr })
     end
 
     -- if client.supports_method "textDocument/codeLens" then
@@ -149,13 +152,13 @@ local on_attach = function(client, bufnr)
     --     -- end)
     -- end
 
-    require("lsp_signature").on_attach {
-        hint_enable = false,
-        hi_parameter = "QuickFixLine",
-        handler_opts = {
-            border = vim.g.floating_window_border,
-        },
-    }
+    -- require("lsp_signature").on_attach {
+    --     hint_enable = false,
+    --     hi_parameter = "QuickFixLine",
+    --     handler_opts = {
+    --         border = vim.g.floating_window_border,
+    --     },
+    -- }
 
     vim.keymap.set("n", "<Space><CR>", require("lsp.diagnostics").line_diagnostics, { buffer = bufnr })
 end
@@ -286,44 +289,44 @@ lspconfig.pyright.setup { capabilities = capabilities, on_attach = on_attach }
 -- lspconfig.ruff_lsp.setup { capabilities = capabilities, on_attach = on_attach }
 
 -- https://github.com/theia-ide/typescript-language-server
--- lspconfig.tsserver.setup {
---     capabilities = capabilities,
---     on_attach = on_attach,
---     single_file_support = true,
---     init_options = {
---         preferences = {
---             includeCompletionsWithSnippetText = true,
---             includeCompletionsWithInsertText = true,
---         },
---     },
---     settings = {
---         completions = {
---             completeFunctionCalls = true,
---         },
---         typescript = {
---             inlayHints = {
---                 includeInlayParameterNameHints = "all",
---                 includeInlayParameterNameHintsWhenArgumentMatchesName = false,
---                 includeInlayFunctionParameterTypeHints = true,
---                 includeInlayVariableTypeHints = true,
---                 includeInlayPropertyDeclarationTypeHints = true,
---                 includeInlayFunctionLikeReturnTypeHints = true,
---                 includeInlayEnumMemberValueHints = true,
---             },
---         },
---         javascript = {
---             inlayHints = {
---                 includeInlayParameterNameHints = "all",
---                 includeInlayParameterNameHintsWhenArgumentMatchesName = false,
---                 includeInlayFunctionParameterTypeHints = true,
---                 includeInlayVariableTypeHints = true,
---                 includeInlayPropertyDeclarationTypeHints = true,
---                 includeInlayFunctionLikeReturnTypeHints = true,
---                 includeInlayEnumMemberValueHints = true,
---             },
---         },
---     },
--- }
+lspconfig.tsserver.setup {
+    capabilities = capabilities,
+    on_attach = on_attach,
+    single_file_support = true,
+    init_options = {
+        preferences = {
+            includeCompletionsWithSnippetText = true,
+            includeCompletionsWithInsertText = true,
+        },
+    },
+    settings = {
+        completions = {
+            completeFunctionCalls = true,
+        },
+        typescript = {
+            inlayHints = {
+                includeInlayParameterNameHints = "all",
+                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                includeInlayFunctionParameterTypeHints = true,
+                includeInlayVariableTypeHints = true,
+                includeInlayPropertyDeclarationTypeHints = true,
+                includeInlayFunctionLikeReturnTypeHints = true,
+                includeInlayEnumMemberValueHints = true,
+            },
+        },
+        javascript = {
+            inlayHints = {
+                includeInlayParameterNameHints = "all",
+                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                includeInlayFunctionParameterTypeHints = true,
+                includeInlayVariableTypeHints = true,
+                includeInlayPropertyDeclarationTypeHints = true,
+                includeInlayFunctionLikeReturnTypeHints = true,
+                includeInlayEnumMemberValueHints = true,
+            },
+        },
+    },
+}
 
 local function get_lua_runtime()
     local result = {}
@@ -507,8 +510,10 @@ local cbfmt = require "efm/cbfmt"
 -- https://github.com/mattn/efm-langserver
 
 local languages = {
-    ["="] = { misspell, cspell },
-    rust = {},
+    ["="] = {
+        misspell, --[[ cspell ]]
+    },
+    -- rust = {},
     vim = { vint },
     lua = { stylua, luacheck },
     go = { staticcheck, goimports, go_vet },
