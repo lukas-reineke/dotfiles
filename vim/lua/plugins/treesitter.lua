@@ -42,7 +42,11 @@ return {
                 },
             },
         }
-        require("various-textobjs").setup { useDefaultKeymaps = false }
+        require("various-textobjs").setup {
+            keymaps = {
+                useDefaults = true,
+            },
+        }
 
         vim.keymap.set({ "o", "x" }, "aS", function()
             require("various-textobjs").subword "outer"

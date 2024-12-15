@@ -37,17 +37,17 @@ return {
                         "stacks",
                         "watches",
                     },
-                    size = 60,
-                    position = "left",
-                },
-                {
-                    elements = {
-                        -- "repl",
-                        "console",
-                    },
-                    size = 0.35,
+                    size = 0.3,
                     position = "right",
                 },
+                -- {
+                --     elements = {
+                --         -- "repl",
+                --         "console",
+                --     },
+                --     size = 0.35,
+                --     position = "right",
+                -- },
             },
             floating = {
                 border = vim.g.floating_window_border,
@@ -258,6 +258,12 @@ return {
             end,
         }
 
+        dap.defaults.fallback.external_terminal = {
+            command = "tmux",
+            args = { "new-window", "-t", "mapbox-runtime", "-n", "Debug", "-c", "<desired-root-dir>" },
+        }
+        dap.defaults.fallback.force_external_terminal = true
+
         dap.configurations.rust = {
             {
                 name = "Launch",
@@ -279,7 +285,7 @@ return {
                     return coroutine.yield()
                 end,
                 cwd = "${workspaceFolder}",
-                externalConsole = false,
+                externalConsole = true,
                 stopOnEntry = false,
                 cargo = {
                     args = { "build" },
@@ -407,5 +413,6 @@ return {
         vim.keymap.set("n", "<Space>dk", dap.step_back)
         vim.keymap.set("n", "<Space>dl", dap.step_into)
         vim.keymap.set("n", "<Space>dy", dap.terminate)
+        vim.keymap.set("n", "<Space>dJ", dap.run_to_cursor)
     end,
 }
