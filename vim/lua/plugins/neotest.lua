@@ -29,10 +29,17 @@ return {
             output = {
                 open_on_run = false,
             },
+            floating = {
+                border = vim.g.floating_window_border_dark,
+            },
+            discovery = {
+                enabled = false,
+                concurrent = 1,
+            },
             adapters = {
                 require "neotest-rust" {
                     args = { "--no-capture" },
-                    dap_adapter = "lldb",
+                    dap_adapter = "codelldb",
                 },
                 require "neotest-go",
                 require "neotest-plenary",
@@ -66,6 +73,7 @@ return {
                         style = "minimal",
                         border = vim.g.floating_window_border,
                         noautocmd = true,
+                        title = "Test Output",
                     })
                 end,
             }
@@ -84,6 +92,12 @@ return {
                 title = "Neotest",
             })
             neotest.run.run { strategy = "dap" }
+        end)
+        vim.keymap.set("n", "<Space>tl", function()
+            vim.notify_once("Start debugging test", vim.log.levels.INFO, {
+                title = "Neotest",
+            })
+            neotest.run.run_last {}
         end)
     end,
 }

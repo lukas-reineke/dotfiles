@@ -253,8 +253,9 @@ return {
             },
             enrich_config = function(config, on_config)
                 if config["cargo"] ~= nil then
-                    on_config(cargo_inspector(config))
+                    config = cargo_inspector(config)
                 end
+                on_config(config)
             end,
         }
 
