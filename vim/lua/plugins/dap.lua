@@ -67,17 +67,23 @@ return {
         local cargo_config = nil
 
         local function parse_cargo_metadata(cargo_metadata)
+            local executables = {}
             for i = 1, #cargo_metadata do
                 local json_table = cargo_metadata[#cargo_metadata + 1 - i]
                 if string.len(json_table) ~= 0 then
                     json_table = vim.json.decode(json_table)
                     if json_table["reason"] == "compiler-artifact" and json_table["executable"] ~= vim.NIL then
-                        return json_table["executable"]
+                        if vim.g.dap_target_name ~= nil then
+                            if vim.g.dap_target_name == json_table["target"]["name"] then
+                                return { [json_table["target"]["name"]] = json_table["executable"] }
+                            end
+                        else
+                            executables[json_table["target"]["name"]] = json_table["executable"]
+                        end
                     end
                 end
             end
-
-            return nil
+            return executables
         end
 
         -- Largely based on https://github.com/mfussenegger/nvim-dap/discussions/671#discussioncomment-4286738
@@ -87,6 +93,7 @@ return {
             end
 
             local final_config = vim.deepcopy(config)
+            local executable_names = {}
             local compiler_msg_buf = vim.api.nvim_create_buf(false, true)
             vim.api.nvim_set_option_value("buftype", "nofile", { buf = compiler_msg_buf })
             local window_width = 100
@@ -150,16 +157,7 @@ return {
                     end
 
                     if exit_code == 0 then
-                        local executable_name = parse_cargo_metadata(compiler_metadata)
-                        if executable_name ~= nil then
-                            final_config.program = executable_name
-                            cargo_compiled_changedtick = vim.g.rust_changedtick
-                        else
-                            vim.notify(
-                                "Cargo could not find an executable for debug configuration:\n\n\t" .. final_config.name,
-                                vim.log.levels.ERROR
-                            )
-                        end
+                        executable_names = parse_cargo_metadata(compiler_metadata)
                     else
                         vim.notify(
                             "Cargo failed to compile debug configuration:\n\n\t" .. final_config.name,
@@ -218,6 +216,25 @@ return {
                 -- rust_hash_job,
                 rust_source_job,
             }
+
+            local executable_name_keys = vim.tbl_keys(executable_names)
+            if #executable_name_keys == 0 then
+                vim.notify(
+                    "Cargo could not find an executable for debug configuration:\n\n\t" .. final_config.name,
+                    vim.log.levels.ERROR
+                )
+            elseif #executable_name_keys == 1 then
+                final_config.program = vim.tbl_values(executable_names)[1]
+                cargo_compiled_changedtick = vim.g.rust_changedtick
+            else
+                local co = coroutine.running()
+                vim.ui.select(executable_name_keys, { prompt = "Executable" }, function(choice)
+                    coroutine.resume(co, executable_names[choice])
+                end)
+
+                final_config.program = coroutine.yield()
+                cargo_compiled_changedtick = vim.g.rust_changedtick
+            end
 
             local src_path
             for _, src_dir in pairs { "src", "rustc-src" } do

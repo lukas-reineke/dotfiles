@@ -115,6 +115,7 @@ local on_attach = function(client, bufnr)
 
     if client.supports_method "textDocument/definition" then
         vim.keymap.set("n", "<C-]>", vim.lsp.buf.definition, { buffer = bufnr })
+        -- vim.keymap.set("n", "<C-[>", vim.lsp.buf.type_definition, { buffer = bufnr })
     end
     if client.supports_method "textDocument/implementation" then
         vim.keymap.set("n", "<space>&", vim.lsp.buf.implementation, { buffer = bufnr })

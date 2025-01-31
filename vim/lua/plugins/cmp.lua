@@ -56,12 +56,6 @@ return {
             kind1 = priority_map[kind1] or kind1
             kind2 = priority_map[kind2] or kind2
             if kind1 ~= kind2 then
-                if kind1 == types.lsp.CompletionItemKind.Snippet then
-                    return true
-                end
-                if kind2 == types.lsp.CompletionItemKind.Snippet then
-                    return false
-                end
                 local diff = kind1 - kind2
                 if diff < 0 then
                     return true
@@ -138,21 +132,21 @@ return {
             },
 
             sources = {
-                { name = "path", priority_weight = 110 },
-                { name = "cmp_jira", priority_weight = 110 },
-                { name = "conventional_commits", priority_weight = 110 },
-                { name = "orgmode", priority_weight = 110 },
-                { name = "crates", priority_weight = 110 },
-                { name = "dap", priority_weight = 110 },
-                { name = "git", priority_weight = 110 },
-                { name = "lazydev", priority_weight = 110, group_index = 0 },
-                { name = "nvim_lsp", max_item_count = 20, priority_weight = 100 },
-                { name = "nvim_lua", priority_weight = 90 },
-                { name = "luasnip", priority_weight = 80 },
+                { name = "path", priority = 110 },
+                { name = "cmp_jira", priority = 110 },
+                { name = "conventional_commits", priority = 110 },
+                { name = "orgmode", priority = 110 },
+                { name = "crates", priority = 110 },
+                { name = "dap", priority = 110 },
+                { name = "git", priority = 110 },
+                { name = "lazydev", priority = 110, group_index = 0 },
+                { name = "nvim_lsp", max_item_count = 20, priority = 100 },
+                { name = "nvim_lua", priority = 90 },
+                { name = "luasnip", priority = 80 },
                 {
                     name = "buffer",
                     max_item_count = 5,
-                    priority_weight = 50,
+                    priority = 50,
                     entry_filter = function(entry)
                         return not entry.exact
                     end,
@@ -161,7 +155,7 @@ return {
                     name = "rg",
                     keyword_length = 5,
                     max_item_count = 5,
-                    priority_weight = 60,
+                    priority = 60,
                     option = {
                         additional_arguments = "--smart-case --hidden",
                         set_filetype = true,
@@ -171,13 +165,13 @@ return {
                         return not entry.exact
                     end,
                 },
-                { name = "tmux", max_item_count = 5, option = { all_panes = false }, priority_weight = 50 },
+                { name = "tmux", max_item_count = 5, option = { all_panes = false }, priority = 50 },
                 {
                     name = "look",
                     keyword_length = 5,
                     max_item_count = 5,
                     option = { convert_case = true, loud = true },
-                    priority_weight = 40,
+                    priority = 40,
                     entry_filter = function(entry)
                         return not entry.exact
                     end,
