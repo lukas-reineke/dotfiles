@@ -52,7 +52,7 @@ vim.api.nvim_create_autocmd("User", {
     group = group,
     pattern = "FugitiveBlob",
     callback = function()
-        vim.opt.winhighlight = "DiffAdd:DiffDeleteOld"
+        vim.opt_local.winhighlight = "DiffAdd:FuDiffDeleteOld,DiffDelete:FuDiffDelete"
     end,
 })
 -- vim.api.nvim_create_autocmd("BufEnter", {

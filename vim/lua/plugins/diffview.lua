@@ -3,5 +3,13 @@ return {
     dependencies = {
         "nvim-lua/plenary.nvim",
     },
-    cmd = "DiffviewOpen",
+    opts = {
+        enhanced_diff_hl = true,
+        hooks = {
+            diff_buf_read = function(_)
+                vim.opt_local.cursorlineopt = "number"
+                -- vim.opt_local.winhighlight = "DiffDelete:DiffviewDiffDelete"
+            end,
+        },
+    },
 }

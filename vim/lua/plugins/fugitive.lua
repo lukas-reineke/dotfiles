@@ -5,7 +5,11 @@ return {
     },
     event = "VeryLazy",
     config = function()
-        vim.keymap.set("n", "<Space>gd", ":set nosplitright<CR>:execute 'Gvdiff ' .. g:git_base<CR>:set splitright<CR>")
+        vim.keymap.set(
+            "n",
+            "<Space>gd",
+            ":set splitright<CR>:setlocal winhighlight=DiffDelete:FuDiffDelete<CR>:set nosplitright<CR>:execute 'Gvdiff ' .. g:git_base<CR>"
+        )
         vim.keymap.set("n", "<Space>gb", ":Git blame<CR>")
         vim.keymap.set("n", "<Space>gs", ":Git<CR>")
         vim.keymap.set("n", "<Space>gc", ":0Gclog<CR>", { noremap = false })

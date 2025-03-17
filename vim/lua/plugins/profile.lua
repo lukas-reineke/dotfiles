@@ -1,5 +1,6 @@
 return {
     "stevearc/profile.nvim",
+    enabled = false,
     config = function()
         if os.getenv "NVIM_PROFILE" then
             require("profile").instrument_autocmds()

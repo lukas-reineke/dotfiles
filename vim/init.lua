@@ -57,6 +57,7 @@ require("lazy").setup("plugins", {
             },
         },
     },
+    install = { colorscheme = { "onedark" } },
 })
 require "keymaps"
 

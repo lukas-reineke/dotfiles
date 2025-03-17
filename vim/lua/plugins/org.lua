@@ -4,6 +4,7 @@ return {
         "akinsho/org-bullets.nvim",
         "dhruvasagar/vim-table-mode",
     },
+    enabled = false,
     config = function()
         local onedark = require "onedark"
         -- require("orgmode").setup_ts_grammar()

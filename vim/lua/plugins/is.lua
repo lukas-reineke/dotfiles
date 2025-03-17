@@ -1,4 +1,3 @@
-local map = require("utils").map
 return {
     "haya14busa/is.vim",
     config = function()

@@ -23,7 +23,7 @@ TICKET=$(jira_call | column -t -s $'\t' | fzf --height 20% --reverse)
 
 if [[ -n $TICKET ]]; then
     TICKET_NUMBER=$(echo "$TICKET" | awk '{print$2}')
-    DESC=$(echo "${TICKET,,}" | awk '{$1=""; $2=""; print}' | sed -e 's/^[[:space:]]*//' | sed -e 's/]$//g' | sed -e 's/[\[| |\|]/-/g')
+    DESC=$(echo "${TICKET,,}" | awk '{$1=""; $2=""; print}' | sed -e 's/^[[:space:]]*//' | sed -e 's/]$//g' | sed -e 's/[\[| |\|:]/-/g')
 
     if [[ -n "$TICKET_NUMBER" ]] && [[ -n "$DESC" ]]; then
         git checkout -b "$TICKET_NUMBER/$DESC"
