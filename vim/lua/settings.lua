@@ -1,6 +1,5 @@
-vim.cmd [[syntax enable]]
-vim.cmd [[filetype plugin indent on]]
-
+-- vim.cmd [[syntax enable]]
+-- vim.cmd [[filetype plugin indent on]]
 local opt = setmetatable({}, {
     __newindex = function(_, key, value)
         vim.o[key] = value
@@ -11,7 +10,7 @@ local opt = setmetatable({}, {
 opt.dict = "~/dotfiles/lib/10k.txt"
 opt.expandtab = true
 opt.formatoptions = "crqnbj"
-vim.opt.grepprg = "rg --vimgrep --hidden --smart-case --ignore-file ~/dotfiles/fzf-ignore"
+vim.opt.grepprg = "rg --vimgrep --hidden --smart-case --ignore-file ~/dotfiles/fzf-ignore --ignore-file ./.fzf-ignore"
 vim.opt.grepformat = "%f:%l:%c:%m"
 opt.shiftwidth = 4
 opt.smartindent = true

@@ -94,10 +94,27 @@ capabilities.experimental = {
     },
 }
 
-vim.fn.sign_define("DiagnosticSignError", { text = "", numhl = "DiagnosticError" })
-vim.fn.sign_define("DiagnosticSignWarn", { text = "", numhl = "DiagnosticWarn" })
-vim.fn.sign_define("DiagnosticSignInfo", { text = "", numhl = "DiagnosticInfo" })
-vim.fn.sign_define("DiagnosticSignHint", { text = "", numhl = "DiagnosticHint" })
+-- vim.fn.sign_define("DiagnosticSignError", { text = "", numhl = "DiagnosticError" })
+-- vim.fn.sign_define("DiagnosticSignWarn", { text = "", numhl = "DiagnosticWarn" })
+-- vim.fn.sign_define("DiagnosticSignInfo", { text = "", numhl = "DiagnosticInfo" })
+-- vim.fn.sign_define("DiagnosticSignHint", { text = "", numhl = "DiagnosticHint" })
+vim.diagnostic.config {
+    severity_sort = true,
+    signs = {
+        text = {
+            [vim.diagnostic.severity.ERROR] = "",
+            [vim.diagnostic.severity.WARN] = "",
+            [vim.diagnostic.severity.INFO] = "",
+            [vim.diagnostic.severity.HINT] = "",
+        },
+        numhl = {
+            [vim.diagnostic.severity.ERROR] = "DiagnosticError",
+            [vim.diagnostic.severity.WARN] = "DiagnosticWarn",
+            [vim.diagnostic.severity.INFO] = "DiagnosticInfo",
+            [vim.diagnostic.severity.HINT] = "DiagnosticHint",
+        },
+    },
+}
 
 -- local group = vim.api.nvim_create_augroup("MyLSPAutogroup", {})
 
@@ -273,9 +290,10 @@ lspconfig.rust_analyzer.setup {
             lens = {
                 enabled = true,
             },
-            checkOnSave = {
+            check = {
                 command = "clippy",
             },
+            checkOnSave = true,
         },
     },
 }

@@ -21,6 +21,7 @@ alias gg='cd $(git rev-parse --show-toplevel)'
 # vim
 alias sv='sudoedit'
 alias v='ge nvim'
+alias vb='ge nvim --clean -u ~/dotfiles/vim/init.big.lua'
 alias gv='ge nvim -c "Gdiff"'
 
 # system

@@ -85,3 +85,7 @@ fi
 eval "$(starship init bash)"
 eval "$(atuin init bash --disable-up-arrow)"
 source "$(npm root -g)/@mapbox/mbxcli/bin/mapbox.sh"
+#
+# if [ -f /etc/profile.d/nix-daemon.sh ]; then
+#     source /etc/profile.d/nix-daemon.sh
+# fi

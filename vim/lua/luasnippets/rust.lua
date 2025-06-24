@@ -22,7 +22,7 @@ local auto = {
         fmt(
             [[
                 println!("{spacer} ┃ {file}:{line} > {input_rep}");
-                println!("{{:?}}", {input}); // NO_COMMIT
+                println!("{{{input}:?}}"); // NO_COMMIT
                 println!("{spacer}");
             ]],
             {

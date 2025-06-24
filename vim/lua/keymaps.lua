@@ -9,15 +9,18 @@ vim.keymap.set({ "n", "o", "v" }, "H", "^")
 vim.keymap.set({ "n", "o", "v" }, "L", "$")
 vim.keymap.set({ "n", "v" }, "J", "5j")
 vim.keymap.set({ "n", "v" }, "K", "5k")
+vim.keymap.set("x", "I", function()
+    return vim.api.nvim_get_mode().mode == "" and "I" or "<C-v>I"
+end, { expr = true, silent = true, noremap = true })
 vim.keymap.set({ "n", "v" }, "j", "v:count ? (v:count > 5 ? \"m'\" . v:count : '') . 'j' : 'gj'", { expr = true })
 vim.keymap.set({ "n", "v" }, "k", "v:count ? (v:count > 5 ? \"m'\" . v:count : '') . 'k' : 'gk'", { expr = true })
 vim.keymap.set("c", "<C-j>", "<DOWN>")
 vim.keymap.set("c", "<C-k>", "<UP>")
 vim.keymap.set("n", "<Space>j", function()
-    vim.diagnostic.goto_next { float = false }
+    vim.diagnostic.jump { count = 1 }
 end)
 vim.keymap.set("n", "<Space>k", function()
-    vim.diagnostic.goto_prev { float = false }
+    vim.diagnostic.jump { count = -1 }
 end)
 
 vim.keymap.set("n", "<Space>N", ":e %:h/")

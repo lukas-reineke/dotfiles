@@ -31,9 +31,9 @@ end, { buffer = true })
 -- map("n", leader .. "f", ":lua require('fuzzy').headlines('^%*+', '*')<CR>", { buffer = true })
 
 vim.g.table_mode_verbose = false
-vim.fn["tablemode#Enable"]()
+-- vim.fn["tablemode#Enable"]()
 
-require("virt-column").setup_buffer(0, { virtcolumn = "" })
+-- require("virt-column").setup_buffer(0, { virtcolumn = "" })
 
 vim.opt_local.spell = true
 vim.opt_local.list = false
