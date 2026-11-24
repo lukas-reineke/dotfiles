@@ -6,3 +6,4 @@ vim/plugin/packer_compiled.vim
 vim/plugin/packer_compiled.lua
 tmux/plugins
 
+**/__pycache__

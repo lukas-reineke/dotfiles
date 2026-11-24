@@ -1,0 +1,11 @@
+session_name: ai
+start_directory: '~'
+windows:
+  - window_name: ev-route-planner
+    focus: True
+    layout: main-horizontal
+    start_directory: ~/dev/ev-route-planner
+    shell_command_before:
+      - envsource
+    panes:
+      - focus: True

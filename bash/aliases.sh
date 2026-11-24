@@ -81,3 +81,4 @@ alias kcg='kubectl get pods | grep'
 # vpn
 alias md='nmcli connection down mapbox'
 alias mu='nmcli connection up mapbox'
+alias mid='echo "" && mapbox-id decode -p'

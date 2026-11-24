@@ -16,7 +16,7 @@ DESCRIPTION=$(echo "$RESPONSE" | jq -r '
   | .text' | sed '/^$/d')
 
 case "$JIRA_TYPE" in
-Story | Task) TYPE="feat" ;;
+Story | Task | Sub-task) TYPE="feat" ;;
 Bug) TYPE="fix" ;;
 *) TYPE="misc" ;;
 esac
@@ -24,4 +24,5 @@ esac
 echo "${TYPE}: ${TITLE}"
 echo
 echo "${DESCRIPTION}"
+echo
 echo "${JIRA_WORKSPACE_URL}/browse/${TICKET}"

@@ -25,3 +25,8 @@ Session.vim
 .luarc.json
 .fzf-ignore
 .nvim.lua
+.serena
+opencode.json
+CLAUDE.local.md
+
+**/.claude/settings.local.json

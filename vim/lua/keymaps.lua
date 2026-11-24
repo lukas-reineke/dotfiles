@@ -67,4 +67,8 @@ vim.keymap.set("n", "<space>i", function()
     end
 end)
 
+vim.keymap.set("v", "a", function()
+    require("ai").send_visual_filepath_range_to_ai(false)
+end)
+
 vim.cmd [[cabbrev nw noautocmd write]]
